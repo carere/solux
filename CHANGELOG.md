@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/carere/solux/compare/v1.0.1...v1.0.2) (2022-09-18)
+
+
+### Bug Fixes
+
+* updating visibility of package to public ([9b80714](https://github.com/carere/solux/commit/9b8071440b48eb3b36ca8b4b63e06a70346c3b7a))
+
 ## [1.0.1](https://github.com/carere/solux/compare/v1.0.0...v1.0.1) (2022-09-18)
 
 
