@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/carere/solux/compare/v1.0.0...v1.0.1) (2022-09-18)
+
+
+### Bug Fixes
+
+* fixing conflict ([434383b](https://github.com/carere/solux/commit/434383b81ff15c3441fd266779758f6ec7d21374))
+* renaming solux to @carere/solux ([fabd9e0](https://github.com/carere/solux/commit/fabd9e02e5d97e241ca884af0ec16f92c8cc397d))
+
 # 1.0.0 (2022-09-18)
 
 
