@@ -4,7 +4,7 @@ import { defineConfig } from 'tsup'
 export default defineConfig({
   name: 'solux',
   platform: 'browser',
-  entry: ['src/index.tsx'],
+  entry: ['src/index.ts'],
   treeshake: true,
   dts: true,
   clean: true,
