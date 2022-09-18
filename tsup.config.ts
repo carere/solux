@@ -2,7 +2,7 @@ import { solidPlugin } from 'esbuild-plugin-solid'
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  name: 'solux',
+  name: '@carere/solux',
   platform: 'browser',
   entry: ['src/index.ts'],
   treeshake: true,
