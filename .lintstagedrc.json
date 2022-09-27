@@ -1,5 +1,5 @@
 {
   "*.{ts,tsx,json}": ["prettier --write"],
-  "*.{ts,tsx}": ["pnpm run lint --"],
+  "*.{ts,tsx}": ["eslint --cache --fix"],
   "package.json": "sort-package-json"
 }

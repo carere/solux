@@ -65,14 +65,5 @@
   },
   "volta": {
     "node": "18.9.0"
-  },
-  "wallaby": {
-    "autoDetect": true,
-    "files": [
-      "src/**/*.ts"
-    ],
-    "test": [
-      "test/unit/*.spec.ts"
-    ]
   }
 }

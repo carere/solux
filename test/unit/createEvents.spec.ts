@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { createEvent } from '../../src/createEvent'
 
 describe('Creating an event', () => {
-  it('should contain a property type with then name of the type', () => {
+  it('should contain a property type with the name of the type', () => {
     const creator = createEvent('someDomain')
 
     expect(creator.type).toEqual('someDomain')
@@ -36,23 +36,27 @@ describe('Creating an event', () => {
     })
   })
 
-  describe('with prepared callback', () => {
+  describe('with options', () => {
     it('should throw and error if callback does not generate proper object', () => {
-      expect(createEvent('error', () => ({}))).toThrowError()
+      expect(createEvent('error', { prepare: () => ({}) })).toThrowError()
     })
 
     it('should be able to construct an event with prepared payload', () => {
-      const creator = createEvent('someDomain', (value: string) => ({
-        payload: { depth: Number.parseInt(value) },
-      }))
+      const creator = createEvent('someDomain', {
+        prepare: (value: string) => ({
+          payload: { depth: Number.parseInt(value) },
+        }),
+      })
 
       expect(creator('42')).toEqual({ type: 'someDomain', payload: { depth: 42 } })
     })
 
     it('should be able to construct an event with prepared meta', () => {
-      const creator = createEvent('event-meta', (value: number) => ({
-        meta: value,
-      }))
+      const creator = createEvent('event-meta', {
+        prepare: (value: number) => ({
+          meta: value,
+        }),
+      })
 
       expect(creator(42)).toEqual({ type: 'event-meta', meta: 42 })
     })

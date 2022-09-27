@@ -9,20 +9,22 @@ import type { Event, EventCreator, PrepareCallback } from './types'
  * if an event is produced by the return event creator
  *
  * @param name The event type to use for created events.
- * @param prepareEvent (optional) a method that takes an object and returns { payload, meta? }.
+ * @param options (optional) a method that takes an object and returns { payload, meta? }.
  *                If this is given, the resulting event creator will pass its arguments to this method to calculate payload.
  * @template P The type of the `payload` attribute of the created events
  * @template V The type of the argument used to `prepare` the payload
  *
  * @returns An event creator
  */
-export const createEvent = <P, M = unknown, V = unknown>(
+export const createEvent = <P, M = undefined, V = undefined>(
   name: string,
-  prepareEvent?: PrepareCallback<P, M, V>,
-): EventCreator<P, M, V> => {
-  const creator = (value?: P | V) => {
-    if (prepareEvent) {
-      const prepared = prepareEvent(value as V)
+  options: Partial<{
+    prepare: PrepareCallback<P, M, V>
+  }> = {},
+) => {
+  const creator: EventCreator<P, M, V> = (value?) => {
+    if (options.prepare) {
+      const prepared = options.prepare(value as V)
 
       if (!('meta' in prepared) && !('payload' in prepared))
         throw Error(`
@@ -44,7 +46,7 @@ export const createEvent = <P, M = unknown, V = unknown>(
   }
 
   creator.type = name
-  creator.match = (event: Event) => event.type === name
+  creator.match = (event: Event<P>) => event.type === name
 
   return creator
 }

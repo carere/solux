@@ -10,9 +10,10 @@ import type { Observable, Subscription } from 'rxjs'
  * performed. The `type` field needs to be a `string`
  *
  * If you need some data to represent what happen, you are free to populate
- * the payload property of an event.
+ * the payload / meta property of an event.
  *
  * @template P the type of the event's `payload` property.
+ * @template M the type of the event's `meta` property.
  */
 export type Event<P = unknown, M = unknown> = { type: string; payload?: P; meta?: M }
 
@@ -86,8 +87,8 @@ export type Store<S> = {
  * @param value The argument used to prepare the event
  *
  * @template P The type of the `payload` field of the created events
- * @template V The type of the argument used to `prepare` the payload
  * @template M The type of the `meta` field of the created events
+ * @template V The type of the argument passed to the prepare callbacks
  */
 export type PrepareCallback<P, M, V> = (value: V) => Partial<Omit<Event<P, M>, 'type'>>
 
@@ -97,8 +98,8 @@ export type PrepareCallback<P, M, V> = (value: V) => Partial<Omit<Event<P, M>, '
  * @template P the `payload` type
  * @template V the type of the parameter passed to the prepared callback
  */
-export type EventCreator<P = unknown, M = unknown, V = unknown> = {
-  (value?: P | V): Event<P, M>
+export type EventCreator<P, M = undefined, V = undefined> = {
+  (value?: V extends undefined ? P : V): Event<P, M>
   type: string
   match: (event: Event<P, M>) => boolean
 }
