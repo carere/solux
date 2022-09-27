@@ -1,6 +1,6 @@
 {
   "name": "@carere/solux",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Flux implementation based on SolidJs reactivity",
   "keywords": [
     "Solid",

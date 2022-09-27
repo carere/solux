@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/carere/solux/compare/v1.0.2...v1.0.3) (2022-09-27)
+
+
+### Bug Fixes
+
+* improving typings and apis for creating events and filtering event in epics ([26c9ce2](https://github.com/carere/solux/commit/26c9ce2186df8a169cf9911d0b651fef4f280e85))
+
 ## [1.0.2](https://github.com/carere/solux/compare/v1.0.1...v1.0.2) (2022-09-18)
 
 
