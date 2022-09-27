@@ -15,7 +15,8 @@ import type { Observable, Subscription } from 'rxjs'
  * @template P the type of the event's `payload` property.
  * @template M the type of the event's `meta` property.
  */
-export type Event<P = unknown, M = unknown> = { type: string; payload?: P; meta?: M }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Event<P = any, M = any> = { type: string; payload?: P; meta?: M }
 
 /**
  * A *handler* is a function that accepts a state and an event.
