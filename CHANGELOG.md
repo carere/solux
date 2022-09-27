@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/carere/solux/compare/v1.0.3...v1.0.4) (2022-09-27)
+
+
+### Bug Fixes
+
+* use any type for event payload & meta ([12703ed](https://github.com/carere/solux/commit/12703ed94d189cdde6cc58e172d94d419295907a))
+
 ## [1.0.3](https://github.com/carere/solux/compare/v1.0.2...v1.0.3) (2022-09-27)
 
 
