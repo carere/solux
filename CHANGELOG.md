@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/carere/solux/compare/v1.0.4...v1.1.0) (2022-09-28)
+
+
+### Features
+
+* greatly improving typings for event creators ([0f3e11d](https://github.com/carere/solux/commit/0f3e11dad7b9092cab56f29c06b3317fdafc64df))
+
 ## [1.0.4](https://github.com/carere/solux/compare/v1.0.3...v1.0.4) (2022-09-27)
 
 
