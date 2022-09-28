@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/carere/solux/compare/v1.1.0...v1.1.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* update dependencies & fixing some typings ([40f4227](https://github.com/carere/solux/commit/40f4227720d995614b593e33fc629bcf52e62fb0))
+
 # [1.1.0](https://github.com/carere/solux/compare/v1.0.4...v1.1.0) (2022-09-28)
 
 
