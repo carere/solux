@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { EventWithPayload } from '../../src'
 import { combineEpics } from '../../src/combineEpics'
 import { configureStore } from '../../src/configureStore'
 import { addition, epic1, epic2, epic3, subtract } from '../fixtures'
@@ -8,13 +9,13 @@ describe('Using epics', () => {
     rootEpic: combineEpics(epic1, epic2, epic3),
     rootSlice: {
       getInitialState: () => ({ res: 0 }),
-      handler: (state, event) => {
+      handler: (state, event: EventWithPayload<number>) => {
         switch (event.type) {
           case 'add':
-            state.res += event.payload as number
+            state.res += event.payload
             break
           case 'sub':
-            state.res -= event.payload as number
+            state.res -= event.payload
         }
       },
     },

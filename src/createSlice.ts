@@ -1,4 +1,4 @@
-import type { EventCreator, EventHandlerMapBuilder, Handler, Slice, SliceOption } from './types'
+import type { EventHandlerMapBuilder, Handler, Slice, SliceOption, Event } from './types'
 
 /**
  * A utility function that allows defining an handler as a mapping from event
@@ -12,7 +12,7 @@ export const createHandler = <S>(builderCallback: SliceOption<S>['handlers']): H
   const eventsMap: Record<string, Handler<S>> = {}
 
   const builder: EventHandlerMapBuilder<S> = {
-    addHandler: <P>(eventCreator: EventCreator<P>, handler: Handler<S, P>) => {
+    addHandler: (eventCreator, handler) => {
       eventsMap[eventCreator.type] = handler
       return builder
     },

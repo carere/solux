@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { configureStore } from '../../src/configureStore'
-import { Event } from '../../src/types'
+import { EventWithPayload } from '../../src/types'
 
 describe('Subscribing to store', () => {
   const store = configureStore({
     rootSlice: {
       getInitialState: () => ({ magic: 0 }),
-      handler: (state, event: Event<number>) => {
+      handler: (state, event: EventWithPayload<number>) => {
         state.magic = event.payload
       },
     },

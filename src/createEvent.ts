@@ -1,4 +1,4 @@
-import type { Event, EventCreator, PrepareCallback } from './types'
+import type { Event, PayloadEventCreator, PrepareCallback } from './types'
 
 /**
  * A utility function to create an event creator for the given event type
@@ -9,24 +9,26 @@ import type { Event, EventCreator, PrepareCallback } from './types'
  * if an event is produced by the return event creator
  *
  * @param name The event type to use for created events.
- * @param options (optional) a method that takes an object and returns { payload, meta? }.
+ * @param prepare (optional) a method that takes an object and returns { payload, meta? }.
  *                If this is given, the resulting event creator will pass its arguments to this method to calculate payload.
  * @template P The type of the `payload` attribute of the created events
  * @template V The type of the argument used to `prepare` the payload
  *
  * @returns An event creator
  */
-export const createEvent = <P, M = undefined, V = undefined>(
+export function createEvent<P = undefined>(name: string): PayloadEventCreator<P>
+export function createEvent<PA extends PrepareCallback<V, P>, P, V = undefined>(
   name: string,
-  options: Partial<{
-    prepare: PrepareCallback<P, M, V>
-  }> = {},
-) => {
-  const creator: EventCreator<P, M, V> = (value?) => {
-    if (options.prepare) {
-      const prepared = options.prepare(value as V)
+  prepare?: PrepareCallback<V, P>,
+): PayloadEventCreator<P, PA, V>
 
-      if (!('meta' in prepared) && !('payload' in prepared))
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function createEvent<P, V>(name: string, prepare?: PrepareCallback<V, P>): any {
+  const creator = (value: V | P) => {
+    if (prepare) {
+      const prepared = prepare(value as V)
+
+      if (!('payload' in prepared))
         throw Error(`
           Event creator's prepared callback for event '${name}' did not return an object
           containing either 'payload' or 'meta' field.
@@ -37,7 +39,6 @@ export const createEvent = <P, M = undefined, V = undefined>(
 
       return {
         type: name,
-        ...('meta' in prepared && { meta: prepared.meta }),
         ...('payload' in prepared && { payload: prepared.payload }),
       }
     }
@@ -46,7 +47,7 @@ export const createEvent = <P, M = undefined, V = undefined>(
   }
 
   creator.type = name
-  creator.match = (event: Event<P>) => event.type === name
+  creator.match = (event: Event) => event.type === name
 
   return creator
 }
