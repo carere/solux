@@ -9,6 +9,20 @@ import type { Event, PayloadEventCreator, PrepareCallback } from './types'
  * if an event is produced by the return event creator
  *
  * @param name The event type to use for created events.
+ * @template P The type of the `payload` attribute of the created events
+ * @returns An event creator
+ */
+export function createEvent<P = undefined>(name: string): PayloadEventCreator<P>
+
+/**
+ * A utility function to create an event creator for the given event type
+ * string. The event creator accepts a single argument, which will be included
+ * in the event object as a field called payload. The event creator function
+ * will also have a `type` property which equals to the `name` parameter passed
+ * during the creation, and a `match` method which can be used in order to check
+ * if an event is produced by the return event creator
+ *
+ * @param name The event type to use for created events.
  * @param prepare (optional) a method that takes an object and returns { payload, meta? }.
  *                If this is given, the resulting event creator will pass its arguments to this method to calculate payload.
  * @template P The type of the `payload` attribute of the created events
@@ -16,7 +30,6 @@ import type { Event, PayloadEventCreator, PrepareCallback } from './types'
  *
  * @returns An event creator
  */
-export function createEvent<P = undefined>(name: string): PayloadEventCreator<P>
 export function createEvent<PA extends PrepareCallback<V, P>, P, V = undefined>(
   name: string,
   prepare?: PrepareCallback<V, P>,

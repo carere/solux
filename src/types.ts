@@ -185,8 +185,9 @@ export type IfUndefined<P, True, False> = P extends undefined ? True : False
  *
  * @internal
  */
-export type TypedEventCreator = {
-  (args: unknown): Event
+export type TypedEventCreator<E extends Event = Event> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (args: any): E
   type: string
 }
 
@@ -327,11 +328,11 @@ export type EntityStateAdapter<T> = {
  * @template S The type of the state of the store.
  * @template D The type of the dependencies injected on the store
  */
-export type Epic<S, C = unknown> = (
-  event$: Observable<Event>,
+export type Epic<S, C = unknown, E extends Event = Event> = (
+  event$: Observable<E>,
   state: Readonly<S>,
   container: Readonly<C>,
-) => Observable<Event>
+) => Observable<E>
 
 export type DevTools<S = unknown> = {
   subscribe: (listener: (message: { type: string; state: S }) => void) => void
