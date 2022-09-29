@@ -8,6 +8,11 @@ import type { Observable, Subscription } from 'rxjs'
  *
  * Events must have a `type` field that indicates the type of event being
  * performed. The `type` field needs to be a `string`
+ *
+ * If you need some data to represent what happen, you are free to populate
+ * the payload / meta property of an event.
+ *
+ * @template P the type of the event's `payload` property.
  */
 export type Event = { type: string }
 
@@ -25,7 +30,8 @@ export type Event = { type: string }
  *
  * @template P the type of the event's `payload` property.
  */
-export type EventWithPayload<P = unknown> = Event & { payload: P }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type EventWithPayload<P = any> = Event & { payload: P }
 
 /**
  * A *handler* is a function that accepts a state and an event.
@@ -74,6 +80,7 @@ export type Store<S> = {
    * @param event A plain object representing “what changed”.
    * @template E the type of event dispatched
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dispatch: <E extends Event = Event>(event: E) => void
   /**
    * Reads the state tree managed by the store.
@@ -150,7 +157,7 @@ export type EventCreatorWithPayload<P> = {
  * @template PA The signature of the PrepareCallback if defined
  */
 export type PayloadEventCreator<
-  P = void,
+  P = undefined,
   PA extends PrepareCallback<V, P> = undefined,
   V = undefined,
 > = IfPrepareActionMethodNotProvided<
@@ -185,7 +192,7 @@ export type IfUndefined<P, True, False> = P extends undefined ? True : False
  *
  * @internal
  */
-export type TypedEventCreator<E extends Event = Event> = {
+export type AnyEventCreator<E extends Event = Event> = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (args: any): E
   type: string
@@ -206,7 +213,7 @@ export type EventHandlerMapBuilder<S> = {
    * @param handler The handler
    * @returns The builder
    */
-  addHandler: <EC extends TypedEventCreator>(
+  addHandler: <EC extends AnyEventCreator>(
     eventCreator: EC,
     handler: Handler<S, ReturnType<EC>>,
   ) => EventHandlerMapBuilder<S>

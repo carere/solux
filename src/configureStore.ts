@@ -61,18 +61,18 @@ export const configureStore = <S extends object, C>({
     devTools.init(state)
   }
 
-  const getState = () => {
+  const getState: Store<S>['getState'] = () => {
     return state
   }
 
-  const dispatch = (event: Event) => {
+  const dispatch: Store<S>['dispatch'] = event => {
     setState(produce((state: S) => rootSlice.handler(state, event)))
     store$.next({ state: state, type: event.type })
     if (isDevtoolsAvailable) devTools.send(event, state)
     event$.next(event)
   }
 
-  const subscribe = (listener: (value: { state: S; type: string }) => void) => {
+  const subscribe: Store<S>['subscribe'] = listener => {
     return store$.subscribe({
       next: listener,
     })

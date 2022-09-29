@@ -30,7 +30,7 @@ export function createEvent<P = undefined>(name: string): PayloadEventCreator<P>
  *
  * @returns An event creator
  */
-export function createEvent<PA extends PrepareCallback<V, P>, P, V = undefined>(
+export function createEvent<PA extends PrepareCallback<V, P>, P, V>(
   name: string,
   prepare?: PrepareCallback<V, P>,
 ): PayloadEventCreator<P, PA, V>
