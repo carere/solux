@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/carere/solux/compare/v1.1.1...v1.1.2) (2022-09-29)
+
+
+### Bug Fixes
+
+* enabling any type for event with payload ([596ef99](https://github.com/carere/solux/commit/596ef9984b81ccbe4ebedbccc229c964fb6a9d1e))
+
 ## [1.1.1](https://github.com/carere/solux/compare/v1.1.0...v1.1.1) (2022-09-28)
 
 
