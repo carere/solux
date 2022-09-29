@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/carere/solux/compare/v1.1.2...v1.1.3) (2022-09-29)
+
+
+### Bug Fixes
+
+* adding any cutom properties to event for facilitating typing ([1246086](https://github.com/carere/solux/commit/12460863f423d4a0ebe0db307e60d00778bb2d47))
+
 ## [1.1.2](https://github.com/carere/solux/compare/v1.1.1...v1.1.2) (2022-09-29)
 
 
