@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/carere/solux/compare/v1.1.3...v1.1.4) (2022-09-29)
+
+
+### Bug Fixes
+
+* improving typing for epic ([8902043](https://github.com/carere/solux/commit/8902043a28d45543e11fe371ce39d6db4c157a54))
+
 ## [1.1.3](https://github.com/carere/solux/compare/v1.1.2...v1.1.3) (2022-09-29)
 
 
