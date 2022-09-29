@@ -15,7 +15,7 @@ import type { Observable, Subscription } from 'rxjs'
  * @template P the type of the event's `payload` property.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Event = { type: string; [customProperties: string]: any }
+export type Event = { type: string }
 
 /**
  * An *event* is a plain object that represents something that happen.
@@ -333,14 +333,22 @@ export type EntityStateAdapter<T> = {
  * Several recipes are available on the docs to grasp all the power of Epics
  * and why we promote those instead of conventional Promise / async - await
  *
- * @template S The type of the state of the store.
- * @template D The type of the dependencies injected on the store
+ * @template State The type of the state of the store.
+ * @template Container The type of the dependencies injected on the store
+ * @template Input The type of the event passed as input
+ * @template Output The type of the event passed as output
  */
-export type Epic<S, C = unknown, E extends Event = Event> = (
-  event$: Observable<E>,
-  state: Readonly<S>,
-  container: Readonly<C>,
-) => Observable<E>
+export type Epic<
+  State = unknown,
+  Container = unknown,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Input extends Event = any,
+  Output extends Input = Input,
+> = (
+  event$: Observable<Input>,
+  state: Readonly<State>,
+  container: Readonly<Container>,
+) => Observable<Output>
 
 export type DevTools<S = unknown> = {
   subscribe: (listener: (message: { type: string; state: S }) => void) => void
