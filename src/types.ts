@@ -14,7 +14,8 @@ import type { Observable, Subscription } from 'rxjs'
  *
  * @template P the type of the event's `payload` property.
  */
-export type Event = { type: string }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Event = { type: string; [customProperties: string]: any }
 
 /**
  * An *event* is a plain object that represents something that happen.
