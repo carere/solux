@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/carere/solux/compare/v1.1.4...v1.2.0) (2022-10-18)
+
+
+### Features
+
+* adding ability to retrieve the full event object when subscribing to store ([c04ce52](https://github.com/carere/solux/commit/c04ce52c7271f546cd72b3462bbc231458c7ccab))
+
 ## [1.1.4](https://github.com/carere/solux/compare/v1.1.3...v1.1.4) (2022-09-29)
 
 
