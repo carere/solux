@@ -14,7 +14,6 @@ import type { Observable, Subscription } from 'rxjs'
  *
  * @template P the type of the event's `payload` property.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Event = { type: string }
 
 /**
@@ -63,6 +62,8 @@ export type StoreOption<S, C = unknown> = {
   preloadedState: S
 }
 
+//TODO: Enable event in subscribe method
+
 /**
  * A store is an object that holds the application's state tree.
  * It's a good practice to keep a single store for all your application.
@@ -81,7 +82,6 @@ export type Store<S> = {
    * @param event A plain object representing “what changed”.
    * @template E the type of event dispatched
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dispatch: <E extends Event = Event>(event: E) => void
   /**
    * Reads the state tree managed by the store.
@@ -96,10 +96,10 @@ export type Store<S> = {
    *
    * @template S The type of the store's state
    * @param listener A callback to be invoked on every dispatch, the state and
-   * the type of the event will be available as first and second argument.
+   * the event will be available as first and second argument.
    * @returns A function to remove this change listener.
    */
-  subscribe: (listener: (value: { state: S; type: string }) => void) => Subscription
+  subscribe: <E extends Event>(listener: (value: { state: S; event: E }) => void) => Subscription
 }
 
 /**

@@ -15,9 +15,12 @@ describe('Subscribing to store', () => {
   store.dispatch({ type: 'make_magic', payload: 42 })
 
   it('should notify listener with the last state and dispatched action', () => {
-    store.subscribe(({ state, type }) => {
-      expect(state.magic).toEqual(42)
-      expect(type).toEqual('make_magic')
-    })
+    store.subscribe(
+      ({ state, event }: { state: { magic: number }; event: EventWithPayload<number> }) => {
+        expect(state.magic).toEqual(42)
+        expect(event.type).toEqual('make_magic')
+        expect(event.payload).toEqual(42)
+      },
+    )
   })
 })

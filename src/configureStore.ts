@@ -45,7 +45,7 @@ export const configureStore = <S extends object, C>({
     `)
 
   const [state, setState] = createStore(preloadedState ?? rootSlice.getInitialState())
-  const store$ = new ReplaySubject<{ state: S; type: string }>(1)
+  const store$ = new ReplaySubject<{ state: S; event: Event }>(1)
   const event$ = new Subject<Event>()
   const isDevtoolsAvailable =
     typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ !== undefined
@@ -67,7 +67,7 @@ export const configureStore = <S extends object, C>({
 
   const dispatch: Store<S>['dispatch'] = event => {
     setState(produce((state: S) => rootSlice.handler(state, event)))
-    store$.next({ state: state, type: event.type })
+    store$.next({ state: state, event })
     if (isDevtoolsAvailable) devTools.send(event, state)
     event$.next(event)
   }
