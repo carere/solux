@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/carere/solux/compare/v1.2.1...v1.2.2) (2022-10-19)
+
+
+### Bug Fixes
+
+* enabling calling rootSlice handler only when rootSlice is defined ([a3cee46](https://github.com/carere/solux/commit/a3cee46f16aec729fa75054488502a00923adc22))
+
 ## [1.2.1](https://github.com/carere/solux/compare/v1.2.0...v1.2.1) (2022-10-19)
 
 
