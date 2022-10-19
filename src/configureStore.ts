@@ -69,7 +69,7 @@ export const configureStore = <S extends object, C>({
   }
 
   const dispatch: Store<S>['dispatch'] = event => {
-    setState(produce((state: S) => rootSlice.handler(state, event)))
+    if (rootSlice !== undefined) setState(produce((state: S) => rootSlice.handler(state, event)))
     store$.next({ state: state as S, event })
     if (isDevtoolsAvailable) devTools.send(event, state as S)
     event$.next(event)
