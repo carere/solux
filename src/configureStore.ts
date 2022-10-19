@@ -44,7 +44,10 @@ export const configureStore = <S extends object, C>({
       You may read the docs in order to understand how to use Solux and its architecture.
     `)
 
-  const [state, setState] = createStore(preloadedState ?? rootSlice.getInitialState())
+  const [state, setState] = createStore(
+    preloadedState ?? (rootSlice ? rootSlice.getInitialState() : {}),
+  )
+
   const store$ = new ReplaySubject<{ state: S; event: Event }>(1)
   const event$ = new Subject<Event>()
   const isDevtoolsAvailable =
@@ -58,17 +61,17 @@ export const configureStore = <S extends object, C>({
         console.log('DevTools requested to change the state to', state)
       }
     })
-    devTools.init(state)
+    devTools.init(state as S)
   }
 
   const getState: Store<S>['getState'] = () => {
-    return state
+    return state as S
   }
 
   const dispatch: Store<S>['dispatch'] = event => {
     setState(produce((state: S) => rootSlice.handler(state, event)))
-    store$.next({ state: state, event })
-    if (isDevtoolsAvailable) devTools.send(event, state)
+    store$.next({ state: state as S, event })
+    if (isDevtoolsAvailable) devTools.send(event, state as S)
     event$.next(event)
   }
 
@@ -79,7 +82,7 @@ export const configureStore = <S extends object, C>({
   }
 
   if (rootEpic) {
-    event$.pipe(mergeMap(event => rootEpic(of(event), state, container))).subscribe(dispatch)
+    event$.pipe(mergeMap(event => rootEpic(of(event), state as S, container))).subscribe(dispatch)
   }
 
   return { dispatch, getState, subscribe }
