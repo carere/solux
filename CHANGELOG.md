@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/carere/solux/compare/v1.2.0...v1.2.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* initializing a store without a rootSlice nor preloaded state resulting in error ([b83134e](https://github.com/carere/solux/commit/b83134edc07bbb63302654017a1f24ee3a8f8590))
+
 # [1.2.0](https://github.com/carere/solux/compare/v1.1.4...v1.2.0) (2022-10-18)
 
 
