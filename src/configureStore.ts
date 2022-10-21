@@ -1,6 +1,6 @@
 import { mergeMap, of, ReplaySubject, Subject } from 'rxjs'
 import { createStore, produce } from 'solid-js/store'
-import type { DevTools, Event, Store, StoreOption } from './types'
+import type { AnyEventCreator, DevTools, Event, Store, StoreOption } from './types'
 
 /**
  * The function used to create a Solux store
@@ -81,9 +81,17 @@ export const configureStore = <S extends object, C>({
     })
   }
 
+  const subscribeToEvent = <E extends Event>(
+    eventCreator: AnyEventCreator<E>,
+    listener: (value: { state: S; event: E }) => void,
+  ) =>
+    subscribe(({ state, event }) => {
+      if (event.type === eventCreator.type) listener({ event, state } as { event: E; state: S })
+    })
+
   if (rootEpic) {
     event$.pipe(mergeMap(event => rootEpic(of(event), state as S, container))).subscribe(dispatch)
   }
 
-  return { dispatch, getState, subscribe }
+  return { dispatch, getState, subscribe, subscribeToEvent }
 }

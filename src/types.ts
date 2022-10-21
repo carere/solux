@@ -96,10 +96,25 @@ export type Store<S> = {
    *
    * @template S The type of the store's state
    * @param listener A callback to be invoked on every dispatch, the state and
-   * the event will be available as first and second argument.
+   * the event will be available as first argument.
    * @returns A function to remove this change listener.
    */
   subscribe: <E extends Event>(listener: (value: { state: S; event: E }) => void) => Subscription
+  /**
+   * Adds a change listener on a specific event. It will be called any time
+   * the specified event is dispatched.
+   * Some part of the state tree may potentially have changed.
+   *
+   * @template S The type of the store's state
+   * @template E The event dispatched
+   * @param listener A callback to be invoked on every dispatch, the state and
+   * the event will be available as second argument.
+   * @returns A function to remove this change listener.
+   */
+  subscribeToEvent: <E extends Event>(
+    eventCreator: AnyEventCreator<E>,
+    listener: (value: { state: S; event: E }) => void,
+  ) => Subscription
 }
 
 /**
