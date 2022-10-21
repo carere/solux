@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/carere/solux/compare/v1.2.2...v1.3.0) (2022-10-21)
+
+
+### Features
+
+* adding subscribe to a specific event ([7d25324](https://github.com/carere/solux/commit/7d253240a066cca1ffdadc8b4306e3fc78c8c2bd))
+
 ## [1.2.2](https://github.com/carere/solux/compare/v1.2.1...v1.2.2) (2022-10-19)
 
 
