@@ -84,12 +84,11 @@ export type Store<S> = {
    */
   dispatch: <E extends Event = Event>(event: E) => void
   /**
-   * Reads the state tree managed by the store.
+   * The state tree managed by the store.
    *
    * @template S The type of the store's state
-   * @returns The current state tree of your application.
    */
-  getState: () => S
+  state: S
   /**
    * Adds a change listener. It will be called any time an event is dispatched,
    * and some part of the state tree may potentially have changed.

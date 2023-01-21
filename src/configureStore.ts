@@ -64,10 +64,6 @@ export const configureStore = <S extends object, C>({
     devTools.init(state as S)
   }
 
-  const getState: Store<S>['getState'] = () => {
-    return state as S
-  }
-
   const dispatch: Store<S>['dispatch'] = event => {
     if (rootSlice !== undefined) setState(produce((state: S) => rootSlice.handler(state, event)))
     store$.next({ state: state as S, event })
@@ -93,5 +89,5 @@ export const configureStore = <S extends object, C>({
     event$.pipe(mergeMap(event => rootEpic(of(event), state as S, container))).subscribe(dispatch)
   }
 
-  return { dispatch, getState, subscribe, subscribeToEvent }
+  return { dispatch, state: state as S, subscribe, subscribeToEvent }
 }

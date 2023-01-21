@@ -13,11 +13,11 @@ describe('A store configured', () => {
       })
 
       it('should initialize with preloaded state', () => {
-        expect(store.getState()).toEqual({ magic: 999 })
+        expect(store.state).toEqual({ magic: 999 })
       })
 
       it("should not initialize with the rootSlice's state", () => {
-        expect(store.getState()).not.toEqual({ magic: 0 })
+        expect(store.state).not.toEqual({ magic: 0 })
       })
     })
 
@@ -30,7 +30,7 @@ describe('A store configured', () => {
       })
 
       it("should initialize with rootSlice's state", () => {
-        expect(store.getState()).toEqual({ magic: 0 })
+        expect(store.state).toEqual({ magic: 0 })
       })
     })
   })

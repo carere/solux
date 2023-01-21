@@ -15,6 +15,6 @@ describe('Updating to store', () => {
   store.dispatch({ type: 'make_magic', payload: 42 })
 
   it('should notify listener with the last state and dispatched action', () => {
-    expect(store.getState()).toEqual({ magic: 42 })
+    expect(store.state).toEqual({ magic: 42 })
   })
 })

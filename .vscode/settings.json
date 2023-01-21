@@ -1,3 +1,5 @@
 {
-  "cSpell.words": ["Abatan", "carere", "esbuild", "pnpm", "solux", "treeshake", "tsup"]
+  "cSpell.words": ["Abatan", "carere", "esbuild", "pnpm", "solux", "treeshake", "tsup"],
+  "testing.automaticallyOpenPeekView": "never",
+  "vitest.enable": true
 }

@@ -25,13 +25,13 @@ describe('Using epics', () => {
     store.dispatch(addition(2))
     store.dispatch(subtract(3))
 
-    expect(store.getState()).toEqual({ res: -1 })
+    expect(store.state).toEqual({ res: -1 })
   })
 
   it('should handle dispatched actions', () => {
     store.dispatch(subtract(9))
     store.dispatch(addition(10))
 
-    expect(store.getState()).toEqual({ res: 0 })
+    expect(store.state).toEqual({ res: 0 })
   })
 })
