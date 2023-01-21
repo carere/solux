@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/carere/solux/compare/v1.3.0...v2.0.0) (2023-01-21)
+
+
+### Features
+
+* remove getState and replace it by returning directly the state ([4cf7c91](https://github.com/carere/solux/commit/4cf7c91d43df4feb084227a0f81d948b8283e781))
+
+
+### BREAKING CHANGES
+
+* Removing the getState method from the store and replace it with the state object
+
 # [1.3.0](https://github.com/carere/solux/compare/v1.2.2...v1.3.0) (2022-10-21)
 
 
