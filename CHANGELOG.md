@@ -1,3 +1,15 @@
+# [2.1.0](https://github.com/carere/solux/compare/v2.0.0...v2.1.0) (2023-04-04)
+
+
+### Bug Fixes
+
+* adding second template parameter in context component for the newly added container ([872a180](https://github.com/carere/solux/commit/872a1804e4bffde5f1c0a007717cdecf68c5ad13))
+
+
+### Features
+
+* adding container to the store ([bac8800](https://github.com/carere/solux/commit/bac88006b9fdd2232d0cb251c0073e7961390c46))
+
 # [2.0.0](https://github.com/carere/solux/compare/v1.3.0...v2.0.0) (2023-01-21)
 
 
