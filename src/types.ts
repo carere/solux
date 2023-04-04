@@ -62,16 +62,15 @@ export type StoreOption<S, C = unknown> = {
   preloadedState: S
 }
 
-//TODO: Enable event in subscribe method
-
 /**
  * A store is an object that holds the application's state tree.
  * It's a good practice to keep a single store for all your application.
  * The composition is possible thanks to the slice and the `combineSlices()` utilities
  *
  * @template S The type of state held by this store.
+ * @template C The type of the container
  */
-export type Store<S> = {
+export type Store<S, C> = {
   /**
    * Dispatches an event. It is the only way to trigger a state change.
    *
@@ -114,6 +113,12 @@ export type Store<S> = {
     eventCreator: AnyEventCreator<E>,
     listener: (value: { state: S; event: E }) => void,
   ) => Subscription
+  /**
+   * The container passed to the store upon creation
+   *
+   * @template C The type of the container
+   */
+  container: C
 }
 
 /**

@@ -13,7 +13,7 @@ export const configureStore = <S extends object, C>({
   preloadedState,
   rootEpic,
   container,
-}: Partial<StoreOption<S, C>>): Store<S> => {
+}: Partial<StoreOption<S, C>>): Store<S, C> => {
   if (preloadedState && rootSlice === undefined)
     throw Error(`
       You should not provide a preloaded state without providing a root slice !!
@@ -64,14 +64,14 @@ export const configureStore = <S extends object, C>({
     devTools.init(state as S)
   }
 
-  const dispatch: Store<S>['dispatch'] = event => {
+  const dispatch: Store<S, C>['dispatch'] = event => {
     if (rootSlice !== undefined) setState(produce((state: S) => rootSlice.handler(state, event)))
     store$.next({ state: state as S, event })
     if (isDevtoolsAvailable) devTools.send(event, state as S)
     event$.next(event)
   }
 
-  const subscribe: Store<S>['subscribe'] = listener => {
+  const subscribe: Store<S, C>['subscribe'] = listener => {
     return store$.subscribe({
       next: listener,
     })
@@ -89,5 +89,5 @@ export const configureStore = <S extends object, C>({
     event$.pipe(mergeMap(event => rootEpic(of(event), state as S, container))).subscribe(dispatch)
   }
 
-  return { dispatch, state: state as S, subscribe, subscribeToEvent }
+  return { dispatch, state: state as S, subscribe, subscribeToEvent, container }
 }
