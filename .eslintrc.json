@@ -1,7 +1,10 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc",
   "parser": "@typescript-eslint/parser",
+  "root": true,
   "parserOptions": {
-    "project": ["./tsconfig.json"]
+    "project": ["./tsconfig.json"],
+    "tsConfigRootDir": "."
   },
   "plugins": ["@typescript-eslint"],
   "extends": [
@@ -10,5 +13,5 @@
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier"
   ],
-  "ignorePatterns": ["**/*.js", "**/*.json", "node_modules"]
+  "ignorePatterns": ["node_modules", "dist", "coverage"]
 }

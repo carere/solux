@@ -1,22 +1,17 @@
 import type { EntityAdapterOptions, EntityState, EntityStateAdapter, UpdateEntity } from './types'
 
 /**
- * Create an entity adapter based on en entity. This adapter is like
- * an mini-orm which can be use to manipulate a normalize state.
+ * Create an entity adapter based on an entity. This adapter is like
+ * an mini-orm which can be use to manipulate a normalized state.
  *
  * @template T The entity which this entity adapter can handle
- * @param param0 the options used to configure the adapter
+ * @param options the options used to configure the adapter
  * @returns a full fledged entity adapter
  */
 export const createEntityAdapter = <T>({
   selectId,
   sortComparer,
 }: EntityAdapterOptions<T>): EntityStateAdapter<T> => {
-  const initialState = {
-    ids: [],
-    entities: {},
-  }
-
   const sortIds = (entities: Array<T>) => entities.sort(sortComparer).map(e => selectId(e))
 
   const assocEntity = (state: EntityState<T>, entity: T, replace = false) => {
@@ -95,7 +90,8 @@ export const createEntityAdapter = <T>({
       state.ids = sortIds(Object.values(state.entities))
     },
     getInitialState: <E extends object>(extra?: E) => ({
-      ...initialState,
+      ids: [],
+      entities: {},
       ...(extra ? extra : {}),
     }),
     getSelectors: <V, E extends EntityState<T>>(selectState?: (state: V) => E) => ({
