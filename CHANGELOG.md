@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/carere/solux/compare/v2.1.0...v2.1.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* **createentityadapter:** return new initialState on each call to getInitialState ([2d23aa7](https://github.com/carere/solux/commit/2d23aa77b007bf98d64954b894d5d4231dea6998))
+
 # [2.1.0](https://github.com/carere/solux/compare/v2.0.0...v2.1.0) (2023-04-04)
 
 
