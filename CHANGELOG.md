@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/carere/solux/compare/v3.0.0...v3.1.0) (2024-02-16)
+
+
+### Features
+
+* adding back entity adapter + rebase ([5e4f11e](https://github.com/carere/solux/commit/5e4f11e8f44f63acce1b1138fe8c857dac0cf825))
+
 # [3.0.0](https://github.com/carere/solux/compare/v2.1.1...v3.0.0) (2024-02-16)
 
 
