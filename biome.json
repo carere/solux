@@ -1,7 +1,10 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
   "vcs": {
-    "useIgnoreFile": true
+    "useIgnoreFile": true,
+    "enabled": true,
+    "clientKind": "git",
+    "defaultBranch": "main"
   },
   "organizeImports": {
     "enabled": true
