@@ -2,13 +2,7 @@
   "name": "@carere/solux",
   "version": "2.1.1",
   "description": "Flux implementation based on SolidJs reactivity",
-  "keywords": [
-    "Solid",
-    "flux",
-    "redux",
-    "rxjs",
-    "state"
-  ],
+  "keywords": ["Solid", "flux", "redux", "rxjs", "state"],
   "bugs": "https://github.com/carere/solux/issues",
   "repository": "github:carere/solux",
   "license": "MIT",
@@ -23,10 +17,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "typings": "./dist/index.d.ts",
-  "files": [
-    "src",
-    "dist"
-  ],
+  "files": ["src", "dist"],
   "scripts": {
     "build": "tsup",
     "coverage": "vitest run --coverage",
@@ -55,7 +46,7 @@
     "esbuild-plugin-solid": "^0.5.0",
     "jsdom": "^24.0.0",
     "lefthook": "^1.6.1",
-    "semantic-release": "^23.0.2",
+    "semantic-release": "^21.0.2",
     "sort-package-json": "^2.7.0",
     "tsup": "^8.0.2",
     "typescript": "^5.3.3",
