@@ -1,5 +1,40 @@
 {
-  "cSpell.words": ["Abatan", "carere", "esbuild", "pnpm", "solux", "treeshake", "tsup"],
-  "testing.automaticallyOpenPeekView": "never",
-  "vitest.enable": true
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.indentSize": "tabSize",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "always",
+    "quickfix.biome": "always"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "todo-tree.general.tags": ["BONUS", "PERF", "TODO"],
+  "cSpell.words": [
+    "Abatan",
+    "biomejs",
+    "carere",
+    "commitzen",
+    "esbuild",
+    "lefthook",
+    "pnpm",
+    "solux",
+    "treeshake",
+    "tsup",
+    "upserter",
+    "upserters"
+  ],
+  "testing.automaticallyOpenPeekView": "never"
 }

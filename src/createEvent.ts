@@ -1,4 +1,4 @@
-import type { Event, PayloadEventCreator, PrepareCallback } from './types'
+import type { Event, PayloadEventCreator, PrepareCallback } from "./types";
 
 /**
  * A utility function to create an event creator for the given event type
@@ -12,7 +12,7 @@ import type { Event, PayloadEventCreator, PrepareCallback } from './types'
  * @template P The type of the `payload` attribute of the created events
  * @returns An event creator
  */
-export function createEvent<P = undefined>(name: string): PayloadEventCreator<P>
+export function createEvent<P = undefined>(name: string): PayloadEventCreator<P>;
 
 /**
  * A utility function to create an event creator for the given event type
@@ -33,34 +33,34 @@ export function createEvent<P = undefined>(name: string): PayloadEventCreator<P>
 export function createEvent<PA extends PrepareCallback<V, P>, P, V>(
   name: string,
   prepare?: PrepareCallback<V, P>,
-): PayloadEventCreator<P, PA, V>
+): PayloadEventCreator<P, PA, V>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function createEvent<P, V>(name: string, prepare?: PrepareCallback<V, P>): any {
   const creator = (value: V | P) => {
     if (prepare) {
-      const prepared = prepare(value as V)
+      const prepared = prepare(value as V);
 
-      if (!('payload' in prepared))
+      if (!("payload" in prepared))
         throw Error(`
           Event creator's prepared callback for event '${name}' did not return an object
           containing either 'payload' or 'meta' field.
           If so, you should use createEvent by specifying the type of the payload as a
           generic: createEvent<YourTypeHere>()
           You may read the docs about event & event creator for further information
-        `)
+        `);
 
       return {
         type: name,
-        ...('payload' in prepared && { payload: prepared.payload }),
-      }
+        ...("payload" in prepared && { payload: prepared.payload }),
+      };
     }
 
-    return { type: name, payload: value as P }
-  }
+    return { type: name, payload: value as P };
+  };
 
-  creator.type = name
-  creator.match = (event: Event) => event.type === name
+  creator.type = name;
+  creator.match = (event: Event) => event.type === name;
 
-  return creator
+  return creator;
 }

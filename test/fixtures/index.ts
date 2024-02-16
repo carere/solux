@@ -2,73 +2,73 @@
 // Entities
 //
 
-import { filter, map } from 'rxjs'
-import { createEvent } from '../../src/createEvent'
-import { Epic } from '../../src/types'
+import { filter, map } from "rxjs";
+import { createEvent } from "../../src/createEvent";
+import { Epic } from "../../src/types";
 
 export type Person = {
-  id: string
-  name: string
-}
+  id: string;
+  name: string;
+};
 
 export const jean: Person = {
-  id: '1',
-  name: 'Jean',
-}
+  id: "1",
+  name: "Jean",
+};
 
 export const jean2: Person = {
-  id: '1',
-  name: 'Jean2',
-}
+  id: "1",
+  name: "Jean2",
+};
 
 export const charles: Person = {
-  id: '2',
-  name: 'Charles',
-}
+  id: "2",
+  name: "Charles",
+};
 
 export const bob: Person = {
-  id: '3',
-  name: 'Bob',
-}
+  id: "3",
+  name: "Bob",
+};
 
 export const john: Person = {
-  id: '5',
-  name: 'John',
-}
+  id: "5",
+  name: "John",
+};
 
 export const john2: Person = {
-  id: '5',
-  name: 'John2',
-}
+  id: "5",
+  name: "John2",
+};
 
 //
 // Events
 //
 
-export const add = createEvent<number>('add')
-export const sub = createEvent<number>('sub')
-export const addition = createEvent<number>('addition')
-export const subtract = createEvent<number>('subtract')
+export const add = createEvent<number>("add");
+export const sub = createEvent<number>("sub");
+export const addition = createEvent<number>("addition");
+export const subtract = createEvent<number>("subtract");
 
 //
 // Epics
 //
 
-export const epic1: Epic<{ res: number }> = event$ =>
+export const epic1: Epic<{ res: number }> = (event$) =>
   event$.pipe(
     filter(addition.match),
     map(({ payload }) => add(payload)),
-  )
+  );
 
-export const epic2: Epic<{ res: number }> = event$ =>
+export const epic2: Epic<{ res: number }> = (event$) =>
   event$.pipe(
     filter(subtract.match),
     map(({ payload }) => sub(payload)),
-  )
+  );
 
 export const epic3: Epic<{ res: number }> = (event$, state) =>
   event$.pipe(
     filter(subtract.match),
-    filter(() => state.res != -1),
+    filter(() => state.res !== -1),
     map(() => sub(0)),
-  )
+  );

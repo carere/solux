@@ -1,4 +1,4 @@
-import type { EventHandlerMapBuilder, Handler, Slice, SliceOption, Event } from './types'
+import type { Event, EventHandlerMapBuilder, Handler, Slice, SliceOption } from "./types";
 
 /**
  * A utility function that allows defining an handler as a mapping from event
@@ -8,26 +8,26 @@ import type { EventHandlerMapBuilder, Handler, Slice, SliceOption, Event } from 
  * @template S The type of the state handled by this handler
  * @returns An handler which can handler any numbers of event's type
  */
-export const createHandler = <S>(builderCallback: SliceOption<S>['handlers']): Handler<S> => {
-  const eventsMap: Record<string, Handler<S>> = {}
+export const createHandler = <S>(builderCallback: SliceOption<S>["handlers"]): Handler<S> => {
+  const eventsMap: Record<string, Handler<S>> = {};
 
   const builder: EventHandlerMapBuilder<S> = {
     addHandler: (eventCreator, handler) => {
-      eventsMap[eventCreator.type] = handler
-      return builder
+      eventsMap[eventCreator.type] = handler;
+      return builder;
     },
-  }
+  };
 
-  builderCallback(builder)
+  builderCallback(builder);
 
   return (state: S, event: Event) => {
-    const handlers = [eventsMap[event.type]]
+    const handlers = [eventsMap[event.type]];
 
-    handlers.forEach(handler => {
-      if (handler) handler(state, event)
-    })
-  }
-}
+    for (const handler of handlers) {
+      if (handler) handler(state, event);
+    }
+  };
+};
 
 /**
  * A function that accepts an initial state and an object full of handlers
@@ -40,4 +40,4 @@ export const createHandler = <S>(builderCallback: SliceOption<S>['handlers']): H
 export const createSlice = <S>({ initialState, handlers }: SliceOption<S>): Slice<S> => ({
   getInitialState: () => initialState,
   handler: createHandler(handlers),
-})
+});

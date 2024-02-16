@@ -1,0 +1,14 @@
+prepare-commit-msg:
+  commands:
+    commitzen:
+      interactive: true
+      run: LEFTHOOK=0 pnpm cz
+
+pre-commit:
+  commands:
+    sort-package-json:
+      glob: "package.json"
+      run: pnpm sort-package-json {staged_files}
+    biome:
+      glob: "*.{js,ts,tsx,json}"
+      run: pnpm biome format --write {staged_files}

@@ -1,4 +1,4 @@
-import type { Slice, SlicesMapObject, StateFromSlicesMapObject } from './types'
+import type { Slice, SlicesMapObject, StateFromSlicesMapObject } from "./types";
 
 /**
  * Turns an object whose values are different slices object, into a single
@@ -15,19 +15,22 @@ import type { Slice, SlicesMapObject, StateFromSlicesMapObject } from './types'
  * @returns A slice object that invokes every slice handler inside the passed
  *   object, and builds a state object with the same shape.
  */
-export const combineSlices = <S>(
+export const combineSlices = <S extends StateFromSlicesMapObject<SlicesMapObject<S>>>(
   slices: SlicesMapObject<S>,
 ): Slice<StateFromSlicesMapObject<SlicesMapObject<S>>> => {
-  let initialState: StateFromSlicesMapObject<typeof slices>
-  const sliceKeys = Object.keys(slices) as Array<keyof typeof slices>
+  const initialState = {} as StateFromSlicesMapObject<typeof slices>;
+  const sliceKeys = Object.keys(slices) as Array<keyof typeof slices>;
 
   return {
     getInitialState: () =>
-      sliceKeys.reduce(
-        (acc, curr) => ({ ...acc, [curr]: slices[curr].getInitialState() }),
-        initialState,
-      ),
-    handler: (state, event) =>
-      sliceKeys.forEach(key => slices[key].handler(state[key] as S[keyof S], event)),
-  }
-}
+      sliceKeys.reduce((acc, curr) => {
+        acc[curr] = slices[curr].getInitialState();
+        return acc;
+      }, initialState),
+    handler: (state, event) => {
+      for (const key of sliceKeys) {
+        slices[key].handler(state[key] as S[keyof S], event);
+      }
+    },
+  };
+};
