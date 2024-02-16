@@ -31,6 +31,15 @@ export const createEntityAdapter = <T>({
     }
   };
 
+  const updateEntity = (state: EntityState<T>, change: UpdateEntity<T>) => {
+    if (state.ids.includes(change.id))
+      assocEntity(state, { ...state.entities[change.id], ...change.changes }, true);
+  };
+
+  const upsertEntity = (state: EntityState<T>, entity: T) => {
+    assocEntity(state, entity, state.ids.includes(selectId(entity)));
+  };
+
   return {
     addOne: (state, entity) => {
       assocEntity(state, entity);
@@ -68,6 +77,26 @@ export const createEntityAdapter = <T>({
     removeAll: (state) => {
       state.ids = [];
       state.entities = {};
+    },
+    updateOne: (state, change) => {
+      updateEntity(state, change);
+      state.ids = sortIds(Object.values(state.entities));
+    },
+    updateMany: (state, changes) => {
+      for (const change of changes) {
+        updateEntity(state, change);
+      }
+      state.ids = sortIds(Object.values(state.entities));
+    },
+    upsertOne: (state, entity) => {
+      upsertEntity(state, entity);
+      state.ids = sortIds(Object.values(state.entities));
+    },
+    upsertMany: (state, entities) => {
+      for (const entity of entities) {
+        upsertEntity(state, entity);
+      }
+      state.ids = sortIds(Object.values(state.entities));
     },
     getInitialState: <E extends object>(extra?: E) => ({
       ids: [],

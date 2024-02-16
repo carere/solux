@@ -335,6 +335,10 @@ export type EntityStateAdapter<T> = {
   removeOne<S extends EntityState<T>>(state: S, key: string): void;
   removeMany<S extends EntityState<T>>(state: S, key: Array<string>): void;
   removeAll<S extends EntityState<T>>(state: S): void;
+  updateOne<S extends EntityState<T>>(state: S, change: UpdateEntity<T>): void;
+  updateMany<S extends EntityState<T>>(state: S, changes: Array<UpdateEntity<T>>): void;
+  upsertOne<S extends EntityState<T>>(state: S, entity: T): void;
+  upsertMany<S extends EntityState<T>>(state: S, entities: Array<T>): void;
   getInitialState(): EntityState<T>;
   getInitialState<E extends object>(extra: E): EntityState<T> & E;
   getSelectors(): EntitySelectors<T, EntityState<T>>;
