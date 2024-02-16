@@ -1,3 +1,20 @@
+# [3.0.0](https://github.com/carere/solux/compare/v2.1.1...v3.0.0) (2024-02-16)
+
+
+### Bug Fixes
+
+* downgrade semantic-realease ([10ea8a5](https://github.com/carere/solux/commit/10ea8a5688cc736f10189f38a465a4c5783a7cfd))
+
+
+### Features
+
+* remove updates from entityAdapter + bump version ([8de0c38](https://github.com/carere/solux/commit/8de0c38d102d0428206a40218c1593bd8eb2eb78))
+
+
+### BREAKING CHANGES
+
+* removing update & upsert functions from the entity adapter
+
 ## [2.1.1](https://github.com/carere/solux/compare/v2.1.0...v2.1.1) (2023-05-31)
 
 
