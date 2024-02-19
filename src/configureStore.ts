@@ -9,6 +9,7 @@ import type { AnyEventCreator, DevTools, Event, Store, StoreOption } from "./typ
  * @returns A configured solux store
  */
 export const configureStore = <S extends object, C>({
+  name,
   rootSlice,
   preloadedState,
   rootEpic,
@@ -55,7 +56,9 @@ export const configureStore = <S extends object, C>({
   let devTools: DevTools<S> = undefined;
 
   if (isDevtoolsAvailable) {
-    devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect();
+    devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect({
+      name: name ?? "Solux",
+    });
     devTools.subscribe(({ type, state }) => {
       if (type === "DISPATCH" && state) {
         console.log("DevTools requested to change the state to", state);

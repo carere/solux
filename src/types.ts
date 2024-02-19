@@ -57,6 +57,7 @@ export type Handler<S, E extends Event = Event> = (state: S, event: E) => void;
  * @template S The type of state held by this store.
  */
 export type StoreOption<S, C = unknown> = {
+  name?: string;
   rootSlice: Slice<S>;
   rootEpic: Epic<S, C>;
   container: C;
