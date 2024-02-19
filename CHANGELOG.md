@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/carere/solux/compare/v3.1.0...v3.2.0) (2024-02-19)
+
+
+### Features
+
+* adding possibility to name the solux store instance ([534d8ee](https://github.com/carere/solux/commit/534d8eebe1ec1e5672517724420b8e55982eaf05))
+
 # [3.1.0](https://github.com/carere/solux/compare/v3.0.0...v3.1.0) (2024-02-16)
 
 
