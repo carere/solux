@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/carere/solux/compare/v3.2.0...v3.3.0) (2024-02-22)
+
+
+### Features
+
+* adding more options to devtools & filtering event send to devtools ([7eefdd2](https://github.com/carere/solux/commit/7eefdd234e90fd5af79c23acfbb3ec9dcfa7e304))
+
 # [3.2.0](https://github.com/carere/solux/compare/v3.1.0...v3.2.0) (2024-02-19)
 
 
