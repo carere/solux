@@ -51,17 +51,25 @@ export type EventWithPayload<P = any> = Event & { payload: P };
  */
 export type Handler<S, E extends Event = Event> = (state: S, event: E) => void;
 
+export type DevToolsOptions = {
+  name: string;
+  maxAge: number;
+};
+
 /**
  * Options for `configureStore()`.
  *
  * @template S The type of state held by this store.
  */
 export type StoreOption<S, C = unknown> = {
-  name?: string;
   rootSlice: Slice<S>;
   rootEpic: Epic<S, C>;
   container: C;
   preloadedState: S;
+  devtools: {
+    filterEvent?: (event: Event) => boolean;
+    options: Partial<DevToolsOptions>;
+  };
 };
 
 /**

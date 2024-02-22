@@ -8,13 +8,11 @@ import type { AnyEventCreator, DevTools, Event, Store, StoreOption } from "./typ
  * @param param0 the options used to configure the store
  * @returns A configured solux store
  */
-export const configureStore = <S extends object, C>({
-  name,
-  rootSlice,
-  preloadedState,
-  rootEpic,
-  container,
-}: Partial<StoreOption<S, C>>): Store<S, C> => {
+export const configureStore = <S extends object, C>(
+  options: Partial<StoreOption<S, C>>,
+): Store<S, C> => {
+  const { rootSlice, rootEpic, preloadedState, devtools, container } = options;
+
   if (preloadedState && rootSlice === undefined)
     throw Error(`
       You should not provide a preloaded state without providing a root slice !!
@@ -56,21 +54,15 @@ export const configureStore = <S extends object, C>({
   let devTools: DevTools<S> = undefined;
 
   if (isDevtoolsAvailable) {
-    devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect({
-      name: name ?? "Solux",
-    });
-    devTools.subscribe(({ type, state }) => {
-      if (type === "DISPATCH" && state) {
-        console.log("DevTools requested to change the state to", state);
-      }
-    });
+    devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect(devtools?.options && devtools.options);
     devTools.init(state as S);
   }
 
   const dispatch: Store<S, C>["dispatch"] = (event) => {
     if (rootSlice !== undefined) setState(produce((state: S) => rootSlice.handler(state, event)));
     store$.next({ state: state as S, event });
-    if (isDevtoolsAvailable) devTools.send(event, state as S);
+    if (isDevtoolsAvailable && (!devtools.filterEvent || devtools.filterEvent(event)))
+      devTools.send(event, state as S);
     event$.next(event);
   };
 
