@@ -1,3 +1,10 @@
+## [3.3.1](https://github.com/carere/solux/compare/v3.3.0...v3.3.1) (2024-05-23)
+
+
+### Bug Fixes
+
+* **configurestore:** rootEpic called once during initialization ([55c50a0](https://github.com/carere/solux/commit/55c50a00d62034518044bbbf3c844a63654523eb))
+
 # [3.3.0](https://github.com/carere/solux/compare/v3.2.0...v3.3.0) (2024-02-22)
 
 
