@@ -80,11 +80,7 @@ export const configureStore = <S extends object, C>(
       if (event.type === eventCreator.type) listener({ event, state } as { event: E; state: S });
     });
 
-  if (rootEpic) {
-    event$
-      .pipe(mergeMap((event) => rootEpic(of(event), state as S, container)))
-      .subscribe(dispatch);
-  }
+  if (rootEpic) rootEpic(event$, state as S, container).subscribe(dispatch);
 
   return { dispatch, state: state as S, subscribe, subscribeToEvent, container };
 };
