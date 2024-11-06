@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "bun:test";
 import { configureStore } from "../../src/configureStore";
 import type { EventWithPayload } from "../../src/types";
 

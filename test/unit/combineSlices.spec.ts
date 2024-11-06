@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "bun:test";
 import { combineSlices } from "../../src/combineSlices";
 import { createEvent } from "../../src/createEvent";
 import { createSlice } from "../../src/createSlice";

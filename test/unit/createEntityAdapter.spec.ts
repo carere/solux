@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "bun:test";
 import { createEntityAdapter } from "../../src/createEntityAdapter";
 import type { EntityState, EntityStateAdapter } from "../../src/types";
 import { type Person, bob, charles, jean, jean2, john, john2 } from "../fixtures";
