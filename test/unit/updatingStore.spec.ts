@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { configureStore } from "../../src/configureStore";
-import { EventWithPayload } from "../../src/types";
+import type { EventWithPayload } from "../../src/types";
 
 describe("Updating to store", () => {
   const store = configureStore({

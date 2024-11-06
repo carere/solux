@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { EventWithPayload } from "../../src";
+import type { EventWithPayload } from "../../src";
 import { combineEpics } from "../../src/combineEpics";
 import { configureStore } from "../../src/configureStore";
 import { addition, epic1, epic2, epic3, subtract } from "../fixtures";

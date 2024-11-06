@@ -4,7 +4,7 @@
 
 import { filter, map } from "rxjs";
 import { createEvent } from "../../src/createEvent";
-import { Epic } from "../../src/types";
+import type { Epic } from "../../src/types";
 
 export type Person = {
   id: string;

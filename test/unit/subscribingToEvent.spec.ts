@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { createEvent } from "../../src";
 import { configureStore } from "../../src/configureStore";
-import { EventWithPayload } from "../../src/types";
+import type { EventWithPayload } from "../../src/types";
 
 describe("Subscribing to an event", () => {
   const eventCreator = createEvent<number>("make_magic");

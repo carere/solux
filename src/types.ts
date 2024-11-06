@@ -158,25 +158,21 @@ export type BasicEventCreator<E extends Event = Event> = {
  * @template P The type of the `payload` field of the created event
  * @template V The type of the argument passed to the prepare callback
  */
-export type EventCreatorWithPreparedPayload<V, P> = {
-  (value: V): EventWithPayload<P>;
-} & BasicEventCreator<EventWithPayload<P>>;
+export type EventCreatorWithPreparedPayload<V, P> = ((value: V) => EventWithPayload<P>) &
+  BasicEventCreator<EventWithPayload<P>>;
 
 /**
  * An Event Creator generating a simple `Event` object (without `payload`).
  */
-export type EventCreatorWithoutPayload = {
-  (): Event;
-} & BasicEventCreator<Event>;
+export type EventCreatorWithoutPayload = (() => Event) & BasicEventCreator<Event>;
 
 /**
  * An Event Creator generating an `EventWithPayload`
  *
  * @template P The type of the `payload` field of the created event
  */
-export type EventCreatorWithPayload<P> = {
-  (payload: P): EventWithPayload<P>;
-} & BasicEventCreator<EventWithPayload<P>>;
+export type EventCreatorWithPayload<P> = ((payload: P) => EventWithPayload<P>) &
+  BasicEventCreator<EventWithPayload<P>>;
 
 /**
  * A type used by `createEvent` to set the right kind of EventCreator.

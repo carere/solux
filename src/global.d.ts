@@ -1,4 +1,4 @@
-import { DevTools, DevToolsOptions } from "./types";
+import type { DevTools, DevToolsOptions } from "./types";
 
 declare global {
   interface Window {

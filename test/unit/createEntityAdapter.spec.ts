@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { createEntityAdapter } from "../../src/createEntityAdapter";
-import { EntityState, EntityStateAdapter } from "../../src/types";
-import { Person, bob, charles, jean, jean2, john, john2 } from "../fixtures";
+import type { EntityState, EntityStateAdapter } from "../../src/types";
+import { type Person, bob, charles, jean, jean2, john, john2 } from "../fixtures";
 
 describe("Using Entity Adapter", () => {
   let adapter: EntityStateAdapter<Person>;

@@ -18,20 +18,17 @@ jobs:
         with:
           node-version: "lts/*"
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          run_install: true
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Run tests
-        run: pnpm test
+        run: bun run test
 
       - name: Build project
-        run: pnpm build
+        run: bun run build
         
       - name: Release new package version
-        run: pnpm semantic-release
+        run: bun semantic-release
         env:
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

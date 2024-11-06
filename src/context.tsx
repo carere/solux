@@ -1,5 +1,5 @@
-import { Context, ParentProps, createContext, useContext } from "solid-js";
-import { Store } from "./types";
+import { type Context, type ParentProps, createContext, useContext } from "solid-js";
+import type { Store } from "./types";
 
 const StoreContext = createContext<Store<unknown, unknown>>();
 
