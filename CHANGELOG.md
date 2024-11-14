@@ -1,3 +1,10 @@
+## [3.3.2](https://github.com/carere/solux/compare/v3.3.1...v3.3.2) (2024-11-14)
+
+
+### Bug Fixes
+
+* enable creating the store with only rootSlice & container ([1c1253d](https://github.com/carere/solux/commit/1c1253d91c8e3096466557e11d5836e9910b4692))
+
 ## [3.3.1](https://github.com/carere/solux/compare/v3.3.0...v3.3.1) (2024-05-23)
 
 
