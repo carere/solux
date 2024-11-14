@@ -3,8 +3,15 @@
   "editor.insertSpaces": true,
   "editor.indentSize": "tabSize",
   "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "always",
     "source.organizeImports.biome": "always",
-    "quickfix.biome": "always"
+    "source.removeUnusedImports": "always"
+  },
+  "[yaml,yml]": {
+    "editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "biomejs.biome"
@@ -22,6 +29,8 @@
     "editor.defaultFormatter": "biomejs.biome"
   },
   "todo-tree.general.tags": ["BONUS", "PERF", "TODO"],
+  "cSpell.language": "en",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "Abatan",
     "biomejs",
@@ -35,6 +44,5 @@
     "tsup",
     "upserter",
     "upserters"
-  ],
-  "testing.automaticallyOpenPeekView": "never"
+  ]
 }

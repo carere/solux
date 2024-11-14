@@ -1,4 +1,4 @@
-import { ReplaySubject, Subject, mergeMap, of } from "rxjs";
+import { ReplaySubject, Subject } from "rxjs";
 import { createStore, produce } from "solid-js/store";
 import type { AnyEventCreator, DevTools, Event, Store, StoreOption } from "./types";
 
@@ -19,16 +19,6 @@ export const configureStore = <S extends object, C>(
 
       If your goal is to use the state as a "container" for your root epic, you
       should use the container option instead, which is made for this.
-
-      You may read the docs in order to understand how to use Solux and its architecture.
-    `);
-
-  if (container && rootEpic === undefined)
-    throw Error(`
-      You should not provide a container without providing a root epic !!
-
-      The container is only used with root epic, so if you do not use epics,
-      you should not provide one.
 
       You may read the docs in order to understand how to use Solux and its architecture.
     `);
