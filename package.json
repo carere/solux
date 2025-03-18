@@ -1,0 +1,16 @@
+{
+  "name": "solux",
+  "type": "module",
+  "description": "Solux Monorepo",
+  "license": "MIT",
+  "author": "Kevin Abatan <abatan.k@gmail.com> (https://github.com/carere)",
+  "workspaces": ["apps/*", "packages/*"],
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "typescript": "latest",
+    "sort-package-json": "latest",
+    "lefthook": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest"
+  }
+}

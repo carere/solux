@@ -1,0 +1,14 @@
+# moon
+.moon/cache
+.moon/docker
+
+# testing
+coverage
+
+# Dependencies
+node_modules
+
+# Build
+dist
+lib/
+*.tsbuildinfo

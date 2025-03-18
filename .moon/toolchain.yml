@@ -1,0 +1,9 @@
+$schema: 'https://moonrepo.dev/docs/config/toolchain'
+
+bun: {}
+
+typescript:
+  syncProjectReferences: true
+  includeProjectReferenceSources: true
+  routeOutDirToCache: true
+  syncProjectReferencesToPaths: true

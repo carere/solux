@@ -1,0 +1,11 @@
+$schema: 'https://moonrepo.dev/docs/config/workspace'
+projects:
+- 'packages/*'
+- 'apps/*'
+
+vcs:
+  manager: git
+  defaultBranch: main
+  provider: github
+  remoteCandidates:
+  - origin

@@ -1,0 +1,13 @@
+{
+  "name": "@solux/observables",
+  "description": "RxJS based middleware for Solux",
+  "type": "module",
+  "dependencies": {
+    "@solux/core": "workspace:*",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "latest"
+  }
+}

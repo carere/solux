@@ -1,0 +1,47 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.indentSize": "tabSize",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "always",
+    "source.organizeImports.biome": "always",
+    "source.removeUnusedImports": "always"
+  },
+  "[yaml,yml]": {
+    "editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "todo-tree.general.tags": ["BONUS", "PERF", "TODO"],
+  "cSpell.language": "en,fr",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": [
+    "Abatan",
+    "biomejs",
+    "carere",
+    "commitlint",
+    "github",
+    "lefthook",
+    "rolldown",
+    "solux",
+    "treeshake",
+    "upserter",
+    "upserters"
+  ]
+}
