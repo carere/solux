@@ -2,9 +2,7 @@
 // Entities
 //
 
-import { filter, map } from "rxjs";
 import { createEvent } from "../../src/createEvent";
-import type { Epic } from "../../src/types";
 
 export type Person = {
   id: string;
@@ -49,26 +47,3 @@ export const add = createEvent<number>("add");
 export const sub = createEvent<number>("sub");
 export const addition = createEvent<number>("addition");
 export const subtract = createEvent<number>("subtract");
-
-//
-// Epics
-//
-
-export const epic1: Epic<{ res: number }> = (event$) =>
-  event$.pipe(
-    filter(addition.match),
-    map(({ payload }) => add(payload)),
-  );
-
-export const epic2: Epic<{ res: number }> = (event$) =>
-  event$.pipe(
-    filter(subtract.match),
-    map(({ payload }) => sub(payload)),
-  );
-
-export const epic3: Epic<{ res: number }> = (event$, state) =>
-  event$.pipe(
-    filter(subtract.match),
-    filter(() => state.res !== -1),
-    map(() => sub(0)),
-  );

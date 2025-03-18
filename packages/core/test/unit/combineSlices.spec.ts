@@ -5,6 +5,7 @@ import { createSlice } from "../../src/createSlice";
 
 describe("Combining handlers", () => {
   const someEvent = createEvent<number>("someEvent");
+
   const toto = createSlice({
     initialState: { depth: 0 },
     handlers: (builder) =>

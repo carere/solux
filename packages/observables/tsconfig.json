@@ -5,6 +5,7 @@
     "declaration": true,
     "baseUrl": ".",
     "paths": {
+      ":core": ["../core/src"],
       ":core/*": ["../core/src/*"]
     }
   },

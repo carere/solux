@@ -1,3 +1,4 @@
+import type { createEvent } from "./createEvent";
 import type { Event, EventHandlerMapBuilder, Handler, Slice, SliceOption } from "./types";
 
 /**
@@ -9,7 +10,7 @@ import type { Event, EventHandlerMapBuilder, Handler, Slice, SliceOption } from 
  * @returns An handler which can handler any numbers of event's type
  */
 export const createHandler = <S>(builderCallback: SliceOption<S>["handlers"]): Handler<S> => {
-  const eventsMap: Record<string, Handler<S>> = {};
+  const eventsMap: Record<string, Handler<S, ReturnType<typeof createEvent>>> = {};
 
   const builder: EventHandlerMapBuilder<S> = {
     addHandler: (eventCreator, handler) => {

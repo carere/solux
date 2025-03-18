@@ -52,14 +52,4 @@ describe("A store configured", () => {
       });
     });
   });
-
-  describe("without a root epic", () => {
-    describe("and with a container", () => {
-      it("should alert user that is is forbidden", () => {
-        const regexp =
-          /You may read the docs in order to understand how to use Solux and its architecture./gm;
-        expect(() => configureStore({ container: {} })).toThrowError(regexp);
-      });
-    });
-  });
 });

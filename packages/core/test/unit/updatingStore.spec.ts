@@ -1,15 +1,18 @@
 import { describe, expect, it } from "bun:test";
+import { createEvent, createSlice } from "../../src";
 import { configureStore } from "../../src/configureStore";
-import type { EventWithPayload } from "../../src/types";
 
 describe("Updating to store", () => {
+  const makeMagic = createEvent<number>("make_magic");
+
   const store = configureStore({
-    rootSlice: {
-      getInitialState: () => ({ magic: 0 }),
-      handler: (state, event: EventWithPayload<number>) => {
-        state.magic = event.payload;
-      },
-    },
+    rootSlice: createSlice({
+      initialState: { magic: 0 },
+      handlers: (builder) =>
+        builder.addHandler(makeMagic, (state, event) => {
+          state.magic = event.payload;
+        }),
+    }),
   });
 
   store.dispatch({ type: "make_magic", payload: 42 });

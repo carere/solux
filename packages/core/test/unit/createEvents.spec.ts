@@ -24,14 +24,14 @@ describe("Creating an event", () => {
     const creator = createEvent("someDomain");
 
     it("should construct an event without payload", () => {
-      expect(creator()).toEqual({ type: "someDomain", payload: undefined });
+      expect(creator()).toEqual({ type: "someDomain" });
     });
   });
 
   describe("with a payload", () => {
     const creator = createEvent<number>("someDomain");
 
-    it("should construct an event without payload", () => {
+    it("should construct an event with payload", () => {
       expect(creator(42)).toEqual({ type: "someDomain", payload: 42 });
     });
   });

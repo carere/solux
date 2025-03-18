@@ -35,7 +35,7 @@ export function createEvent<PA extends PrepareCallback<V, P>, P, V>(
   prepare?: PrepareCallback<V, P>,
 ): PayloadEventCreator<P, PA, V>;
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: <overloading needs any>
 export function createEvent<P, V>(name: string, prepare?: PrepareCallback<V, P>): any {
   const creator = (value: V | P) => {
     if (prepare) {
@@ -44,7 +44,7 @@ export function createEvent<P, V>(name: string, prepare?: PrepareCallback<V, P>)
       if (!("payload" in prepared))
         throw Error(`
           Event creator's prepared callback for event '${name}' did not return an object
-          containing either 'payload' or 'meta' field.
+          containing a 'payload' field.
           If so, you should use createEvent by specifying the type of the payload as a
           generic: createEvent<YourTypeHere>()
           You may read the docs about event & event creator for further information
@@ -52,7 +52,7 @@ export function createEvent<P, V>(name: string, prepare?: PrepareCallback<V, P>)
 
       return {
         type: name,
-        ...("payload" in prepared && { payload: prepared.payload }),
+        ...prepared,
       };
     }
 

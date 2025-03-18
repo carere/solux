@@ -1,4 +1,4 @@
-import type { Observable, Subscription } from "rxjs";
+import type { Subscription } from "rxjs";
 
 /**
  * An *event* is a plain object that represents something that happen.
@@ -8,11 +8,6 @@ import type { Observable, Subscription } from "rxjs";
  *
  * Events must have a `type` field that indicates the type of event being
  * performed. The `type` field needs to be a `string`
- *
- * If you need some data to represent what happen, you are free to populate
- * the payload / meta property of an event.
- *
- * @template P the type of the event's `payload` property.
  */
 export type Event = { type: string };
 
@@ -31,8 +26,7 @@ export type Event = { type: string };
  * @template P the type of the event's `payload` property.
  */
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export type EventWithPayload<P = any> = Event & { payload: P };
+export type EventWithPayload<P = undefined> = Event & { payload: P };
 
 /**
  * A *handler* is a function that accepts a state and an event.
@@ -61,10 +55,8 @@ export type DevToolsOptions = {
  *
  * @template S The type of state held by this store.
  */
-export type StoreOption<S, C = unknown> = {
+export type StoreOption<S> = {
   rootSlice: Slice<S>;
-  rootEpic: Epic<S, C>;
-  container: C;
   preloadedState: S;
   devtools: {
     filterEvent?: (event: Event) => boolean;
@@ -78,9 +70,8 @@ export type StoreOption<S, C = unknown> = {
  * The composition is possible thanks to the slice and the `combineSlices()` utilities
  *
  * @template S The type of state held by this store.
- * @template C The type of the container
  */
-export type Store<S, C> = {
+export type Store<S> = {
   /**
    * Dispatches an event. It is the only way to trigger a state change.
    *
@@ -123,12 +114,6 @@ export type Store<S, C> = {
     eventCreator: AnyEventCreator<E>,
     listener: (value: { state: S; event: E }) => void,
   ) => Subscription;
-  /**
-   * The container passed to the store upon creation
-   *
-   * @template C The type of the container
-   */
-  container: C;
 };
 
 /**
@@ -139,7 +124,7 @@ export type Store<S, C> = {
  * @template P The type of the `payload` field of the created events
  * @template V The type of the argument passed to the prepare callback
  */
-export type PrepareCallback<V, P> = (value: V) => { payload: P };
+export type PrepareCallback<V = undefined, P = undefined> = (value: V) => { payload: P };
 
 /**
  * Base type for all event creators.
@@ -181,12 +166,16 @@ export type EventCreatorWithPayload<P> = ((payload: P) => EventWithPayload<P>) &
  * @template P The type of the `payload` field of the created event
  * @template V The type of the argument passed to the prepare callback
  * @template PA The signature of the PrepareCallback if defined
+ *
+ * @internal
  */
 export type PayloadEventCreator<
   P = undefined,
-  PA extends PrepareCallback<V, P> = undefined,
+  PA extends PrepareCallback<V, P> | undefined = undefined,
   V = undefined,
 > = IfPrepareActionMethodNotProvided<
+  V,
+  P,
   PA,
   IfUndefined<P, EventCreatorWithoutPayload, EventCreatorWithPayload<P>>,
   EventCreatorWithPreparedPayload<V, P>
@@ -199,7 +188,9 @@ export type PayloadEventCreator<
  * @internal
  */
 export type IfPrepareActionMethodNotProvided<
-  PA extends PrepareCallback<unknown, unknown>,
+  V,
+  P,
+  PA extends PrepareCallback<V, P> | undefined,
   True,
   False,
 > = PA extends undefined ? True : False;
@@ -350,32 +341,7 @@ export type EntityStateAdapter<T> = {
   getSelectors<V, E extends EntityState<T>>(selectState: (state: V) => E): EntitySelectors<T, V>;
 };
 
-/**
- * An epic is the only way to make asynchronous tasks in Solux, it takes
- * a stream of events, the state and some dependencies as parameters and
- * return a stream of events.
- *
- * Several recipes are available on the docs to grasp all the power of Epics
- * and why we promote those instead of conventional Promise / async - await
- *
- * @template State The type of the state of the store.
- * @template Container The type of the dependencies injected on the store
- * @template Input The type of the event passed as input
- * @template Output The type of the event passed as output
- */
-export type Epic<
-  State = unknown,
-  Container = unknown,
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  Input extends Event = any,
-  Output extends Input = Input,
-> = (
-  event$: Observable<Input>,
-  state: Readonly<State>,
-  container: Readonly<Container>,
-) => Observable<Output>;
-
-export type DevTools<S = unknown> = {
+export type DevTools<S = undefined> = {
   subscribe: (listener: (message: { type: string; state: S }) => void) => void;
   unsubscribe: () => void;
   send: (action: Event, state: S) => void;

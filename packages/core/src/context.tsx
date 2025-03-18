@@ -1,7 +1,7 @@
 import { type Context, type ParentProps, createContext, useContext } from "solid-js";
 import type { Store } from "./types";
 
-const StoreContext = createContext<Store<unknown, unknown>>();
+const StoreContext = createContext<Store<unknown>>();
 
 /**
  * A provider is meant to wrap a component's tree in order
@@ -11,7 +11,7 @@ const StoreContext = createContext<Store<unknown, unknown>>();
  * @param props An object containing the store used in the provider
  * @returns the provider created with the store passed as argument
  */
-export function SoluxProvider<S, C>(props: ParentProps<{ store: Store<S, C> }>) {
+export function SoluxProvider<S>(props: ParentProps<{ store: Store<S> }>) {
   return <StoreContext.Provider value={props.store}>{props.children}</StoreContext.Provider>;
 }
 
@@ -22,6 +22,6 @@ export function SoluxProvider<S, C>(props: ParentProps<{ store: Store<S, C> }>) 
  * @template S The type of the store contained in the provider
  * @returns the store passed to `<SoluxProvider store={...} />`
  */
-export function useSolux<S, C>() {
-  return useContext(StoreContext as Context<Store<S, C>>);
+export function useSolux<S>() {
+  return useContext(StoreContext as Context<Store<S>>);
 }

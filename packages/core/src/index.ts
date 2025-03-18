@@ -1,4 +1,3 @@
-export * from "./combineEpics";
 export * from "./combineSlices";
 export * from "./configureStore";
 export * from "./createEntityAdapter";

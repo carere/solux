@@ -4,14 +4,11 @@
     "emitDeclarationOnly": true,
     "declaration": true,
     "composite": true,
-    "outDir": "../../.moon/cache/types/packages/core"
+    "outDir": "../../.moon/cache/types/packages/core",
+    "lib": ["ESNext", "DOM"],
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
   },
-  "include": [
-    "src/**/*",
-    "test/**/*",
-    "*.js",
-    "*.ts",
-    "*.tsx"
-  ],
+  "include": ["src/**/*", "test/**/*", "*.js", "*.ts", "*.tsx"],
   "references": []
 }

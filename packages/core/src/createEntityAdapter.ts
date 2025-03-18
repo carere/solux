@@ -63,10 +63,13 @@ export const createEntityAdapter = <T>({
     },
     setAll: (state, entities) => {
       state.ids = sortIds(entities);
-      state.entities = entities.reduce((acc, curr) => {
-        acc[selectId(curr)] = curr;
-        return acc;
-      }, {});
+      state.entities = entities.reduce(
+        (acc, curr) => {
+          acc[selectId(curr)] = curr;
+          return acc;
+        },
+        {} as Record<string, T>,
+      );
     },
     removeOne: removeEntity,
     removeMany: (state, ids) => {

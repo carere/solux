@@ -41,6 +41,7 @@
     "rolldown",
     "solux",
     "treeshake",
+    "tsup",
     "upserter",
     "upserters"
   ]

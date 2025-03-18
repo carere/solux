@@ -213,7 +213,7 @@ describe("Using Entity Adapter", () => {
     adapter.addMany(state, [bob, charles]);
 
     expect(adapter.getSelectors().selectById(state, bob.id)).toEqual(bob);
-    expect(adapter.getSelectors().selectById(state, jean.id)).toEqual(undefined);
+    expect(adapter.getSelectors().selectById(state, jean.id)).toBeUndefined();
     expect(
       adapter.getSelectors((s: typeof rootState) => s.person).selectById(rootState, bob.id),
     ).toEqual(bob);
