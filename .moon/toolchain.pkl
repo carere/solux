@@ -1,0 +1,9 @@
+bun {}
+
+typescript {
+  syncProjectReferences = true
+  includeProjectReferenceSources = true
+  routeOutDirToCache = true
+  syncProjectReferencesToPaths = true
+}
+

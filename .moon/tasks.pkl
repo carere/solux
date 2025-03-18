@@ -1,0 +1,13 @@
+tasks {
+  ["format"] {
+    command = "biome format --write --no-errors-on-unmatched ."
+  }
+
+  ["lint"] {
+    command = "biome check --write ."
+  }
+
+  ["typecheck"] {
+    command = "tsc --build"
+  }
+}

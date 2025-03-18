@@ -1,0 +1,10 @@
+projects {
+  globs = List("packages/*", "apps/*")
+}
+
+vcs {
+  manager = "git"
+  defaultBranch = "main"
+  provider = "github"
+  remoteCandidates = List("origin")
+}

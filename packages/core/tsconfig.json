@@ -4,8 +4,14 @@
     "emitDeclarationOnly": true,
     "declaration": true,
     "composite": true,
-    "outDir": "./lib"
+    "outDir": "../../.moon/cache/types/packages/core"
   },
-  "include": ["src/**/*", "test/**/*", "*.js", "*.ts", "*.tsx"],
+  "include": [
+    "src/**/*",
+    "test/**/*",
+    "*.js",
+    "*.ts",
+    "*.tsx"
+  ],
   "references": []
 }

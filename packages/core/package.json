@@ -17,12 +17,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "typings": "./dist/index.d.ts",
-  "files": ["src", "dist"],
-  "scripts": {
-    "build": "tsup",
-    "format": "biome format --write .",
-    "lint": "biome lint --write ."
-  },
+  "files": ["dist"],
   "dependencies": {
     "rxjs": "^7.8.2",
     "solid-js": "^1.9.5"

@@ -3,7 +3,6 @@
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "declaration": true,
-    "outDir": "./lib",
     "baseUrl": ".",
     "paths": {
       ":core/*": ["../core/src/*"]
