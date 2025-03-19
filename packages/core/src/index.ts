@@ -1,3 +1,4 @@
+export * from "./combineEpics";
 export * from "./combineSlices";
 export * from "./configureStore";
 export * from "./createEntityAdapter";
@@ -6,3 +7,5 @@ export * from "./createSlice";
 export * from "./nanoid";
 export * from "./types";
 export * from "./context";
+export * from "./enhancers";
+export * from "./middlewares";
