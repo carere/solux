@@ -1,6 +1,6 @@
 import { ReplaySubject } from "rxjs";
 import { createStore, produce } from "solid-js/store";
-import type { AnyEventCreator, DevTools, Event, Store, StoreOption } from "./types";
+import type { AnyEventCreator, Event, Store, StoreOption } from "./types";
 
 /**
  * The function used to create a Solux store
@@ -9,25 +9,11 @@ import type { AnyEventCreator, DevTools, Event, Store, StoreOption } from "./typ
  * @returns A configured solux store
  */
 export const configureStore = <S extends object>(options: Partial<StoreOption<S>>): Store<S> => {
-  const { rootSlice, preloadedState, devtools } = options;
-
-  if (preloadedState && rootSlice === undefined)
-    throw Error(`
-      You should not provide a preloaded state without providing a root slice !!
-
-      If your goal is to use the state as a "container" for your root epic, you
-      should use the container option instead, which is made for this.
-
-      You may read the docs in order to understand how to use Solux and its architecture.
-    `);
+  const { rootSlice, preloadedState, enhancers } = options;
 
   if (rootSlice === undefined)
     throw Error(`
-      You configured the store with no root epic and no root slice !!
-
-      Solux is a global state management system which can also be used as a
-      state machine due to its powerful epic system.
-
+      You configured the store with no root slice !!
       You may read the docs in order to understand how to use Solux and its architecture.
     `);
 
@@ -37,20 +23,10 @@ export const configureStore = <S extends object>(options: Partial<StoreOption<S>
 
   const store$ = new ReplaySubject<{ state: S; event: Event }>(1);
   //const event$ = new Subject<Event>();
-  const isDevtoolsAvailable =
-    typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION__ !== undefined;
-  let devTools: DevTools<S> | undefined = undefined;
-
-  if (isDevtoolsAvailable) {
-    devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect(devtools?.options && devtools.options);
-    devTools.init(state as S);
-  }
 
   const dispatch: Store<S>["dispatch"] = (event) => {
     if (rootSlice !== undefined) setState(produce((state: S) => rootSlice.handler(state, event)));
     store$.next({ state: state as S, event });
-    if (isDevtoolsAvailable && (!devtools?.filterEvent || devtools.filterEvent(event)))
-      devTools?.send(event, state as S);
     //event$.next(event);
   };
 
@@ -70,5 +46,7 @@ export const configureStore = <S extends object>(options: Partial<StoreOption<S>
 
   //if (rootEpic) rootEpic(event$, state as S, container).subscribe(dispatch);
 
-  return { dispatch, state: state as S, subscribe, subscribeToEvent };
+  const store = { dispatch, state: state as S, subscribe, subscribeToEvent };
+
+  return enhancers ? enhancers.reduce((acc, enhancer) => enhancer(acc), store) : store;
 };

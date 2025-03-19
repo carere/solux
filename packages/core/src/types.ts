@@ -45,10 +45,28 @@ export type EventWithPayload<P = undefined> = Event & { payload: P };
  */
 export type Handler<S, E extends Event = Event> = (state: S, event: E) => void;
 
-export type DevToolsOptions = {
-  name: string;
-  maxAge: number;
-};
+/**
+ * An Enhancer is a function that takes a store and returns a new store.
+ *
+ * It is used to add additional functionality to the store. For example, you
+ * can add devtools to the store by enhancing dispatch function and subscribing
+ * to the store events.
+ *
+ * @template S The type of state held by this store.
+ */
+export type Enhancer<S> = (store: Store<S>) => Store<S>;
+
+/**
+ * A Middleware is a higher-order function that takes a store and returns a
+ * function that takes a handler and returns a new handler.
+ *
+ * It is used mainly add additional functionality to the dispatch function.
+ * For example, you can add logging capability, or handle side-effects with
+ * middlewares.
+ *
+ * @template S The type of state held by this store.
+ */
+export type Middleware<S> = (store: Store<S>) => (next: Handler<S>) => Handler<S>;
 
 /**
  * Options for `configureStore()`.
@@ -57,11 +75,8 @@ export type DevToolsOptions = {
  */
 export type StoreOption<S> = {
   rootSlice: Slice<S>;
-  preloadedState: S;
-  devtools: {
-    filterEvent?: (event: Event) => boolean;
-    options: Partial<DevToolsOptions>;
-  };
+  preloadedState?: S;
+  enhancers?: Enhancer<S>[];
 };
 
 /**
@@ -339,12 +354,4 @@ export type EntityStateAdapter<T> = {
   getInitialState<E extends object>(extra: E): EntityState<T> & E;
   getSelectors(): EntitySelectors<T, EntityState<T>>;
   getSelectors<V, E extends EntityState<T>>(selectState: (state: V) => E): EntitySelectors<T, V>;
-};
-
-export type DevTools<S = undefined> = {
-  subscribe: (listener: (message: { type: string; state: S }) => void) => void;
-  unsubscribe: () => void;
-  send: (action: Event, state: S) => void;
-  init: (state: S) => void;
-  error: (message: string) => void;
 };

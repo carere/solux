@@ -1,8 +1,8 @@
 {
-  "name": "@solux/core",
+  "name": "@carere/solux",
   "version": "3.3.2",
   "description": "Flux implementation based on SolidJs reactivity",
-  "keywords": ["Solid", "flux", "redux", "rxjs", "state"],
+  "keywords": ["Solid", "flux", "redux", "Global State"],
   "bugs": "https://github.com/carere/solux/issues",
   "repository": {
     "type": "git",
@@ -28,9 +28,10 @@
     "solid-js": "^1.9.5"
   },
   "devDependencies": {
+    "tsup": "latest",
     "@types/bun": "latest",
     "typescript": "latest",
-    "tsup": "latest",
-    "esbuild-plugin-solid": "latest"
+    "esbuild-plugin-solid": "latest",
+    "@redux-devtools/extension": "latest"
   }
 }

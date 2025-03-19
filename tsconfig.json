@@ -9,9 +9,6 @@
       "path": "packages/observables"
     },
     {
-      "path": "packages/devtools"
-    },
-    {
       "path": "apps/website"
     }
   ]
