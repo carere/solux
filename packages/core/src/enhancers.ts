@@ -1,5 +1,5 @@
 import type { EnhancerOptions } from "@redux-devtools/extension";
-import type { Enhancer } from "./types";
+import type { Enhancer, Middleware } from "./types";
 
 //TODO: Handle bad typings from Redux Devtools
 export const devtools =
@@ -14,13 +14,15 @@ export const devtools =
     return store;
   };
 
-//TODO: Implement proper middlewares chain
-// export const middlewares =
-//   <S>(middlewares: Middleware<S>[]): Enhancer<S> =>
-//   (store) => {
-//     for (const middleware of middlewares) {
-//       const handler = middleware(store);
-//       store.subscribe(({ state, event }) => handler());
-//     }
-//     return store;
-//   };
+export const applyMiddlewares =
+  <S>(middlewares: Middleware<S>[]): Enhancer<S> =>
+  (store) => {
+    const middlewareApi = { state: store.state, dispatch: store.dispatch };
+
+    return {
+      ...store,
+      dispatch: middlewares
+        .map((m) => m(middlewareApi))
+        .reduce((acc, middleware) => middleware(acc), store.dispatch),
+    };
+  };

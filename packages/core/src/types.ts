@@ -1,4 +1,4 @@
-import type { Subscription } from "rxjs";
+import type { Observable, Subscription } from "rxjs";
 
 /**
  * An *event* is a plain object that represents something that happen.
@@ -57,6 +57,24 @@ export type Handler<S, E extends Event = Event> = (state: S, event: E) => void;
 export type Enhancer<S> = (store: Store<S>) => Store<S>;
 
 /**
+ * The type Store dispatch function.
+ *
+ * @template E The type of the event dispatched
+ */
+export type Dispatch = <E extends Event>(event: E) => void;
+
+/**
+ * The portion of the store sent as argument to the middleware in order to
+ * access the store's state and dispatch function.
+ *
+ * @template S The type of the store's state
+ */
+export type MiddlewareApi<S> = {
+  state: S;
+  dispatch: Dispatch;
+};
+
+/**
  * A Middleware is a higher-order function that takes a store and returns a
  * function that takes a handler and returns a new handler.
  *
@@ -66,10 +84,14 @@ export type Enhancer<S> = (store: Store<S>) => Store<S>;
  *
  * @template S The type of state held by this store.
  */
-export type Middleware<S> = (store: Store<S>) => (next: Handler<S>) => Handler<S>;
+export type Middleware<S> = (api: MiddlewareApi<S>) => (next: Dispatch) => Dispatch;
 
 /**
- * Options for `configureStore()`.
+ * Options for configuring a store.
+ *
+ * The `rootSlice` is required, since it's the only way to modified the store's state.
+ * The `preloadedState` is useful to populate a store with some initial state.
+ * The `enhancers` allow to add additional functionality to the store.
  *
  * @template S The type of state held by this store.
  */
@@ -97,7 +119,7 @@ export type Store<S> = {
    * @param event A plain object representing “what changed”.
    * @template E the type of event dispatched
    */
-  dispatch: <E extends Event = Event>(event: E) => void;
+  dispatch: Dispatch;
   /**
    * The state tree managed by the store.
    *
@@ -355,3 +377,28 @@ export type EntityStateAdapter<T> = {
   getSelectors(): EntitySelectors<T, EntityState<T>>;
   getSelectors<V, E extends EntityState<T>>(selectState: (state: V) => E): EntitySelectors<T, V>;
 };
+
+/**
+ * An epic is the only way to make asynchronous tasks in Solux, it takes
+ * a stream of events, the state and some dependencies as parameters and
+ * return a stream of events.
+ *
+ * Several recipes are available on the docs to grasp all the power of Epics
+ * and why we promote those instead of conventional Promise / async - await
+ *
+ * @template State The type of the state of the store.
+ * @template Container The type of the dependencies injected on the store
+ * @template Input The type of the event passed as input
+ * @template Output The type of the event passed as output
+ */
+export type Epic<
+  State = unknown,
+  Container = unknown,
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  Input extends Event = any,
+  Output extends Input = Input,
+> = (
+  event$: Observable<Input>,
+  state: Readonly<State>,
+  container: Readonly<Container>,
+) => Observable<Output>;

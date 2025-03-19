@@ -5,7 +5,7 @@ import type { AnyEventCreator, Event, Store, StoreOption } from "./types";
 /**
  * The function used to create a Solux store
  *
- * @param param0 the options used to configure the store
+ * @param options the options used to configure the store
  * @returns A configured solux store
  */
 export const configureStore = <S extends object>(options: Partial<StoreOption<S>>): Store<S> => {
@@ -22,12 +22,10 @@ export const configureStore = <S extends object>(options: Partial<StoreOption<S>
   );
 
   const store$ = new ReplaySubject<{ state: S; event: Event }>(1);
-  //const event$ = new Subject<Event>();
 
   const dispatch: Store<S>["dispatch"] = (event) => {
     if (rootSlice !== undefined) setState(produce((state: S) => rootSlice.handler(state, event)));
     store$.next({ state: state as S, event });
-    //event$.next(event);
   };
 
   const subscribe = <E extends Event>(listener: (value: { state: S; event: E }) => void) => {
@@ -44,9 +42,10 @@ export const configureStore = <S extends object>(options: Partial<StoreOption<S>
       if (event.type === eventCreator.type) listener({ event, state } as { event: E; state: S });
     });
 
-  //if (rootEpic) rootEpic(event$, state as S, container).subscribe(dispatch);
-
-  const store = { dispatch, state: state as S, subscribe, subscribeToEvent };
-
-  return enhancers ? enhancers.reduce((acc, enhancer) => enhancer(acc), store) : store;
+  return (enhancers ?? []).reduce((acc, enhancer) => enhancer(acc), {
+    dispatch,
+    state: state as S,
+    subscribe,
+    subscribeToEvent,
+  });
 };
