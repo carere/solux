@@ -400,5 +400,5 @@ export type Epic<
 > = (
   event$: Observable<Input>,
   state: Readonly<State>,
-  container: Readonly<Container>,
+  container?: Readonly<Container>,
 ) => Observable<Output>;

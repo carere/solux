@@ -7,9 +7,9 @@ export const devtools =
   (store) => {
     const devTools = window?.__REDUX_DEVTOOLS_EXTENSION__?.connect(options) ?? undefined;
     devTools?.init(store.state);
-    devTools?.subscribe((message) => {
-      if (message.type === "DISPATCH" && message.state) store.dispatch(message.state);
-    });
+    // (devTools as DevTools)?.subscribe((message) => {
+    //   if (message.type === "DISPATCH" && message.state) store.dispatch(message.state);
+    // });
     store.subscribe(({ state, event }) => devTools?.send(event, state));
     return store;
   };

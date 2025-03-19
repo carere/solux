@@ -6,9 +6,6 @@
       "path": "packages/core"
     },
     {
-      "path": "packages/observables"
-    },
-    {
       "path": "apps/website"
     }
   ]

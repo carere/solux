@@ -5,6 +5,7 @@ export const createObservableMiddleware =
   <S, C>(options: { container?: C; rootEpic: Epic<S, C> }): Middleware<S> =>
   (api) => {
     const event$ = new Subject<Event>();
+    let initialized = false;
 
     return (next) => {
       const dispatch: Dispatch = (event) => {
@@ -12,7 +13,10 @@ export const createObservableMiddleware =
         event$.next(event);
       };
 
-      options.rootEpic(event$, api.state, options.container).subscribe(dispatch);
+      if (!initialized) {
+        options.rootEpic(event$, api.state, options.container).subscribe(dispatch);
+        initialized = true;
+      } else throw Error("You may not call `createObservableMiddleware` twice");
 
       return dispatch;
     };

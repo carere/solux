@@ -9,7 +9,7 @@ describe("Using epics", () => {
   const rootEpic = combineEpics(epic1, epic2, epic3);
 
   const store = configureStore({
-    enhancers: [applyMiddlewares([createObservableMiddleware({ rootEpic, container: undefined })])],
+    enhancers: [applyMiddlewares([createObservableMiddleware({ rootEpic })])],
     rootSlice: createSlice({
       initialState: { res: 0 },
       handlers: (builder) => {
@@ -23,17 +23,13 @@ describe("Using epics", () => {
     }),
   });
 
-  it("should handle dispatched actions", () => {
-    store.dispatch(addition(2));
-    store.dispatch(subtract(3));
+  it.each([
+    [[addition(2), subtract(3)], { res: -1 }],
+    [[subtract(9), addition(10)], { res: 0 }],
+    [[add(2), add(4), add(6)], { res: 12 }],
+  ])("should handle dispatched actions", (events, expected) => {
+    events.forEach(store.dispatch);
 
-    expect(store.state).toEqual({ res: -1 });
-  });
-
-  it("should handle dispatched actions", () => {
-    store.dispatch(subtract(9));
-    store.dispatch(addition(10));
-
-    expect(store.state).toEqual({ res: 0 });
+    expect(store.state).toEqual(expected);
   });
 });
