@@ -13,6 +13,7 @@ dist
 lib/
 *.tsbuildinfo
 .astro/
+artifacts/
 
 # environment variables
 .env

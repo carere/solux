@@ -1,4 +1,6 @@
-bun {}
+bun {
+  version = "latest"
+}
 
 typescript {
   syncProjectReferences = true

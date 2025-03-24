@@ -12,4 +12,10 @@ tasks {
     command = "bun test"
     inputs = List("test/**/*.{ts,tsx}")
   }
+
+  ["artifacts"] {
+    command = "bun pm pack --destination artifacts"
+    inputs = List("dist", "package.json", "README.md")
+    outputs = List("artifacts")
+  }
 }
