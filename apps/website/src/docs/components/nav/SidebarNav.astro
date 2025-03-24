@@ -1,0 +1,110 @@
+---
+/**
+ * * This is both the mobile and desktop nav
+ */
+import { getCollection } from "astro:content";
+
+// components
+import SidebarLink from "./SidebarLink.astro";
+import { getOrderedSectionIds, getSectionTitle } from "@/docs/js/docsUtils";
+
+// utils
+import { filterCollectionByLanguage } from "@/docs/js/localeUtils";
+import { getLocaleFromUrl } from "@/docs/js/localeUtils";
+import { getTranslatedData } from "@/docs/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+
+// Get all non-draft docs
+const allDocs = await getCollection("docs", ({ data }) => {
+	return data.draft !== true;
+});
+
+// get rid of pages from other languages and remove locale from slug
+const filteredDocs = filterCollectionByLanguage(allDocs, currLocale);
+
+// Group docs by their top-level directory
+const docsBySection = filteredDocs.reduce(
+	(acc, doc) => {
+		// Get the top-level directory from the doc.id
+		const [section] = doc.id.split("/");
+		if (!acc[section]) {
+			acc[section] = [];
+		}
+		acc[section].push({
+			text: doc.data.sidebar?.label ? doc.data.sidebar.label : doc.data.title,
+			link: `/docs/${doc.id}`,
+			order: doc.data.sidebar?.order,
+			badge: doc.data.sidebar?.badge,
+		});
+		return acc;
+	},
+	{} as Record<
+		string,
+		Array<{
+			text: string;
+			link: string;
+			order?: number;
+			label?: string;
+			badge?: { text: string; variant: "tip" | "caution" | "danger" | "info" };
+		}>
+	>,
+);
+
+// Get ordered section IDs and create a Map for faster lookups
+const orderedSectionIds = getOrderedSectionIds(currLocale);
+const sectionIndexMap = new Map(orderedSectionIds.map((id, index) => [id, index]));
+
+// Sort sections according to the config order
+const sections = Object.keys(docsBySection).sort((a, b) => {
+	const aIndex = sectionIndexMap.get(a) ?? -1;
+	const bIndex = sectionIndexMap.get(b) ?? -1;
+
+	// If neither section is in the config, sort by translated titles
+	if (aIndex === -1 && bIndex === -1) {
+		return getSectionTitle(a, currLocale).localeCompare(getSectionTitle(b, currLocale), currLocale);
+	}
+
+	// Prioritize configured sections over unconfigured ones
+	return aIndex === -1 ? 1 : bIndex === -1 ? -1 : aIndex - bIndex;
+});
+
+// Sort docs within each section
+for (const section of sections) {
+	docsBySection[section].sort((a, b) => {
+		// If both items have an order, sort by order
+		if (a.order !== undefined && b.order !== undefined) {
+			return a.order - b.order;
+		}
+
+		// If only one has an order, it should come first
+		if (a.order !== undefined) return -1;
+		if (b.order !== undefined) return 1;
+
+		// If neither has an order, sort alphabetically
+		return a.text.localeCompare(b.text, currLocale, {
+			sensitivity: "base",
+			numeric: true,
+		});
+	});
+}
+---
+
+<nav class="space-y-8">
+	<slot name="before-links" />
+	{
+		sections.map((section) => (
+			<div>
+				<h2 class="mb-2 text-lg font-semibold md:text-base">
+					{getSectionTitle(section, currLocale)}
+				</h2>
+				<ul class="space-y-2">
+					{docsBySection[section].map((doc) => (
+						<SidebarLink link={doc.link} text={doc.text} badge={doc.badge} />
+					))}
+				</ul>
+			</div>
+		))
+	}
+	<slot name="after-links" />
+</nav>

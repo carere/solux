@@ -1,7 +1,7 @@
 import { Subject } from "rxjs";
 import type { Dispatch, Epic, Event, Middleware } from "./types";
 
-export const createObservableMiddleware =
+export const epicMiddleware =
   <S, C>(options: { container?: C; rootEpic: Epic<S, C> }): Middleware<S> =>
   (api) => {
     const event$ = new Subject<Event>();

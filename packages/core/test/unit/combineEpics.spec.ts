@@ -2,14 +2,14 @@ import { describe, expect, it } from "bun:test";
 import { configureStore, createSlice } from "../../src";
 import { combineEpics } from "../../src/combineEpics";
 import { applyMiddlewares } from "../../src/enhancers";
-import { createObservableMiddleware } from "../../src/middlewares";
+import { epicMiddleware } from "../../src/middlewares";
 import { add, addition, epic1, epic2, epic3, sub, subtract } from "../fixtures";
 
 describe("Using epics", () => {
   const rootEpic = combineEpics(epic1, epic2, epic3);
 
   const store = configureStore({
-    enhancers: [applyMiddlewares([createObservableMiddleware({ rootEpic })])],
+    enhancers: [applyMiddlewares([epicMiddleware({ rootEpic })])],
     rootSlice: createSlice({
       initialState: { res: 0 },
       handlers: (builder) => {

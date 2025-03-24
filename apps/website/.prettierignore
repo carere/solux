@@ -1,0 +1,22 @@
+# Ignore artifacts:
+dist
+.astro
+
+# Ignore node_modules
+node_modules
+
+# Ingore netlify folders
+.netlify
+netlify 
+
+# highly recommend not having prettier format mdx files for the docs. It can mess up some components.
+src/docs/data/docs/**/*.mdx
+
+# Ignore tours
+.tours
+
+# Standard
+**/.git
+**/.svn
+**/.hg
+**/node_modules

@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.options.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "composite": true,
+    "outDir": "../../.moon/cache/types/packages/solux-test",
+    "lib": ["ESNext", "DOM"],
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "paths": {
+      "@carere/solux": ["../../packages/core/src"]
+    }
+  },
+  "include": ["src/**/*", "test/**/*", "*.js", "*.ts", "*.tsx"],
+  "references": [{ "path": "../../packages/core" }]
+}

@@ -1,0 +1,69 @@
+---
+title: "Sidebar Config"
+description: "Learn how to configure and customize the documentation sidebar navigation"
+sidebar:
+  label: "Sidebar Navigation"
+  order: 3
+---
+
+The sidebar in Pathfinder is configured through a TypeScript file that defines the structure and order of your documentation sections.
+
+<Aside variant="info">
+  Any items not configured are still included, they will just have their default label and alphabetical display order.
+</Aside>
+
+## Configuration File
+
+The sidebar navigation is configured in `src/docs/config/[language]/sidebarNavData.json.ts`. This file exports an array of section configurations.
+
+```ts title="src/docs/config/[language]/sidebarNavData.json.ts"
+/**
+ * Ordered list of documentation sections
+ * The order here determines the display order in navigation
+ */
+const docSections: DocSection[] = [
+	{
+		id: "getting-started",
+		title: "Getting Started",
+	},
+	{
+		id: "components",
+		title: "Components",
+	},
+	{
+		id: "reference",
+		title: "Reference",
+	},
+];
+```
+
+## Section Properties
+
+Each section in the `docSections` array has the following properties:
+
+- `id` (required): Must match the folder name under `src/data/docs/`. For example, if your id is "getting-started", your documentation files should be in `src/data/docs/[language]/getting-started/`.
+
+- `title` (required): The display title for the section in the sidebar navigation. This can include spaces and special characters.
+
+## Order and Organization
+
+The order of sections in the `docSections` array determines their display order in the sidebar navigation. To reorder sections, simply reorder them in the array.
+
+## Adding New Sections
+
+To add a new section to your documentation:
+
+1. Create a new folder under `src/data/docs/` with your section's ID
+2. Add a new section configuration to the `docSections` array
+3. Add your documentation files (`.md` or `.mdx`) to your new section folder
+
+```ts
+const docSections: DocSection[] = [
+  // ... existing sections ...
+  {
+    id: "advanced-topics",
+    title: "Advanced Topics",
+    description: "In-depth guides and advanced usage",
+  },
+];
+```

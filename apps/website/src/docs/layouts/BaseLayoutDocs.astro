@@ -1,0 +1,60 @@
+---
+import { type CollectionEntry } from "astro:content";
+
+// component imports
+import BaseHead from "./BaseHead.astro";
+import Nav from "@/docs/components/nav/Nav.astro";
+import Footer from "@/docs/components/footer/Footer.astro";
+import CookieConsent from "@/docs/components/cookie-consent/CookieConsent.astro";
+import AnnouncementBanner from "@/docs/components/announcement-banner/AnnouncementBanner.astro";
+import SkipLink from "@/docs/components/skip-link/SkipLink.astro";
+
+// style import
+import "@/styles/global.css";
+import "@/docs/styles/docs-markdown-content.css";
+
+// utils
+import { getLocaleFromUrl } from "@/docs/js/localeUtils";
+
+// data
+import siteSettings from "@/docs/config/siteSettings.json";
+
+// image and authorData are defined on blog posts
+// authorData could also be defined on the about author page
+interface Props {
+	title: string;
+	description: string;
+	image?: ImageMetadata;
+	noindex?: boolean; // you need to opt-in to no indexing, as it hides the page from search engines
+}
+
+const { title, description, image, noindex = false } = Astro.props as Props;
+
+const currLocale = getLocaleFromUrl(Astro.url);
+---
+
+<!doctype html>
+<html id="documentation-layout" lang={currLocale} class="dark" transition:animate="fade">
+	<head>
+		<BaseHead
+			title={title}
+			description={description}
+			image={image ? image : undefined}
+			noindex={noindex}
+		/>
+	</head>
+	<body id="body" class="">
+		<!-- put cookie consent first so it is seen first by screen readers -->
+		<!-- <CookieConsent /> -->
+		<SkipLink href="#main-content" />
+		<div class="min-h-[100lvh]">
+			<AnnouncementBanner />
+			{/* Navbar */}
+			<header class="bg-background/80 sticky -top-px z-50 w-full border-b backdrop-blur">
+				<Nav />
+			</header>
+			<slot />
+		</div>
+		<Footer />
+	</body>
+</html>

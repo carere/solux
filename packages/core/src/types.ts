@@ -1,4 +1,5 @@
 import type { Observable, Subscription } from "rxjs";
+import type { SetStoreFunction } from "solid-js/store";
 
 /**
  * An *event* is a plain object that represents something that happen.
@@ -54,7 +55,7 @@ export type Handler<S, E extends Event = Event> = (state: S, event: E) => void;
  *
  * @template S The type of state held by this store.
  */
-export type Enhancer<S> = (store: Store<S>) => Store<S>;
+export type Enhancer<S> = (store: EnhancedStore<S>) => EnhancedStore<S>;
 
 /**
  * The type Store dispatch function.
@@ -151,6 +152,18 @@ export type Store<S> = {
     eventCreator: AnyEventCreator<E>,
     listener: (value: { state: S; event: E }) => void,
   ) => Subscription;
+};
+
+/**
+ * A store that has been enhanced with additional functionality.
+ * We pass this store to the enhancers chain. Thus, it has some additional
+ * methods to help the enhancers to work.
+ *
+ * @template S The type of state held by this store.
+ */
+export type EnhancedStore<S> = Store<S> & {
+  initialState: S;
+  setState: SetStoreFunction<S>;
 };
 
 /**
@@ -332,14 +345,6 @@ export type EntityAdapterOptions<T> = {
 };
 
 /**
- * Object used with `updateOne()` and `updateMany()` functions from
- * the entity state adapter.
- *
- * @template T The type of the entity handle by the entity adapter.
- */
-export type UpdateEntity<T> = { id: string; changes: Partial<T> };
-
-/**
  * Object containing several selectors used to get some data from entity adapter
  *
  * @template T The type of the entity handle by the entity adapter.
@@ -368,10 +373,6 @@ export type EntityStateAdapter<T> = {
   removeOne<S extends EntityState<T>>(state: S, key: string): void;
   removeMany<S extends EntityState<T>>(state: S, key: Array<string>): void;
   removeAll<S extends EntityState<T>>(state: S): void;
-  updateOne<S extends EntityState<T>>(state: S, change: UpdateEntity<T>): void;
-  updateMany<S extends EntityState<T>>(state: S, changes: Array<UpdateEntity<T>>): void;
-  upsertOne<S extends EntityState<T>>(state: S, entity: T): void;
-  upsertMany<S extends EntityState<T>>(state: S, entities: Array<T>): void;
   getInitialState(): EntityState<T>;
   getInitialState<E extends object>(extra: E): EntityState<T> & E;
   getSelectors(): EntitySelectors<T, EntityState<T>>;

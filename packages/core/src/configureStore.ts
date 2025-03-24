@@ -1,6 +1,7 @@
+import { clone, omit } from "radash";
 import { ReplaySubject } from "rxjs";
 import { createStore, produce } from "solid-js/store";
-import type { AnyEventCreator, Event, Store, StoreOption } from "./types";
+import type { AnyEventCreator, EnhancedStore, Event, Store, StoreOption } from "./types";
 
 /**
  * The function used to create a Solux store
@@ -17,9 +18,9 @@ export const configureStore = <S extends object>(options: Partial<StoreOption<S>
       You may read the docs in order to understand how to use Solux and its architecture.
     `);
 
-  const [state, setState] = createStore(
-    preloadedState ?? (rootSlice ? rootSlice.getInitialState() : {}),
-  );
+  const initialState = preloadedState ?? rootSlice.getInitialState();
+
+  const [state, setState] = createStore(initialState);
 
   const store$ = new ReplaySubject<{ state: S; event: Event }>(1);
 
@@ -42,10 +43,19 @@ export const configureStore = <S extends object>(options: Partial<StoreOption<S>
       if (event.type === eventCreator.type) listener({ event, state } as { event: E; state: S });
     });
 
-  return (enhancers ?? []).reduce((acc, enhancer) => enhancer(acc), {
+  const enhancedStore: EnhancedStore<S> = {
+    // Enhancers need the initial State & the setState function
+    initialState: clone(initialState),
+    setState,
+    // Store methods
     dispatch,
-    state: state as S,
+    state,
     subscribe,
     subscribeToEvent,
-  });
+  };
+
+  return omit(
+    (enhancers ?? []).reduce((acc, enhancer) => enhancer(acc), enhancedStore),
+    ["setState", "initialState"],
+  );
 };

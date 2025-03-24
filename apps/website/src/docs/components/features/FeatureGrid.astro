@@ -1,0 +1,89 @@
+---
+import { Icon } from "astro-icon/components";
+
+const title = "Key Features";
+const features = [
+	{
+		title: "Seemless Integration",
+		description: "Designed to easily integrate with other Cosmic Themes templates.",
+		icon: "tabler/sparkles",
+	},
+	{
+		title: "i18n Ready",
+		description:
+			"Internationalization support for multiple languages. Configured with a simple script.",
+		icon: "tabler/language",
+	},
+	{
+		title: "Modern Stack",
+		description: "Built with Astro 5 and Tailwind CSS 4 for optimal performance.",
+		icon: "tabler/stack-2",
+	},
+	// {
+	// 	title: "Accessible",
+	// 	description: "Designed with keyboard navigatable and accessible components.",
+	// 	icon: "tabler/accessible",
+	// },
+	// {
+	// 	title: "Dark Mode",
+	// 	description: "Seamless dark mode support with system preference detection.",
+	// 	icon: "tabler/moon-stars",
+	// },
+	{
+		title: "Search",
+		description: "Fast, keyboard-accessible search functionality with Pagefind.",
+		icon: "tabler/search",
+	},
+];
+---
+
+<div class="docs-site-container border-x py-16">
+	<div class="mx-auto max-w-4xl">
+		<div class="mb-12 text-center">
+			<h2 class="docs-h2 docs-text-gradient">{title}</h2>
+		</div>
+		<div class="grid gap-8 sm:grid-cols-2">
+			{
+				features.map((feature, index) => (
+					<div
+						class={`group bg-muted border-border relative flex items-start gap-4 overflow-hidden rounded-lg border p-6 md:p-8 ${
+							index % 2 === 1 ? "sm:translate-y-10" : ""
+						} before:absolute before:top-[var(--mouse-y)] before:left-[var(--mouse-x)] before:h-[300px] before:w-[300px] before:-translate-x-1/2 before:-translate-y-1/2 before:bg-[radial-gradient(circle_closest-side,color-mix(in_oklch,var(--color-foreground)_6%,transparent)_0%,transparent_100%)] before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100`}
+						data-spotlight
+					>
+						<div class="text-primary-500 relative shrink-0">
+							<span class="bg-primary-500/10 group-hover:bg-primary-500/15 flex size-10 items-center justify-center rounded-md transition-colors duration-500">
+								<Icon name={feature.icon} class="size-5" aria-hidden="true" />
+							</span>
+						</div>
+						<div>
+							<h3 class="mb-2 font-semibold">{feature.title}</h3>
+							<p class="text-muted-foreground text-sm">{feature.description}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<script>
+	function handleMouseMove(event) {
+		const card = event.currentTarget;
+		const rect = card.getBoundingClientRect();
+		const x = event.clientX - rect.left;
+		const y = event.clientY - rect.top;
+
+		card.style.setProperty("--mouse-x", `${x}px`);
+		card.style.setProperty("--mouse-y", `${y}px`);
+	}
+
+	const setupSpotlight = () => {
+		document.querySelectorAll("[data-spotlight]").forEach((card) => {
+			card.addEventListener("mousemove", handleMouseMove);
+		});
+	};
+
+	setupSpotlight();
+	document.addEventListener("astro:after-swap", setupSpotlight);
+</script>

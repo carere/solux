@@ -12,3 +12,11 @@ node_modules
 dist
 lib/
 *.tsbuildinfo
+.astro/
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store

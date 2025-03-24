@@ -1,0 +1,27 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import BaseLayoutDocs from "@/docs/layouts/BaseLayoutDocs.astro";
+import Hero from "@/docs/components/hero/Hero.astro";
+import { getLocaleFromUrl } from "@/docs/js/localeUtils";
+import { getTranslatedData } from "@/docs/js/translationUtils";
+import FeatureGrid from "@/docs/components/features/FeatureGrid.astro";
+import CtaGlow from "@/docs/components/cta/CtaGlow.astro";
+import Testimonials from "@/docs/components/testimonials/Testimonials.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<BaseLayoutDocs title={siteData.title} description={siteData.description}>
+	<main class="overflow-hidden">
+		<Hero />
+		<FeatureGrid />
+		<Testimonials />
+		<CtaGlow
+			title="Ready to build your documentation?"
+			description="Get started with Pathfinder today and create beautiful, maintainable documentation that your users will love."
+			primaryLink={getRelativeLocaleUrl(currLocale, "/docs/getting-started")}
+			githubLink="https://github.com/Boston343"
+		/>
+	</main>
+</BaseLayoutDocs>
