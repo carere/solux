@@ -1,0 +1,7 @@
+[packages.solux]
+versioned_files = ["packages/core/package.json"]
+changelog = "packages/core/CHANGELOG.md"
+
+[github]
+owner = "carere"
+repo = "solux"
