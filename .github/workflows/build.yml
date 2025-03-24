@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+      MOONBASE_SECRET_KEY: ${{ secrets.MOONBASE_SECRET_KEY }}
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Toolchain
+        uses: 'moonrepo/setup-toolchain@v0'
+        with:
+          auto-install: true
+
+      - name: Install Knope
+        uses: knope-dev/action@v2.1.0
+        with:
+          version: 0.19.0
+
+      - name: Run tests
+        run: moon core:test
+
+      - name: Build project
+        run: moon core:build
+
+      - name: Create artifacts
+        run: moon core:artifacts
+
+      - name: Create release
+        run: knope release --dry-run

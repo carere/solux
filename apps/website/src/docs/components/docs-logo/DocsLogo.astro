@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+// utils
+import { getLocaleFromUrl } from "@/docs/js/localeUtils";
+import { getTranslatedData } from "@/docs/js/translationUtils";
+
+// data
+// import { docsSiteData } from "@/docs/config/siteData.config";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<a
+	class="docs-primary-focus text-foreground flex items-center align-middle text-xl font-bold"
+	href={getRelativeLocaleUrl(currLocale)}
+	class=""
+>
+	<div class="">{siteData.title}</div>
+</a>

@@ -1,10 +1,7 @@
-prepare-commit-msg:
+commit-msg:
   commands:
-    commitzen:
-      interactive: true
-      run: bun cz
-      env:
-        LEFTHOOK: 0
+    commitlint:
+      run: bun commitlint --edit {1}
 
 pre-commit:
   parallel: true

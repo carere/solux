@@ -1,0 +1,28 @@
+---
+// utils
+import { getLocalizedPathname } from "@/docs/js/translationUtils";
+
+// config
+import { locales } from "@/docs/config/siteSettings.json";
+import { defaultLocale } from "@/docs/config/siteSettings.json";
+---
+
+{
+	locales.length > 1 &&
+		locales.map((lang) => (
+			<>
+				<link
+					rel="alternate"
+					hreflang={lang}
+					href={Astro.url.origin + getLocalizedPathname(lang, Astro.url)}
+				/>
+				{lang === defaultLocale && (
+					<link
+						rel="alternate"
+						hreflang="x-default"
+						href={Astro.url.origin + getLocalizedPathname(defaultLocale, Astro.url)}
+					/>
+				)}
+			</>
+		))
+}

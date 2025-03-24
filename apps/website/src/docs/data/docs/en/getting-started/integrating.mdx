@@ -1,0 +1,139 @@
+---
+title: Integrating with an Existing Theme
+description: Learn how to integrate Pathfinder with an existing template by Cosmic Themes
+sidebar:
+  order: 3
+  label: Theme Integration
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 4
+---
+
+This theme is designed to work seamlessly with other Tailwind CSS v4 templates by Cosmic Themes.
+
+## Required Steps
+
+<Steps >
+
+1. Copy the `src/docs` folder from this theme to your existing project. 
+
+    Most items of this theme are located under the `src/docs` folder. So the first step is to simply copy this entire folder to your existing project (to keep the same folder structure at `src/docs`).
+
+2. Import the docs styles into your global css file.
+
+    This can be done by adding the following line to your `global.css` file after the tailwind theme import:
+    
+    ```css title="src/styles/global.css" ins={5}
+    /* theme definition import */
+    @import "./tailwind-theme.css";
+
+    /* docs styles */
+    @import "@/docs/styles/docs-global.css";
+    ```
+3. Add the docs content collection to your site's content collection config file.
+
+    ```ts title="src/content.config.ts" ins={3-30, 34}
+    // other collections...
+
+    const docsCollection = defineCollection({
+      loader: glob({ pattern: "**/[^_]*{md,mdx}", base: "./src/docs/data/docs" }),
+      schema: () =>
+        z.object({
+          title: z.string(),
+          description: z.string().optional(),
+          sidebar: z
+            .object({
+              label: z.string().optional(),
+              order: z.number().optional(),
+              badge: z
+                .object({
+                  text: z.string(),
+                  variant: z.enum(["note", "tip", "caution", "danger", "info"]).default("note"),
+                })
+                .optional(),
+            })
+            .optional(),
+          tableOfContents: z
+            .object({
+              minHeadingLevel: z.number().min(1).max(6).optional(),
+              maxHeadingLevel: z.number().min(1).max(6).optional(),
+            })
+            .optional(),
+          pagefind: z.boolean().optional(),
+          draft: z.boolean().optional(),
+        }),
+    });
+
+    export const collections = {
+      // other collection....
+      docs: docsCollection,
+    };
+    ```
+
+4. Add the mdx components to the AutoImport integration
+
+    ```ts title="astro.config.mjs" ins={7-14}
+    export default defineConfig({
+      // other config options...
+      integrations: [
+        AutoImport({
+          imports: [
+            // other imports...
+            "@/docs/components/mdx-components/Aside.astro",
+            "@/docs/components/mdx-components/Badge.astro",
+            "@/docs/components/mdx-components/Button.astro",
+            "@/docs/components/mdx-components/Steps.astro",
+            "@/docs/components/mdx-components/Tabs.astro",
+            "@/docs/components/mdx-components/TabsContent.astro",
+            "@/docs/components/mdx-components/TabsList.astro",
+            "@/docs/components/mdx-components/TabsTrigger.astro",
+          ],
+        }),
+      ],
+    });
+    ```
+
+5. Add the docs pages to your site. 
+
+    From the Pathfinder theme copy the whole `src/pages/docs` folder into your site's `src/pages/docs` folder.
+
+</Steps>
+
+## Optional Steps
+
+### Fonts
+
+This theme uses the **Inter** font by default. It is recommended to install the font locally from [fontsource](https://fontsource.org/fonts/inter/install).
+
+Then in your `fonts.css` file add the following:
+
+```css title="src/styles/fonts.css"
+/* inter-latin-wght-normal */
+@font-face {
+	font-family: "Inter Variable";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 900;
+	src: url(@fontsource-variable/inter/files/inter-latin-wght-normal.woff2)
+		format("woff2-variations");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+		U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+		U+FFFD;
+}
+```
+
+#### Alternate Fonts
+
+You can also use different fonts. Just make sure you add the necessary fonts to your `fonts.css` file, and update the `font-family` property in your `src/docs/styles/docs-global.css` file.
+
+<Aside variant="info">
+  You should also preload your font in the `src/docs/layouts/BaseHead.astro` component, similar to the Inter font.
+
+  ```astro {2,5}
+  ---
+  import InterVariable from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2";
+  ---
+
+  <link rel="preload" href={InterVariable} as="font" type="font/woff2" crossorigin="anonymous" />
+  ```
+</Aside>

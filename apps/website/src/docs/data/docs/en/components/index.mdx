@@ -1,0 +1,85 @@
+---
+title: Using Custom Components
+description: A versatile button component with multiple variants and sizes
+sidebar:
+  label: Custom Components
+  order: 1
+---
+
+There are a number of pre-built components useful for documentation sites that are already included in the Pathfinder theme. However, you may want to include your own custom components. You can easily do this by importing into your `.mdx` files.
+
+<Aside variant="tip">
+  Add the class `not-content` to the component to cancel out any default markdown styling.
+</Aside>
+
+## Example Custom Component
+
+Let's create a simple Card component as an example. First, create your component in the `components` directory:
+
+<Tabs defaultValue="component">
+  <TabsList>
+    <TabsTrigger value="component">Component</TabsTrigger>
+    <TabsTrigger value="usage">Usage</TabsTrigger>
+  </TabsList>
+  <TabsContent value="component">
+    ```astro
+    ---
+    // src/components/Card.astro
+    interface Props {
+      title: string;
+      description?: string;
+      class?: string;
+    }
+
+    const { title, description, class: className } = Astro.props;
+    ---
+
+    <div class:list={[
+      "rounded-lg border bg-card p-6 shadow-sm",
+      "hover:border-primary/50 transition-colors",
+      className
+    ]}>
+      <div class="not-content">
+        <h3 class="text-lg font-semibold">{title}</h3>
+        {description && (
+          <p class="mt-1 text-foreground/80">{description}</p>
+        )}
+      </div>
+      <div class="mt-6">
+        <slot />
+      </div>
+    </div>
+    ```
+  </TabsContent>
+  <TabsContent value="usage">
+    ```mdx title="example.mdx"
+    ---
+    title: Example
+    ---
+    import Card from '@/components/Card.astro';
+
+    <Card 
+      title="Getting Started" 
+      description="Learn how to integrate our theme into your project"
+    >
+      Check out our [initial setup guide](/docs/getting-started) to get started.
+    </Card>
+    ```
+  </TabsContent>
+</Tabs>
+
+## Using the Component
+
+Here's how the custom Card component looks when used in your documentation:
+
+<div class="mt-4">
+  <div class="rounded-lg border bg-card p-6 shadow-sm hover:border-primary/50 transition-colors">
+    <div class="not-content">
+      <h3 class="text-lg font-semibold">Getting Started</h3>
+      <p class="mt-1 text-foreground/80">Learn how to integrate our theme into your project</p>
+    </div>
+    <div class="mt-6 text-foreground/80">
+      Check out our [initial setup guide](/docs/getting-started) to get started.
+    </div>
+  </div>
+</div>

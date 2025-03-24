@@ -1,0 +1,8 @@
+bun = "latest"
+moon = "latest"
+proto = "latest"
+pkl = "latest"
+
+[plugins]
+moon = "https://raw.githubusercontent.com/moonrepo/moon/master/proto-plugin.toml"
+pkl = "https://raw.githubusercontent.com/milesj/proto-plugins/refs/heads/master/pkl.toml"

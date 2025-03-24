@@ -1,0 +1,78 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { ClientRouter } from "astro:transitions";
+
+// component imports
+import Seo from "@/docs/components/seo/Seo.astro";
+
+// data
+import siteSettings from "@/docs/config/siteSettings.json";
+
+export interface Props {
+	title: string;
+	description: string;
+	image?: ImageMetadata;
+	noindex?: boolean;
+}
+
+const { title, description, image, noindex = false } = Astro.props as Props;
+
+import InterVariable from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2";
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" , initial-scale="1.0" />
+
+<!-- local font preload for better performance -->
+<link rel="preload" href={InterVariable} as="font" type="font/woff2" crossorigin="anonymous" />
+
+<!-- Favicons. Generated from https://realfavicongenerator.net/ -->
+<link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+<link rel="shortcut icon" href="/favicons/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Pathfinder" />
+<link rel="manifest" href="/favicons/site.webmanifest" />
+
+<!-- other -->
+<meta name="generator" content={Astro.generator} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- Theme change setup. Run early to eliminate Flash of inAccurate coloR Theme (FART) -->
+<script is:inline>
+	function initTheme() {
+		let colorTheme = localStorage.getItem("colorTheme");
+		if (!colorTheme) {
+			// set dark theme initially
+			document.documentElement.classList.add("dark");
+			localStorage.setItem("colorTheme", "dark");
+
+			// if no color theme yet, use the users preferences (uncomment the below code, and comment out the above code to use this instead)
+			// if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			// 	document.documentElement.classList.add("dark");
+			// 	localStorage.setItem("colorTheme", "dark");
+			// } else {
+			// 	document.documentElement.classList.remove("dark");
+			// 	localStorage.setItem("colorTheme", "light");
+			// }
+		} else {
+			// If there is, assign the theme based on the value in local storage
+			if (colorTheme === "dark") {
+				document.documentElement.classList.add("dark");
+			} else if (colorTheme === "light") {
+				document.documentElement.classList.remove("dark");
+			}
+		}
+	}
+
+	// runs on initial page load
+	initTheme();
+
+	// runs on view transitions navigation
+	document.addEventListener("astro:after-swap", initTheme);
+</script>
+
+<Seo title={title} description={description} image={image} noindex={noindex} />
+
+<!-- no fallback as I saw issues with firefox fallback -->
+{siteSettings.useViewTransitions && <ClientRouter fallback="none" />}

@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div
+	id="announcement-banner"
+	class="from-primary/10 via-primary/5 z-0 flex items-center justify-center gap-x-6 overflow-hidden bg-gradient-to-r to-transparent px-6 py-2.5"
+>
+	<div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+		<Icon
+			name="tabler/sparkles"
+			class="text-primary hidden size-5 md:inline-block"
+			aria-hidden="true"
+		/>
+		<p class="text-center text-xs leading-6 md:text-sm">
+			<strong class="font-semibold">Pathfinder v1.1</strong>
+			<span>is here!</span>
+			<svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"
+				><circle cx="1" cy="1" r="1"></circle></svg
+			>
+			Pagination, Sidebar CTA, and more.
+			<a
+				href="https://cosmicthemes.com/themes/pathfinder"
+				class="text-primary-600 dark:text-primary-400 font-semibold whitespace-nowrap transition-opacity hover:opacity-80"
+				rel="noopener noreferrer"
+				target="_blank"
+			>
+				Learn more <span aria-hidden="true">&rarr;</span>
+			</a>
+		</p>
+	</div>
+</div>

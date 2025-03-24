@@ -1,0 +1,56 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "docs code tour",
+  "steps": [
+    {
+      "file": "apps/website/package.json",
+      "description": "When first getting started, first make sure the site builds as-is. Run `npm install` then `npm run build` (or `pnpm install` and `pnpm build`). \n\nNext run `npm run docs:config-i18n` and follow the instructions to get setup! This will configure your site for one language or multiple languages. For further information, see the [i18n documentation](https://cosmicthemes.com/docs/i18n/).",
+      "line": 13
+    },
+    {
+      "file": "apps/website/src/docs/config/siteSettings.json.ts",
+      "description": "Next you'll want to head to your siteSettings and configure some general site settings.",
+      "line": 33
+    },
+    {
+      "file": "apps/website/src/docs/config/en/siteData.json.ts",
+      "description": "In the explorer panel, under \"src/docs/config\" you will find data files for site information, the top navbar, sidebar, and testimonials. These are split up by language into subfolders. This file is where you add your website title, description, and base author data.",
+      "line": 2
+    },
+    {
+      "file": "apps/website/src/docs/config/en/navData.json.ts",
+      "description": "Here is where you can edit what goes in the navbar. Whatever you edit here will be placed into the desktop and mobile navbars automatically.",
+      "line": 22
+    },
+    {
+      "file": "apps/website/src/styles/tailwind-theme.css",
+      "description": "Here you can edit the colors your website is using. You can use any of Tailwind's default colors, or create your own.",
+      "line": 6
+    },
+    {
+      "file": "apps/website/src/content.config.ts",
+      "description": "In the \"src/docs/data\" folder you will find the docs content collection. This works with markdown or mdx files, although it is recommended to use mdx in order to take advantage of the various components this template offers. \n\nUsing the schema defined in this \"content.config.ts\" file, when you try to \"npm run dev\" this site, it will validate the item against this schema and give you a detailed error if you forgot something required.",
+      "line": 4
+    },
+    {
+      "file": "apps/website/src/docs/data/docs/en/getting-started/integrating.mdx",
+      "description": "This is an example docs page post required and some optional frontmatter (the stuff at the top of the file).",
+      "line": 10
+    },
+    {
+      "file": "apps/website/src/pages/index.astro",
+      "description": "This is the homepage! You can see the various components in use. Edit to your heart's content!",
+      "line": 31
+    },
+    {
+      "file": "apps/website/public/robots.txt",
+      "description": "Don't forget to update your robots.txt file with your site domain. It should be \"https://yoursite.com/sitemap-index.xml\"",
+      "line": 1
+    },
+    {
+      "file": "apps/website/astro.config.mjs",
+      "description": "Also update your site domain here in the Astro config file.",
+      "line": 13
+    }
+  ]
+}

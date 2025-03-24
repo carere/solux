@@ -8,10 +8,13 @@
     "source.removeUnusedImports": "always"
   },
   "[yaml,yml]": {
-    "editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter"
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "biomejs.biome"
@@ -28,17 +31,33 @@
   "[javascript]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "todo-tree.general.tags": ["BONUS", "PERF", "TODO"],
-  "cSpell.language": "en",
+  "tailwindCSS.classAttributes": ["class", "className"],
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["classList={{([^;]*)}}", "\\s*?[\"'`]([^\"'`]*).*?:"],
+    ["cn\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"]
+  ],
+  "cSpell.language": "en,fr",
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "Abatan",
     "biomejs",
     "carere",
-    "commitzen",
-    "esbuild",
+    "commitlint",
+    "github",
+    "knope",
+    "Knope",
     "lefthook",
-    "pnpm",
+    "MOONBASE",
+    "moonrepo",
+    "npmjs",
+    "pagefind",
+    "radash",
+    "rolldown",
     "solux",
     "treeshake",
     "tsup",

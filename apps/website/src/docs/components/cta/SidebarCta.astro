@@ -1,0 +1,95 @@
+---
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props as Props;
+---
+
+<div
+	class:list={[
+		className,
+		"gradient-border z-10 overflow-hidden rounded-xl p-[2px] text-center",
+		"shadow-lg transition-all duration-300",
+	]}
+>
+	<a href="https://cosmicthemes.com/themes/" target="_blank" rel="noopener">
+		<div class="bg-background dark:bg-muted h-full rounded-[11px] p-4">
+			<h3 class="text-foreground mb-2 text-lg leading-tight font-semibold">
+				Production-Ready Templates
+			</h3>
+			<p class="text-muted-foreground mb-4 text-xs text-pretty">
+				Skip weeks of development with our Astro + Tailwind templates. Packed with i18n, CMS,
+				animations & more.
+			</p>
+			<div
+				class:list={[
+					"inline-flex items-center justify-center rounded-full",
+					"bg-gradient-to-br from-purple-600 to-blue-600 px-4 py-2",
+					"text-sm font-medium text-white",
+					"transition hover:opacity-90",
+				]}
+			>
+				Explore Templates
+			</div>
+		</div>
+	</a>
+</div>
+
+<style define:vars={{ rotation: "-25deg" }}>
+	.gradient-border {
+		position: relative;
+		--rotation: -25deg;
+
+		&::before {
+			position: absolute;
+			z-index: -1;
+			content: "";
+			inset: calc(var(--spacing) * -12);
+			border-radius: 9999px;
+			transform: rotate(var(--rotation));
+			background: conic-gradient(
+				from var(--rotation),
+				var(--color-blue-600) 0%,
+				var(--color-purple-600) 25%,
+				var(--color-pink-800) 50%,
+				var(--color-purple-600) 75%,
+				var(--color-blue-600) 100%
+			);
+		}
+	}
+</style>
+
+<script>
+	import anime from "animejs";
+
+	document.querySelectorAll(".gradient-border").forEach((element: HTMLElement) => {
+		// Create a simple animation that just tracks progress
+		const animation = anime({
+			targets: {},
+			duration: 10000,
+			loop: true,
+			easing: "linear",
+			autoplay: false,
+			update: function (anim) {
+				// Calculate rotation based on progress (0-100%)
+				const progress = anim.progress;
+				const startAngle = -25;
+				const endAngle = 335;
+				const range = endAngle - startAngle;
+				const currentAngle = startAngle + (progress / 100) * range;
+
+				// Update the CSS variable
+				element.style.setProperty("--rotation", `${currentAngle}deg`);
+			},
+		});
+
+		element.addEventListener("mouseenter", () => {
+			animation.play();
+		});
+
+		element.addEventListener("mouseleave", () => {
+			animation.pause();
+		});
+	});
+</script>

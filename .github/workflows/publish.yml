@@ -1,0 +1,29 @@
+name: Publish
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      MOONBASE_SECRET_KEY: ${{ secrets.MOONBASE_SECRET_KEY }}
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Toolchain
+        uses: 'moonrepo/setup-toolchain@v0'
+        with:
+          auto-install: true
+
+      - name: Build project
+        run: moon core:build
+
+      - name: Publish package
+        working-directory: packages/core
+        run: bun publish -p --dry-run

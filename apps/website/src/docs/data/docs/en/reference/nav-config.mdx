@@ -1,0 +1,60 @@
+---
+title: "Navigation Config"
+description: "Learn how to configure and customize the documentation site's top navigation"
+sidebar:
+  label: "Top Navigation"
+  order: 2
+---
+
+The top navigation in Pathfinder is configured through a TypeScript file that defines the navigation links and their properties.
+
+## Configuration File
+
+The navigation is configured in `src/docs/config/[language]/navData.json.ts`. This file exports an array of navigation items.
+
+```ts title="src/docs/config/[language]/navData.json.ts"
+const navConfig: navItem[] = [
+  {
+    text: "Introduction",
+    link: "/docs/getting-started/",
+  },
+  {
+    text: "Components",
+    link: "/docs/components/",
+  },
+  {
+    text: "Get Pathfinder",
+    link: "https://cosmicthemes.com/themes/pathfinder",
+    newTab: true,
+  },
+];
+```
+
+## Navigation Item Properties
+
+Each item in the `navConfig` array has the following properties:
+
+### text
+
+- **Type:** `string`
+- **Required:** Yes
+
+The display text for the navigation link.
+
+### link
+
+- **Type:** `string`
+- **Required:** Yes
+
+The URL for the navigation link. This can be:
+- An internal path starting with `/` (e.g., `/docs/getting-started/`)
+- An external URL (e.g., `https://example.com`)
+- A hash link (e.g., `#features`)
+
+### newTab
+
+- **Type:** `boolean`
+- **Default:** `false`
+- **Optional:** Yes
+
+When set to `true`, the link will open in a new tab. This is particularly useful for external links.

@@ -1,0 +1,66 @@
+{
+	"tailwind": {
+		"css": "src/styles/starwind.css",
+		"baseColor": "neutral",
+		"cssVariables": true
+	},
+	"componentDir": "src/docs/components",
+	"components": [
+		{
+			"name": "accordion",
+			"version": "0.0.10"
+		},
+		{
+			"name": "alert",
+			"version": "0.0.10"
+		},
+		{
+			"name": "badge",
+			"version": "0.0.10"
+		},
+		{
+			"name": "button",
+			"version": "0.0.10"
+		},
+		{
+			"name": "card",
+			"version": "0.0.10"
+		},
+		{
+			"name": "checkbox",
+			"version": "0.0.10"
+		},
+		{
+			"name": "dialog",
+			"version": "0.0.10"
+		},
+		{
+			"name": "input",
+			"version": "0.0.10"
+		},
+		{
+			"name": "label",
+			"version": "0.0.10"
+		},
+		{
+			"name": "select",
+			"version": "0.0.10"
+		},
+		{
+			"name": "switch",
+			"version": "0.0.10"
+		},
+		{
+			"name": "tabs",
+			"version": "0.0.10"
+		},
+		{
+			"name": "textarea",
+			"version": "0.0.10"
+		},
+		{
+			"name": "tooltip",
+			"version": "0.0.10"
+		}
+	]
+}

@@ -1,0 +1,75 @@
+---
+import { getCollection, render } from "astro:content";
+
+// layout
+import DocsLayout from "@/docs/layouts/DocsLayout.astro";
+
+// components
+import ExternalLink from "@/docs/components/markdown-overrides/ExternalLink.astro";
+import CustomH1 from "@/docs/components/markdown-overrides/CustomH1.astro";
+import CustomH2 from "@/docs/components/markdown-overrides/CustomH2.astro";
+import CustomH3 from "@/docs/components/markdown-overrides/CustomH3.astro";
+import CustomH4 from "@/docs/components/markdown-overrides/CustomH4.astro";
+import CustomH5 from "@/docs/components/markdown-overrides/CustomH5.astro";
+import CustomH6 from "@/docs/components/markdown-overrides/CustomH6.astro";
+import CustomH1Copy from "@/docs/components/markdown-overrides/CustomH1Copy.astro";
+import CustomH2Copy from "@/docs/components/markdown-overrides/CustomH2Copy.astro";
+import CustomH3Copy from "@/docs/components/markdown-overrides/CustomH3Copy.astro";
+import CustomH4Copy from "@/docs/components/markdown-overrides/CustomH4Copy.astro";
+import CustomH5Copy from "@/docs/components/markdown-overrides/CustomH5Copy.astro";
+import CustomH6Copy from "@/docs/components/markdown-overrides/CustomH6Copy.astro";
+
+// utils
+import { filterCollectionByLanguage } from "@/docs/js/localeUtils";
+import { defaultLocale, siteSettings } from "@/docs/config/siteSettings.json";
+
+export async function getStaticPaths() {
+	const docs = await getCollection("docs", ({ data }) => {
+		// filter out draft pages
+		return data.draft !== true;
+	});
+
+	// get rid of pages from other languages and remove locale from slug
+	const filteredDocs = filterCollectionByLanguage(docs, defaultLocale);
+
+	return filteredDocs.map((doc) => {
+		return {
+			params: { slug: doc.id },
+			props: { doc },
+		};
+	});
+}
+
+const { doc } = Astro.props;
+const { Content, headings } = await render(doc);
+---
+
+<DocsLayout doc={doc} headings={headings}>
+	{
+		siteSettings.copyLinkButtons === false ? (
+			<Content
+				components={{
+					a: ExternalLink,
+					h1: CustomH1,
+					h2: CustomH2,
+					h3: CustomH3,
+					h4: CustomH4,
+					h5: CustomH5,
+					h6: CustomH6,
+				}}
+			/>
+		) : (
+			<Content
+				components={{
+					a: ExternalLink,
+					h1: CustomH1Copy,
+					h2: CustomH2Copy,
+					h3: CustomH3Copy,
+					h4: CustomH4Copy,
+					h5: CustomH5Copy,
+					h6: CustomH6Copy,
+				}}
+			/>
+		)
+	}
+</DocsLayout>

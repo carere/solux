@@ -1,0 +1,34 @@
+---
+import { Icon } from "astro-icon/components";
+
+type IconSize = "sm" | "md" | "lg";
+
+interface Props {
+	social: string;
+	link: string;
+	icon: string;
+	size?: IconSize;
+	class?: string;
+}
+
+const { social, link, icon, size = "md", class: className } = Astro.props;
+
+const sizeClasses: Record<IconSize, string> = {
+	sm: "h-4.5 w-4.5",
+	md: "h-5 w-5",
+	lg: "h-6 w-6",
+};
+---
+
+<a
+	href={link}
+	target="_blank"
+	rel="noopener noreferrer"
+	class:list={[
+		"docs-primary-focus docs-nav__link--base flex h-8 w-8 items-center justify-center",
+		className,
+	]}
+	aria-label={`Follow me on ${social}`}
+>
+	<Icon name={icon} class={sizeClasses[size]} />
+</a>
