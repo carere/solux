@@ -23,6 +23,11 @@ jobs:
         with:
           auto-install: true
 
+      - name: Configure Git
+        run: |
+          git config --global user.name GitHub Actions
+          git config user.email github-actions@github.com
+
       - name: Install Knope
         uses: knope-dev/action@v2.1.0
         with:
