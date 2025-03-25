@@ -14,8 +14,8 @@ tasks {
   }
 
   ["artifacts"] {
-    command = "bun pm pack --destination artifacts"
-    inputs = List("dist", "package.json", "README.md")
-    outputs = List("artifacts")
+    command = "bun pm pack --filename packages/core/solux.tgz"
+    inputs = List("dist/*", "package.json", "README.md")
+    outputs = List("solux.tgz")
   }
 }

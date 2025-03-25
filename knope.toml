@@ -1,8 +1,7 @@
-[packages.solux]
+[package]
 versioned_files = ["packages/core/package.json"]
 changelog = "packages/core/CHANGELOG.md"
-assets = "packages/core/artifacts/*"
-scopes = ["core", "general"]
+assets = "packages/core/solux.tgz"
 
 [github]
 owner = "carere"

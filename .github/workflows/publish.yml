@@ -26,4 +26,4 @@ jobs:
 
       - name: Publish package
         working-directory: packages/core
-        run: bun publish -p --dry-run
+        run: bun publish -p
