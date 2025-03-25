@@ -1,8 +1,13 @@
 {
   "name": "@carere/solux",
-  "version": "3.3.2",
+  "version": "4.0.0",
   "description": "Flux implementation based on SolidJs reactivity",
-  "keywords": ["Solid", "flux", "redux", "Global State"],
+  "keywords": [
+    "Solid",
+    "flux",
+    "redux",
+    "Global State"
+  ],
   "bugs": "https://github.com/carere/solux/issues",
   "repository": {
     "type": "git",
@@ -12,7 +17,9 @@
   "author": "Kevin Abatan <abatan.k@gmail.com> (https://github.com/carere)",
   "homepage": "https://solux.carere.dev",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
