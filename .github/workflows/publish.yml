@@ -8,7 +8,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
       MOONBASE_SECRET_KEY: ${{ secrets.MOONBASE_SECRET_KEY }}
     steps:
       - name: Git Checkout
