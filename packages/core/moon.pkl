@@ -18,4 +18,8 @@ tasks {
     inputs = List("dist/*", "package.json", "README.md")
     outputs = List("solux.tgz")
   }
+
+  ["publish"] {
+    command = "bun publish -p"
+  }
 }
