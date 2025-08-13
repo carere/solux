@@ -260,7 +260,7 @@ export type IfUndefined<P, True, False> = P extends undefined ? True : False;
  * @internal
  */
 export type AnyEventCreator<E extends Event = Event> = {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: <An AnyEventCreator obviously accepts any>
   (args: any): E;
   type: string;
 };
@@ -376,7 +376,7 @@ export type EntityStateAdapter<T> = {
   getInitialState(): EntityState<T>;
   getInitialState<E extends object>(extra: E): EntityState<T> & E;
   getSelectors(): EntitySelectors<T, EntityState<T>>;
-  getSelectors<V, E extends EntityState<T>>(selectState: (state: V) => E): EntitySelectors<T, V>;
+  getSelectors<V, E extends EntityState<T>>(selectState?: (state: V) => E): EntitySelectors<T, V>;
 };
 
 /**
@@ -395,7 +395,7 @@ export type EntityStateAdapter<T> = {
 export type Epic<
   State = unknown,
   Container = unknown,
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: <Didnt find a way to make it work without any>
   Input extends Event = any,
   Output extends Input = Input,
 > = (

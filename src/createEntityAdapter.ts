@@ -84,7 +84,7 @@ export const createEntityAdapter = <T>({
       selectAll: (state: V | E) => {
         const s = selectState ? selectState(state as V) : (state as E);
 
-        return s.ids.map((id) => s.entities[id]);
+        return s.ids.map((id) => s.entities[id] as T);
       },
       selectTotal: (state: V | E) =>
         (selectState ? selectState(state as V) : (state as E)).ids.length,
