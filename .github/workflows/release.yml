@@ -1,0 +1,96 @@
+name: Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  ARTIFACT_NAME: solux.tgz
+
+jobs:
+  get-tag:
+    if: (github.ref == 'refs/heads/knope/pre-release' && github.event.pull_request.merged == true) || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: "Get tag of latest draft release"
+        run: echo "tag_name=$(gh release list --repo ${{ github.repository }} --json 'isDraft,tagName' --jq '.[] | select(.isDraft) | .tagName')" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ github.token }}
+        id: get-tag
+    outputs:
+      tag_name: ${{ steps.get-tag.outputs.tag_name }}
+
+  build-artifacts:
+    needs: [get-tag]
+    if: needs.get-tag.outputs.tag_name != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun ci
+
+      - name: Build project
+        run: bun run build
+
+      - name: Create artifact
+        run: bun pm pack --filename ${{ env.ARTIFACT_NAME }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: solux
+          path: ${{ env.ARTIFACT_NAME }}
+          if-no-files-found: error
+
+  release:
+    needs: [build-artifacts, get-tag]
+    runs-on: ubuntu-latest
+    env:
+      NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: .
+          merge-multiple: true
+
+      - name: Upload artifacts to release
+        run: |
+          gh release upload ${{ needs.get-tag.outputs.tag_name }} ${{ env.ARTIFACT_NAME }}
+          gh release edit ${{ needs.get-tag.outputs.tag_name }} --draft=false --latest
+
+      - name: Create tag
+        run: |
+          git tag ${{ needs.get-tag.outputs.tag_name }}
+          git push origin ${{ needs.get-tag.outputs.tag_name }}
+
+      - name: Publish package
+        run: bun publish ${{ env.ARTIFACT_NAME }}
+
