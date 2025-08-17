@@ -1,11 +1,16 @@
-# Solux
+<div align="center">
+  <!-- Logo placeholder - replace with your actual logo -->
+  <img src="https://via.placeholder.com/200x200/4A90E2/FFFFFF?text=SOLUX" alt="Solux Logo" width="200" height="200">
+</div>
 
-> State Management for SolidJS - Redux-like patterns with fine-grained reactivity
+  
+  # Solux
 
-[![npm version](https://img.shields.io/npm/v/@carere/solux.svg)](https://www.npmjs.com/package/@carere/solux)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/carere/solux/quality-assurance.yml?branch=main)](https://github.com/carere/solux/actions)
-[![Test Coverage](https://img.shields.io/badge/tests-passing-brightgreen.svg)](https://github.com/carere/solux)
+  > State Management for SolidJS - Redux-like patterns with fine-grained reactivity
+
+  [![npm version](https://img.shields.io/npm/v/@carere/solux.svg)](https://www.npmjs.com/package/@carere/solux)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+  [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/carere/solux/quality-assurance.yml?branch=main)](https://github.com/carere/solux/actions)
 
 Solux is a comprehensive state management library for [SolidJS](https://www.solidjs.com/) applications that brings the battle-tested patterns of Redux to SolidJS's reactive ecosystem. If you're building highly dynamic applications like design tools, dashboards, or complex SPAs, Solux provides the predictable state management you need with the performance benefits of SolidJS's fine-grained reactivity.
 
