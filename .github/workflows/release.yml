@@ -60,6 +60,7 @@ jobs:
       NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
+      id-token: write
       contents: write
     steps:
       - name: Git Checkout
@@ -93,4 +94,3 @@ jobs:
 
       - name: Publish package
         run: bun publish ${{ env.ARTIFACT_NAME }}
-
