@@ -1,23 +1,37 @@
-# moon
-.moon/cache
-.moon/docker
-
-# testing
-coverage
-
-# Dependencies
+# dependencies (bun install)
 node_modules
 
-# Build
+# output
+out
 dist
-lib/
-*.tsbuildinfo
-.astro/
-solux.tgz
+*.tgz
 
-# environment variables
+# code coverage
+coverage
+*.lcov
+
+# claude code
+.mcp.json
+.claude
+specs
+
+# logs
+logs
+*.log
+
+# dotenv environment variable files
 .env
-.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
 
-# macOS-specific files
+# caches
+.cache
+*.tsbuildinfo
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
 .DS_Store

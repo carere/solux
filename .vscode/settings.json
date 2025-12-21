@@ -10,9 +10,6 @@
   "[yaml,yml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  "[toml]": {
-    "editor.defaultFormatter": "tamasfe.even-better-toml"
-  },
   "[css]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
@@ -35,12 +32,6 @@
     "*.css": "tailwindcss"
   },
   "todo-tree.general.tags": ["BONUS", "PERF", "TODO"],
-  "tailwindCSS.classAttributes": ["class", "className"],
-  "tailwindCSS.experimental.classRegex": [
-    ["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["classList={{([^;]*)}}", "\\s*?[\"'`]([^\"'`]*).*?:"],
-    ["cn\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"]
-  ],
   "cSpell.language": "en,fr",
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
@@ -56,7 +47,6 @@
     "moonrepo",
     "npmjs",
     "pagefind",
-    "radash",
     "rolldown",
     "solux",
     "treeshake",

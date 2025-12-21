@@ -10,6 +10,6 @@ export default defineConfig({
   clean: true,
   minify: true,
   sourcemap: true,
-  format: ["esm", "cjs"],
+  format: ["esm"],
   esbuildPlugins: [solidPlugin()],
 });
