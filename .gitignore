@@ -12,7 +12,8 @@ coverage
 
 # claude code
 .mcp.json
-.claude/data
+.claude
+specs
 
 # logs
 logs

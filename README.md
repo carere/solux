@@ -16,10 +16,10 @@
 [![Quality Assurance](https://github.com/carere/solux/actions/workflows/quality-assurance.yml/badge.svg)](https://github.com/carere/solux/actions/workflows/quality-assurance.yml)
 </div>
 
-  
-  # 
 
-Solux is a comprehensive state management library for [SolidJS](https://www.solidjs.com/) applications that brings the battle-tested patterns of Flux to SolidJS's reactive ecosystem. If you're building highly dynamic applications like design tools, dashboards, or complex SPAs, Solux provides the predictable state management you need with the performance benefits of SolidJS's fine-grained reactivity.
+  #
+
+Solux is a comprehensive state management library for [SolidJS](https://docs.solidjs.com/) applications that brings the battle-tested patterns of Flux to SolidJS's reactive ecosystem. If you're building highly dynamic applications like design tools, dashboards, or complex SPAs, Solux provides the predictable state management you need with the performance benefits of SolidJS's fine-grained reactivity.
 
 ## Table of Contents
 
@@ -34,10 +34,12 @@ Solux is a comprehensive state management library for [SolidJS](https://www.soli
   - [Entity Adapter](#entity-adapter)
   - [Epics](#epics)
 - [API Reference](#api-reference)
-- [Examples](#examples)
-  - [TodoMVC](#todomvc)
-  - [Advanced Patterns](#advanced-patterns)
-- [TypeScript Support](#typescript-support)
+- [Advanced Usage](#advanced-usage)
+  - [Fine-Grained Reactivity](#fine-grained-reactivity)
+  - [Custom Middleware](#custom-middleware)
+  - [Epic Patterns](#epic-patterns)
+  - [Computed Values](#computed-values-with-creatememo)
+  - [Testing Strategies](#testing-strategies)
 - [DevTools Integration](#devtools-integration)
 - [Contributing](#contributing)
 - [License](#license)
@@ -52,7 +54,7 @@ The SolidJS ecosystem lacks a mature state management solution. Developers build
 
 Solux is built specifically for SolidJS's reactive system from the ground up. It provides:
 
-- **Familiar Redux patterns** - If you know Redux, you already know 80% of Solux
+- **Familiar Redux patterns** - If you know Redux Toolkit, you already know 95% of Solux
 - **Fine-grained reactivity** - Only the components that need to update will update
 - **Full TypeScript support** - Complete type inference for events, handlers, and state
 - **Redux DevTools integration** - Time-travel debugging and state inspection
@@ -76,11 +78,11 @@ Solux is built specifically for SolidJS's reactive system from the ground up. It
 ## Installation
 
 ```bash
+# bun (recommended)
+bun add @carere/solux
+
 # npm
 npm install @carere/solux
-
-# bun
-bun add @carere/solux
 ```
 
 ## Quick Start
@@ -93,16 +95,19 @@ import { SoluxProvider, useSolux } from '@carere/solux';
 import { render } from 'solid-js/web';
 
 // 1. Create events (actions in Redux terminology)
+// Events are type-safe - TypeScript infers payload types automatically
 const increment = createEvent<number>('counter/increment');
 const decrement = createEvent<number>('counter/decrement');
 const reset = createEvent('counter/reset');
 
 // 2. Create a slice with handlers
+// Handlers use SolidJS's produce() internally, allowing mutable-style updates
 const counterSlice = createSlice({
   initialState: { value: 0 },
   handlers: (builder) =>
     builder
       .addHandler(increment, (state, { payload }) => {
+        // Mutable syntax, but immutably applied via produce()
         state.value += payload;
       })
       .addHandler(decrement, (state, { payload }) => {
@@ -114,16 +119,17 @@ const counterSlice = createSlice({
 });
 
 // 3. Configure the store
+// The store leverages SolidJS's fine-grained reactivity system
 const store = configureStore({
   rootSlice: combineSlices({
     counter: counterSlice,
   }),
 });
 
-// 4. Use in your component with destructuring
+// 4. Use in your component
 function Counter() {
   const { state, dispatch } = useSolux();
-  
+
   return (
     <div>
       <h1>Count: {state.counter.value}</h1>
@@ -155,9 +161,10 @@ import { configureStore, applyMiddlewares, devtools } from '@carere/solux';
 const store = configureStore({
   rootSlice: combineSlices({ /* your slices */ }),
   enhancers: [
-    devtools({ 
+    devtools({
+      // Full configuration from redux devtools extension available
       name: 'My App',
-      instanceId: 'main' 
+      instanceId: 'main'
     })
   ],
 });
@@ -167,9 +174,15 @@ const store = configureStore({
 
 ### Store
 
-The store holds your entire application state and provides methods to dispatch events and subscribe to changes.
+The store holds your entire application state (or portion) and provides methods to dispatch events and subscribe to changes.
 
 ```ts
+interface RootState {
+  user: UserState;
+  posts: PostsState;
+  settings: SettingsState;
+}
+
 const store = configureStore({
   rootSlice: combineSlices({
     user: userSlice,
@@ -180,7 +193,7 @@ const store = configureStore({
   enhancers: [ /* middleware and devtools */ ],
 });
 
-// Access state
+// Access state (reactive in SolidJS components)
 console.log(store.state.user);
 
 // Dispatch events
@@ -203,12 +216,18 @@ store.subscribeToEvent(loginSuccess, ({ state, event }) => {
 Slices are modular units of state with their own handlers. Think of them as reducers with built-in action creators.
 
 ```ts
+interface UserState {
+  currentUser: User | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
 const userSlice = createSlice({
   initialState: {
     currentUser: null,
     isLoading: false,
     error: null,
-  },
+  } as UserState,
   handlers: (builder) =>
     builder
       .addHandler(loginRequest, (state) => {
@@ -234,10 +253,10 @@ Events are type-safe action creators. They're the only way to trigger state chan
 // Simple event without payload
 const logout = createEvent('user/logout');
 
-// Event with payload
+// Event with typed payload
 const updateProfile = createEvent<{ name: string; email: string }>('user/updateProfile');
 
-// Event with payload preparation
+// Event with payload preparation (transforms input before dispatching)
 const addTodo = createEvent('todos/add', (text: string) => ({
   payload: {
     id: nanoid(),
@@ -258,8 +277,12 @@ store.dispatch(addTodo('Learn Solux')); // Automatically generates ID and timest
 Handlers process events and update state. Thanks to SolidJS's `produce`, you can write mutable updates for simplicity:
 
 ```ts
+interface TodosState {
+  items: Todo[];
+}
+
 const todosSlice = createSlice({
-  initialState: { items: [] },
+  initialState: { items: [] } as TodosState,
   handlers: (builder) =>
     builder
       // Mutable update (powered by produce)
@@ -270,9 +293,6 @@ const todosSlice = createSlice({
       .addHandler(clearCompleted, (state) => ({
         items: state.items.filter(todo => !todo.completed)
       }))
-      // Handle multiple events with the same handler
-      .addHandler(reset, () => ({ items: [] }))
-      .addHandler(logout, () => ({ items: [] })),
 });
 ```
 
@@ -285,16 +305,17 @@ interface Post {
   id: string;
   title: string;
   authorId: string;
+  createdAt: number;
 }
 
 const postsAdapter = createEntityAdapter<Post>({
   selectId: (post) => post.id,
-  sortComparer: (a, b) => b.createdAt - a.createdAt, // Optional
+  sortComparer: (a, b) => b.createdAt - a.createdAt, // Optional: sort by newest first
 });
 
 const postsSlice = createSlice({
   initialState: postsAdapter.getInitialState({
-    // Additional state
+    // Additional state alongside entities
     isLoading: false,
   }),
   handlers: (builder) =>
@@ -316,15 +337,15 @@ const postsSlice = createSlice({
       }),
 });
 
-// Selectors
+// Create typed selectors
 const selectors = postsAdapter.getSelectors<RootState>(
   (state) => state.posts
 );
 
 // Usage in components
-const allPosts = selectors.selectAll(store.state);
-const postCount = selectors.selectTotal(store.state);
-const postById = selectors.selectById(store.state, 'post-1');
+const allPosts: Post[] = selectors.selectAll(store.state);
+const postCount: number = selectors.selectTotal(store.state);
+const postById: Post | undefined = selectors.selectById(store.state, 'post-1');
 ```
 
 ### Epics
@@ -370,7 +391,7 @@ Creates and configures a Solux store.
 const store = configureStore({
   rootSlice: Slice,           // Required: Root slice or combined slices
   preloadedState?: State,     // Optional: Initial state
-  enhancers?: Enhancer[],     // Optional: Middleware and devtools
+  enhancers?: Enhancer[],     // Optional: Middleware and Enhancers
 });
 ```
 
@@ -381,7 +402,11 @@ Combines multiple slices into a single root slice.
 const rootSlice = combineSlices({
   user: userSlice,
   posts: postsSlice,
-  [dynamicKey]: dynamicSlice,
+  nested: combineSlices({
+    nested1: nested1Slice,
+    nested2: nested2Slice,
+  }),
+  ...
 });
 ```
 
@@ -425,8 +450,8 @@ const adapter = createEntityAdapter<Entity>({
 adapter.getInitialState(extraState?)
 adapter.addOne(state, entity)
 adapter.addMany(state, entities)
-adapter.setOne(state, entity)
-adapter.setMany(state, entities)
+adapter.setOne(state, entity) // overwrite existing entity
+adapter.setMany(state, entities) // overwrite existing entities
 adapter.setAll(state, entities)
 adapter.removeOne(state, id)
 adapter.removeMany(state, ids)
@@ -435,8 +460,8 @@ adapter.removeAll(state)
 // Selectors
 const selectors = adapter.getSelectors(selectState);
 selectors.selectIds(state)
-selectors.selectEntities(state)
-selectors.selectAll(state)
+selectors.selectEntities(state) // return a record of entities
+selectors.selectAll(state) // return an array of entities ordered
 selectors.selectTotal(state)
 selectors.selectById(state, id)
 ```
@@ -478,250 +503,84 @@ Hook to access store in components.
 const { state, dispatch } = useSolux();
 ```
 
-## Examples
+## Advanced Usage
 
-### TodoMVC
+### Custom Middleware
 
-A complete TodoMVC implementation showcasing CRUD operations, filtering, and persistence:
-
-```tsx
-import { createEvent, createSlice, createEntityAdapter, combineSlices, configureStore } from '@carere/solux';
-import { SoluxProvider, useSolux } from '@carere/solux';
-import { createMemo, For, Show } from 'solid-js';
-
-// Types
-interface Todo {
-  id: string;
-  text: string;
-  completed: boolean;
-}
-
-type FilterType = 'all' | 'active' | 'completed';
-
-// Entity Adapter
-const todosAdapter = createEntityAdapter<Todo>({
-  selectId: (todo) => todo.id,
-});
-
-// Events
-const addTodo = createEvent('todos/add', (text: string) => ({
-  payload: { id: nanoid(), text, completed: false }
-}));
-const toggleTodo = createEvent<string>('todos/toggle');
-const deleteTodo = createEvent<string>('todos/delete');
-const editTodo = createEvent<{ id: string; text: string }>('todos/edit');
-const clearCompleted = createEvent('todos/clearCompleted');
-const setFilter = createEvent<FilterType>('filter/set');
-
-// Slices
-const todosSlice = createSlice({
-  initialState: todosAdapter.getInitialState(),
-  handlers: (builder) =>
-    builder
-      .addHandler(addTodo, (state, { payload }) => {
-        todosAdapter.addOne(state, payload);
-      })
-      .addHandler(toggleTodo, (state, { payload }) => {
-        const todo = state.entities[payload];
-        if (todo) todo.completed = !todo.completed;
-      })
-      .addHandler(deleteTodo, (state, { payload }) => {
-        todosAdapter.removeOne(state, payload);
-      })
-      .addHandler(editTodo, (state, { payload }) => {
-        const todo = state.entities[payload.id];
-        if (todo) todo.text = payload.text;
-      })
-      .addHandler(clearCompleted, (state) => {
-        const completedIds = state.ids.filter(
-          id => state.entities[id]?.completed
-        );
-        todosAdapter.removeMany(state, completedIds);
-      }),
-});
-
-const filterSlice = createSlice({
-  initialState: 'all' as FilterType,
-  handlers: (builder) =>
-    builder.addHandler(setFilter, (_, { payload }) => payload),
-});
-
-// Store with persistence
-const store = configureStore({
-  rootSlice: combineSlices({
-    todos: todosSlice,
-    filter: filterSlice,
-  }),
-  enhancers: [
-    // Add persistence middleware
-    applyMiddlewares([
-      (api) => (next) => (event) => {
-        next(event);
-        localStorage.setItem('todos-solux', JSON.stringify(api.state));
-      }
-    ])
-  ],
-});
-
-// Components
-function TodoApp() {
-  const { state, dispatch } = useSolux();
-  
-  const selectors = todosAdapter.getSelectors((s) => s.todos);
-  
-  const filteredTodos = createMemo(() => {
-    const allTodos = selectors.selectAll(state);
-    switch (state.filter) {
-      case 'active':
-        return allTodos.filter(t => !t.completed);
-      case 'completed':
-        return allTodos.filter(t => t.completed);
-      default:
-        return allTodos;
-    }
-  });
-  
-  const stats = createMemo(() => {
-    const all = selectors.selectAll(state);
-    return {
-      total: all.length,
-      active: all.filter(t => !t.completed).length,
-      completed: all.filter(t => t.completed).length,
-    };
-  });
-  
-  return (
-    <div class="todoapp">
-      <header>
-        <h1>todos</h1>
-        <input
-          class="new-todo"
-          placeholder="What needs to be done?"
-          onKeyPress={(e) => {
-            if (e.key === 'Enter' && e.currentTarget.value.trim()) {
-              dispatch(addTodo(e.currentTarget.value));
-              e.currentTarget.value = '';
-            }
-          }}
-        />
-      </header>
-      
-      <section class="main">
-        <For each={filteredTodos()}>
-          {(todo) => (
-            <div class="todo-item">
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => dispatch(toggleTodo(todo.id))}
-              />
-              <span class={todo.completed ? 'completed' : ''}>
-                {todo.text}
-              </span>
-              <button onClick={() => dispatch(deleteTodo(todo.id))}>
-                ×
-              </button>
-            </div>
-          )}
-        </For>
-      </section>
-      
-      <footer>
-        <span>{stats().active} items left</span>
-        <div class="filters">
-          <For each={['all', 'active', 'completed'] as FilterType[]}>
-            {(filter) => (
-              <button
-                class={state.filter === filter ? 'selected' : ''}
-                onClick={() => dispatch(setFilter(filter))}
-              >
-                {filter}
-              </button>
-            )}
-          </For>
-        </div>
-        <Show when={stats().completed > 0}>
-          <button onClick={() => dispatch(clearCompleted())}>
-            Clear completed
-          </button>
-        </Show>
-      </footer>
-    </div>
-  );
-}
-```
-
-### Advanced Patterns
-
-#### Async Data Fetching with Epics
+Create custom middleware to extend Solux capabilities:
 
 ```ts
-import { filter, switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
-import { from, of } from 'rxjs';
+import { Middleware } from '@carere/solux';
 
-const fetchUserEpic = (event$, state$) =>
-  event$.pipe(
-    filter(fetchUserRequest.match),
-    withLatestFrom(state$),
-    switchMap(([event, state]) =>
-      from(api.fetchUser(event.payload)).pipe(
-        map(user => fetchUserSuccess(user)),
-        catchError(error => of(fetchUserFailure(error.message)))
-      )
-    )
-  );
-
-const fetchUserPostsEpic = (event$, state$) =>
-  event$.pipe(
-    filter(fetchUserSuccess.match),
-    switchMap(({ payload: user }) =>
-      from(api.fetchPosts(user.id)).pipe(
-        map(posts => fetchPostsSuccess(posts)),
-        catchError(error => of(fetchPostsFailure(error.message)))
-      )
-    )
-  );
-```
-
-#### Entity Normalization
-
-```ts
-// Normalize nested data structures
-const normalizeData = (data) => {
-  const users = {};
-  const posts = {};
-  const comments = {};
-  
-  data.users.forEach(user => {
-    users[user.id] = { ...user, posts: user.posts.map(p => p.id) };
-    
-    user.posts.forEach(post => {
-      posts[post.id] = { ...post, comments: post.comments.map(c => c.id) };
-      
-      post.comments.forEach(comment => {
-        comments[comment.id] = comment;
-      });
-    });
-  });
-  
-  return { users, posts, comments };
+// Logging middleware
+const logger: Middleware<RootState> = (api) => (next) => (event) => {
+  console.group(event.type);
+  console.log('Previous State:', api.state);
+  console.log('Event:', event);
+  next(event);
+  console.log('Next State:', api.state);
+  console.groupEnd();
 };
 
-// Use in slice
-.addHandler(fetchDataSuccess, (state, { payload }) => {
-  const normalized = normalizeData(payload);
-  usersAdapter.setAll(state.users, Object.values(normalized.users));
-  postsAdapter.setAll(state.posts, Object.values(normalized.posts));
-  commentsAdapter.setAll(state.comments, Object.values(normalized.comments));
-})
+// Persistence middleware
+const persistence: Middleware<RootState> = (api) => (next) => (event) => {
+  next(event);
+  localStorage.setItem('app-state', JSON.stringify(api.state));
+};
+
+// Analytics middleware
+const analytics: Middleware<RootState> = (api) => (next) => (event) => {
+  next(event);
+  if (event.type.includes('user/')) {
+    trackEvent('user_action', { type: event.type });
+  }
+};
+
+const store = configureStore({
+  rootSlice: rootSlice,
+  enhancers: [
+    applyMiddlewares([logger, persistence, analytics]),
+    devtools({ name: 'My App' }),
+  ],
+});
 ```
 
-#### Computed Values with createMemo
+### Epic Patterns
+
+Epics excel at handling complex async scenarios that go beyond simple data fetching:
+
+```ts
+import { debounceTime, switchMap, filter, map, catchError } from 'rxjs/operators';
+import { from, of } from 'rxjs';
+
+// Debounced search with automatic cancellation
+const searchEpic = (event$, state$) =>
+  event$.pipe(
+    filter(searchInputChanged.match),
+    debounceTime(300),  // Wait for user to stop typing
+    switchMap(({ payload: query }) =>  // Cancel previous search
+      from(api.search(query)).pipe(
+        map(results => searchSuccess(results)),
+        catchError(error => of(searchFailure(error.message)))
+      )
+    )
+  );
+
+const rootEpic = combineEpics(searchEpic);
+```
+
+Key benefits of epics:
+- **Automatic cancellation** via `switchMap` (previous searches are cancelled)
+- **Complex orchestration** (chain actions, race conditions, etc.)
+- **Declarative async** (no imperative try/catch blocks)
+- **Powerful operators** (debounce, retry, throttle, etc.)
+
+### Computed Values with createMemo
 
 ```ts
 function Dashboard() {
   const { state } = useSolux();
-  
+
   // Expensive computation only runs when dependencies change
   const statistics = createMemo(() => {
     const posts = postsSelectors.selectAll(state);
@@ -732,7 +591,7 @@ function Dashboard() {
       avgLength: posts.reduce((acc, p) => acc + p.content.length, 0) / posts.length,
     };
   });
-  
+
   return (
     <div>
       <h2>Statistics</h2>
@@ -745,80 +604,49 @@ function Dashboard() {
 }
 ```
 
-#### Testing Strategies
+### Testing Strategies
 
 ```ts
 import { describe, it, expect, beforeEach } from 'bun:test';
 
 describe('User Slice', () => {
   let store;
-  
+
   beforeEach(() => {
     store = configureStore({
       rootSlice: combineSlices({ user: userSlice }),
     });
   });
-  
+
   it('should handle login flow', () => {
     // Initial state
     expect(store.state.user.isLoading).toBe(false);
     expect(store.state.user.currentUser).toBeNull();
-    
+
     // Dispatch login request
     store.dispatch(loginRequest({ email: 'test@example.com', password: 'password' }));
     expect(store.state.user.isLoading).toBe(true);
-    
+
     // Dispatch login success
     const user = { id: 1, email: 'test@example.com', name: 'Test User' };
     store.dispatch(loginSuccess(user));
     expect(store.state.user.isLoading).toBe(false);
     expect(store.state.user.currentUser).toEqual(user);
-    
+
     // Dispatch logout
     store.dispatch(logout());
     expect(store.state.user.currentUser).toBeNull();
   });
-  
+
   it('should handle login failure', () => {
     store.dispatch(loginRequest({ email: 'test@example.com', password: 'wrong' }));
     store.dispatch(loginFailure('Invalid credentials'));
-    
+
     expect(store.state.user.isLoading).toBe(false);
     expect(store.state.user.error).toBe('Invalid credentials');
     expect(store.state.user.currentUser).toBeNull();
   });
 });
-```
-
-## TypeScript Support
-
-Solux is written in TypeScript and provides complete type safety:
-
-```ts
-// Type your state
-interface RootState {
-  user: UserState;
-  posts: EntityState<Post>;
-  settings: SettingsState;
-}
-
-// Events are fully typed
-const updateUser = createEvent<Partial<User>>('user/update');
-
-// Handlers have type inference
-createSlice({
-  initialState: { count: 0 },
-  handlers: (builder) =>
-    builder.addHandler(increment, (state, event) => {
-      // state is typed as { count: number }
-      // event is typed as { type: string; payload: number }
-      state.count += event.payload;
-    })
-});
-
-// Selectors are typed
-const selectPosts = (state: RootState) => state.posts;
-const posts: Post[] = postsSelectors.selectAll(store.state);
 ```
 
 ## DevTools Integration
