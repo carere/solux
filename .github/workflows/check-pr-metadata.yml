@@ -1,0 +1,47 @@
+name: Check Commit Metadata
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: metadata-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  metadata:
+    name: Conventional commits and PR title
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out the actual commits and full history
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install Cocogitto
+        uses: cocogitto/cocogitto-action@v4.1.0
+        with:
+          command: --version
+      - name: Check new commits without revalidating legacy history
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ "$EVENT_NAME" = pull_request ]; then
+            cog check --ignore-merge-commits "$BASE_SHA..HEAD"
+          elif [[ "$BASE_SHA" =~ ^0+$ ]]; then
+            cog check --ignore-merge-commits v4.0.1..HEAD
+          else
+            cog check --ignore-merge-commits "$BASE_SHA..HEAD"
+          fi
+      - name: Check the pull request title
+        if: github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: cog verify -- "$PR_TITLE"

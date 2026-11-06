@@ -1,27 +1,13 @@
 {
+  "extends": "./tsconfig.base.json",
+  "include": ["packages/**/*.ts", "packages/**/*.tsx", "scripts/**/*.ts"],
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+    "**/.wrangler",
+    "packages/solux/test/package/consumer.ts"
+  ],
   "compilerOptions": {
-    // Environment setup & latest features
-    "lib": ["esnext", "dom"],
-    "target": "esnext",
-    "module": "preserve",
-    "moduleDetection": "force",
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-    "allowJs": false,
-    // Bundler mode
-    "moduleResolution": "bundler",
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-    // Best practices
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  },
-  "include": ["src/**/*.ts", "test/**/*.ts", "*.ts", "*.tsx"]
+    "types": ["bun"]
+  }
 }

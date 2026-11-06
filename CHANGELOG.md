@@ -1,3 +1,31 @@
+## Unreleased
+
+- Migrate the documentation website to TanStack Solid Start with actual Zaidan
+  sidebar, mobile-sheet and theme components, retaining the existing Solux logo.
+- Add English/French documentation and Paraglide UI messages with request-scoped
+  SSR language handling and a persisted language preference.
+
+- Move the public package to `packages/solux` in a private Bun/Moon workspace;
+  preserve its name, version and exports, and retain strict packed-consumer checks.
+- Add the Solid documentation website in `apps/website`, with the existing Solux
+  logo, public-package examples, browser tests, and Cloudflare static assets config.
+- Align shared tooling with sibling projects: pinned runtimes, Biome, Knip,
+  Lefthook, Cocogitto, reviewed manual release workflows, and contributor guidance.
+- Vendor Gurafu's committed skill resources and notices with Solux-specific agent
+  configuration and a recorded provenance audit.
+
+- Add explicit, idempotent `store.dispose()` and enhancer `onDispose` cleanup.
+  Store subscriptions and per-store Redux DevTools listeners/connections are
+  released; disposed observers ignore late messages. Epic cancellation is unchanged.
+- Make DevTools invocation safe without browser globals. Initialize the monitor
+  from current state and send detached state snapshots.
+- Preserve deep construction snapshots and clone on every RESET/import so later
+  mutations cannot corrupt the baseline or imported history. Ignore empty imports.
+- Declare the DevTools extension and its compatible Redux 4 type peer as package
+  dependencies; verify the packed artifact in clean strict TypeScript consumers.
+- Add server/browser-condition regressions and document independent store factories,
+  lifecycle ownership, and existing snapshot/time-travel limits.
+
 ## [3.3.2](https://github.com/carere/solux/compare/v3.3.1...v3.3.2) (2024-11-14)
 
 

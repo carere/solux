@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "solux",
+  "main": "./src/server.ts",
+  "compatibility_date": "2026-11-06",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": true,
+  "previews": {},
+  "routes": [{ "pattern": "solux.carere.dev", "custom_domain": true }]
+}

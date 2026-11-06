@@ -1,0 +1,204 @@
+/* Adapted from Zaidan; see ../../../ZAIDAN-NOTICE.md. */
+/* MARK: Button */
+.z-button {
+  @apply focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 rounded-md border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-3 aria-invalid:ring-3 active:not-aria-[haspopup]:translate-y-px [&_svg:not([class*='size-'])]:size-4;
+}
+
+.z-button-variant-default {
+  @apply bg-primary text-primary-foreground hover:bg-primary/80;
+}
+
+.z-button-variant-outline {
+  @apply border-border bg-background hover:bg-muted hover:text-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 aria-expanded:bg-muted aria-expanded:text-foreground shadow-xs;
+}
+
+.z-button-variant-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground;
+}
+
+.z-button-variant-ghost {
+  @apply hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground;
+}
+
+.z-button-variant-destructive {
+  @apply bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30;
+}
+
+.z-button-variant-link {
+  @apply text-primary underline-offset-4 hover:underline;
+}
+
+.z-button-size-xs {
+  @apply h-6 gap-1 rounded-[min(var(--radius-md),8px)] px-2 text-xs in-data-[slot=button-group]:rounded-md has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3;
+}
+
+.z-button-size-sm {
+  @apply h-8 gap-1 rounded-[min(var(--radius-md),10px)] px-2.5 in-data-[slot=button-group]:rounded-md has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5;
+}
+
+.z-button-size-default {
+  @apply h-9 gap-1.5 px-2.5 in-data-[slot=button-group]:rounded-md has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2;
+}
+
+.z-button-size-lg {
+  @apply h-10 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2;
+}
+
+.z-button-size-icon-xs {
+  @apply size-6 rounded-[min(var(--radius-md),8px)] in-data-[slot=button-group]:rounded-md [&_svg:not([class*='size-'])]:size-3;
+}
+
+.z-button-size-icon-sm {
+  @apply size-8 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-md;
+}
+
+.z-button-size-icon {
+  @apply size-9;
+}
+
+.z-button-size-icon-lg {
+  @apply size-10;
+}
+
+/* MARK: Input */
+.z-input {
+  @apply dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 h-9 rounded-md border bg-transparent px-2.5 py-1 text-base shadow-xs transition-[color,box-shadow] file:h-7 file:text-sm file:font-medium focus-visible:ring-3 aria-invalid:ring-3 md:text-sm;
+}
+
+/* MARK: Sheet */
+.z-sheet-overlay {
+  @apply bg-black/10 supports-backdrop-filter:backdrop-blur-xs data-expanded:animate-in data-closed:animate-out data-expanded:fade-in-0 data-closed:fade-out-0 duration-150;
+}
+
+.z-sheet-content {
+  @apply bg-popover text-popover-foreground fixed z-50 flex flex-col gap-4 bg-clip-padding text-sm shadow-lg transition duration-200 ease-in-out data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:border-t data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:border-b data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm data-expanded:animate-in data-closed:animate-out data-expanded:fade-in-0 data-closed:fade-out-0 data-[side=bottom]:data-expanded:slide-in-from-bottom-10 data-[side=bottom]:data-closed:slide-out-to-bottom-10 data-[side=left]:data-expanded:slide-in-from-left-10 data-[side=left]:data-closed:slide-out-to-left-10 data-[side=right]:data-expanded:slide-in-from-right-10 data-[side=right]:data-closed:slide-out-to-right-10 data-[side=top]:data-expanded:slide-in-from-top-10 data-[side=top]:data-closed:slide-out-to-top-10;
+}
+
+.z-sheet-close {
+  @apply absolute top-4 right-4;
+}
+
+.z-sheet-header {
+  @apply gap-1.5 p-4;
+}
+
+.z-sheet-footer {
+  @apply gap-2 p-4;
+}
+
+.z-sheet-title {
+  @apply text-foreground font-medium;
+}
+
+.z-sheet-description {
+  @apply text-muted-foreground text-sm;
+}
+
+/* MARK: Sidebar */
+.z-sidebar-gap {
+  @apply transition-[width] duration-200 ease-linear;
+}
+
+.z-sidebar-inner {
+  @apply bg-sidebar group-data-[variant=floating]:ring-sidebar-border group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1;
+}
+
+.z-sidebar-rail {
+  @apply hover:after:bg-sidebar-border;
+}
+
+.z-sidebar-inset {
+  @apply bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2;
+}
+
+.z-sidebar-input {
+  @apply bg-background h-8 w-full shadow-none;
+}
+
+.z-sidebar-header {
+  @apply gap-2 p-2;
+}
+
+.z-sidebar-content {
+  @apply no-scrollbar gap-2;
+}
+
+.z-sidebar-footer {
+  @apply gap-2 p-2;
+}
+
+.z-sidebar-separator {
+  @apply bg-sidebar-border mx-2;
+}
+
+.z-sidebar-group {
+  @apply p-2;
+}
+
+.z-sidebar-menu {
+  @apply gap-1;
+}
+
+.z-sidebar-group-content {
+  @apply text-sm;
+}
+
+.z-sidebar-group-label {
+  @apply text-sidebar-foreground/70 ring-sidebar-ring h-8 rounded-md px-2 text-xs font-medium transition-[margin,opacity] duration-200 ease-linear group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 focus-visible:ring-2 [&>svg]:size-4;
+}
+
+.z-sidebar-group-action {
+  @apply text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute top-3.5 right-3 w-5 rounded-md p-0 focus-visible:ring-2 [&>svg]:size-4;
+}
+
+.z-sidebar-menu-button {
+  @apply ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground data-expanded:hover:bg-sidebar-accent data-expanded:hover:text-sidebar-accent-foreground data-popup-open:hover:bg-sidebar-accent data-popup-open:hover:text-sidebar-accent-foreground aria-expanded:hover:bg-sidebar-accent aria-expanded:hover:text-sidebar-accent-foreground gap-2 rounded-md p-2 text-left text-sm transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! focus-visible:ring-2 data-[active=true]:font-medium;
+}
+
+.z-sidebar-menu-button-variant-default {
+  @apply hover:bg-sidebar-accent hover:text-sidebar-accent-foreground;
+}
+
+.z-sidebar-menu-button-variant-outline {
+  @apply bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground shadow-[0_0_0_1px_var(--sidebar-border)] hover:shadow-[0_0_0_1px_var(--sidebar-accent)];
+}
+
+.z-sidebar-menu-button-size-default {
+  @apply h-8 text-sm;
+}
+
+.z-sidebar-menu-button-size-sm {
+  @apply h-7 text-xs;
+}
+
+.z-sidebar-menu-button-size-lg {
+  @apply h-12 text-sm group-data-[collapsible=icon]:p-0!;
+}
+
+.z-sidebar-menu-action {
+  @apply text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1.5 right-1 aspect-square w-5 rounded-md p-0 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 focus-visible:ring-2 [&>svg]:size-4;
+}
+
+.z-sidebar-menu-badge {
+  @apply text-sidebar-foreground peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[active=true]/menu-button:text-sidebar-accent-foreground pointer-events-none absolute right-1 flex h-5 min-w-5 rounded-md px-1 text-xs font-medium peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1;
+}
+
+.z-sidebar-menu-skeleton {
+  @apply h-8 gap-2 rounded-md px-2;
+}
+
+.z-sidebar-menu-skeleton-icon {
+  @apply size-4 rounded-md;
+}
+
+.z-sidebar-menu-skeleton-text {
+  @apply h-4;
+}
+
+.z-sidebar-menu-sub {
+  @apply border-sidebar-border mx-3.5 translate-x-px gap-1 border-l px-2.5 py-0.5 group-data-[collapsible=icon]:hidden;
+}
+
+.z-sidebar-menu-sub-button {
+  @apply text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground [&>svg]:text-sidebar-accent-foreground h-7 gap-2 rounded-md px-2 focus-visible:ring-2 data-[size=md]:text-sm data-[size=sm]:text-xs [&>svg]:size-4;
+}

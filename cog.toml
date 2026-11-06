@@ -1,0 +1,14 @@
+tag_prefix = "v"
+branch_whitelist = ["main"]
+ignore_merge_commits = true
+pre_bump_hooks = [
+  "bun scripts/set-release-version.ts {{version}}",
+  "bun install --lockfile-only --ignore-scripts",
+]
+
+[changelog]
+path = "CHANGELOG.md"
+template = "remote"
+remote = "github.com"
+owner = "carere"
+repository = "solux"

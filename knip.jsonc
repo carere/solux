@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "lefthook": false,
+  "workspaces": {
+    ".": {
+      "entry": ["scripts/**/*.ts"],
+      "project": ["scripts/**/*.ts"],
+      "ignoreDependencies": ["@biomejs/biome", "lefthook"]
+    },
+    "packages/solux": {
+      "entry": [
+        "test/**/*.spec.ts",
+        "test/package/verify.ts",
+        "test/package/runtime.mjs",
+        "test/package/consumer.ts"
+      ],
+      "project": ["src/**/*.{ts,tsx}", "test/**/*.{ts,mjs}", "*.ts"],
+      "includeEntryExports": false
+    },
+    "apps/website": {
+      "entry": ["tests/**/*.spec.ts", "scripts/i18n.mjs"],
+      "project": ["src/**/*.{ts,tsx,css}", "*.ts", "*.mjs", "tests/**/*.ts", "scripts/**/*.mjs"]
+    }
+  }
+}

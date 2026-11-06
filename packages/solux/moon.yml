@@ -1,0 +1,28 @@
+$schema: ../../.moon/cache/schemas/project.json
+id: solux
+language: typescript
+layer: library
+stack: frontend
+tasks:
+  build:
+    command: bun tsup
+    inputs:
+      - src/**/*
+      - tsup.config.ts
+    outputs:
+      - dist
+    type: build
+  test-unit:
+    command: bun test test/unit
+    options:
+      cache: false
+  test-unit-browser:
+    command: bun --conditions=browser test test/unit
+    options:
+      cache: false
+  test-package:
+    command: bun test/package/verify.ts
+    deps:
+      - ~:build
+    options:
+      cache: false

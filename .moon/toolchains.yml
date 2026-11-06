@@ -1,0 +1,12 @@
+$schema: ./cache/schemas/toolchains.json
+javascript:
+  packageManager: bun
+  dedupeOnLockfileChange: false
+  dependencyVersionFormat: workspace
+  inferTasksFromScripts: false
+  syncProjectWorkspaceDependencies: true
+proto:
+  version: "0.63.2"
+bun:
+  installArgs: [--frozen-lockfile]
+node: {}

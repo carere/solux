@@ -1,0 +1,9 @@
+bun = "1.4.4"
+node = "24.22.1"
+npm = "11.19.1"
+moon = "2.6.5"
+
+[settings]
+detect-strategy = "only-prototools"
+auto-install = true
+telemetry = false

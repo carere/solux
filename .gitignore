@@ -35,3 +35,11 @@ logs
 
 # Finder (MacOS) folder config
 .DS_Store
+# workspace and deployment outputs
+.moon/cache
+.moon/docker
+.wrangler
+playwright-report
+test-results
+blob-report
+.DS_Store
