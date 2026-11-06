@@ -5,7 +5,8 @@
     ".": {
       "entry": ["scripts/**/*.ts"],
       "project": ["scripts/**/*.ts"],
-      "ignoreDependencies": ["@biomejs/biome", "lefthook"]
+      "ignoreDependencies": ["@biomejs/biome", "lefthook"],
+      "ignoreBinaries": ["cog", "proto"]
     },
     "packages/solux": {
       "entry": [

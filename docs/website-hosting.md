@@ -172,5 +172,5 @@ history to restore a previously verified version; a fresh deploy uses the same
 config and may update domain routing.
 
 Website deployment does not publish npm. Publishing a compatible new Solux v4
-version still follows [the release guide](releases.md). These docs explicitly
-mark unreleased lifecycle/DevTools behavior until that version is published.
+version still follows [the release guide](releases.md). The release workflow
+publishes the package separately from website deployment.
