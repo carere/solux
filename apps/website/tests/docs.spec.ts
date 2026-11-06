@@ -117,6 +117,20 @@ test("full-text search supports keyboard selection, escape, and no results", asy
   await expect(page.locator(".search-result")).not.toHaveCount(0);
 });
 
+test("Escape from a search result dismisses results and restores input focus", async ({ page }) => {
+  await page.goto("/");
+  const search = page.getByRole("searchbox", { name: "Search documentation" });
+  const results = page.getByRole("region", { name: "Search results" });
+  await search.fill("sortComparer");
+  await search.press("ArrowDown");
+  await expect(page.locator(".search-result").first()).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(search).toBeFocused();
+  await expect(results).not.toBeVisible();
+  await search.fill("dispose");
+  await expect(results).toBeVisible();
+});
+
 test("theme follows the system and persists an explicit preference", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto("/");

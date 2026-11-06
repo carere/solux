@@ -68,8 +68,8 @@ export function App(props: ParentProps) {
         setSearchOpen(true);
       }
       if (event.key === "Escape" && searchVisible()) {
-        setSearchOpen(false);
         searchInput?.focus();
+        setSearchOpen(false);
       }
     };
     const click = (event: PointerEvent) => {
