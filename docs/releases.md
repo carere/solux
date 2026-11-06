@@ -16,7 +16,7 @@ bun sort-package-json --check package.json 'apps/*/package.json' 'packages/*/pac
 bun biome check . --error-on-warnings
 bun moon run solux:build website:build
 bun tsc --noEmit
-bun knip
+bun --bun knip
 bun test scripts/tests
 bun moon run solux:test-unit solux:test-unit-browser
 bun moon run solux:test-package

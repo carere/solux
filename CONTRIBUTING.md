@@ -36,7 +36,7 @@ The shared tools are pinned in the root manifest. The library retains TypeScript
 | `bun tsc --noEmit` | Check sources and tests after building the package |
 | `bun biome check . --error-on-warnings` | Check formatting, lint rules and imports |
 | `bun biome check --write .` | Apply formatting/import/safe lint fixes |
-| `bun knip` | Check workspace dependency and entry-point usage |
+| `bun --bun knip` | Check workspace dependency and entry-point usage with Bun's runtime |
 | `bun sort-package-json --check package.json 'apps/*/package.json' 'packages/*/package.json'` | Check all manifest ordering |
 
 Run `bun playwright install chromium` inside `apps/website` before browser tests.
@@ -65,6 +65,11 @@ an installed extension. They are distinct from the docs site's Playwright tests.
 Knip's Lefthook plugin is disabled because it assumes `.git` is a directory and
 fails in Git worktrees. Root CLI-only Biome and hook binaries are explicit configuration exceptions.
 Redux remains the extension declaration's compatible type peer. These exceptions do not suppress unused-code analysis for the library or website.
+
+Run Knip with `--bun`: plain `bun knip` honors its Node shebang, which can trigger
+the [Node 24 WebAssembly JIT crash](https://github.com/nodejs/node/issues/66366)
+seen on the Linux CI runner. Knip supports Bun directly; its analysis and issue
+checks remain enabled.
 
 ## Commits and releases
 

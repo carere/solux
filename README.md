@@ -50,7 +50,7 @@ Moon owns project commands. Run shared static tools directly from the root:
 bun moon run solux:build website:build
 bun tsc --noEmit
 bun biome check . --error-on-warnings
-bun knip
+bun --bun knip
 bun sort-package-json --check package.json 'apps/*/package.json' 'packages/*/package.json'
 bun moon run solux:test-unit solux:test-unit-browser solux:test-package
 bun moon run website:test-browser website:deploy-check

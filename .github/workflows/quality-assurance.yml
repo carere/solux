@@ -53,7 +53,9 @@ jobs:
       - name: Check TypeScript types
         run: bun tsc --noEmit
       - name: Check unused code and dependencies
-        run: bun knip
+        # Use Knip's supported Bun runtime to avoid Node 24's Linux Wasm JIT crash.
+        # https://github.com/nodejs/node/issues/66366
+        run: bun --bun knip
       - name: Test release helpers
         run: bun test scripts/tests
       - name: Run library regressions in server and browser conditions
