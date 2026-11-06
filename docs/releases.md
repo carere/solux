@@ -1,10 +1,80 @@
 # Releases and deployment checks
 
 Only `packages/solux` is published as `@carere/solux`. The root workspace and
-`apps/website` stay private. This tooling migration leaves the package at
-**4.0.1** and preserves all existing release tags and `CHANGELOG.md` history.
-Cocogitto replaces Knope and commitlint; there is no automatic publication on a
-push, tag, or merged PR.
+`apps/website` stay private. Releases use one manually triggered **Release**
+workflow (`release.yml`); pushes, tags, PR merges, and ordinary checks never
+publish on their own. Website deployment is independent.
+
+## Run a release
+
+1. Merge the changes you want to release into `main`, using Conventional Commits.
+2. Open GitHub Actions → **Release** → **Run workflow**, select **main**, and run it.
+   There is no version input, release-tag input, or deployment approval.
+3. Read the run summary for the npm version, GitHub Release, and verification result.
+
+Cog chooses a stable version from commits since the latest reachable release tag:
+`fix:` bumps patch, `feat:` bumps minor, and breaking changes bump major. Docs,
+CI, and chore commits alone produce a successful no-op. Solux has one published
+package, so workspace folders do not need independently versioned releases.
+See [Cocogitto automatic versioning](https://docs.cocogitto.io/guide/bump.html).
+
+The workflow updates the package version, lockfile, and changelog in a local
+Cog commit. It pushes only an internal `release/run-<run-id>` branch, creates a
+metadata-only PR, and runs the full reusable Quality Assurance workflow against
+that exact candidate. It checks the candidate's Conventional Commit metadata
+and the automatic PR title before reporting successful checks on that SHA.
+
+The workflow merges the PR itself under the existing main branch rules. No
+manual PR review or merge is required. It verifies the merged tree is identical
+to the tested candidate, creates the immutable tag on the merged commit, builds
+fresh artifacts, reruns strict packed consumers, and publishes the checked
+tarball with npm OIDC and provenance. It waits up to five minutes for npm and
+its provenance endpoint, compares downloaded package files with the fresh build,
+and verifies the provenance identifies the tarball, workflow, and merged commit.
+Only then does it create the GitHub Release using the same Cog changelog entry.
+
+Existing changelog history is retained. Only the new version's entry is used
+for GitHub notes; historical migration notes are not copied into every release.
+
+## Configuration
+
+- Keep `main` protected by PRs and the **All checks passed** and **Conventional
+  commits and PR title** checks from GitHub Actions. Automated metadata PRs need
+  no approving reviews. The workflow uses normal squash merges and does not
+  bypass protections. If main advances during candidate verification, the
+  workflow fails rather than releasing a different tree.
+- Allow GitHub Actions to create PRs. Job permissions are scoped to preparing
+  the branch/PR, recording candidate check results, merging/tagging, or publishing.
+  No PAT or npm token is needed.
+- Keep the GitHub environment **`npm`** restricted to `main`, with **no required
+  reviewers or wait timer**. Manual workflow dispatch is the release authorization.
+- Configure npm's trusted publisher for owner **`carere`**, repository **`solux`**,
+  workflow **`release.yml`**, and environment **`npm`**. Allow direct `npm publish`.
+  A new configuration needs its first successful publish within two days;
+  recreate an expired one. See [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/).
+
+The workflow keeps the existing workflow filename and environment identity so
+an established npm trusted publisher continues to match. Node and npm come from
+`.prototools`; publication uses `proto run npm -- ...`, not the runner's ambient
+npm. OIDC credentials and npm 11.5.1 or newer are checked before publication.
+
+## Retry a failed run
+
+Use **Re-run all jobs** on the same Release run. The run's branch retains the
+original candidate so retrying does not calculate another version. Completed
+merges and matching tags are reused; existing tags are never moved. Retain that
+branch until publication and any retries are complete.
+
+If npm already accepted the version, the workflow checks its integrity, packed
+file contents, and source provenance before skipping the upload. An existing
+version with different contents or provenance is an error. An npm network or
+permission failure is not treated as a missing version. Existing public GitHub
+Releases are retained, allowing a retry to finish a failed release-creation step.
+
+If main advanced before the metadata PR could merge, close that stale PR and
+start a new Release run from current main. A second dispatch is blocked while a
+release PR remains open. Never force-push a tag or attempt to replace an npm
+version. A source fix after publication requires another version.
 
 ## Checks
 
@@ -48,102 +118,6 @@ commit range on pushes to `main`. A newly created `main` branch falls back to
 `v4.0.1..HEAD`, preserving the historical release baseline without imposing the
 new policy retroactively. Merge commits are ignored. PR titles use `cog verify`
 with a quoted environment variable; PR bodies are not separately enforced.
-
-## External setup before the first release
-
-These settings are required but are not provisioned by the workflows:
-
-1. Protect `main` with reviewed PRs and required Quality Assurance and commit
-   metadata checks. Restrict who can create or modify `v*` release tags.
-2. Create a GitHub environment named **`npm`**, require maintainer approval,
-   prevent self-approval, and limit deployment branches to `main`. The publish
-   job names this environment; without configured protection GitHub does not
-   supply an approval gate automatically.
-3. In the existing `@carere/solux` npm package settings, configure its GitHub
-   trusted publisher for owner **`carere`**, repository **`solux`**, workflow
-   filename **`release.yml`**, and environment **`npm`**. Permit direct
-   `npm publish` if npm offers an allowed-actions setting. Verify the actual
-   package settings rather than copying another repository's trust relationship.
-4. Allow GitHub Actions to create PRs if using Prepare Release PR. Its scoped
-   `GITHUB_TOKEN` needs contents and pull-request write permissions. No PAT or
-   npm token is required.
-
-The publish job uses a GitHub-hosted runner, `id-token: write`, and the explicitly
-pinned Node 24.22.1 and npm 11.19.1 from `.prototools`. Proto does not expose
-Node's bundled npm by default, so npm is installed as a separate pinned tool.
-Both the prerequisite check and publication use `proto run npm -- ...` to avoid
-the runner image's ambient npm. It also checks npm is at least 11.5.1. Trusted
-publishing needs Node 22.14.0 or newer; the pinned Node 24.22.1 meets this minimum.
-See [npm's trusted publishing setup](https://docs.npmjs.com/trusted-publishers/)
-for identity matching and configuration expiry requirements. This file does not
-assert that the environment or trusted publisher already exists.
-
-## Prepare a reviewed release
-
-1. Ensure the intended changes and CI modernization are merged into `main`.
-   Start **Prepare Release PR** (`pre-release.yml`) manually on `main`.
-2. On the first preparation, the workflow adds Cocogitto's required separator
-   above the legacy changelog in a local migration commit. Every original byte
-   is retained; preparation verifies this before pushing its branch.
-   Cocogitto then chooses the next stable version from commits since the latest
-   version tag, updates only `packages/solux/package.json` via
-   `scripts/set-release-version.ts`, refreshes `bun.lock` with scripts disabled,
-   and adds a changelog entry. It makes a local release commit and tag.
-3. The workflow pushes only the `release/vX.Y.Z` branch and opens a PR containing
-   version, lockfile, and changelog changes. It does **not** push its local tag,
-   create a GitHub release, deploy the website, or publish to npm. An existing
-   open release branch PR blocks preparation of another release.
-4. Review the version and complete changelog, including retained older entries
-   and any existing Unreleased notes. Cocogitto's generated entry does not
-   replace a maintainer's review of those notes.
-5. PRs created with `GITHUB_TOKEN` do not trigger automatic PR checks. Manually
-   run **Quality Assurance** on the release branch and inspect its results before
-   merging. To trigger the normal PR checks, a maintainer can close and reopen
-   the prepared PR using their own GitHub identity. Do not bypass required
-   checks. Keep the release PR title Conventional Commit compliant.
-6. Merge the reviewed release PR. **Merging does not publish or create a tag.**
-
-[Cocogitto's bump procedure](https://docs.cocogitto.io/guide/bump.html) appends a
-release entry and records pre-bump hook changes in its release commit. The
-version helper refuses unchanged versions, downgrades, prereleases, and changes
-to a renamed or private package. Do not run `cog bump` in a dirty working tree.
-
-## Publish the reviewed existing tag
-
-After the release PR is merged and its checks pass, a maintainer creates the tag
-on the **reviewed merged commit**, not on the preparation branch's old commit.
-For example, in a clean checkout with current `origin/main` (replace the example
-version and commit with the reviewed values):
-
-```sh
-git fetch origin main --tags
-git switch --detach <reviewed-main-commit>
-git merge-base --is-ancestor HEAD origin/main
-git tag -a vX.Y.Z -m 'Release vX.Y.Z'
-RELEASE_TAG=vX.Y.Z bun scripts/check-release.ts --require-main
-git push origin refs/tags/vX.Y.Z
-```
-
-Tag creation alone does nothing. Start **Release to npm** (`release.yml`)
-manually, select **main**, and supply that existing tag as `release_tag`.
-The workflow rejects malformed or mismatched tags, missing tags, tags off
-`main`, and dirty tracked files. It resolves one exact commit and runs the full
-Quality Assurance workflow against it before requesting `npm` environment
-approval. Review the selected tag, commit, and check results when approving.
-
-After approval the job rechecks the tag, installs frozen dependencies, builds
-fresh artifacts, and reruns strict packed consumers. It packs only
-`packages/solux`, checks required runtime/declaration/readme/license files,
-rejects source/website leakage, compares every packed file to the build, and
-checks tracked-file cleanliness. npm publishes that verified tarball with OIDC
-and provenance. The workflow never creates, moves, or pushes a tag and does not
-create or modify a GitHub release.
-
-Publication is irreversible. If a run fails before npm publication, fix the
-cause and manually rerun with the same immutable tag. If npm may already have
-accepted the version, inspect the registry before retrying; an existing version
-cannot be replaced, and this workflow does not automatically skip publication
-or silently retag it. A source fix requires a new reviewed version and tag.
 
 ## Cloudflare builds
 

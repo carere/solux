@@ -26,10 +26,8 @@ This is a Bun workspace with two Moon projects:
 | `solux` | `packages/solux` | Published `@carere/solux` library and consumer regressions |
 | `website` | `apps/website` | TanStack Solid Start docs, Zaidan components, English/French Paraglide, and public-package examples |
 
-The root and website are private. The package name, ESM exports, and current
-version `4.0.1` are preserved. Unreleased lifecycle and DevTools guarantees require
-a new published v4 release before downstream adoption; this checkout is not the
-existing npm artifact. See [CHANGELOG.md](CHANGELOG.md).
+The root and website are private. `@carere/solux` keeps its public package name
+and ESM exports. See [CHANGELOG.md](CHANGELOG.md) for released changes.
 
 ## Development
 
@@ -61,7 +59,7 @@ from `apps/website` (CI also installs browser system dependencies).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for tasks and verification,
 [the hosting guide](docs/website-hosting.md) for Cloudflare deployments and branch protection, and
-[the release guide](docs/releases.md) for the separately authorized npm workflow.
+[the release guide](docs/releases.md) for the single-dispatch npm and GitHub release workflow.
 
 ## Ownership and scope
 
@@ -69,7 +67,7 @@ Create fresh slices and nested state for every independent store or SSR request.
 The store creator owns `store.dispose()` and all external subscriptions. Disposal
 closes store observers and per-store DevTools resources; it does not cancel epics
 or middleware side effects. Read the package's lifecycle and time-travel guide
-before adopting the unreleased changes.
+for the full ownership contract.
 
 Repository skills are in [.agents/skills](.agents/skills/README.md), copied from
 Gurafu with their resources and notices. [AGENTS.md](AGENTS.md) routes agents to

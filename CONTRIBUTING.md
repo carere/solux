@@ -64,7 +64,9 @@ an installed extension. They are distinct from the docs site's Playwright tests.
 
 Knip's Lefthook plugin is disabled because it assumes `.git` is a directory and
 fails in Git worktrees. Root CLI-only Biome and hook binaries are explicit configuration exceptions.
-Redux remains the extension declaration's compatible type peer. These exceptions do not suppress unused-code analysis for the library or website.
+Cog and proto are external release tools installed outside npm and are explicit
+binary exceptions. Redux remains the extension declaration's compatible type peer.
+These exceptions do not suppress unused-code analysis for the library or website.
 
 Run Knip with `--bun`: plain `bun knip` honors its Node shebang, which can trigger
 the [Node 24 WebAssembly JIT crash](https://github.com/nodejs/node/issues/66366)

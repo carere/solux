@@ -35,9 +35,10 @@ check's actual outcome rather than treating a task definition as passing evidenc
 
 Read [the release guide](../releases.md) before version preparation/publication,
 and [the hosting guide](../website-hosting.md) before Cloudflare setup/deployment.
-Build and dry-run tasks do not publish. Release preparation and npm publication
-are separately dispatched; website deployment is independent. Follow the user's
-current authorization for external actions.
+Build and dry-run tasks do not publish. One manual Release dispatch calculates
+the version with Cog, validates and automatically merges release metadata, then
+publishes to npm and GitHub without a deployment approval. Website deployment is
+independent. Follow the user's current authorization for external actions.
 
 ## Vendored resources
 
