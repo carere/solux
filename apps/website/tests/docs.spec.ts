@@ -94,6 +94,12 @@ test("full-text search supports keyboard selection, escape, and no results", asy
   await page.keyboard.press("/");
   const search = page.getByRole("searchbox", { name: "Search documentation" });
   await expect(search).toBeFocused();
+  await search.fill("intro");
+  await expect(
+    page
+      .getByRole("region", { name: "Search results" })
+      .getByRole("link", { name: /^Introduction/ }),
+  ).toBeVisible();
   await search.fill("sortComparer");
   await expect(page.getByRole("region", { name: "Search results" })).toBeVisible();
   await search.press("ArrowDown");

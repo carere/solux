@@ -1,8 +1,28 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it, mock } from "bun:test";
 import { createEvent, createSlice } from "../../src";
 import { configureStore } from "../../src/configureStore";
 
 describe("Subscribing to an event", () => {
+  it("replays only the latest stream event when its type matches", () => {
+    const a = createEvent("a");
+    const b = createEvent("b");
+    const store = configureStore({
+      rootSlice: createSlice({ initialState: {}, handlers: () => {} }),
+    });
+    store.dispatch(a());
+    store.dispatch(b());
+    const listenerA = mock(() => {});
+    const listenerB = mock(() => {});
+    store.subscribeToEvent(a, listenerA);
+    store.subscribeToEvent(b, listenerB);
+    expect(listenerA).not.toHaveBeenCalled();
+    expect(listenerB).toHaveBeenCalledTimes(1);
+    store.dispatch(a());
+    expect(listenerA).toHaveBeenCalledTimes(1);
+    expect(listenerB).toHaveBeenCalledTimes(1);
+    store.dispose();
+  });
+
   const makeMagic = createEvent<number>("make_magic");
 
   const store = configureStore({

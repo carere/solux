@@ -6,7 +6,10 @@ import { type DocPage, pages, searchableText } from "./docs";
 
 const groups = ["Start here", "Core concepts", "In practice", "Resources"] as const;
 const pageName = (page: DocPage) => (page.slug === "introduction" ? "Introduction" : page.title);
-const searchIndex = pages.map((page) => ({ page, text: searchableText(page) }));
+const searchIndex = pages.map((page) => ({
+  page,
+  text: `${pageName(page)} ${searchableText(page)}`.toLowerCase(),
+}));
 type Theme = "system" | "light" | "dark";
 
 function readTheme(): Theme {

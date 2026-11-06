@@ -251,7 +251,7 @@ export function App() {
         id: "subscriptions",
         title: "Observe events deliberately",
         paragraphs: [
-          "subscribe(listener) receives { state, event } after dispatch. A live subscription immediately replays the latest event if one exists; a new store has no initial event to replay. subscribeToEvent(creator, listener) filters that same stream by type, including its latest matching replay. Both return RxJS subscriptions: call .unsubscribe() when finished.",
+          "subscribe(listener) receives { state, event } after dispatch. A live subscription immediately replays the latest event if one exists; a new store has no initial event to replay. subscribeToEvent(creator, listener) filters that same stream by type: it replays only when the stream’s single latest event matches. Dispatching A, then B, then subscribing to A does not replay A. Both return RxJS subscriptions: call .unsubscribe() when finished.",
           "The callback’s state is the live reactive state, not a historical snapshot. Copy serializable data if you keep a history. An unrelated event may notify subscribers even when no handler changes state.",
         ],
         code: {
