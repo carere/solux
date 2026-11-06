@@ -45,7 +45,7 @@
     },
     "packages/solux": {
       "name": "@carere/solux",
-      "version": "4.0.1",
+      "version": "4.1.0",
       "dependencies": {
         "@redux-devtools/extension": "^3.3.0",
         "redux": "^4.2.1",

@@ -1,3 +1,31 @@
+# Changelog
+
+- - -
+## [v4.1.0](https://github.com/carere/solux/compare/129ac00da98cd99e00600d6a9d36b47b2dbf3c8d..v4.1.0) - 2026-11-06
+#### Features
+- harden Solux lifecycle and add bilingual documentation (#4) - ([6cc395f](https://github.com/carere/solux/commit/6cc395fcf846babad051af10533f1012f8b3cba7)) - Kevin Abatan
+#### Bug Fixes
+- replace bun ci with frozen lockfile - ([c711cdb](https://github.com/carere/solux/commit/c711cdb9f72ebff1aa59d924e68334117c3b0f7c)) - Kevin Abatan
+- some minor issues on ci side - ([c5dc183](https://github.com/carere/solux/commit/c5dc183ead60c57c9f41b3ba83378d0fcb7f18a3)) - Kevin Abatan
+- some minor issues on ci side - ([9ed7cb0](https://github.com/carere/solux/commit/9ed7cb0dcc85aa04b70874e964a3215749740c86)) - Kevin Abatan
+- missing dev deps & ts errors - ([5cde90d](https://github.com/carere/solux/commit/5cde90d3927a14c4475d1de856e9d044293ae2f2)) - Kevin Abatan
+#### Documentation
+- adding README & improving ci, structure - ([f872304](https://github.com/carere/solux/commit/f872304ccc2c453d8e7db2454a06f2fdff43c0ab)) - Kevin Abatan
+- update README - ([7447296](https://github.com/carere/solux/commit/7447296705b3a9e447a325c0e0db7c5cad8fac13)) - Kevin Abatan
+- add placeholder for the logo - ([1d6e99d](https://github.com/carere/solux/commit/1d6e99df5b22e853dcdc1ab6204bb291a745a415)) - Kevin Abatan
+- adding README, wip some sections - ([08c551a](https://github.com/carere/solux/commit/08c551a9c01dbc1e289fd51206aa17084ac7ac01)) - Kevin Abatan
+- adding README & improving ci & structure - ([1ccce25](https://github.com/carere/solux/commit/1ccce25894ce8315b1b32115a74fa7f91963a928)) - Kevin Abatan
+#### Continuous Integration
+- adding NPM_CONFIG_TOKEN for publishing with bun - ([129ac00](https://github.com/carere/solux/commit/129ac00da98cd99e00600d6a9d36b47b2dbf3c8d)) - Kevin Abatan
+#### Miscellaneous Chores
+- (**release**) preserve legacy history in Cocogitto changelog - ([bb7dfe9](https://github.com/carere/solux/commit/bb7dfe9afdd541124153082fe74b085c2e58c0e3)) - github-actions
+- update npm trusted publisher workflows - ([baaf7cb](https://github.com/carere/solux/commit/baaf7cba33c8c713998de5f03bd37bbcc16d0893)) - Kevin Abatan
+- adding spec & task for the first docs implementation - ([3d40413](https://github.com/carere/solux/commit/3d40413f7eab90627f655bcacc804734795cf439)) - Kevin Abatan
+- adding agent-os - ([5bf7d18](https://github.com/carere/solux/commit/5bf7d18824afea0b5ae1e44bee2567cbac8b992c)) - Kevin Abatan
+
+- - -
+
+
 ## Unreleased
 
 - Migrate the documentation website to TanStack Solid Start with actual Zaidan
