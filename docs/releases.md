@@ -68,8 +68,11 @@ These settings are required but are not provisioned by the workflows:
    `GITHUB_TOKEN` needs contents and pull-request write permissions. No PAT or
    npm token is required.
 
-The publish job uses a GitHub-hosted runner, `id-token: write`, pinned Node from
-`.prototools`, and its bundled npm. It checks npm is at least 11.5.1. Trusted
+The publish job uses a GitHub-hosted runner, `id-token: write`, and the explicitly
+pinned Node 24.22.1 and npm 11.19.1 from `.prototools`. Proto does not expose
+Node's bundled npm by default, so npm is installed as a separate pinned tool.
+Both the prerequisite check and publication use `proto run npm -- ...` to avoid
+the runner image's ambient npm. It also checks npm is at least 11.5.1. Trusted
 publishing needs Node 22.14.0 or newer; the pinned Node 24.22.1 meets this minimum.
 See [npm's trusted publishing setup](https://docs.npmjs.com/trusted-publishers/)
 for identity matching and configuration expiry requirements. This file does not

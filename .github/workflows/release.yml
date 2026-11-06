@@ -91,7 +91,7 @@ jobs:
         run: |
           bun - <<'TS'
           import { execFileSync } from "node:child_process";
-          const npm = execFileSync("npm", ["--version"], { encoding: "utf8" }).trim();
+          const npm = execFileSync("proto", ["run", "npm", "--", "--version"], { encoding: "utf8" }).trim();
           const [major, minor, patch] = npm.split(".").map(Number);
           if (!Number.isInteger(major) || major < 11 || (major === 11 && (minor < 5 || (minor === 5 && patch < 1)))) {
             throw new Error("npm 11.5.1 or newer is required for trusted publishing");
@@ -122,4 +122,4 @@ jobs:
         run: bun scripts/check-release.ts --require-main --archive "$RUNNER_TEMP/solux.tgz"
       - name: Publish the verified tarball using npm trusted publishing
         working-directory: packages/solux
-        run: npm publish "$RUNNER_TEMP/solux.tgz" --access public --provenance --ignore-scripts
+        run: proto run npm -- publish "$RUNNER_TEMP/solux.tgz" --access public --provenance --ignore-scripts

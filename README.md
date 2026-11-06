@@ -32,7 +32,8 @@ existing npm artifact. See [CHANGELOG.md](CHANGELOG.md).
 
 ## Development
 
-Use the pinned toolchain in `.prototools`: Bun 1.4.4, Node 24.22.1, Moon 2.6.5.
+Use the pinned toolchain in `.prototools`: Bun 1.4.4, Node 24.22.1,
+npm 11.19.1, and Moon 2.6.5.
 Install [proto](https://moonrepo.dev/proto) and Cocogitto, then:
 
 ```sh
