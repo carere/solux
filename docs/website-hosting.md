@@ -54,6 +54,8 @@ also deploys through Workers Builds.
 - `nodejs_compat` for the SSR runtime and request-local Paraglide context.
 - Custom-domain route `solux.carere.dev`.
 - Disabled `workers.dev` and version-preview URLs.
+- An explicit `previews` block enabling isolated branch deployments through
+  `wrangler preview`.
 
 The server renders article content and page metadata before hydration. Unknown
 routes return an HTTP 404 rather than a successful SPA fallback. Interactive
