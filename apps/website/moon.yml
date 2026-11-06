@@ -73,3 +73,10 @@ tasks:
     options:
       cache: false
       runInCI: false
+  deploy-preview:
+    command: bun wrangler preview
+    deps:
+      - ~:build
+    options:
+      cache: false
+      runInCI: false

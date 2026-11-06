@@ -12,9 +12,10 @@ normalized entities, optional RxJS epics, and opt-in Redux DevTools integration.
 bun add @carere/solux
 ```
 
-Read the [package guide](packages/solux/README.md) for API usage. The documentation
-website is prepared for **https://solux.carere.dev**; hosting has not been deployed
-by this change. Run it locally with `bun moon run website:dev`.
+Read the [package guide](packages/solux/README.md) for API usage and the
+[documentation website](https://solux.carere.dev). Cloudflare Workers Builds
+deploys `main` to production and other branches to isolated previews.
+Run it locally with `bun moon run website:dev`.
 
 ## Repository
 
@@ -59,7 +60,7 @@ Install Chromium once before browser tests: `bun playwright install chromium`
 from `apps/website` (CI also installs browser system dependencies).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for tasks and verification,
-[the hosting guide](docs/website-hosting.md) for Cloudflare preparation, and
+[the hosting guide](docs/website-hosting.md) for Cloudflare deployments and branch protection, and
 [the release guide](docs/releases.md) for the separately authorized npm workflow.
 
 ## Ownership and scope
