@@ -1,0 +1,9 @@
+$schema: ../cache/schemas/tasks.json
+implicitInputs:
+  - /bun.lock
+  - /package.json
+  - /.prototools
+  - /tsconfig.base.json
+  - /.moon/**/*.yml
+  - package.json
+  - tsconfig.json

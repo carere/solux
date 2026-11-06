@@ -1,95 +1,125 @@
-name: Release
+name: Release to npm
 
 on:
-  pull_request:
-    types: [closed]
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing vMAJOR.MINOR.PATCH tag on a reviewed main commit
+        required: true
+        type: string
 
-env:
-  ARTIFACT_NAME: solux.tgz
+permissions:
+  contents: read
+
+concurrency:
+  group: npm-release
+  cancel-in-progress: false
 
 jobs:
-  get-tag:
-    if: (github.head_ref == 'knope/pre-release' && github.event.pull_request.merged == true) || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
-    runs-on: ubuntu-latest
+  validate:
+    name: Resolve the existing reviewed release tag
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    outputs:
+      commit: ${{ steps.release.outputs.commit }}
+    steps:
+      - name: Check out main and full release history
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Require an existing stable tag on main before running release code
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          if ! [[ "$RELEASE_TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo 'Select an existing vMAJOR.MINOR.PATCH release tag.' >&2
+            exit 1
+          fi
+          release_commit=$(git rev-parse --verify "refs/tags/$RELEASE_TAG^{commit}")
+          git merge-base --is-ancestor "$release_commit" origin/main
+          git checkout --detach "$release_commit"
+      - name: Install the pinned toolchain
+        uses: moonrepo/setup-toolchain@261c62cb5b0f580c7be7c8cd0f023a2e96756095 # v0.6.4
+        with:
+          proto-version: "0.63.2"
+          auto-install: true
+          cache: false
+      - name: Verify the exact tag, version, and clean checkout
+        id: release
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: bun scripts/check-release.ts --require-main
+
+  checks:
+    name: Verify the selected release commit
+    needs: validate
+    uses: ./.github/workflows/quality-assurance.yml
+    with:
+      checkout-ref: ${{ needs.validate.outputs.commit }}
     permissions:
       contents: read
-    steps:
-      - name: "Get tag of latest draft release"
-        run: echo "tag_name=$(gh release list --repo ${{ github.repository }} --json 'isDraft,tagName' --jq '.[] | select(.isDraft) | .tagName')" >> $GITHUB_OUTPUT
-        env:
-          GH_TOKEN: ${{ github.token }}
-        id: get-tag
-    outputs:
-      tag_name: ${{ steps.get-tag.outputs.tag_name }}
 
-  build-artifacts:
-    needs: [get-tag]
-    if: needs.get-tag.outputs.tag_name != ''
-    runs-on: ubuntu-latest
-    steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Build project
-        run: bun run build
-
-      - name: Create artifact
-        run: bun pm pack --filename ${{ env.ARTIFACT_NAME }}
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: solux
-          path: ${{ env.ARTIFACT_NAME }}
-          if-no-files-found: error
-
-  release:
-    needs: [build-artifacts, get-tag]
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  publish:
+    name: Approve and publish @carere/solux
+    needs: [validate, checks]
+    runs-on: ubuntu-24.04
+    environment: npm
     permissions:
+      contents: read
       id-token: write
-      contents: write
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Git user
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Check out the verified commit and release tags
+        uses: actions/checkout@v7.0.1
         with:
-          bun-version: latest
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
+          ref: ${{ needs.validate.outputs.commit }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Make Moon's base branch available in the detached checkout
+        run: |
+          if ! git show-ref --verify --quiet refs/heads/main; then
+            git branch main origin/main
+          fi
+      - name: Install the pinned toolchain without restoring caches
+        uses: moonrepo/setup-toolchain@261c62cb5b0f580c7be7c8cd0f023a2e96756095 # v0.6.4
         with:
-          path: .
-          merge-multiple: true
-
-      - name: Upload artifacts to release
+          proto-version: "0.63.2"
+          auto-install: true
+          cache: false
+      - name: Verify npm trusted publishing prerequisites
         run: |
-          gh release upload ${{ needs.get-tag.outputs.tag_name }} ${{ env.ARTIFACT_NAME }}
-          gh release edit ${{ needs.get-tag.outputs.tag_name }} --draft=false --latest
-
-      - name: Create tag
+          bun - <<'TS'
+          import { execFileSync } from "node:child_process";
+          const npm = execFileSync("npm", ["--version"], { encoding: "utf8" }).trim();
+          const [major, minor, patch] = npm.split(".").map(Number);
+          if (!Number.isInteger(major) || major < 11 || (major === 11 && (minor < 5 || (minor === 5 && patch < 1)))) {
+            throw new Error("npm 11.5.1 or newer is required for trusted publishing");
+          }
+          if (process.env.GITHUB_ACTIONS !== "true" || !process.env.ACTIONS_ID_TOKEN_REQUEST_URL || !process.env.ACTIONS_ID_TOKEN_REQUEST_TOKEN) {
+            throw new Error("GitHub Actions OIDC credentials are required");
+          }
+          console.log(`Publishing with Node ${execFileSync("node", ["--version"], { encoding: "utf8" }).trim()} and npm ${npm}`);
+          TS
+      - name: Revalidate the existing tag after approval
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: bun scripts/check-release.ts --require-main
+      - name: Install dependencies from the lockfile
+        run: bun install --frozen-lockfile
+      - name: Build fresh library artifacts
         run: |
-          git tag ${{ needs.get-tag.outputs.tag_name }}
-          git push origin ${{ needs.get-tag.outputs.tag_name }}
-
-      - name: Publish package
-        run: bun publish ${{ env.ARTIFACT_NAME }}
+          rm -rf packages/solux/dist
+          bun moon run solux:build --force
+      - name: Recheck the packed package in strict consumers
+        run: bun moon run solux:test-package
+      - name: Pack only the public package
+        working-directory: packages/solux
+        run: bun pm pack --ignore-scripts --filename "$RUNNER_TEMP/solux.tgz"
+      - name: Verify packed bytes and clean tracked files before publication
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: bun scripts/check-release.ts --require-main --archive "$RUNNER_TEMP/solux.tgz"
+      - name: Publish the verified tarball using npm trusted publishing
+        working-directory: packages/solux
+        run: npm publish "$RUNNER_TEMP/solux.tgz" --access public --provenance --ignore-scripts

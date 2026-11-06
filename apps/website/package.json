@@ -1,0 +1,15 @@
+{
+  "name": "@solux/website",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@carere/solux": "workspace:*",
+    "solid-js": "^1.9.10"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "vite": "8.3.6",
+    "vite-plugin-solid": "2.11.15",
+    "wrangler": "4.158.0"
+  }
+}

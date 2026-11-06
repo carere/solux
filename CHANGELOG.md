@@ -1,5 +1,14 @@
 ## Unreleased
 
+- Move the public package to `packages/solux` in a private Bun/Moon workspace;
+  preserve its name, version and exports, and retain strict packed-consumer checks.
+- Add the Solid documentation website in `apps/website`, with the existing Solux
+  logo, public-package examples, browser tests, and Cloudflare static assets config.
+- Align shared tooling with sibling projects: pinned runtimes, Biome, Knip,
+  Lefthook, Cocogitto, reviewed manual release workflows, and contributor guidance.
+- Vendor Gurafu's committed skill resources and notices with Solux-specific agent
+  configuration and a recorded provenance audit.
+
 - Add explicit, idempotent `store.dispose()` and enhancer `onDispose` cleanup.
   Store subscriptions and per-store Redux DevTools listeners/connections are
   released; disposed observers ignore late messages. Epic cancellation is unchanged.

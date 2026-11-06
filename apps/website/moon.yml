@@ -1,0 +1,59 @@
+$schema: ../../.moon/cache/schemas/project.json
+id: website
+language: typescript
+layer: application
+stack: frontend
+tasks:
+  dev:
+    command: bun --bun vite --host 127.0.0.1
+    deps:
+      - solux:build
+    options:
+      cache: false
+      persistent: true
+      runInCI: false
+  typecheck:
+    command: bun tsc --project tsconfig.json --noEmit
+    deps:
+      - solux:build
+  build:
+    command: bun --bun vite build
+    deps:
+      - solux:build
+      - ~:typecheck
+    inputs:
+      - src/**/*
+      - index.html
+      - vite.config.ts
+      - /images/solux.svg
+    outputs:
+      - dist
+    type: build
+  preview:
+    command: bun --bun vite preview --host 127.0.0.1 --port 4173 --strictPort
+    deps:
+      - ~:build
+    options:
+      cache: false
+      persistent: true
+      runInCI: false
+  test-browser:
+    command: bun playwright test
+    deps:
+      - ~:build
+    options:
+      cache: false
+  deploy-check:
+    command: bun wrangler deploy --dry-run
+    deps:
+      - ~:build
+    options:
+      cache: false
+      runInCI: false
+  deploy:
+    command: bun wrangler deploy
+    deps:
+      - ~:build
+    options:
+      cache: false
+      runInCI: false
