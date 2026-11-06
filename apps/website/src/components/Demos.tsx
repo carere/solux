@@ -1,6 +1,8 @@
 import { createMemo, createSignal, For, onCleanup, Show } from "solid-js";
 import { appendPoint, createChartStore } from "../examples/chart";
 import { createCounterStore, increment, reset } from "../examples/counter";
+import * as m from "../paraglide/messages";
+import { Button } from "../registry/ui/button";
 
 export function CounterDemo() {
   const store = createCounterStore();
@@ -14,37 +16,38 @@ export function CounterDemo() {
     store.dispose();
   });
   return (
-    <section class="demo" aria-label="Live counter example">
+    <section class="demo" aria-label={m.counter_example()}>
       <div class="demo-heading">
         <span class="live-dot" />
-        Live example<span class="demo-caption">Public package · Solid reactivity</span>
+        {m.live_example()}
+        <span class="demo-caption">{m.public_reactivity()}</span>
       </div>
       <div class="counter-values">
         <div>
           <span>state.counter.value</span>
-          <output aria-label="Counter value" aria-live="polite">
+          <output aria-label={m.counter_value()} aria-live="polite">
             {store.state.counter.value}
           </output>
         </div>
         <div>
           <span>createMemo(() =&gt; value * 2)</span>
-          <output aria-label="Doubled value">{doubled()}</output>
+          <output aria-label={m.doubled_value()}>{doubled()}</output>
         </div>
       </div>
       <div class="button-row">
-        <button type="button" class="primary" onClick={() => store.dispatch(increment(1))}>
-          Increment +1
-        </button>
-        <button type="button" onClick={() => store.dispatch(increment(-1))}>
-          Decrement −1
-        </button>
-        <button type="button" onClick={() => store.dispatch(reset())}>
-          Reset counter
-        </button>
+        <Button type="button" class="primary" onClick={() => store.dispatch(increment(1))}>
+          {m.increment()}
+        </Button>
+        <Button type="button" onClick={() => store.dispatch(increment(-1))}>
+          {m.decrement()}
+        </Button>
+        <Button type="button" onClick={() => store.dispatch(reset())}>
+          {m.reset_counter()}
+        </Button>
       </div>
       <div class="event-log">
-        <span>Recent events</span>
-        <Show when={events().length} fallback={<p>Dispatch an event to see it here.</p>}>
+        <span>{m.recent_events()}</span>
+        <Show when={events().length} fallback={<p>{m.dispatch_hint()}</p>}>
           <ol>
             <For each={events()}>
               {(event) => (
@@ -65,7 +68,7 @@ function ChartScope(props: { name: string }) {
   const [disposed, setDisposed] = createSignal(false);
   const [notifications, setNotifications] = createSignal(0);
   const [generation, setGeneration] = createSignal(1);
-  const [lastEvent, setLastEvent] = createSignal("No events yet");
+  const [lastEvent, setLastEvent] = createSignal<string | undefined>();
   const listen = (current: ReturnType<typeof createChartStore>) =>
     current.subscribe(({ event }) => {
       setNotifications((count) => count + 1);
@@ -89,7 +92,7 @@ function ChartScope(props: { name: string }) {
     subscription.unsubscribe();
     store().dispose();
     setNotifications(0);
-    setLastEvent("No events yet");
+    setLastEvent(undefined);
     setStore(createChartStore());
     subscription = listen(store());
     setDisposed(false);
@@ -100,18 +103,18 @@ function ChartScope(props: { name: string }) {
     store().dispose();
   });
   return (
-    <section class="chart-scope" aria-label={`Chart ${props.name}`}>
+    <section class="chart-scope" aria-label={m.chart_name({ name: props.name })}>
       <div class="scope-heading">
-        <h3>Chart {props.name}</h3>
+        <h3>{m.chart_name({ name: props.name })}</h3>
         <span classList={{ "scope-status": true, disposed: disposed() }}>
-          {disposed() ? "Disposed" : "Active"} · #{generation()}
+          {disposed() ? m.disposed() : m.active()} · #{generation()}
         </span>
       </div>
       <svg
         class="chart"
         viewBox="0 0 300 128"
         role="img"
-        aria-label={`Chart ${props.name}: ${points().length} synthetic data points`}
+        aria-label={m.chart_alt({ name: props.name, count: points().length })}
       >
         <path class="chart-grid" d="M16 32H284 M16 72H284 M16 112H284" />
         <polyline points={coordinates()} />
@@ -127,52 +130,46 @@ function ChartScope(props: { name: string }) {
       </svg>
       <dl class="scope-data">
         <div>
-          <dt>Points</dt>
+          <dt>{m.points()}</dt>
           <dd data-testid={`points-${props.name}`}>{points().length}</dd>
         </div>
         <div>
-          <dt>Notifications</dt>
+          <dt>{m.notifications()}</dt>
           <dd data-testid={`notifications-${props.name}`}>{notifications()}</dd>
         </div>
       </dl>
       <div class="button-row">
-        <button type="button" onClick={add}>
-          {disposed() ? "Try dispatch after disposal" : "Add point"}
-        </button>
-        <button type="button" onClick={dispose} disabled={disposed()}>
-          Dispose
-        </button>
-        <button type="button" onClick={recreate}>
-          Recreate
-        </button>
+        <Button type="button" onClick={add}>
+          {disposed() ? m.try_dispatch() : m.add_point()}
+        </Button>
+        <Button type="button" onClick={dispose} disabled={disposed()}>
+          {m.dispose()}
+        </Button>
+        <Button type="button" onClick={recreate}>
+          {m.recreate()}
+        </Button>
       </div>
       <code class="scope-state" data-testid={`state-${props.name}`}>
         {JSON.stringify(store().state)}
       </code>
-      <p class="scope-event">{lastEvent()}</p>
+      <p class="scope-event">{lastEvent() ?? m.no_events()}</p>
     </section>
   );
 }
 
 export function ScopesDemo() {
   return (
-    <section class="demo scopes-demo" aria-label="Independent chart stores example">
+    <section class="demo scopes-demo" aria-label={m.scopes_example()}>
       <div class="demo-heading">
         <span class="live-dot" />
-        Two stores, one event type
+        {m.two_stores()}
       </div>
-      <p class="demo-description">
-        Synthetic data. Add a point in A; B keeps its own state. Dispose A, try a dispatch, then
-        recreate it with fresh state.
-      </p>
+      <p class="demo-description">{m.scopes_description()}</p>
       <div class="scope-grid">
         <ChartScope name="A" />
         <ChartScope name="B" />
       </div>
-      <p class="demo-footnote">
-        Disposal closes the core event stream. Final state stays readable. Navigating away
-        explicitly disposes both stores.
-      </p>
+      <p class="demo-footnote">{m.scopes_footnote()}</p>
     </section>
   );
 }

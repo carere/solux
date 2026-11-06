@@ -18,9 +18,8 @@
       "includeEntryExports": false
     },
     "apps/website": {
-      "entry": ["tests/**/*.spec.ts"],
-      "project": ["src/**/*.{ts,tsx}", "*.ts", "tests/**/*.ts"],
-      "ignoreDependencies": ["wrangler"]
+      "entry": ["tests/**/*.spec.ts", "scripts/i18n.mjs"],
+      "project": ["src/**/*.{ts,tsx,css}", "*.ts", "*.mjs", "tests/**/*.ts", "scripts/**/*.mjs"]
     }
   }
 }

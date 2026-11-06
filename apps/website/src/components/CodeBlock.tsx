@@ -1,5 +1,7 @@
 import { createSignal, For, onCleanup } from "solid-js";
 import type { CodeSample } from "../docs";
+import * as m from "../paraglide/messages";
+import { Button } from "../registry/ui/button";
 
 function tokenize(value: string) {
   return value
@@ -24,7 +26,7 @@ function tokenize(value: string) {
 }
 
 export function CodeBlock(props: CodeSample) {
-  const [status, setStatus] = createSignal("Copy code");
+  const [status, setStatus] = createSignal<"idle" | "success" | "failure">("idle");
   let timer: ReturnType<typeof setTimeout> | undefined;
   onCleanup(() => clearTimeout(timer));
   const copy = async () => {
@@ -37,7 +39,7 @@ export function CodeBlock(props: CodeSample) {
       const textarea = document.createElement("textarea");
       textarea.value = props.value;
       textarea.className = "clipboard-fallback";
-      textarea.setAttribute("aria-label", "Code to copy");
+      textarea.setAttribute("aria-label", m.code_to_copy());
       document.body.append(textarea);
       textarea.select();
       try {
@@ -48,17 +50,28 @@ export function CodeBlock(props: CodeSample) {
       textarea.remove();
       if (previous instanceof HTMLElement) previous.focus({ preventScroll: true });
     }
-    setStatus(success ? "Copied!" : "Select code to copy");
+    setStatus(success ? "success" : "failure");
     clearTimeout(timer);
-    timer = setTimeout(() => setStatus("Copy code"), 2400);
+    timer = setTimeout(() => setStatus("idle"), 2400);
   };
   return (
     <figure class="code-panel">
       <figcaption>
         <span>{props.label}</span>
-        <button type="button" onClick={copy} aria-label={`Copy ${props.label}`}>
-          <span aria-live="polite">{status()}</span>
-        </button>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={copy}
+          aria-label={m.copy_label({ label: props.label })}
+        >
+          <span aria-live="polite">
+            {status() === "success"
+              ? m.copied()
+              : status() === "failure"
+                ? m.select_code()
+                : m.copy_code()}
+          </span>
+        </Button>
       </figcaption>
       {/* Keyboard users need to reach the horizontally scrollable code region. */}
       {/* biome-ignore lint/a11y/noNoninteractiveTabindex: This overflow region supports keyboard scrolling. */}

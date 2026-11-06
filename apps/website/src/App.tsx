@@ -1,58 +1,36 @@
-import { createEffect, createMemo, createSignal, For, onCleanup, onMount, Show } from "solid-js";
+import { Link, useLocation } from "@tanstack/solid-router";
+import { Monitor } from "lucide-solid";
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  For,
+  onCleanup,
+  onMount,
+  type ParentProps,
+  Show,
+} from "solid-js";
 import logo from "../../../images/solux.svg";
-import { CodeBlock } from "./components/CodeBlock";
-import { CounterDemo, ScopesDemo } from "./components/Demos";
-import { type DocPage, pages, searchableText } from "./docs";
+import { DocsSidebar } from "./components/docs-sidebar";
+import { ModeSwitcher } from "./components/mode-switcher";
+import { pageName, searchPages } from "./content";
+import * as m from "./paraglide/messages";
+import { getLocale, setLocale } from "./paraglide/runtime";
+import { useColorMode } from "./registry/components/color-mode";
+import { Button } from "./registry/ui/button";
+import { Input } from "./registry/ui/input";
+import { SidebarProvider, SidebarTrigger } from "./registry/ui/sidebar";
 
-const groups = ["Start here", "Core concepts", "In practice", "Resources"] as const;
-const pageName = (page: DocPage) => (page.slug === "introduction" ? "Introduction" : page.title);
-const searchIndex = pages.map((page) => ({
-  page,
-  text: `${pageName(page)} ${searchableText(page)}`.toLowerCase(),
-}));
-type Theme = "system" | "light" | "dark";
-
-function readTheme(): Theme {
-  try {
-    const value = localStorage.getItem("solux-theme");
-    if (value === "light" || value === "dark") return value;
-  } catch {
-    /* System preference also works with storage disabled. */
-  }
-  return "system";
-}
-
-export function App() {
-  const [path, setPath] = createSignal(window.location.pathname);
-  const [mobileOpen, setMobileOpen] = createSignal(false);
+export function App(props: ParentProps) {
+  const location = useLocation();
   const [query, setQuery] = createSignal("");
   const [searchOpen, setSearchOpen] = createSignal(false);
-  const [theme, setTheme] = createSignal<Theme>(readTheme());
-  const [systemDark, setSystemDark] = createSignal(
-    matchMedia("(prefers-color-scheme: dark)").matches,
-  );
-  const page = createMemo(() => {
-    const current = path().replace(/\/+$/, "") || "/";
-    return pages.find(
-      (entry) =>
-        current === `/docs/${entry.slug}` || (current === "/" && entry.slug === "introduction"),
-    );
-  });
-  const results = createMemo(() => {
-    const terms = query().trim().toLowerCase().split(/\s+/).filter(Boolean);
-    return terms.length
-      ? searchIndex
-          .filter(({ text }) => terms.every((term) => text.includes(term)))
-          .map(({ page }) => page)
-      : [];
-  });
+  const results = createMemo(() => searchPages(query()));
   const searchVisible = () => searchOpen() && query().trim().length > 0;
+  const { useSystem } = useColorMode();
   let searchInput: HTMLInputElement | undefined;
   let searchArea: HTMLElement | undefined;
   let main: HTMLElement | undefined;
-  let menuButton: HTMLButtonElement | undefined;
-  let navigation: HTMLElement | undefined;
-
   const focusPage = () => {
     const hash = window.location.hash.slice(1);
     let target: HTMLElement | null | undefined;
@@ -61,89 +39,25 @@ export function App() {
     } catch {
       target = main;
     }
-    if (hash && target) {
-      target.scrollIntoView();
-      target.focus({ preventScroll: true });
-    } else {
-      window.scrollTo(0, 0);
-      main?.focus({ preventScroll: true });
-    }
+    target?.focus({ preventScroll: true });
+    if (hash) target?.scrollIntoView();
   };
-  const navigate = (href: string) => {
-    history.pushState(null, "", href);
-    setPath(window.location.pathname);
-    setMobileOpen(false);
+  let mounted = false;
+  createEffect(() => {
+    location().pathname;
+    if (!mounted) return;
     setSearchOpen(false);
     setQuery("");
     queueMicrotask(focusPage);
-  };
-
-  createEffect(() => {
-    const active = page();
-    document.title = `${active ? pageName(active) : "Page not found"} · Solux`;
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute(
-        "content",
-        active?.description ?? "Find your way back to the Solux documentation.",
-      );
   });
-  createEffect(() => {
-    const value = theme();
-    const dark = value === "dark" || (value === "system" && systemDark());
-    document.documentElement.dataset.theme = dark ? "dark" : "light";
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", dark ? "#14191a" : "#faf9f6");
-  });
-  const changeTheme = (value: Theme) => {
-    setTheme(value);
-    try {
-      localStorage.setItem("solux-theme", value);
-    } catch {
-      /* Keep the current session usable. */
-    }
-  };
   onMount(() => {
-    const media = matchMedia("(prefers-color-scheme: dark)");
-    const systemChanged = (event: MediaQueryListEvent) => setSystemDark(event.matches);
-    const pop = () => {
-      setPath(window.location.pathname);
-      setMobileOpen(false);
-      setSearchOpen(false);
-      setQuery("");
-      queueMicrotask(focusPage);
-    };
-    const click = (event: MouseEvent) => {
-      if (!(event.target instanceof Element)) return;
-      if (searchArea && !searchArea.contains(event.target)) setSearchOpen(false);
-      const anchor = event.target.closest("a");
-      if (
-        !anchor ||
-        anchor.target ||
-        anchor.hasAttribute("download") ||
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey
-      )
-        return;
-      const url = new URL(anchor.href);
-      if (
-        url.origin === location.origin &&
-        (url.pathname.startsWith("/docs/") || url.pathname === "/")
-      ) {
-        event.preventDefault();
-        navigate(url.pathname + url.search + url.hash);
-      }
-    };
+    mounted = true;
+    if (window.location.hash) queueMicrotask(focusPage);
     const key = (event: KeyboardEvent) => {
-      const target = event.target;
       const editing =
-        target instanceof HTMLElement &&
-        (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
+        event.target instanceof HTMLElement &&
+        (event.target.isContentEditable ||
+          ["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName));
       if (
         ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") ||
         (event.key === "/" && !editing)
@@ -153,350 +67,130 @@ export function App() {
         searchInput?.select();
         setSearchOpen(true);
       }
-      if (event.key === "Escape") {
-        if (searchVisible()) {
-          searchInput?.focus();
-          setSearchOpen(false);
-        } else if (mobileOpen()) {
-          setMobileOpen(false);
-          menuButton?.focus();
-        }
+      if (event.key === "Escape" && searchVisible()) {
+        setSearchOpen(false);
+        searchInput?.focus();
       }
     };
-    media.addEventListener("change", systemChanged);
-    window.addEventListener("popstate", pop);
-    document.addEventListener("click", click);
+    const click = (event: PointerEvent) => {
+      if (event.target instanceof Node && !searchArea?.contains(event.target)) setSearchOpen(false);
+    };
     document.addEventListener("keydown", key);
-    if (window.location.hash) queueMicrotask(focusPage);
+    document.addEventListener("pointerdown", click);
     onCleanup(() => {
-      media.removeEventListener("change", systemChanged);
-      window.removeEventListener("popstate", pop);
-      document.removeEventListener("click", click);
       document.removeEventListener("keydown", key);
+      document.removeEventListener("pointerdown", click);
     });
   });
-
+  const selectResult = (event: KeyboardEvent) => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      searchArea?.querySelector<HTMLAnchorElement>(".search-result")?.focus();
+    }
+  };
   return (
-    <>
+    <SidebarProvider class="site-shell">
       <a class="skip-link" href="#main-content">
-        Skip to content
+        {m.skip_content()}
       </a>
       <header class="site-header">
-        <a class="brand" href="/" aria-label="Solux documentation home">
-          <img src={logo} width="38" height="32" alt="" />
-          <span>
-            Solux<span class="brand-docs"> / docs</span>
-          </span>
-        </a>
-        <div class="header-release">Unreleased docs</div>
+        <Link to="/" class="brand" aria-label="Solux">
+          <img src={logo} alt="" width="34" height="30" />
+          <span>solux</span>
+        </Link>
+        <span class="header-release">{m.documentation()}</span>
         <search class="search-area" ref={searchArea}>
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              const first = results()[0];
-              if (first) navigate(`/docs/${first.slug}`);
+          <Input
+            ref={searchInput}
+            type="search"
+            aria-label={m.search_docs()}
+            placeholder={m.search_placeholder()}
+            value={query()}
+            aria-expanded={searchVisible()}
+            aria-controls="search-results"
+            onFocus={() => setSearchOpen(true)}
+            onInput={(event) => {
+              setQuery(event.currentTarget.value);
+              setSearchOpen(true);
             }}
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="10.5" cy="10.5" r="6.5" />
-              <path d="m16 16 4 4" />
-            </svg>
-            <input
-              ref={searchInput}
-              type="search"
-              aria-label="Search documentation"
-              placeholder="Search documentation…"
-              value={query()}
-              onInput={(event) => {
-                setQuery(event.currentTarget.value);
-                setSearchOpen(true);
-              }}
-              onFocus={() => setSearchOpen(true)}
-              aria-controls={searchVisible() ? "search-results" : undefined}
-              onKeyDown={(event) => {
-                if (event.key === "ArrowDown" && searchVisible()) {
-                  event.preventDefault();
-                  searchArea?.querySelector<HTMLAnchorElement>(".search-result")?.focus();
-                }
-              }}
-            />
-            <kbd>/</kbd>
-          </form>
+            onKeyDown={selectResult}
+          />
+          <kbd>/</kbd>
           <Show when={searchVisible()}>
-            <section
-              class="search-results"
-              id="search-results"
-              aria-label="Search results"
-              onKeyDown={(event) => {
-                if (!["ArrowDown", "ArrowUp"].includes(event.key)) return;
-                const anchors = Array.from(
-                  searchArea?.querySelectorAll<HTMLAnchorElement>(".search-result") ?? [],
-                );
-                const index = anchors.indexOf(document.activeElement as HTMLAnchorElement);
-                if (index < 0) return;
-                event.preventDefault();
-                const next = event.key === "ArrowDown" ? index + 1 : index - 1;
-                if (next < 0) searchInput?.focus();
-                else anchors[next % anchors.length]?.focus();
-              }}
-            >
-              <output class="search-summary">
-                {results().length
-                  ? `${results().length} matching pages`
-                  : "No matching pages. Try “events”, “dispose”, or “DevTools”."}
-              </output>
+            <section id="search-results" class="search-results" aria-label={m.search_results()}>
+              <p role="status">
+                {results().length ? m.search_count({ count: results().length }) : m.no_results()}
+              </p>
               <For each={results()}>
-                {(result) => (
-                  <a class="search-result" href={`/docs/${result.slug}`}>
-                    <strong>{pageName(result)}</strong>
-                    <span>{result.description}</span>
-                  </a>
+                {(page, index) => (
+                  <Link
+                    class="search-result"
+                    to="/docs/$slug"
+                    params={{ slug: page.slug }}
+                    onClick={() => {
+                      setSearchOpen(false);
+                      setQuery("");
+                    }}
+                    onKeyDown={(event) => {
+                      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+                        event.preventDefault();
+                        const items =
+                          searchArea?.querySelectorAll<HTMLAnchorElement>(".search-result");
+                        const next = index() + (event.key === "ArrowDown" ? 1 : -1);
+                        if (next < 0) searchInput?.focus();
+                        else items?.[next]?.focus();
+                      }
+                    }}
+                  >
+                    <strong>{pageName(page)}</strong>
+                    <span>{page.description}</span>
+                  </Link>
                 )}
               </For>
             </section>
           </Show>
         </search>
-        <a class="github-link" href="https://github.com/carere/solux">
-          GitHub
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 17 17 7M7 7h10v10" />
-          </svg>
-        </a>
-        <button
-          type="button"
-          ref={menuButton}
-          class="menu-toggle"
-          aria-controls="docs-navigation"
-          aria-expanded={mobileOpen()}
-          onClick={() => {
-            const opening = !mobileOpen();
-            setMobileOpen(opening);
-            if (opening)
-              queueMicrotask(() => {
-                const link =
-                  navigation?.querySelector<HTMLAnchorElement>('a[aria-current="page"]') ??
-                  navigation?.querySelector<HTMLAnchorElement>("a");
-                link?.focus();
-              });
-          }}
-        >
-          {mobileOpen() ? "Close menu" : "Menu"}
-        </button>
+        <div class="header-controls">
+          <a class="github-link" href="https://github.com/carere/solux">
+            GitHub
+          </a>
+          <label class="sr-only" for="locale">
+            {m.language()}
+          </label>
+          <select
+            id="locale"
+            aria-label={m.language()}
+            value={getLocale()}
+            onChange={(event) => {
+              void setLocale(event.currentTarget.value === "fr" ? "fr" : "en");
+            }}
+          >
+            <option value="en" selected={getLocale() === "en"}>
+              English
+            </option>
+            <option value="fr" selected={getLocale() === "fr"}>
+              Français
+            </option>
+          </select>
+          <ModeSwitcher />
+          <Button
+            variant="ghost"
+            size="icon"
+            title={m.system_theme()}
+            aria-label={m.system_theme()}
+            onClick={useSystem}
+          >
+            <Monitor />
+          </Button>
+          <SidebarTrigger class="mobile-menu-trigger" />
+        </div>
       </header>
       <div class="site-layout">
-        <aside classList={{ sidebar: true, "is-open": mobileOpen() }} id="docs-navigation">
-          <nav ref={navigation} aria-label="Documentation">
-            <For each={groups}>
-              {(group) => (
-                <div class="nav-group">
-                  <p>{group}</p>
-                  <For each={pages.filter((entry) => entry.group === group)}>
-                    {(entry) => (
-                      <a
-                        href={`/docs/${entry.slug}`}
-                        aria-current={page()?.slug === entry.slug ? "page" : undefined}
-                      >
-                        {pageName(entry)}
-                      </a>
-                    )}
-                  </For>
-                </div>
-              )}
-            </For>
-          </nav>
-          <div class="sidebar-footer">
-            <label for="theme-preference">Appearance</label>
-            <select
-              id="theme-preference"
-              value={theme()}
-              onChange={(event) => changeTheme(event.currentTarget.value as Theme)}
-            >
-              <option value="system">System</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-            </select>
-            <p>
-              Made for SolidJS.
-              <br />
-              Published package: 4.0.1
-            </p>
-          </div>
-        </aside>
-        <main id="main-content" ref={main} tabIndex={-1}>
-          <Show
-            when={page()}
-            keyed
-            fallback={
-              <article class="not-found">
-                <h1>Page not found</h1>
-                <p>
-                  This address does not match a documentation page. Search the docs or start with
-                  the introduction.
-                </p>
-                <a class="text-link" href="/docs/introduction">
-                  Back to the introduction <span aria-hidden="true">→</span>
-                </a>
-              </article>
-            }
-          >
-            {(active) => (
-              <>
-                <article>
-                  <div class="breadcrumbs">
-                    <span>Documentation</span>
-                    <span aria-hidden="true">/</span>
-                    <span>{active.group}</span>
-                  </div>
-                  <h1 classList={{ "intro-title": active.slug === "introduction" }}>
-                    {active.title}
-                  </h1>
-                  <p class="page-description">{active.description}</p>
-                  <Show when={active.slug === "introduction"}>
-                    <div class="intro-links">
-                      <a class="primary button-link" href="/docs/getting-started">
-                        Get started <span aria-hidden="true">→</span>
-                      </a>
-                      <a href="/docs/api-reference">
-                        Explore the API <span aria-hidden="true">↗</span>
-                      </a>
-                    </div>
-                  </Show>
-                  <For each={active.sections}>
-                    {(section) => (
-                      <section class="doc-section" aria-labelledby={section.id}>
-                        <h2 id={section.id} tabIndex={-1}>
-                          <a href={`#${section.id}`}>
-                            {section.title}
-                            <span class="heading-anchor" aria-hidden="true">
-                              #
-                            </span>
-                          </a>
-                        </h2>
-                        <For each={section.paragraphs}>{(paragraph) => <p>{paragraph}</p>}</For>
-                        <Show when={section.note}>
-                          <aside class="note">
-                            <strong>Keep in mind</strong>
-                            <p>{section.note}</p>
-                          </aside>
-                        </Show>
-                        <Show when={section.bullets}>
-                          <ul class="content-list">
-                            <For each={section.bullets}>{(bullet) => <li>{bullet}</li>}</For>
-                          </ul>
-                        </Show>
-                        <Show when={section.table}>
-                          {(table) => (
-                            <section
-                              class="table-scroll"
-                              aria-label={`${section.title} reference table`}
-                              // biome-ignore lint/a11y/noNoninteractiveTabindex: The overflow region must support keyboard scrolling.
-                              tabIndex={0}
-                            >
-                              <table>
-                                <thead>
-                                  <tr>
-                                    <For each={table().headings}>
-                                      {(heading) => <th scope="col">{heading}</th>}
-                                    </For>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <For each={table().rows}>
-                                    {(row) => (
-                                      <tr>
-                                        <For each={row}>
-                                          {(cell, index) =>
-                                            index() === 0 ? (
-                                              <th scope="row">
-                                                <code>{cell}</code>
-                                              </th>
-                                            ) : (
-                                              <td>{cell}</td>
-                                            )
-                                          }
-                                        </For>
-                                      </tr>
-                                    )}
-                                  </For>
-                                </tbody>
-                              </table>
-                            </section>
-                          )}
-                        </Show>
-                        <Show when={section.code}>{(code) => <CodeBlock {...code()} />}</Show>
-                        <Show when={section.demo === "counter"}>
-                          <CounterDemo />
-                        </Show>
-                        <Show when={section.demo === "scopes"}>
-                          <ScopesDemo />
-                        </Show>
-                        <Show when={section.links}>
-                          <ul class="related-links">
-                            <For each={section.links}>
-                              {(link) => (
-                                <li>
-                                  <a href={link.href}>
-                                    {link.label}
-                                    <span aria-hidden="true">→</span>
-                                  </a>
-                                </li>
-                              )}
-                            </For>
-                          </ul>
-                        </Show>
-                      </section>
-                    )}
-                  </For>
-                </article>
-                <nav class="page-pagination" aria-label="Adjacent pages">
-                  <Show when={pages[pages.indexOf(active) - 1]} fallback={<span />}>
-                    {(previous) => (
-                      <a href={`/docs/${previous().slug}`}>
-                        <span>Previous</span>
-                        {pageName(previous())}
-                      </a>
-                    )}
-                  </Show>
-                  <Show when={pages[pages.indexOf(active) + 1]}>
-                    {(next) => (
-                      <a href={`/docs/${next().slug}`}>
-                        <span>Next</span>
-                        {pageName(next())}
-                        <span aria-hidden="true" class="pagination-arrow">
-                          →
-                        </span>
-                      </a>
-                    )}
-                  </Show>
-                </nav>
-                <footer class="page-footer">
-                  <span>Solux · MIT licensed</span>
-                  <a href="https://github.com/carere/solux/issues">Improve these docs</a>
-                </footer>
-              </>
-            )}
-          </Show>
+        <DocsSidebar />
+        <main id="main-content" tabIndex={-1} ref={main}>
+          {props.children}
         </main>
-        <Show when={page()}>
-          {(active) => (
-            <aside class="table-of-contents">
-              <nav aria-label="On this page">
-                <p>On this page</p>
-                <For each={active().sections}>
-                  {(section) => <a href={`#${section.id}`}>{section.title}</a>}
-                </For>
-              </nav>
-              <p class="source-note">
-                Source-first documentation.
-                <br />
-                <a href="/docs/migration">
-                  Check release status <span aria-hidden="true">↗</span>
-                </a>
-              </p>
-            </aside>
-          )}
-        </Show>
       </div>
-    </>
+    </SidebarProvider>
   );
 }

@@ -13,7 +13,8 @@
       "!**/dist",
       "!**/.wrangler",
       "!.moon",
-      "!**/bun.lock"
+      "!**/bun.lock",
+      "!**/routeTree.gen.ts"
     ]
   },
   "formatter": {
@@ -40,6 +41,11 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "double"
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
     }
   }
 }

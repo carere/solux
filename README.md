@@ -23,7 +23,7 @@ This is a Bun workspace with two Moon projects:
 | Project | Path | Purpose |
 | --- | --- | --- |
 | `solux` | `packages/solux` | Published `@carere/solux` library and consumer regressions |
-| `website` | `apps/website` | Documentation and executable examples using the package exports |
+| `website` | `apps/website` | TanStack Solid Start docs, Zaidan components, English/French Paraglide, and public-package examples |
 
 The root and website are private. The package name, ESM exports, and current
 version `4.0.1` are preserved. Unreleased lifecycle and DevTools guarantees require

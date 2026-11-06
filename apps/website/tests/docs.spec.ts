@@ -123,13 +123,10 @@ test("theme follows the system and persists an explicit preference", async ({ pa
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.emulateMedia({ colorScheme: "light" });
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-  await openMenuIfMobile(page);
-  await page.getByLabel("Appearance").selectOption("dark");
+  await page.getByRole("button", { name: "Toggle color mode", exact: true }).click();
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-  await openMenuIfMobile(page);
-  await expect(page.getByLabel("Appearance")).toHaveValue("dark");
-  await page.getByLabel("Appearance").selectOption("system");
+  await page.getByRole("button", { name: "Use system theme", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
 });
 
@@ -140,20 +137,14 @@ test("skip link, mobile disclosure, and layout remain usable", async ({ page }, 
   await page.keyboard.press("Enter");
   await expect(page.getByRole("main")).toBeFocused();
   if (testInfo.project.name === "mobile") {
-    const menu = page.getByRole("button", { name: "Menu", exact: true });
+    const menu = page.locator("[data-slot=sidebar-trigger]");
     await expect(
       page.getByRole("navigation", { name: "Documentation", exact: true }),
     ).not.toBeVisible();
     await menu.click();
-    await expect(page.getByRole("button", { name: "Close menu" })).toHaveAttribute(
-      "aria-expanded",
-      "true",
-    );
-    await expect(
-      page
-        .getByRole("navigation", { name: "Documentation", exact: true })
-        .getByRole("link", { name: "Introduction", exact: true }),
-    ).toBeFocused();
+    await expect(menu).toHaveAttribute("aria-expanded", "true");
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await expect(page.getByRole("dialog").locator(":focus")).toHaveCount(1);
     await page.keyboard.press("Escape");
     await expect(menu).toBeFocused();
     await menu.click();
@@ -163,6 +154,13 @@ test("skip link, mobile disclosure, and layout remain usable", async ({ page }, 
       .click();
     await expect(menu).toHaveAttribute("aria-expanded", "false");
     await expect(page.getByRole("main")).toBeFocused();
+  }
+  if (testInfo.project.name === "desktop") {
+    const navigation = await page
+      .getByRole("navigation", { name: "Documentation", exact: true })
+      .boundingBox();
+    const header = await page.getByRole("banner").boundingBox();
+    expect(navigation && header && navigation.y >= header.y + header.height).toBe(true);
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,

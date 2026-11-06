@@ -19,9 +19,9 @@ export default defineConfig({
   ],
   webServer: {
     cwd: import.meta.dirname,
-    command: "bun --bun vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    command: "bun vite preview --host 127.0.0.1 --port 4173 --strictPort",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: false,
-    timeout: 30_000,
+    timeout: 60_000,
   },
 });

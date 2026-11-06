@@ -1,10 +1,9 @@
 # Hosting the Solux documentation
 
-The checked-in target is **Cloudflare Workers Static Assets** at
-`solux.carere.dev`. The site is a static Vite + Solid application: there is no
-server process, database, account identifier, or application secret in the repo.
-This follows Rebyu's smaller static deployment model while retaining Solux's
-actual Solid runtime for executable examples.
+The checked-in target is a **Cloudflare Worker** at `solux.carere.dev`.
+The website uses TanStack Solid Start for server-rendered documentation, Zaidan's
+Solid/Kobalte components for its interface, and Paraglide for English/French.
+There is no database, account identifier, or application secret in the repo.
 
 This document prepares hosting; it does not claim a Worker, Git connection,
 custom domain, or deployment already exists. No deployment is performed by CI.
@@ -21,8 +20,9 @@ bun moon run website:preview
 
 The website consumes `@carere/solux` via `workspace:*` and its built package
 exports. Moon builds the library before checking/building the website.
-`apps/website/dist` is the complete deployable output, including the existing
-`images/solux.svg` logo bundled by Vite. The root package and website are private;
+The build emits client assets and the server Worker under `apps/website/dist`,
+including the existing `images/solux.svg` logo. Cloudflare's Vite plugin also
+emits `.wrangler/deploy/` metadata; preserve both outputs for deployment. The root package and website are private;
 only `packages/solux` is published to npm.
 
 Before connecting hosting, run the root README's checks and:
@@ -40,22 +40,30 @@ deployment is a separate operation requiring maintainer authorization.
 [The site config](../apps/website/wrangler.jsonc) declares:
 
 - Worker name `solux-website`.
-- Static assets from `./dist`, relative to the website config.
+- TanStack Solid Start server entry, with Cloudflare's Vite plugin generating
+  the deployment config and client-asset binding.
+- `nodejs_compat` for the SSR runtime and request-local Paraglide context.
 - Custom-domain route `solux.carere.dev`.
-- SPA fallback for direct documentation links.
 - Disabled `workers.dev` and version-preview URLs.
 
-The website has client-side history routes and a visible not-found page. With
-Cloudflare's SPA fallback, unknown navigation URLs receive the app shell with an
-HTTP 200 and then show that page; it is not a server-generated HTTP 404. Article
-content, search and examples require JavaScript. This initial site does not add
-prerendering/SSR or a content-management service. If crawlable per-page HTML
-becomes required, add prerendering with route/metadata regressions rather than
-claiming the SPA provides it.
+The server renders article content and page metadata before hydration. Unknown
+routes return an HTTP 404 rather than a successful SPA fallback. Interactive
+examples and controls hydrate in the browser; article content is available in
+HTML responses without executing JavaScript.
 
-Cloudflare documents this behavior in its
-[SPA routing guide](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)
-and [Wrangler configuration reference](https://developers.cloudflare.com/workers/wrangler/configuration/).
+Paraglide follows Delimoov's `cookie` / `baseLocale` strategy: English is the
+base locale and French is selected through the language control, with the
+`solux_locale` cookie persisting the choice. Both languages use the same paths;
+a language change preserves the current article URL. Request-scoped locale
+handling keeps concurrent requests independent. Cookie-personalized HTML must
+remain private and uncached at the edge; preserve the server's cache headers.
+Do not replace this with shared static HTML while claiming per-request locale
+selection.
+
+Use the generated deployment metadata after building, rather than deploying
+only `dist/client` as a static SPA. See the
+[TanStack Solid hosting guide](https://tanstack.com/start/latest/docs/framework/solid/guide/hosting)
+and [Cloudflare's Vite plugin guide](https://developers.cloudflare.com/workers/vite-plugin/).
 
 ## Connect Workers Builds when ready
 
@@ -102,14 +110,14 @@ the intended account, build/review the site, and run from the root:
 bun moon run website:deploy
 ```
 
-That command uploads the assets and applies the custom-domain configuration.
+That command uploads the server Worker and assets and applies the custom-domain configuration.
 It is deliberately excluded from Moon CI. A build service can invoke Wrangler
 directly as shown above; this avoids accidentally treating a skipped Moon task
 as a successful deployment.
 
 Afterward, verify the returned deployment, `https://solux.carere.dev`, direct
 links such as `/docs/store-lifecycle`, the existing logo, mobile navigation,
-search, and examples. Check the actual account/domain state rather than inferring
+search, both languages, SSR HTML, unknown-route HTTP 404s, and examples. Check the actual account/domain state rather than inferring
 it from a successful local dry-run. For rollback, use Cloudflare's deployment
 history to restore a previously verified version; a fresh deploy uses the same
 config and may update domain routing.

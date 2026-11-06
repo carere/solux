@@ -158,6 +158,8 @@ bash scripts/build-cloudflare.sh
 The helper fetches `main` and creates a local base branch only when it is absent,
 matching Moon's needs in shallow Cloudflare preview clones. It then runs
 `bun moon run website:build`, including the library build dependency. Website
-assets are in `apps/website/dist`; use the site's own Wrangler configuration for
-its output/assets settings. CI only runs the deployment dry-run. Actual
+client/server output is in `apps/website/dist`, with generated deployment metadata
+in `apps/website/.wrangler/deploy`. Use the site's Wrangler configuration and
+Cloudflare Vite plugin output; deploying just the client assets drops SSR and
+request-scoped language handling. CI only runs the deployment dry-run. Actual
 Cloudflare account configuration and deployment are separate maintainer actions.

@@ -5,17 +5,28 @@ layer: application
 stack: frontend
 tasks:
   dev:
-    command: bun --bun vite --host 127.0.0.1
+    command: bun vite --host 127.0.0.1
     deps:
       - solux:build
+      - ~:i18n
     options:
       cache: false
       persistent: true
       runInCI: false
+  i18n:
+    command: bun scripts/i18n.mjs
+    inputs:
+      - messages/**/*
+      - project.inlang/settings.json
+      - i18n.config.mjs
+      - scripts/i18n.mjs
+    outputs:
+      - src/paraglide
   typecheck:
     command: bun tsc --project tsconfig.json --noEmit
     deps:
       - solux:build
+      - ~:i18n
   build:
     command: bun --bun vite build
     deps:
@@ -23,14 +34,19 @@ tasks:
       - ~:typecheck
     inputs:
       - src/**/*
-      - index.html
+      - messages/**/*
+      - project.inlang/settings.json
+      - i18n.config.mjs
+      - scripts/i18n.mjs
+      - wrangler.jsonc
       - vite.config.ts
       - /images/solux.svg
     outputs:
       - dist
+      - .wrangler/deploy
     type: build
   preview:
-    command: bun --bun vite preview --host 127.0.0.1 --port 4173 --strictPort
+    command: bun vite preview --host 127.0.0.1 --port 4173 --strictPort
     deps:
       - ~:build
     options:

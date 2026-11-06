@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Migrate the documentation website to TanStack Solid Start with actual Zaidan
+  sidebar, mobile-sheet and theme components, retaining the existing Solux logo.
+- Add English/French documentation and Paraglide UI messages with request-scoped
+  SSR language handling and a persisted language preference.
+
 - Move the public package to `packages/solux` in a private Bun/Moon workspace;
   preserve its name, version and exports, and retain strict packed-consumer checks.
 - Add the Solid documentation website in `apps/website`, with the existing Solux

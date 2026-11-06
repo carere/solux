@@ -13,9 +13,11 @@ Project manifests and `moon.yml` files define task availability.
   consumers check NodeNext and Bundler declarations with `skipLibCheck: false`
   and Node server/browser-condition runtime behavior.
 - Website: run its build and Playwright tests. Its own typecheck uses browser/Node
-  types and strict declaration checking; the root typecheck covers the library,
+  types and strict application checking; the root typecheck covers the library,
   Bun tests and maintainer scripts. This separation avoids combining Vite and Bun
-  ambient `ImportMeta` definitions. The website imports built public exports.
+  ambient `ImportMeta` definitions. Website third-party declaration checking is
+  skipped for Kobalte's published aliases; Solux's isolated packed consumers
+  still use `skipLibCheck: false`. The website imports built public exports.
 - Tooling: run affected Moon tasks and root Biome, TypeScript, Knip and manifest
   sorting checks. Run `bun test scripts/tests` for release/build helpers and use
   Cocogitto over the relevant commit range for commit metadata.
