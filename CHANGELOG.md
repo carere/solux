@@ -1,3 +1,7 @@
+# Changelog
+
+- - -
+
 ## Unreleased
 
 - Migrate the documentation website to TanStack Solid Start with actual Zaidan
