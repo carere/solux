@@ -23,5 +23,7 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "*.ts", "*.tsx"]
+  "include": ["src/**/*.ts", "test/**/*.ts", "*.ts", "*.tsx"],
+  // This fixture is typechecked against the installed tarball in an isolated consumer.
+  "exclude": ["test/package/consumer.ts"]
 }

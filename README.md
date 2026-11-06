@@ -156,7 +156,7 @@ render(
 To enable Redux DevTools:
 
 ```ts
-import { configureStore, applyMiddlewares, devtools } from '@carere/solux';
+import { configureStore, combineSlices, devtools } from '@carere/solux';
 
 const store = configureStore({
   rootSlice: combineSlices({ /* your slices */ }),
@@ -672,13 +672,123 @@ const store = configureStore({
 });
 ```
 
-Features supported:
-- ✅ Action history
-- ✅ State inspection
-- ✅ Time-travel debugging
-- ✅ Action dispatching
-- ✅ State import/export
-- ✅ Jump to state
+DevTools is opt-in: omit the enhancer to disable it. Importing Solux and invoking
+`devtools()` without `window` or without the extension is safe and creates no
+connection. This is a no-op on the server; it does not defer a connection until
+hydration. Create the client store with the enhancer to connect there.
+
+### Independent stores and cleanup
+
+Create fresh slices and a fresh nested state graph for each chart or SSR request.
+Reusing a slice or shallow-copying preloaded state can share mutable nested data;
+`configureStore` does not isolate live state for you. No global provider is needed
+when using the store directly.
+
+```ts
+import { onCleanup } from 'solid-js';
+import { configureStore, createEvent, createSlice, devtools } from '@carere/solux';
+
+const selectTime = createEvent<number>('interaction/selectTime');
+
+function createChartStore(instanceId: string, debug = false) {
+  return configureStore({
+    rootSlice: createSlice({
+      initialState: { selection: { time: 0 }, hiddenSeries: [] as string[] },
+      handlers: builder => builder.addHandler(selectTime, (state, { payload }) => {
+        state.selection.time = payload;
+      }),
+    }),
+    enhancers: debug ? [devtools({ name: `Chart ${instanceId}`, instanceId })] : [],
+  });
+}
+
+// Inside a Solid component/owner; use a unique ID for each chart mount.
+const store = createChartStore('chart:1:mount:1', true);
+onCleanup(() => store.dispose());
+```
+
+`store.dispose()` is explicit and idempotent. It closes all core store/event
+subscriptions, unregisters the DevTools message listener, and calls the extension
+connection's `unsubscribe()`. It never calls the extension's global `disconnect()`,
+which would affect other stores. Solux ignores late callbacks from that observer,
+including DevTools actions and time-travel commands, and makes no further calls
+to its connection. Any messages already buffered inside the extension remain
+under the extension's control.
+
+After disposal, core `dispatch()` is a no-op, new subscriptions are closed without
+replaying the last event, and `state` remains readable. Individual subscriptions
+can still be released earlier with `.unsubscribe()`. Disposing a Solid owner or
+unmounting `SoluxProvider` does not automatically dispose a store; its creator
+owns that decision. Disposal does not cancel epics, timers, or middleware side
+effects. They require their own cleanup; middleware wrappers may still execute
+when their retained dispatch is called.
+
+Custom enhancers should preserve the store's methods (including `dispose`) when
+returning a wrapper. `EnhancedStore.onDispose(cleanup)` registers per-store
+cleanup, runs it once, and runs newly registered cleanup immediately if already
+disposed. `onDispose`, `setState`, and `initialState` are enhancer-only fields, not
+public store methods. Code that constructs a `Store` or `EnhancedStore` by hand
+must now implement these lifecycle fields.
+
+### Snapshot and time-travel semantics
+
+For nested serializable objects and arrays, the construction baseline is a deep
+clone of `preloadedState` (when supplied) or the root slice's initial state. This
+checkout already used Remeda's deep clone; it differs from the shallow Radash
+clone in the published 4.0.1 artifact. Every RESET now installs another clone,
+so subsequent mutations cannot corrupt the baseline. States passed to DevTools
+`init` and `send` are also detached from the live model, including when the
+extension buffers them. Keep chart handles, DOM nodes and disposers outside
+serializable state.
+
+The supported commands retain these semantics:
+
+- ACTION parses a JSON event and dispatches through the store as seen by the
+  enhancer. Enhancer order continues to determine which middleware it reaches.
+- RESET restores the construction baseline fields with the same root-key merge
+  semantics described below. COMMIT initializes the monitor with the current
+  state; it does not replace that RESET baseline.
+- ROLLBACK, JUMP_TO_ACTION and JUMP_TO_STATE parse JSON snapshots and update Solid
+  state reactively. As with the existing Solid `setState` call, supplied root
+  keys are merged; omitted root keys remain. Use full snapshots for restoration.
+- IMPORT_STATE installs a detached copy of the last computed state, regardless
+  of `currentStateIndex`, and sends the lifted history back to the extension.
+  Empty computed histories are ignored.
+- Snapshot commands do not rerun event handlers or notify Solux event
+  subscribers. Reactive Solid readers observe state changes. TOGGLE_ACTION,
+  LOCK_CHANGES and action reordering remain unsupported. Malformed JSON commands
+  still throw while the observer is active.
+
+Initial connection setup initializes from the current state before subscribing
+to the store's event stream. If an earlier enhancer already dispatched, that
+stream replays only its last event; it is not a reconstruction of startup history.
+This is model-state inspection and restoration, not deterministic replay of
+application side effects, data feeds or imperative chart resources. Keep
+consumer-controlled inputs authoritative. Separate chart and application stores
+have separate histories; Solux does not synchronize their time travel.
+
+### Package and regression checks
+
+The published declarations use the extension's `EnhancerOptions`. The extension
+and Redux 4 are declared installation dependencies so consumers do not need
+Solux's development dependencies. Redux 4 satisfies the extension's type peer;
+the extension 3.3 declarations fail strict checking against Redux 5. Solux does
+not import either package at runtime.
+
+Run `bun run compile`, `bun run check`, `bun run test`, and
+`bun run test:package`. Tests cover server and browser-condition Solid runtimes,
+repeated disposal, ignored late callbacks, detached resets/imports, and fresh
+nested graphs for independent charts/SSR requests. The package check builds and
+packs Solux, installs that tarball in an OS temporary directory, and checks both
+NodeNext and Bundler resolution with `skipLibCheck: false`, then runs Node SSR
+and browser-condition probes. It needs Node, npm, and registry access.
+
+Extension tests use a mocked direct-connection protocol. Browser conditions select
+Solid's reactive runtime without opening a browser; these tests do not certify
+an installed browser extension, rendering, or hydration. A new v4 release must
+still be prepared through the repository's Knope release workflow, reviewed,
+published with authorization, and verified/pinned by adopters. The worktree's
+unchanged `4.0.1` version is not a new published release.
 
 ## Contributing
 

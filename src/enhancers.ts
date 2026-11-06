@@ -1,4 +1,6 @@
-import type { Config, EnhancerOptions } from "@redux-devtools/extension";
+import type { EnhancerOptions } from "@redux-devtools/extension";
+import { clone } from "remeda";
+import { unwrap } from "solid-js/store";
 import { match } from "ts-pattern";
 import type { Enhancer, Event, Middleware } from "./types";
 
@@ -17,33 +19,60 @@ type DevToolsMessages<S> =
   | { type: "DISPATCH"; payload: { type: "TOGGLE_ACTION" }; state: string };
 
 type DevTools<S> = {
-  connect: (options: Config) => DevTools<S>;
-  subscribe: (cb: (message: DevToolsMessages<S>) => void) => void;
+  subscribe: (cb: (message: DevToolsMessages<S>) => void) => (() => void) | undefined;
+  unsubscribe: () => void;
   init: (state: S) => void;
-  send: (event: Event, state: S, options?: Config, instanceId?: string) => void;
+  send: (event: Event | null, state: S | NextLiftedState<S>) => void;
 };
+
+export type DevToolsOptions = EnhancerOptions & { instanceId: string };
 
 //TODO: Try yo implement TOGGLE_ACTION, LOCK_CHANGES
 export const devtools =
-  <S>(options: EnhancerOptions & { instanceId: string }): Enhancer<S> =>
+  <S>(options: DevToolsOptions): Enhancer<S> =>
   (store) => {
-    if (!window?.__REDUX_DEVTOOLS_EXTENSION__) return store;
+    if (typeof window === "undefined" || !window.__REDUX_DEVTOOLS_EXTENSION__) return store;
 
-    const devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect(options) as unknown as DevTools<S>;
+    let disposed = false;
+    let devTools: DevTools<S> | undefined;
+    let unsubscribeMessages: (() => void) | undefined;
+    let storeSubscription: ReturnType<typeof store.subscribe> | undefined;
 
-    store.subscribe(({ state, event }) => devTools?.send(event, state, options));
+    store.onDispose(() => {
+      disposed = true;
+      storeSubscription?.unsubscribe();
+      try {
+        unsubscribeMessages?.();
+      } finally {
+        // Per-connection cleanup. The extension's global disconnect() would
+        // disconnect unrelated chart/application stores too.
+        devTools?.unsubscribe();
+      }
+    });
+    if (disposed) return store;
 
-    devTools?.subscribe((message) => {
+    const connection = window.__REDUX_DEVTOOLS_EXTENSION__.connect(
+      options,
+    ) as unknown as DevTools<S>;
+    devTools = connection;
+    if (disposed) {
+      connection.unsubscribe();
+      return store;
+    }
+
+    const snapshot = () => clone(unwrap(store.state));
+    const unsubscribe = connection.subscribe((message) => {
+      if (disposed) return;
       match(message)
         .with({ type: "ACTION" }, ({ payload }) => store.dispatch(JSON.parse(payload)))
         .with({ type: "DISPATCH" }, (event) => {
           match(event)
             .with({ payload: { type: "COMMIT" } }, () => {
-              devTools.init(store.state);
+              connection.init(snapshot());
             })
             .with({ payload: { type: "RESET" } }, () => {
-              store.setState(store.initialState);
-              devTools.init(store.initialState);
+              store.setState(clone(store.initialState));
+              if (!disposed) connection.init(snapshot());
             })
             .with({ payload: { type: "ROLLBACK" } }, ({ state }) => {
               store.setState(JSON.parse(state));
@@ -55,16 +84,28 @@ export const devtools =
               store.setState(JSON.parse(state)),
             )
             .with({ payload: { type: "IMPORT_STATE" } }, ({ payload: { nextLiftedState } }) => {
-              const lastComputedState = nextLiftedState.computedStates.at(-1) as { state: S };
-              store.setState(lastComputedState.state);
-              devTools.send(null as unknown as Event, nextLiftedState as S, options);
+              const lastComputedState = nextLiftedState.computedStates.at(-1);
+              if (!lastComputedState) return;
+              store.setState(clone(lastComputedState.state));
+              if (!disposed) connection.send(null, clone(nextLiftedState));
             })
             .otherwise(() => {});
         })
         .otherwise(() => {});
     });
+    unsubscribeMessages = unsubscribe;
+    if (disposed) {
+      unsubscribe?.();
+      return store;
+    }
 
-    devTools.init(store.initialState);
+    connection.init(snapshot());
+    if (disposed) return store;
+    storeSubscription = store.subscribe(({ state, event }) => {
+      if (!disposed) connection.send(event, clone(unwrap(state)));
+    });
+    // subscribe() can synchronously replay an event and trigger disposal.
+    if (disposed) storeSubscription.unsubscribe();
 
     return store;
   };

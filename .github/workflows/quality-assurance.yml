@@ -24,8 +24,8 @@ jobs:
       - name: Biome Lint + Format
         run: bun run check
 
-      - name: Assuring build is working
-        run: bun run build
+      - name: Validate build and packed consumer declarations and runtime
+        run: bun run test:package
 
       - name: Validate current commit (last commit)
         if: github.event_name == 'push'
@@ -46,4 +46,4 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Unit Test Suite
-        run: bun test
+        run: bun run test

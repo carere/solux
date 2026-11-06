@@ -111,6 +111,12 @@ export type StoreOption<S> = {
  */
 export type Store<S> = {
   /**
+   * Closes store subscriptions and releases registered enhancer resources once.
+   * Later core dispatches and subscriptions are ignored. This does not cancel epics
+   * or side effects owned by middleware; those require their own cleanup.
+   */
+  dispose: () => void;
+  /**
    * Dispatches an event. It is the only way to trigger a state change.
    *
    * The `rootHandler` function, will be called with the current state tree
@@ -134,7 +140,7 @@ export type Store<S> = {
    * @template S The type of the store's state
    * @param listener A callback to be invoked on every dispatch, the state and
    * the event will be available as first argument.
-   * @returns A function to remove this change listener.
+   * @returns A subscription; call `.unsubscribe()` to remove this listener.
    */
   subscribe: <E extends Event>(listener: (value: { state: S; event: E }) => void) => Subscription;
   /**
@@ -146,7 +152,7 @@ export type Store<S> = {
    * @template E The event dispatched
    * @param listener A callback to be invoked on every dispatch, the state and
    * the event will be available as second argument.
-   * @returns A function to remove this change listener.
+   * @returns A subscription; call `.unsubscribe()` to remove this listener.
    */
   subscribeToEvent: <E extends Event>(
     eventCreator: AnyEventCreator<E>,
@@ -164,6 +170,8 @@ export type Store<S> = {
 export type EnhancedStore<S> = Store<S> & {
   initialState: S;
   setState: SetStoreFunction<S>;
+  /** Registers cleanup for this store, or runs it immediately if already disposed. */
+  onDispose: (cleanup: () => void) => void;
 };
 
 /**

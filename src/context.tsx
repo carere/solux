@@ -1,4 +1,10 @@
-import { type Context, createContext, type ParentProps, useContext } from "solid-js";
+import {
+  type Context,
+  createComponent,
+  createContext,
+  type ParentProps,
+  useContext,
+} from "solid-js";
 import type { Store } from "./types";
 
 const StoreContext = createContext<Store<unknown>>();
@@ -12,7 +18,14 @@ const StoreContext = createContext<Store<unknown>>();
  * @returns the provider created with the store passed as argument
  */
 export function SoluxProvider<S>(props: ParentProps<{ store: Store<S> }>) {
-  return <StoreContext.Provider value={props.store}>{props.children}</StoreContext.Provider>;
+  return createComponent(StoreContext.Provider, {
+    get value() {
+      return props.store;
+    },
+    get children() {
+      return props.children;
+    },
+  });
 }
 
 /**
