@@ -53,7 +53,7 @@ also deploys through Workers Builds.
   the deployment config and client-asset binding.
 - `nodejs_compat` for the SSR runtime and request-local Paraglide context.
 - Custom-domain route `solux.carere.dev`.
-- Disabled `workers.dev` and version-preview URLs.
+- Disabled production `workers.dev` URL, with preview URLs enabled as in Gurafu.
 - An explicit `previews` block enabling isolated branch deployments through
   `wrangler preview`.
 
@@ -117,8 +117,9 @@ as an application variable or commit it. See the
 [Builds API reference](https://developers.cloudflare.com/workers/ci-cd/builds/api-reference/).
 
 Branch previews use `wrangler preview` and their own isolated URLs; they do not
-replace the production domain. Production `workers.dev` and version-preview
-URLs remain disabled. Cloudflare reports build results on GitHub. Deleting a
+replace the production domain. The production `workers.dev` URL remains disabled;
+`preview_urls: true` makes branch and version previews accessible. Cloudflare
+reports build results on GitHub. Deleting a
 branch removes its automatically managed Preview.
 
 Merging to `main` is a production action. Do not add a second automatic deployment
