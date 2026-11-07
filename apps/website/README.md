@@ -3,8 +3,8 @@
 Private `@solux/website` workspace: TanStack Solid Start file routes, Solid SSR
 and hydration, and a Cloudflare Worker built by the Cloudflare Vite plugin.
 The unchanged counter and chart examples import public `@carere/solux` exports;
-their source panels import those same files as raw text. The original
-`images/solux.svg` remains the logo and favicon.
+their source panels import those same files as raw text. The compact S mark in
+`images/solux.svg` serves as both logo and favicon.
 
 From the repository root, after `bun install`:
 
@@ -26,17 +26,19 @@ production build can use Bun's runtime.
 
 ## Website identity
 
-Signal Atlas is the selected identity: a navy introduction, Manrope headings,
-and a connected source/state instrument. It applies to the homepage and all
-documentation routes without a query parameter or comparison controls.
-Light/dark mode and English/French localization remain independent.
+Open Space follows the user's Morrow reference: generous white space, Manrope
+headings, violet actions, and a working state example arranged as pastel notes.
+The homepage has a full-width opening; documentation articles retain the
+sidebar and table of contents. The same identity applies to all routes without
+comparison controls. Light/dark mode and English/French localization remain
+independent.
 
 The live counter dispatches public events and derives values through Solid.
 Each dispatch renews the activity cue; reduced motion preserves the update
 without animation. The source panel links to the full running example.
 
-Display fonts are self-hosted with their licenses in `src/fonts/`. The existing
-`images/solux.svg` remains the logo and SVG favicon.
+Display fonts are self-hosted with their licenses in `src/fonts/`. The Solux
+logo is a simple, authored two-stroke S; no generated bitmap assets are used.
 
 Tailwind discovers classes only in `src`, matching the build's source inputs.
 Design-document and sidecar snippets therefore cannot change generated CSS or
@@ -78,7 +80,8 @@ cookie/localStorage persistence; the monitor button restores system mode.
 Action links use Zaidan's exported button variants while keeping typed router
 links and anchor semantics. NativeSelect owns its chevron, reserved end padding,
 and native selection behavior; control sizing and interaction states come from
-the registry. Signal Atlas themes them through semantic color tokens.
+the registry. Open Space themes them through semantic color tokens. The shared
+Button adds an `xl` size for the main homepage actions.
 Only the needed Vega CSS and default zinc tokens are retained. Inter and Geist
 Mono are self-hosted. See [ZAIDAN-NOTICE.md](ZAIDAN-NOTICE.md) for the exact
 upstream commit, source inventory, adaptations and preserved MIT license.

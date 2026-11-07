@@ -1,5 +1,6 @@
 // Adapted from Zaidan src/components/docs-page.tsx; see ../../ZAIDAN-NOTICE.md.
 import { Link } from "@tanstack/solid-router";
+import { ArrowRight } from "lucide-solid";
 import { For, type ParentProps, Show } from "solid-js";
 import { groupName, localizedPages, pageName } from "../content";
 import type { DocPage } from "../docs";
@@ -141,7 +142,7 @@ export function DocsPage(props: { page: DocPage }) {
                             <li>
                               <DocLink href={link.href}>
                                 {link.label}
-                                <span aria-hidden="true">→</span>
+                                <ArrowRight data-icon="inline-end" aria-hidden="true" />
                               </DocLink>
                             </li>
                           )}
@@ -152,6 +153,22 @@ export function DocsPage(props: { page: DocPage }) {
                 )}
               </For>
             </article>
+            <Show when={props.page.slug === "introduction"}>
+              <section class="landing-close" aria-labelledby="landing-close-title">
+                <div>
+                  <h2 id="landing-close-title">{m.landing_close_title()}</h2>
+                  <p>{m.landing_close_description()}</p>
+                </div>
+                <Link
+                  to="/docs/$slug"
+                  params={{ slug: "getting-started" }}
+                  class={buttonVariants({ size: "xl" })}
+                  data-slot="button"
+                >
+                  {m.get_started()} <ArrowRight data-icon="inline-end" aria-hidden="true" />
+                </Link>
+              </section>
+            </Show>
             <nav class="page-pagination" aria-label={m.adjacent()}>
               <Show
                 when={localizedPages()[localizedPages().indexOf(props.page) - 1]}
@@ -169,9 +186,7 @@ export function DocsPage(props: { page: DocPage }) {
                   <DocLink href={`/docs/${next().slug}`}>
                     <span>{m.next()}</span>
                     {pageName(next())}
-                    <span aria-hidden="true" class="pagination-arrow">
-                      →
-                    </span>
+                    <ArrowRight class="pagination-arrow" aria-hidden="true" />
                   </DocLink>
                 )}
               </Show>

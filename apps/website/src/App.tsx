@@ -25,6 +25,7 @@ import { SidebarProvider, SidebarTrigger } from "./registry/ui/sidebar";
 
 export function App(props: ParentProps) {
   const location = useLocation();
+  const isHome = () => location().pathname === "/" || location().pathname === "/docs/introduction";
   const [query, setQuery] = createSignal("");
   const [searchOpen, setSearchOpen] = createSignal(false);
   const results = createMemo(() => searchPages(query()));
@@ -91,8 +92,12 @@ export function App(props: ParentProps) {
     }
   };
   return (
-    <SidebarProvider class="site-shell">
-      <a class="skip-link" href="#main-content">
+    <SidebarProvider class={cn("site-shell", isHome() && "is-home")}>
+      <a
+        class={cn(buttonVariants({ variant: "outline", size: "lg" }), "skip-link")}
+        data-slot="button"
+        href="#main-content"
+      >
         {m.skip_content()}
       </a>
       <header class="site-header">
@@ -102,10 +107,29 @@ export function App(props: ParentProps) {
           data-slot="button"
           aria-label="Solux"
         >
-          <img src={logo} alt="" width="34" height="30" />
+          <img src={logo} alt="" width="32" height="32" />
           <span>solux</span>
         </Link>
-        <span class="header-release">{m.documentation()}</span>
+        <Show when={isHome()} fallback={<span class="header-release">{m.documentation()}</span>}>
+          <nav class="header-nav" aria-label={m.home_navigation()}>
+            <Link
+              to="/docs/$slug"
+              params={{ slug: "getting-started" }}
+              class={buttonVariants({ variant: "ghost", size: "sm" })}
+              data-slot="button"
+            >
+              {m.documentation()}
+            </Link>
+            <Link
+              to="/docs/$slug"
+              params={{ slug: "api-reference" }}
+              class={buttonVariants({ variant: "ghost", size: "sm" })}
+              data-slot="button"
+            >
+              {m.explore_api()}
+            </Link>
+          </nav>
+        </Show>
         <search class="search-area" ref={searchArea}>
           <Input
             ref={searchInput}

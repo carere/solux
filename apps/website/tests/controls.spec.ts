@@ -44,9 +44,7 @@ test("the Zaidan language selector keeps its chevron centered and clear of both 
 test("website actions and action links use Zaidan button primitives", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("button:not(.z-button)")).toHaveCount(0);
-  await expect(
-    page.locator("a:not(.z-button):not(.z-sidebar-menu-button):not(.skip-link)"),
-  ).toHaveCount(0);
+  await expect(page.locator("a:not(.z-button):not(.z-sidebar-menu-button)")).toHaveCount(0);
   const actions = page.locator(".landing-actions a");
   await expect(actions).toHaveCount(2);
   for (const action of await actions.all()) {

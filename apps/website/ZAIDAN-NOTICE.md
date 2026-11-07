@@ -18,6 +18,8 @@ Copied/adapted from https://github.com/carere/zaidan at
 - `src/registry/ui/button.tsx` retains the upstream `buttonVariants` export.
   Router and document links use the same styling recipe as Zaidan's
   `examples/docs/button-render.tsx`; anchor semantics and typed routes are retained.
+  Solux adds an `xl` size (48px) to that component and its Vega styles for the
+  landing-page actions, retaining the shared interaction and focus states.
 - `src/registry/styles/tokens.css` extracts the default light/dark zinc tokens
   and Tailwind theme from `src/styles.css`; `style-vega.css` extracts only Button,
   Input, Native Select, Sheet and Sidebar sections from `src/registry/kobalte/styles/style-vega.css`.

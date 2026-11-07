@@ -61,10 +61,13 @@ parity, localized controls, searchable content, and direct links to articles.
 ## Brand Commitments
 
 The name is Solux; the public package is `@carere/solux`.
-[images/solux.svg](images/solux.svg) is the existing logo and must also serve as
-the documentation website's favicon.
+[images/solux.svg](images/solux.svg) is the compact Solux S mark and also serves
+as the documentation website's favicon. The user authorized simplifying the
+original mesh logo during the Open Space redesign.
 
-Signal Atlas is the selected website identity. Its visual system is documented
+The website follows the spacious, light composition of the user's
+[Morrow reference](https://www.whichai.dev/with-design-skill/sol-6-1/1), with a
+simple mark and Zaidan interface components. Its visual system is documented
 in [the website design guide](apps/website/DESIGN.md).
 
 Use clear, technically precise explanations grounded in actual behavior.

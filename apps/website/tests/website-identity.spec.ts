@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("Signal Atlas server rendering", () => {
+test.describe("Open Space server rendering", () => {
   test.use({ javaScriptEnabled: false });
 
   test("the chosen identity and stylesheet render before JavaScript in both languages", async ({
@@ -14,7 +14,7 @@ test.describe("Signal Atlas server rendering", () => {
       ]);
       const response = await page.goto("/");
       expect(response?.status()).toBe(200);
-      await expect(page.locator("html")).toHaveAttribute("data-design", "atlas");
+      await expect(page.locator("html")).toHaveAttribute("data-design", "open-space");
       await expect(page.locator("html")).toHaveAttribute("lang", locale);
       await expect(page.getByRole("main").getByRole("heading", { level: 1 })).toBeVisible();
       const stylesheet = await page.locator('link[rel="stylesheet"]').first().getAttribute("href");
@@ -32,7 +32,42 @@ test.describe("Signal Atlas server rendering", () => {
   });
 });
 
-test("Signal Atlas keeps its live example and identity across documentation, locale, and theme", async ({
+test("the homepage gives the live example its own space and articles restore documentation navigation", async ({
+  page,
+}, testInfo) => {
+  for (const path of ["/", "/docs/introduction"]) {
+    await page.goto(path);
+    await page.evaluate(() => document.fonts.ready);
+    const demo = page.getByRole("region", { name: "Live counter example", exact: true });
+    await expect(demo).toBeVisible();
+    await expect(page.locator('[data-slot="sidebar-gap"]')).toBeHidden();
+    if (testInfo.project.name === "desktop") {
+      await expect(
+        page.getByRole("navigation", { name: "Documentation", exact: true }),
+      ).toBeHidden();
+      const title = await page.getByRole("main").getByRole("heading", { level: 1 }).boundingBox();
+      const example = await demo.boundingBox();
+      expect(title && example && example.x >= title.x + title.width).toBe(true);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+  }
+
+  await page
+    .locator(".landing-actions")
+    .getByRole("link", { name: "Get started", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/docs\/getting-started$/);
+  await expect(page.getByRole("main")).toBeFocused();
+  if (testInfo.project.name === "desktop") {
+    await expect(
+      page.getByRole("navigation", { name: "Documentation", exact: true }),
+    ).toBeVisible();
+  }
+});
+
+test("Open Space keeps its live example and identity across documentation, locale, and theme", async ({
   page,
 }) => {
   await page.emulateMedia({ colorScheme: "light" });
@@ -51,13 +86,13 @@ test("Signal Atlas keeps its live example and identity across documentation, loc
   await page.locator(".landing-actions").getByRole("link", { name: "Get started" }).click();
   await expect(page).toHaveURL(/\/docs\/getting-started$/);
   await page.reload();
-  await expect(page.locator("html")).toHaveAttribute("data-design", "atlas");
+  await expect(page.locator("html")).toHaveAttribute("data-design", "open-space");
   await page.getByLabel("Language", { exact: true }).selectOption("fr");
   await expect(page.locator("html")).toHaveAttribute("lang", "fr");
   await expect(page).toHaveURL(/\/docs\/getting-started$/);
   await page.getByRole("button", { name: "Changer le thème", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-  await expect(page.locator("html")).toHaveAttribute("data-design", "atlas");
+  await expect(page.locator("html")).toHaveAttribute("data-design", "open-space");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
   );
@@ -67,7 +102,7 @@ test("old comparison URLs cannot select another identity or propagate comparison
   page,
 }) => {
   await page.goto("/?design=workshop");
-  await expect(page.locator("html")).toHaveAttribute("data-design", "atlas");
+  await expect(page.locator("html")).toHaveAttribute("data-design", "open-space");
   await expect(page.locator(".design-comparison")).toHaveCount(0);
   await page.locator(".landing-actions").getByRole("link", { name: "Get started" }).click();
   await expect(page).toHaveURL(/\/docs\/getting-started$/);

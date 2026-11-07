@@ -1,548 +1,884 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-07T14:50:57.470Z",
-  "title": "Design System: Solux website — Signal Atlas",
+  "generatedAt": "2026-11-07T19:24:42.600891+00:00",
+  "title": "Design System: Solux website — Open Space",
   "extensions": {
     "colorMeta": {
-      "signal-blue": {
+      "primary": {
         "role": "primary",
-        "displayName": "Signal blue",
+        "displayName": "Primary",
+        "canonical": "#7655a8",
         "tonalRamp": [
-          "oklch(15% 0.1959 263.70)",
-          "oklch(25% 0.1959 263.70)",
-          "oklch(35% 0.1959 263.70)",
-          "oklch(45% 0.1959 263.70)",
-          "oklch(60% 0.1959 263.70)",
-          "oklch(75% 0.1959 263.70)",
-          "oklch(85% 0.1959 263.70)",
-          "oklch(95% 0.1959 263.70)"
+          "oklch(0.15 0.12973 300.31)",
+          "oklch(0.26 0.12973 300.31)",
+          "oklch(0.38 0.12973 300.31)",
+          "oklch(0.49 0.12973 300.31)",
+          "oklch(0.61 0.12973 300.31)",
+          "oklch(0.72 0.12973 300.31)",
+          "oklch(0.84 0.12973 300.31)",
+          "oklch(0.95 0.12973 300.31)"
         ]
       },
-      "reading-background": {
+      "page": {
         "role": "neutral",
-        "displayName": "Reading paper",
+        "displayName": "Page",
+        "canonical": "#fcfcfa",
         "tonalRamp": [
-          "oklch(15% 0.0029 264.54)",
-          "oklch(25% 0.0029 264.54)",
-          "oklch(35% 0.0029 264.54)",
-          "oklch(45% 0.0029 264.54)",
-          "oklch(60% 0.0029 264.54)",
-          "oklch(75% 0.0029 264.54)",
-          "oklch(85% 0.0029 264.54)",
-          "oklch(95% 0.0029 264.54)"
+          "oklch(0.15 0.00263 106.45)",
+          "oklch(0.26 0.00263 106.45)",
+          "oklch(0.38 0.00263 106.45)",
+          "oklch(0.49 0.00263 106.45)",
+          "oklch(0.61 0.00263 106.45)",
+          "oklch(0.72 0.00263 106.45)",
+          "oklch(0.84 0.00263 106.45)",
+          "oklch(0.95 0.00263 106.45)"
         ]
       },
-      "reading-ink": {
+      "ink": {
         "role": "neutral",
-        "displayName": "Reading ink",
+        "displayName": "Ink",
+        "canonical": "#2d2c32",
         "tonalRamp": [
-          "oklch(15% 0.0498 257.11)",
-          "oklch(25% 0.0498 257.11)",
-          "oklch(35% 0.0498 257.11)",
-          "oklch(45% 0.0498 257.11)",
-          "oklch(60% 0.0498 257.11)",
-          "oklch(75% 0.0498 257.11)",
-          "oklch(85% 0.0498 257.11)",
-          "oklch(95% 0.0498 257.11)"
+          "oklch(0.15 0.01082 293.38)",
+          "oklch(0.26 0.01082 293.38)",
+          "oklch(0.38 0.01082 293.38)",
+          "oklch(0.49 0.01082 293.38)",
+          "oklch(0.61 0.01082 293.38)",
+          "oklch(0.72 0.01082 293.38)",
+          "oklch(0.84 0.01082 293.38)",
+          "oklch(0.95 0.01082 293.38)"
         ]
       },
-      "surface": {
+      "white": {
         "role": "neutral",
-        "displayName": "White surface",
+        "displayName": "White",
+        "canonical": "#ffffff",
         "tonalRamp": [
-          "oklch(15% 0.0000 0.00)",
-          "oklch(25% 0.0000 0.00)",
-          "oklch(35% 0.0000 0.00)",
-          "oklch(45% 0.0000 0.00)",
-          "oklch(60% 0.0000 0.00)",
-          "oklch(75% 0.0000 0.00)",
-          "oklch(85% 0.0000 0.00)",
-          "oklch(95% 0.0000 0.00)"
+          "oklch(0.15 0.00000 0.00)",
+          "oklch(0.26 0.00000 0.00)",
+          "oklch(0.38 0.00000 0.00)",
+          "oklch(0.49 0.00000 0.00)",
+          "oklch(0.61 0.00000 0.00)",
+          "oklch(0.72 0.00000 0.00)",
+          "oklch(0.84 0.00000 0.00)",
+          "oklch(0.95 0.00000 0.00)"
         ]
       },
-      "muted-surface": {
-        "role": "neutral",
-        "displayName": "Muted surface",
+      "lavender": {
+        "role": "secondary",
+        "displayName": "Lavender",
+        "canonical": "#eeebf6",
         "tonalRamp": [
-          "oklch(15% 0.0104 261.79)",
-          "oklch(25% 0.0104 261.79)",
-          "oklch(35% 0.0104 261.79)",
-          "oklch(45% 0.0104 261.79)",
-          "oklch(60% 0.0104 261.79)",
-          "oklch(75% 0.0104 261.79)",
-          "oklch(85% 0.0104 261.79)",
-          "oklch(95% 0.0104 261.79)"
+          "oklch(0.15 0.01500 298.56)",
+          "oklch(0.26 0.01500 298.56)",
+          "oklch(0.38 0.01500 298.56)",
+          "oklch(0.49 0.01500 298.56)",
+          "oklch(0.61 0.01500 298.56)",
+          "oklch(0.72 0.01500 298.56)",
+          "oklch(0.84 0.01500 298.56)",
+          "oklch(0.95 0.01500 298.56)"
+        ]
+      },
+      "lavender-ink": {
+        "role": "secondary",
+        "displayName": "Lavender ink",
+        "canonical": "#62478a",
+        "tonalRamp": [
+          "oklch(0.15 0.10871 300.80)",
+          "oklch(0.26 0.10871 300.80)",
+          "oklch(0.38 0.10871 300.80)",
+          "oklch(0.49 0.10871 300.80)",
+          "oklch(0.61 0.10871 300.80)",
+          "oklch(0.72 0.10871 300.80)",
+          "oklch(0.84 0.10871 300.80)",
+          "oklch(0.95 0.10871 300.80)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#f1eff4",
+        "tonalRamp": [
+          "oklch(0.15 0.00696 304.24)",
+          "oklch(0.26 0.00696 304.24)",
+          "oklch(0.38 0.00696 304.24)",
+          "oklch(0.49 0.00696 304.24)",
+          "oklch(0.61 0.00696 304.24)",
+          "oklch(0.72 0.00696 304.24)",
+          "oklch(0.84 0.00696 304.24)",
+          "oklch(0.95 0.00696 304.24)"
         ]
       },
       "muted-ink": {
         "role": "neutral",
         "displayName": "Muted ink",
+        "canonical": "#706b7a",
         "tonalRamp": [
-          "oklch(15% 0.0434 258.35)",
-          "oklch(25% 0.0434 258.35)",
-          "oklch(35% 0.0434 258.35)",
-          "oklch(45% 0.0434 258.35)",
-          "oklch(60% 0.0434 258.35)",
-          "oklch(75% 0.0434 258.35)",
-          "oklch(85% 0.0434 258.35)",
-          "oklch(95% 0.0434 258.35)"
-        ]
-      },
-      "active-surface": {
-        "role": "neutral",
-        "displayName": "Active navigation fill",
-        "tonalRamp": [
-          "oklch(15% 0.0275 265.45)",
-          "oklch(25% 0.0275 265.45)",
-          "oklch(35% 0.0275 265.45)",
-          "oklch(45% 0.0275 265.45)",
-          "oklch(60% 0.0275 265.45)",
-          "oklch(75% 0.0275 265.45)",
-          "oklch(85% 0.0275 265.45)",
-          "oklch(95% 0.0275 265.45)"
+          "oklch(0.15 0.02384 300.78)",
+          "oklch(0.26 0.02384 300.78)",
+          "oklch(0.38 0.02384 300.78)",
+          "oklch(0.49 0.02384 300.78)",
+          "oklch(0.61 0.02384 300.78)",
+          "oklch(0.72 0.02384 300.78)",
+          "oklch(0.84 0.02384 300.78)",
+          "oklch(0.95 0.02384 300.78)"
         ]
       },
       "border": {
         "role": "neutral",
-        "displayName": "Reading border",
+        "displayName": "Border",
+        "canonical": "#e7e3eb",
         "tonalRamp": [
-          "oklch(15% 0.0211 261.77)",
-          "oklch(25% 0.0211 261.77)",
-          "oklch(35% 0.0211 261.77)",
-          "oklch(45% 0.0211 261.77)",
-          "oklch(60% 0.0211 261.77)",
-          "oklch(75% 0.0211 261.77)",
-          "oklch(85% 0.0211 261.77)",
-          "oklch(95% 0.0211 261.77)"
+          "oklch(0.15 0.01153 308.32)",
+          "oklch(0.26 0.01153 308.32)",
+          "oklch(0.38 0.01153 308.32)",
+          "oklch(0.49 0.01153 308.32)",
+          "oklch(0.61 0.01153 308.32)",
+          "oklch(0.72 0.01153 308.32)",
+          "oklch(0.84 0.01153 308.32)",
+          "oklch(0.95 0.01153 308.32)"
         ]
       },
-      "navy-field": {
+      "input-border": {
         "role": "neutral",
-        "displayName": "Navy field",
+        "displayName": "Input border",
+        "canonical": "#d4cbdc",
         "tonalRamp": [
-          "oklch(15% 0.0622 258.36)",
-          "oklch(25% 0.0622 258.36)",
-          "oklch(35% 0.0622 258.36)",
-          "oklch(45% 0.0622 258.36)",
-          "oklch(60% 0.0622 258.36)",
-          "oklch(75% 0.0622 258.36)",
-          "oklch(85% 0.0622 258.36)",
-          "oklch(95% 0.0622 258.36)"
+          "oklch(0.15 0.02517 309.33)",
+          "oklch(0.26 0.02517 309.33)",
+          "oklch(0.38 0.02517 309.33)",
+          "oklch(0.49 0.02517 309.33)",
+          "oklch(0.61 0.02517 309.33)",
+          "oklch(0.72 0.02517 309.33)",
+          "oklch(0.84 0.02517 309.33)",
+          "oklch(0.95 0.02517 309.33)"
         ]
       },
-      "ivory": {
+      "sage": {
+        "role": "secondary",
+        "displayName": "Sage",
+        "canonical": "#e5edda",
+        "tonalRamp": [
+          "oklch(0.15 0.02662 125.62)",
+          "oklch(0.26 0.02662 125.62)",
+          "oklch(0.38 0.02662 125.62)",
+          "oklch(0.49 0.02662 125.62)",
+          "oklch(0.61 0.02662 125.62)",
+          "oklch(0.72 0.02662 125.62)",
+          "oklch(0.84 0.02662 125.62)",
+          "oklch(0.95 0.02662 125.62)"
+        ]
+      },
+      "sage-ink": {
+        "role": "secondary",
+        "displayName": "Sage ink",
+        "canonical": "#46543b",
+        "tonalRamp": [
+          "oklch(0.15 0.04361 131.82)",
+          "oklch(0.26 0.04361 131.82)",
+          "oklch(0.38 0.04361 131.82)",
+          "oklch(0.49 0.04361 131.82)",
+          "oklch(0.61 0.04361 131.82)",
+          "oklch(0.72 0.04361 131.82)",
+          "oklch(0.84 0.04361 131.82)",
+          "oklch(0.95 0.04361 131.82)"
+        ]
+      },
+      "sage-muted": {
+        "role": "secondary",
+        "displayName": "Sage muted",
+        "canonical": "#59694c",
+        "tonalRamp": [
+          "oklch(0.15 0.04858 131.48)",
+          "oklch(0.26 0.04858 131.48)",
+          "oklch(0.38 0.04858 131.48)",
+          "oklch(0.49 0.04858 131.48)",
+          "oklch(0.61 0.04858 131.48)",
+          "oklch(0.72 0.04858 131.48)",
+          "oklch(0.84 0.04858 131.48)",
+          "oklch(0.95 0.04858 131.48)"
+        ]
+      },
+      "butter": {
+        "role": "secondary",
+        "displayName": "Butter",
+        "canonical": "#faf2d9",
+        "tonalRamp": [
+          "oklch(0.15 0.03389 92.27)",
+          "oklch(0.26 0.03389 92.27)",
+          "oklch(0.38 0.03389 92.27)",
+          "oklch(0.49 0.03389 92.27)",
+          "oklch(0.61 0.03389 92.27)",
+          "oklch(0.72 0.03389 92.27)",
+          "oklch(0.84 0.03389 92.27)",
+          "oklch(0.95 0.03389 92.27)"
+        ]
+      },
+      "butter-ink": {
+        "role": "secondary",
+        "displayName": "Butter ink",
+        "canonical": "#665733",
+        "tonalRamp": [
+          "oklch(0.15 0.05592 87.60)",
+          "oklch(0.26 0.05592 87.60)",
+          "oklch(0.38 0.05592 87.60)",
+          "oklch(0.49 0.05592 87.60)",
+          "oklch(0.61 0.05592 87.60)",
+          "oklch(0.72 0.05592 87.60)",
+          "oklch(0.84 0.05592 87.60)",
+          "oklch(0.95 0.05592 87.60)"
+        ]
+      },
+      "code": {
         "role": "neutral",
-        "displayName": "Ivory",
+        "displayName": "Code",
+        "canonical": "#2e273b",
         "tonalRamp": [
-          "oklch(15% 0.0159 110.55)",
-          "oklch(25% 0.0159 110.55)",
-          "oklch(35% 0.0159 110.55)",
-          "oklch(45% 0.0159 110.55)",
-          "oklch(60% 0.0159 110.55)",
-          "oklch(75% 0.0159 110.55)",
-          "oklch(85% 0.0159 110.55)",
-          "oklch(95% 0.0159 110.55)"
-        ]
-      },
-      "field-muted": {
-        "role": "neutral",
-        "displayName": "Muted field ink",
-        "tonalRamp": [
-          "oklch(15% 0.0452 259.94)",
-          "oklch(25% 0.0452 259.94)",
-          "oklch(35% 0.0452 259.94)",
-          "oklch(45% 0.0452 259.94)",
-          "oklch(60% 0.0452 259.94)",
-          "oklch(75% 0.0452 259.94)",
-          "oklch(85% 0.0452 259.94)",
-          "oklch(95% 0.0452 259.94)"
-        ]
-      },
-      "field-border": {
-        "role": "neutral",
-        "displayName": "Field rule",
-        "tonalRamp": [
-          "oklch(15% 0.0631 258.00)",
-          "oklch(25% 0.0631 258.00)",
-          "oklch(35% 0.0631 258.00)",
-          "oklch(45% 0.0631 258.00)",
-          "oklch(60% 0.0631 258.00)",
-          "oklch(75% 0.0631 258.00)",
-          "oklch(85% 0.0631 258.00)",
-          "oklch(95% 0.0631 258.00)"
-        ]
-      },
-      "pale-action": {
-        "role": "primary",
-        "displayName": "Pale action blue",
-        "tonalRamp": [
-          "oklch(15% 0.0375 256.97)",
-          "oklch(25% 0.0375 256.97)",
-          "oklch(35% 0.0375 256.97)",
-          "oklch(45% 0.0375 256.97)",
-          "oklch(60% 0.0375 256.97)",
-          "oklch(75% 0.0375 256.97)",
-          "oklch(85% 0.0375 256.97)",
-          "oklch(95% 0.0375 256.97)"
-        ]
-      },
-      "field-focus": {
-        "role": "neutral",
-        "displayName": "Pale field focus",
-        "tonalRamp": [
-          "oklch(15% 0.0804 256.66)",
-          "oklch(25% 0.0804 256.66)",
-          "oklch(35% 0.0804 256.66)",
-          "oklch(45% 0.0804 256.66)",
-          "oklch(60% 0.0804 256.66)",
-          "oklch(75% 0.0804 256.66)",
-          "oklch(85% 0.0804 256.66)",
-          "oklch(95% 0.0804 256.66)"
-        ]
-      },
-      "code-background": {
-        "role": "neutral",
-        "displayName": "Code navy",
-        "tonalRamp": [
-          "oklch(15% 0.0636 256.11)",
-          "oklch(25% 0.0636 256.11)",
-          "oklch(35% 0.0636 256.11)",
-          "oklch(45% 0.0636 256.11)",
-          "oklch(60% 0.0636 256.11)",
-          "oklch(75% 0.0636 256.11)",
-          "oklch(85% 0.0636 256.11)",
-          "oklch(95% 0.0636 256.11)"
+          "oklch(0.15 0.03701 300.16)",
+          "oklch(0.26 0.03701 300.16)",
+          "oklch(0.38 0.03701 300.16)",
+          "oklch(0.49 0.03701 300.16)",
+          "oklch(0.61 0.03701 300.16)",
+          "oklch(0.72 0.03701 300.16)",
+          "oklch(0.84 0.03701 300.16)",
+          "oklch(0.95 0.03701 300.16)"
         ]
       },
       "code-ink": {
         "role": "neutral",
         "displayName": "Code ink",
+        "canonical": "#f4effb",
         "tonalRamp": [
-          "oklch(15% 0.0153 257.20)",
-          "oklch(25% 0.0153 257.20)",
-          "oklch(35% 0.0153 257.20)",
-          "oklch(45% 0.0153 257.20)",
-          "oklch(60% 0.0153 257.20)",
-          "oklch(75% 0.0153 257.20)",
-          "oklch(85% 0.0153 257.20)",
-          "oklch(95% 0.0153 257.20)"
+          "oklch(0.15 0.01677 304.80)",
+          "oklch(0.26 0.01677 304.80)",
+          "oklch(0.38 0.01677 304.80)",
+          "oklch(0.49 0.01677 304.80)",
+          "oklch(0.61 0.01677 304.80)",
+          "oklch(0.72 0.01677 304.80)",
+          "oklch(0.84 0.01677 304.80)",
+          "oklch(0.95 0.01677 304.80)"
         ]
       },
-      "instrument-source": {
+      "code-highlight": {
         "role": "neutral",
-        "displayName": "Instrument source navy",
+        "displayName": "Code highlight",
+        "canonical": "#493b5b",
         "tonalRamp": [
-          "oklch(15% 0.0752 257.24)",
-          "oklch(25% 0.0752 257.24)",
-          "oklch(35% 0.0752 257.24)",
-          "oklch(45% 0.0752 257.24)",
-          "oklch(60% 0.0752 257.24)",
-          "oklch(75% 0.0752 257.24)",
-          "oklch(85% 0.0752 257.24)",
-          "oklch(95% 0.0752 257.24)"
+          "oklch(0.15 0.05602 303.93)",
+          "oklch(0.26 0.05602 303.93)",
+          "oklch(0.38 0.05602 303.93)",
+          "oklch(0.49 0.05602 303.93)",
+          "oklch(0.61 0.05602 303.93)",
+          "oklch(0.72 0.05602 303.93)",
+          "oklch(0.84 0.05602 303.93)",
+          "oklch(0.95 0.05602 303.93)"
         ]
       },
-      "dark-primary": {
-        "role": "primary",
-        "displayName": "Dark signal blue",
-        "tonalRamp": [
-          "oklch(15% 0.1057 258.30)",
-          "oklch(25% 0.1057 258.30)",
-          "oklch(35% 0.1057 258.30)",
-          "oklch(45% 0.1057 258.30)",
-          "oklch(60% 0.1057 258.30)",
-          "oklch(75% 0.1057 258.30)",
-          "oklch(85% 0.1057 258.30)",
-          "oklch(95% 0.1057 258.30)"
-        ]
-      },
-      "dark-primary-ink": {
+      "code-muted": {
         "role": "neutral",
-        "displayName": "Dark action ink",
+        "displayName": "Code muted",
+        "canonical": "#cfbedf",
         "tonalRamp": [
-          "oklch(15% 0.0741 258.03)",
-          "oklch(25% 0.0741 258.03)",
-          "oklch(35% 0.0741 258.03)",
-          "oklch(45% 0.0741 258.03)",
-          "oklch(60% 0.0741 258.03)",
-          "oklch(75% 0.0741 258.03)",
-          "oklch(85% 0.0741 258.03)",
-          "oklch(95% 0.0741 258.03)"
+          "oklch(0.15 0.04903 308.44)",
+          "oklch(0.26 0.04903 308.44)",
+          "oklch(0.38 0.04903 308.44)",
+          "oklch(0.49 0.04903 308.44)",
+          "oklch(0.61 0.04903 308.44)",
+          "oklch(0.72 0.04903 308.44)",
+          "oklch(0.84 0.04903 308.44)",
+          "oklch(0.95 0.04903 308.44)"
         ]
       },
-      "dark-background": {
+      "syntax-keyword": {
         "role": "neutral",
-        "displayName": "Dark reading paper",
+        "displayName": "Syntax keyword",
+        "canonical": "#c4b5fd",
         "tonalRamp": [
-          "oklch(15% 0.0378 258.83)",
-          "oklch(25% 0.0378 258.83)",
-          "oklch(35% 0.0378 258.83)",
-          "oklch(45% 0.0378 258.83)",
-          "oklch(60% 0.0378 258.83)",
-          "oklch(75% 0.0378 258.83)",
-          "oklch(85% 0.0378 258.83)",
-          "oklch(95% 0.0378 258.83)"
+          "oklch(0.15 0.10129 293.57)",
+          "oklch(0.26 0.10129 293.57)",
+          "oklch(0.38 0.10129 293.57)",
+          "oklch(0.49 0.10129 293.57)",
+          "oklch(0.61 0.10129 293.57)",
+          "oklch(0.72 0.10129 293.57)",
+          "oklch(0.84 0.10129 293.57)",
+          "oklch(0.95 0.10129 293.57)"
+        ]
+      },
+      "syntax-string": {
+        "role": "neutral",
+        "displayName": "Syntax string",
+        "canonical": "#a7f3d0",
+        "tonalRamp": [
+          "oklch(0.15 0.08949 164.15)",
+          "oklch(0.26 0.08949 164.15)",
+          "oklch(0.38 0.08949 164.15)",
+          "oklch(0.49 0.08949 164.15)",
+          "oklch(0.61 0.08949 164.15)",
+          "oklch(0.72 0.08949 164.15)",
+          "oklch(0.84 0.08949 164.15)",
+          "oklch(0.95 0.08949 164.15)"
+        ]
+      },
+      "syntax-number": {
+        "role": "neutral",
+        "displayName": "Syntax number",
+        "canonical": "#fcd34d",
+        "tonalRamp": [
+          "oklch(0.15 0.15342 91.61)",
+          "oklch(0.26 0.15342 91.61)",
+          "oklch(0.38 0.15342 91.61)",
+          "oklch(0.49 0.15342 91.61)",
+          "oklch(0.61 0.15342 91.61)",
+          "oklch(0.72 0.15342 91.61)",
+          "oklch(0.84 0.15342 91.61)",
+          "oklch(0.95 0.15342 91.61)"
+        ]
+      },
+      "selection": {
+        "role": "neutral",
+        "displayName": "Selection",
+        "canonical": "#ddd0ef",
+        "tonalRamp": [
+          "oklch(0.15 0.04434 304.46)",
+          "oklch(0.26 0.04434 304.46)",
+          "oklch(0.38 0.04434 304.46)",
+          "oklch(0.49 0.04434 304.46)",
+          "oklch(0.61 0.04434 304.46)",
+          "oklch(0.72 0.04434 304.46)",
+          "oklch(0.84 0.04434 304.46)",
+          "oklch(0.95 0.04434 304.46)"
+        ]
+      },
+      "selection-ink": {
+        "role": "neutral",
+        "displayName": "Selection ink",
+        "canonical": "#342345",
+        "tonalRamp": [
+          "oklch(0.15 0.06331 305.92)",
+          "oklch(0.26 0.06331 305.92)",
+          "oklch(0.38 0.06331 305.92)",
+          "oklch(0.49 0.06331 305.92)",
+          "oklch(0.61 0.06331 305.92)",
+          "oklch(0.72 0.06331 305.92)",
+          "oklch(0.84 0.06331 305.92)",
+          "oklch(0.95 0.06331 305.92)"
+        ]
+      },
+      "dark-page": {
+        "role": "neutral",
+        "displayName": "Dark page",
+        "canonical": "#211e27",
+        "tonalRamp": [
+          "oklch(0.15 0.01745 300.33)",
+          "oklch(0.26 0.01745 300.33)",
+          "oklch(0.38 0.01745 300.33)",
+          "oklch(0.49 0.01745 300.33)",
+          "oklch(0.61 0.01745 300.33)",
+          "oklch(0.72 0.01745 300.33)",
+          "oklch(0.84 0.01745 300.33)",
+          "oklch(0.95 0.01745 300.33)"
         ]
       },
       "dark-ink": {
         "role": "neutral",
-        "displayName": "Dark reading ink",
+        "displayName": "Dark ink",
+        "canonical": "#f0ecf4",
         "tonalRamp": [
-          "oklch(15% 0.0132 262.38)",
-          "oklch(25% 0.0132 262.38)",
-          "oklch(35% 0.0132 262.38)",
-          "oklch(45% 0.0132 262.38)",
-          "oklch(60% 0.0132 262.38)",
-          "oklch(75% 0.0132 262.38)",
-          "oklch(85% 0.0132 262.38)",
-          "oklch(95% 0.0132 262.38)"
+          "oklch(0.15 0.01144 308.33)",
+          "oklch(0.26 0.01144 308.33)",
+          "oklch(0.38 0.01144 308.33)",
+          "oklch(0.49 0.01144 308.33)",
+          "oklch(0.61 0.01144 308.33)",
+          "oklch(0.72 0.01144 308.33)",
+          "oklch(0.84 0.01144 308.33)",
+          "oklch(0.95 0.01144 308.33)"
         ]
       },
       "dark-surface": {
         "role": "neutral",
         "displayName": "Dark surface",
+        "canonical": "#2d2835",
         "tonalRamp": [
-          "oklch(15% 0.0539 258.63)",
-          "oklch(25% 0.0539 258.63)",
-          "oklch(35% 0.0539 258.63)",
-          "oklch(45% 0.0539 258.63)",
-          "oklch(60% 0.0539 258.63)",
-          "oklch(75% 0.0539 258.63)",
-          "oklch(85% 0.0539 258.63)",
-          "oklch(95% 0.0539 258.63)"
+          "oklch(0.15 0.02435 302.44)",
+          "oklch(0.26 0.02435 302.44)",
+          "oklch(0.38 0.02435 302.44)",
+          "oklch(0.49 0.02435 302.44)",
+          "oklch(0.61 0.02435 302.44)",
+          "oklch(0.72 0.02435 302.44)",
+          "oklch(0.84 0.02435 302.44)",
+          "oklch(0.95 0.02435 302.44)"
         ]
       },
-      "dark-muted-surface": {
-        "role": "neutral",
-        "displayName": "Dark muted surface",
+      "dark-primary": {
+        "role": "primary",
+        "displayName": "Dark primary",
+        "canonical": "#c8afea",
         "tonalRamp": [
-          "oklch(15% 0.0517 252.83)",
-          "oklch(25% 0.0517 252.83)",
-          "oklch(35% 0.0517 252.83)",
-          "oklch(45% 0.0517 252.83)",
-          "oklch(60% 0.0517 252.83)",
-          "oklch(75% 0.0517 252.83)",
-          "oklch(85% 0.0517 252.83)",
-          "oklch(95% 0.0517 252.83)"
+          "oklch(0.15 0.08619 303.85)",
+          "oklch(0.26 0.08619 303.85)",
+          "oklch(0.38 0.08619 303.85)",
+          "oklch(0.49 0.08619 303.85)",
+          "oklch(0.61 0.08619 303.85)",
+          "oklch(0.72 0.08619 303.85)",
+          "oklch(0.84 0.08619 303.85)",
+          "oklch(0.95 0.08619 303.85)"
+        ]
+      },
+      "dark-primary-ink": {
+        "role": "primary",
+        "displayName": "Dark primary ink",
+        "canonical": "#2c1f3c",
+        "tonalRamp": [
+          "oklch(0.15 0.05474 303.61)",
+          "oklch(0.26 0.05474 303.61)",
+          "oklch(0.38 0.05474 303.61)",
+          "oklch(0.49 0.05474 303.61)",
+          "oklch(0.61 0.05474 303.61)",
+          "oklch(0.72 0.05474 303.61)",
+          "oklch(0.84 0.05474 303.61)",
+          "oklch(0.95 0.05474 303.61)"
+        ]
+      },
+      "dark-secondary": {
+        "role": "secondary",
+        "displayName": "Dark secondary",
+        "canonical": "#42354f",
+        "tonalRamp": [
+          "oklch(0.15 0.04714 306.96)",
+          "oklch(0.26 0.04714 306.96)",
+          "oklch(0.38 0.04714 306.96)",
+          "oklch(0.49 0.04714 306.96)",
+          "oklch(0.61 0.04714 306.96)",
+          "oklch(0.72 0.04714 306.96)",
+          "oklch(0.84 0.04714 306.96)",
+          "oklch(0.95 0.04714 306.96)"
+        ]
+      },
+      "dark-secondary-ink": {
+        "role": "secondary",
+        "displayName": "Dark secondary ink",
+        "canonical": "#eadcf8",
+        "tonalRamp": [
+          "oklch(0.15 0.04043 307.97)",
+          "oklch(0.26 0.04043 307.97)",
+          "oklch(0.38 0.04043 307.97)",
+          "oklch(0.49 0.04043 307.97)",
+          "oklch(0.61 0.04043 307.97)",
+          "oklch(0.72 0.04043 307.97)",
+          "oklch(0.84 0.04043 307.97)",
+          "oklch(0.95 0.04043 307.97)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark muted",
+        "canonical": "#342d3c",
+        "tonalRamp": [
+          "oklch(0.15 0.02804 306.01)",
+          "oklch(0.26 0.02804 306.01)",
+          "oklch(0.38 0.02804 306.01)",
+          "oklch(0.49 0.02804 306.01)",
+          "oklch(0.61 0.02804 306.01)",
+          "oklch(0.72 0.02804 306.01)",
+          "oklch(0.84 0.02804 306.01)",
+          "oklch(0.95 0.02804 306.01)"
         ]
       },
       "dark-muted-ink": {
         "role": "neutral",
         "displayName": "Dark muted ink",
+        "canonical": "#beb4c7",
         "tonalRamp": [
-          "oklch(15% 0.0352 253.75)",
-          "oklch(25% 0.0352 253.75)",
-          "oklch(35% 0.0352 253.75)",
-          "oklch(45% 0.0352 253.75)",
-          "oklch(60% 0.0352 253.75)",
-          "oklch(75% 0.0352 253.75)",
-          "oklch(85% 0.0352 253.75)",
-          "oklch(95% 0.0352 253.75)"
+          "oklch(0.15 0.02871 309.14)",
+          "oklch(0.26 0.02871 309.14)",
+          "oklch(0.38 0.02871 309.14)",
+          "oklch(0.49 0.02871 309.14)",
+          "oklch(0.61 0.02871 309.14)",
+          "oklch(0.72 0.02871 309.14)",
+          "oklch(0.84 0.02871 309.14)",
+          "oklch(0.95 0.02871 309.14)"
+        ]
+      },
+      "dark-accent": {
+        "role": "secondary",
+        "displayName": "Dark accent",
+        "canonical": "#41344e",
+        "tonalRamp": [
+          "oklch(0.15 0.04726 306.94)",
+          "oklch(0.26 0.04726 306.94)",
+          "oklch(0.38 0.04726 306.94)",
+          "oklch(0.49 0.04726 306.94)",
+          "oklch(0.61 0.04726 306.94)",
+          "oklch(0.72 0.04726 306.94)",
+          "oklch(0.84 0.04726 306.94)",
+          "oklch(0.95 0.04726 306.94)"
+        ]
+      },
+      "dark-accent-ink": {
+        "role": "secondary",
+        "displayName": "Dark accent ink",
+        "canonical": "#e8d9f7",
+        "tonalRamp": [
+          "oklch(0.15 0.04340 307.93)",
+          "oklch(0.26 0.04340 307.93)",
+          "oklch(0.38 0.04340 307.93)",
+          "oklch(0.49 0.04340 307.93)",
+          "oklch(0.61 0.04340 307.93)",
+          "oklch(0.72 0.04340 307.93)",
+          "oklch(0.84 0.04340 307.93)",
+          "oklch(0.95 0.04340 307.93)"
         ]
       },
       "dark-border": {
         "role": "neutral",
-        "displayName": "Dark reading border",
+        "displayName": "Dark border",
+        "canonical": "#49404f",
         "tonalRamp": [
-          "oklch(15% 0.0520 253.15)",
-          "oklch(25% 0.0520 253.15)",
-          "oklch(35% 0.0520 253.15)",
-          "oklch(45% 0.0520 253.15)",
-          "oklch(60% 0.0520 253.15)",
-          "oklch(75% 0.0520 253.15)",
-          "oklch(85% 0.0520 253.15)",
-          "oklch(95% 0.0520 253.15)"
+          "oklch(0.15 0.02758 311.83)",
+          "oklch(0.26 0.02758 311.83)",
+          "oklch(0.38 0.02758 311.83)",
+          "oklch(0.49 0.02758 311.83)",
+          "oklch(0.61 0.02758 311.83)",
+          "oklch(0.72 0.02758 311.83)",
+          "oklch(0.84 0.02758 311.83)",
+          "oklch(0.95 0.02758 311.83)"
+        ]
+      },
+      "dark-input-border": {
+        "role": "neutral",
+        "displayName": "Dark input border",
+        "canonical": "#685876",
+        "tonalRamp": [
+          "oklch(0.15 0.05088 308.75)",
+          "oklch(0.26 0.05088 308.75)",
+          "oklch(0.38 0.05088 308.75)",
+          "oklch(0.49 0.05088 308.75)",
+          "oklch(0.61 0.05088 308.75)",
+          "oklch(0.72 0.05088 308.75)",
+          "oklch(0.84 0.05088 308.75)",
+          "oklch(0.95 0.05088 308.75)"
+        ]
+      },
+      "dark-lavender": {
+        "role": "secondary",
+        "displayName": "Dark lavender",
+        "canonical": "#342b42",
+        "tonalRamp": [
+          "oklch(0.15 0.04211 301.95)",
+          "oklch(0.26 0.04211 301.95)",
+          "oklch(0.38 0.04211 301.95)",
+          "oklch(0.49 0.04211 301.95)",
+          "oklch(0.61 0.04211 301.95)",
+          "oklch(0.72 0.04211 301.95)",
+          "oklch(0.84 0.04211 301.95)",
+          "oklch(0.95 0.04211 301.95)"
+        ]
+      },
+      "dark-sage": {
+        "role": "secondary",
+        "displayName": "Dark sage",
+        "canonical": "#2d392c",
+        "tonalRamp": [
+          "oklch(0.15 0.02765 142.91)",
+          "oklch(0.26 0.02765 142.91)",
+          "oklch(0.38 0.02765 142.91)",
+          "oklch(0.49 0.02765 142.91)",
+          "oklch(0.61 0.02765 142.91)",
+          "oklch(0.72 0.02765 142.91)",
+          "oklch(0.84 0.02765 142.91)",
+          "oklch(0.95 0.02765 142.91)"
+        ]
+      },
+      "dark-sage-ink": {
+        "role": "secondary",
+        "displayName": "Dark sage ink",
+        "canonical": "#e1ebd5",
+        "tonalRamp": [
+          "oklch(0.15 0.03113 127.05)",
+          "oklch(0.26 0.03113 127.05)",
+          "oklch(0.38 0.03113 127.05)",
+          "oklch(0.49 0.03113 127.05)",
+          "oklch(0.61 0.03113 127.05)",
+          "oklch(0.72 0.03113 127.05)",
+          "oklch(0.84 0.03113 127.05)",
+          "oklch(0.95 0.03113 127.05)"
+        ]
+      },
+      "dark-sage-muted": {
+        "role": "secondary",
+        "displayName": "Dark sage muted",
+        "canonical": "#beceb1",
+        "tonalRamp": [
+          "oklch(0.15 0.04323 131.00)",
+          "oklch(0.26 0.04323 131.00)",
+          "oklch(0.38 0.04323 131.00)",
+          "oklch(0.49 0.04323 131.00)",
+          "oklch(0.61 0.04323 131.00)",
+          "oklch(0.72 0.04323 131.00)",
+          "oklch(0.84 0.04323 131.00)",
+          "oklch(0.95 0.04323 131.00)"
+        ]
+      },
+      "dark-butter": {
+        "role": "secondary",
+        "displayName": "Dark butter",
+        "canonical": "#3c3527",
+        "tonalRamp": [
+          "oklch(0.15 0.02532 84.42)",
+          "oklch(0.26 0.02532 84.42)",
+          "oklch(0.38 0.02532 84.42)",
+          "oklch(0.49 0.02532 84.42)",
+          "oklch(0.61 0.02532 84.42)",
+          "oklch(0.72 0.02532 84.42)",
+          "oklch(0.84 0.02532 84.42)",
+          "oklch(0.95 0.02532 84.42)"
+        ]
+      },
+      "dark-butter-ink": {
+        "role": "secondary",
+        "displayName": "Dark butter ink",
+        "canonical": "#eadfbe",
+        "tonalRamp": [
+          "oklch(0.15 0.04519 91.75)",
+          "oklch(0.26 0.04519 91.75)",
+          "oklch(0.38 0.04519 91.75)",
+          "oklch(0.49 0.04519 91.75)",
+          "oklch(0.61 0.04519 91.75)",
+          "oklch(0.72 0.04519 91.75)",
+          "oklch(0.84 0.04519 91.75)",
+          "oklch(0.95 0.04519 91.75)"
+        ]
+      },
+      "dark-selection": {
+        "role": "neutral",
+        "displayName": "Dark selection",
+        "canonical": "#73558e",
+        "tonalRamp": [
+          "oklch(0.15 0.09410 307.53)",
+          "oklch(0.26 0.09410 307.53)",
+          "oklch(0.38 0.09410 307.53)",
+          "oklch(0.49 0.09410 307.53)",
+          "oklch(0.61 0.09410 307.53)",
+          "oklch(0.72 0.09410 307.53)",
+          "oklch(0.84 0.09410 307.53)",
+          "oklch(0.95 0.09410 307.53)"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Manrope introduction headline; mobile has a smaller fluid ramp."
+        "purpose": "Manrope 500: the desktop homepage opening; mobile uses its documented responsive ramp."
       },
       "headline": {
-        "displayName": "Article headline",
-        "purpose": "Manrope article titles at weight 550."
+        "displayName": "Headline",
+        "purpose": "Manrope 500: ordinary documentation article titles."
       },
       "title": {
-        "displayName": "Section title",
-        "purpose": "Article section headings; introduction sections use line height 1.4."
-      },
-      "instrument-title": {
-        "displayName": "Instrument title",
-        "purpose": "Functional workbench headings, above smaller supporting text."
+        "displayName": "Title",
+        "purpose": "Manrope 600: ordinary documentation section headings."
       },
       "body": {
-        "displayName": "Reading body",
-        "purpose": "Inter article prose, capped at 74ch."
+        "displayName": "Body",
+        "purpose": "Inter Variable: article prose within 74ch."
+      },
+      "body-large": {
+        "displayName": "Body large",
+        "purpose": "Inter Variable: the desktop introductory description."
       },
       "action": {
-        "displayName": "Action label",
-        "purpose": "Introductory primary and text actions."
+        "displayName": "Action",
+        "purpose": "Inter Variable 500: Zaidan controls and action links."
       },
       "code": {
-        "displayName": "Documentation source",
-        "purpose": "Geist Mono documentation panels; instrument source uses line height 1.9."
+        "displayName": "Code",
+        "purpose": "Geist Mono Variable: documentation source and commands."
       },
-      "instrument-value": {
-        "displayName": "State value",
-        "purpose": "Tabular state and derived outputs in Manrope."
+      "counter-value": {
+        "displayName": "Counter value",
+        "purpose": "Manrope 500: the homepage counter and derived value, with tabular numerals."
       }
     },
     "shadows": [
       {
-        "name": "search-results",
-        "value": "0 14px 32px #06152c26",
+        "name": "counter-lift",
+        "value": "0 14px 36px #382d4d12",
+        "purpose": "Soft lift for the homepage working counter."
+      },
+      {
+        "name": "search-float",
+        "value": "0 14px 38px #30233e1a",
         "purpose": "Floating search results."
+      },
+      {
+        "name": "primitive-xs",
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "Zaidan outline buttons, inputs, and native selects."
       }
     ],
     "motion": [
       {
-        "name": "event-flow-pulse",
+        "name": "event-pulse",
         "value": "480ms cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Each real dispatch animates the event-flow background from color-mix(in srgb, var(--hero-foreground) 18%, transparent) to transparent, canceling any prior pulse. Reduced motion skips it; cleanup cancels it."
+        "purpose": "Real dispatch pulses the event-note background from an 18% hero-foreground/transparent mix to transparent; prior animation and cleanup are cancelled; reduced motion skips it."
+      },
+      {
+        "name": "control-transition",
+        "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Compiled default Zaidan control transitions."
+      },
+      {
+        "name": "sheet-transition",
+        "value": "200ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Zaidan Sheet content transition."
       },
       {
         "name": "reduced-motion-duration",
         "value": "0.01ms",
-        "purpose": "Existing global reduced-motion override for registry animation and transition duration."
+        "purpose": "Global animation and transition duration override; dispatch data still updates."
       }
     ],
     "breakpoints": [
       {
-        "name": "mobile-max",
+        "name": "mobile",
         "value": "767px"
       },
       {
-        "name": "tablet-min",
-        "value": "768px"
-      },
-      {
-        "name": "scopes-stack-max",
+        "name": "stacked-desktop",
         "value": "1000px"
       },
       {
-        "name": "tablet-max",
+        "name": "auxiliary-header-nav",
         "value": "1130px"
       },
       {
-        "name": "contents-hide-max",
+        "name": "table-of-contents",
         "value": "1279px"
       },
       {
-        "name": "demo-caption-hide-max",
-        "value": "1439px"
+        "name": "wide-home-close",
+        "value": "1440px"
       }
     ]
   },
   "components": [
     {
-      "name": "Counter action",
+      "name": "Primary landing action",
       "kind": "button",
-      "refersTo": "action-primary",
-      "description": "A real counter control uses the shared primary palette; the application supplies dispatch behavior.",
-      "html": "<button class=\"ds-counter-action\" type=\"button\">Increment</button>",
-      "css": ".ds-counter-action{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 10px;border:1px solid var(--primary,#285bd5);border-radius:var(--radius,.875rem);background:var(--primary,#285bd5);color:var(--primary-foreground,#fff);font:500 .75rem/1.42857 \"Inter Variable\",sans-serif;transition:all .15s}.ds-counter-action:hover:not(:disabled){border-color:var(--foreground,#1a2b43);background:var(--foreground,#1a2b43);color:var(--background,#f5f6f8)}.ds-counter-action:focus-visible{outline:2px solid var(--ring,#285bd5);outline-offset:4px;box-shadow:0 0 0 3px color-mix(in srgb,var(--ring,#285bd5) 50%,transparent)}.ds-counter-action:active:not(:disabled){translate:0 1px}.ds-counter-action:disabled{opacity:.5;pointer-events:none}@media(max-width:767px){.ds-counter-action{min-height:44px;padding-inline:12px}}@media(prefers-reduced-motion:reduce){.ds-counter-action{transition-duration:.01ms}}"
+      "refersTo": "button-primary-xl",
+      "description": "Primary landing action using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-primary\">Get started <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:var(--primary,#7655a8);color:var(--primary-foreground,#fff);height:48px;padding:0 20px;gap:12px;}.ds-primary:hover{background:color-mix(in oklab,var(--primary,#7655a8) 80%,transparent);}.ds-primary:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-primary:active:not([aria-haspopup]){transform:translateY(1px)}.ds-primary:disabled{pointer-events:none;opacity:.5}.ds-primary svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-primary{transition-duration:.01ms}}"
     },
     {
-      "name": "Introduction primary action",
+      "name": "Outline action",
       "kind": "button",
-      "refersTo": "action-inverse",
-      "description": "Pale blue action against the invariant navy field; hover becomes white and focus stays pale blue.",
-      "html": "<div class=\"ds-atlas-field\"><a class=\"ds-atlas-primary\" href=\"/docs/getting-started\">Get started <svg aria-hidden=\"true\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a></div>",
-      "css": ".ds-atlas-field{padding:22px;background:#102442}.ds-atlas-primary{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:10px 18px;border-radius:var(--radius,.875rem);font:600 .875rem/1.7 \"Inter Variable\",sans-serif;text-decoration:none;background:#d6e7ff;color:#102442}.ds-atlas-primary:hover{background:#fff}.ds-atlas-primary:focus-visible{outline:2px solid #a9cdff;outline-offset:4px}"
+      "refersTo": "button-outline",
+      "description": "Outline action using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-outline\">Decrement −1</button>",
+      "css": ".ds-outline{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:var(--background,#fcfcfa);color:var(--foreground,#2d2c32);border-color:var(--border,#e7e3eb);box-shadow:0 1px 2px 0 rgb(0 0 0 / .05);}.ds-outline:hover{background:var(--muted,#f1eff4);color:var(--foreground,#2d2c32);}.ds-outline:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-outline:active:not([aria-haspopup]){transform:translateY(1px)}.ds-outline:disabled{pointer-events:none;opacity:.5}.ds-outline svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-outline{transition-duration:.01ms}}:host-context(.dark) .ds-outline{background:color-mix(in oklab,var(--input,#685876) 30%,transparent);border-color:var(--input,#685876)}:host-context(.dark) .ds-outline:hover{background:color-mix(in oklab,var(--input,#685876) 50%,transparent)}"
     },
     {
-      "name": "Introduction text action",
+      "name": "Secondary action",
       "kind": "button",
-      "refersTo": "action-text",
-      "description": "An ivory secondary path on the navy field, underlined on hover.",
-      "html": "<a class=\"ds-text-action\" href=\"/docs/api-reference\">Explore the API <svg aria-hidden=\"true\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a>",
-      "css": ".ds-text-action{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:10px 18px;font:600 .875rem/1.7 \"Inter Variable\",sans-serif;text-decoration:none;padding:0;color:var(--hero-foreground,#f3f4e8)}.ds-text-action:hover{text-decoration:underline}.ds-text-action:focus-visible{outline:2px solid #a9cdff;outline-offset:4px;}"
+      "refersTo": "button-secondary",
+      "description": "Secondary action using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-secondary\">Reset counter</button>",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:var(--secondary,#eeebf6);color:var(--secondary-foreground,#62478a);}.ds-secondary:hover{background:color-mix(in oklch,var(--secondary,#eeebf6),var(--foreground,#2d2c32) 5%);}.ds-secondary:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-secondary:active:not([aria-haspopup]){transform:translateY(1px)}.ds-secondary:disabled{pointer-events:none;opacity:.5}.ds-secondary svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-secondary{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Ghost action",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Ghost action using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-ghost\">Documentation</button>",
+      "css": ".ds-ghost{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:transparent;color:var(--foreground,#2d2c32);}.ds-ghost:hover{background:var(--muted,#f1eff4);color:var(--foreground,#2d2c32);}.ds-ghost:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-ghost:active:not([aria-haspopup]){transform:translateY(1px)}.ds-ghost:disabled{pointer-events:none;opacity:.5}.ds-ghost svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-ghost{transition-duration:.01ms}}:host-context(.dark) .ds-ghost:hover{background:color-mix(in oklab,var(--muted,#342d3c) 50%,transparent)}"
+    },
+    {
+      "name": "Action link",
+      "kind": "button",
+      "refersTo": "button-link",
+      "description": "Action link using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-link\">Explore the API <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:transparent;color:var(--primary,#7655a8);text-underline-offset:4px;height:40px;}.ds-link:hover{text-decoration:underline;}.ds-link:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-link:active:not([aria-haspopup]){transform:translateY(1px)}.ds-link:disabled{pointer-events:none;opacity:.5}.ds-link svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-link{transition-duration:.01ms}}"
     },
     {
       "name": "Search field",
       "kind": "input",
       "refersTo": "search-field",
-      "description": "The header’s muted search surface; full-width input with a reserved keyboard-hint area.",
-      "html": "<div class=\"ds-search\"><input class=\"ds-search-input\" type=\"search\" aria-label=\"Search documentation\" placeholder=\"Search documentation\"><kbd class=\"ds-search-key\">⌘ K</kbd></div>",
-      "css": ".ds-search{position:relative;width:min(360px,100%);color:var(--foreground,#1a2b43)}.ds-search-input{width:100%;height:38px;padding:4px 32px 4px 10px;border:1px solid var(--border,#d2dae8);border-radius:var(--radius,.875rem);background:var(--muted,#e9edf4);color:inherit;font:400 .875rem \"Inter Variable\",sans-serif;transition:color .15s,box-shadow .15s}.ds-search-input::placeholder{color:var(--muted-foreground,#52627a)}.ds-search-input:focus-visible{outline:2px solid var(--ring,#285bd5);outline-offset:4px;border-color:var(--ring,#285bd5);box-shadow:0 0 0 3px color-mix(in srgb,var(--ring,#285bd5) 50%,transparent)}.ds-search-key{position:absolute;right:12px;top:9px;font-size:.7rem;color:var(--muted-foreground,#52627a);pointer-events:none}@media(max-width:767px){.ds-search-input{height:40px;font-size:1rem}}@media(prefers-reduced-motion:reduce){.ds-search-input{transition-duration:.01ms}}"
+      "description": "Zaidan search Input with the keyboard-hint space reserved.",
+      "html": "<label class=\"ds-search\"><input type=\"search\" aria-label=\"Search documentation\" placeholder=\"Search documentation…\"><kbd>/</kbd></label>",
+      "css": ".ds-search{position:relative;display:block;width:300px;max-width:100%}.ds-search input{height:36px;min-width:0;width:100%;padding:4px 10px;border:1px solid var(--input,#d4cbdc);border-radius:calc(var(--radius,.875rem) - 2px);background:transparent;color:var(--foreground,#2d2c32);font:400 14px/20px \"Inter Variable\",sans-serif;outline:none;box-shadow:0 1px 2px 0 rgb(0 0 0 / .05);transition:color .15s cubic-bezier(.4,0,.2,1),box-shadow .15s cubic-bezier(.4,0,.2,1);padding-right:32px}.ds-search input::placeholder{color:var(--muted-foreground,#706b7a)}.ds-search input:hover{border-color:var(--input,#d4cbdc)}.ds-search input:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-search input:disabled{pointer-events:none;opacity:.5}.ds-search kbd{position:absolute;right:12px;top:9px;color:var(--muted-foreground,#706b7a);font:11.2px/16px \"Geist Mono Variable\",monospace;pointer-events:none}@media(max-width:767px){.ds-search input{font-size:16px}}@media(prefers-reduced-motion:reduce){.ds-search input{transition-duration:.01ms}}:host-context(.dark) .ds-search input{background:color-mix(in oklab,var(--input,#685876) 30%,transparent)}"
     },
     {
-      "name": "Sidebar navigation",
+      "name": "Language select",
+      "kind": "input",
+      "refersTo": "language-select",
+      "description": "Native language selection with the Zaidan chevron and focus treatment.",
+      "html": "<div class=\"ds-select\"><select aria-label=\"Language\"><option selected>English</option><option>Français</option></select><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></div>",
+      "css": ".ds-select{position:relative;display:inline-block}.ds-select select{height:36px;min-width:0;width:100%;padding:4px 10px;border:1px solid var(--input,#d4cbdc);border-radius:calc(var(--radius,.875rem) - 2px);background:transparent;color:var(--foreground,#2d2c32);font:400 14px/20px \"Inter Variable\",sans-serif;outline:none;box-shadow:0 1px 2px 0 rgb(0 0 0 / .05);transition:color .15s cubic-bezier(.4,0,.2,1),box-shadow .15s cubic-bezier(.4,0,.2,1);appearance:none;padding-right:32px;cursor:pointer}.ds-select select:hover{border-color:var(--input,#d4cbdc)}.ds-select select:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-select select:disabled{pointer-events:none;opacity:.5}.ds-select svg{position:absolute;right:10px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:var(--muted-foreground,#706b7a);pointer-events:none}@media(prefers-reduced-motion:reduce){.ds-select select{transition-duration:.01ms}}:host-context(.dark) .ds-select select{background:color-mix(in oklab,var(--input,#685876) 30%,transparent)}:host-context(.dark) .ds-select select:hover{background:color-mix(in oklab,var(--input,#685876) 50%,transparent)}"
+    },
+    {
+      "name": "Documentation navigation",
       "kind": "nav",
-      "description": "Primary ink and accent fill mark the active article; shared rounded corners and visible focus carry through both themes.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Documentation\"><a class=\"ds-nav-item\" href=\"/docs/getting-started\" aria-current=\"page\">Getting started</a><a class=\"ds-nav-item\" href=\"/docs/events-and-slices\">Events and slices</a></nav>",
-      "css": ".ds-nav{display:grid;gap:4px;font:400 .8125rem \"Inter Variable\",sans-serif}.ds-nav-item{display:flex;align-items:center;min-height:34px;padding:8px;border-radius:var(--radius,.875rem);color:var(--sidebar-foreground,#1a2b43);text-decoration:none}.ds-nav-item:hover{background:var(--sidebar-accent,#e0e9fc);color:var(--sidebar-accent-foreground,#214ca1)}.ds-nav-item[aria-current=page]{background:var(--accent,#e0e9fc);color:var(--primary,#285bd5);font-weight:650}.ds-nav-item:focus-visible{outline:2px solid var(--ring,#285bd5);outline-offset:4px;}@media(max-width:767px){.ds-nav-item{min-height:40px}}"
+      "description": "Zaidan sidebar rows with a semantic active state; article routes keep this navigation.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Documentation\"><a href=\"#\" aria-current=\"page\">Get started</a><a href=\"#\">Events and slices</a><a href=\"#\">Reactive state</a></nav>",
+      "css": ".ds-nav{display:grid;gap:4px;width:240px;font:400 13px/20px \"Inter Variable\",sans-serif}.ds-nav a{display:flex;align-items:center;min-height:36px;padding:8px;border-radius:calc(var(--radius,.875rem) - 2px);color:var(--sidebar-foreground,#2d2c32);text-decoration:none;outline:none}.ds-nav a:hover,.ds-nav a:active,.ds-nav a[aria-current=page]{background:var(--sidebar-accent,#eeebf6);color:var(--sidebar-accent-foreground,#62478a)}.ds-nav a[aria-current=page]{font-weight:650}.ds-nav a:focus-visible{box-shadow:0 0 0 2px var(--sidebar-ring,#7655a8)}"
     },
     {
       "name": "Documentation note",
       "kind": "card",
       "refersTo": "note",
-      "description": "A flat, muted callout with an accent label and compact explanatory prose.",
-      "html": "<aside class=\"ds-note\"><strong class=\"ds-note-label\">Store ownership</strong><p class=\"ds-note-copy\">The store creator owns disposal.</p></aside>",
-      "css": ".ds-note{padding:20px 22px;border-radius:var(--radius,.875rem);background:var(--muted,#e9edf4);color:var(--foreground,#1a2b43);font-family:\"Inter Variable\",sans-serif}.ds-note-label{font-size:.75rem;color:var(--primary,#285bd5)}.ds-note-copy{margin:5px 0 0;font-size:.8125rem;line-height:1.8}"
+      "description": "A flat lavender note for contextual reading guidance.",
+      "html": "<aside class=\"ds-note\"><strong>Keep in mind</strong><p>The creator owns the store’s lifetime.</p></aside>",
+      "css": ".ds-note{padding:22px 24px;border:0;border-radius:14px;background:var(--lavender,#eeebf6);color:var(--foreground,#2d2c32);font-family:\"Inter Variable\",sans-serif}.ds-note strong{color:var(--primary,#7655a8);font-size:12px}.ds-note p{margin:5px 0 0;font-size:13px;line-height:1.8}"
     },
     {
-      "name": "Source region",
-      "kind": "custom",
+      "name": "Documentation source panel",
+      "kind": "card",
       "refersTo": "source-panel",
-      "description": "The instrument’s navy source half has selectable, horizontally scrollable code. Documentation code panels use the deeper shared code background.",
-      "html": "<section class=\"ds-source\"><div class=\"ds-source-heading\"><h3 class=\"ds-source-title\">Source</h3><span>counter.ts</span></div><pre class=\"ds-source-code\" tabindex=\"0\"><code>builder.addHandler(\n  increment, (state, { payload }) =&gt; {\n    state.value += payload;\n  },\n);</code></pre></section>",
-      "css": ".ds-source{display:flex;flex-direction:column;justify-content:center;padding:26px;background:#1b365c;color:var(--code-foreground,#eef5ff)}.ds-source-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:15px;font:400 .6875rem \"Inter Variable\",sans-serif;color:#b8cdeb}.ds-source-title{margin:0;font-size:.75rem;font-weight:550}.ds-source-code{margin:0;max-width:100%;overflow-x:auto;font:.8125rem/1.9 var(--font-mono,\"Geist Mono Variable\",monospace);tab-size:2;scrollbar-color:#54739a var(--code,#0d2442)}.ds-source-code:focus-visible{outline:2px solid #a9cdff;outline-offset:4px}@media(max-width:767px){.ds-source{padding:20px 18px;border-top:1px solid var(--hero-border,#3d5476)}.ds-source-code{font-size:.75rem}}"
-    },
-    {
-      "name": "Live state readout",
-      "kind": "custom",
-      "description": "A static styling sample of the real counter’s paired state and derived value; the application supplies the store and event behavior.",
-      "html": "<div class=\"ds-readout\"><div class=\"ds-reading\"><span class=\"ds-reading-label\">state.counter.value</span><output class=\"ds-reading-value\" aria-label=\"Counter value\">1</output></div><div class=\"ds-reading\"><span class=\"ds-reading-label\">createMemo(() =&gt; value * 2)</span><output class=\"ds-reading-value\" aria-label=\"Doubled value\">2</output></div></div>",
-      "css": ".ds-readout{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:18px;background:var(--surface,#fff);color:var(--foreground,#1a2b43)}.ds-reading+.ds-reading{padding-left:25px;border-left:1px solid var(--border,#d2dae8)}.ds-reading-label{display:block;font:.6875rem/1.6 var(--font-mono,\"Geist Mono Variable\",monospace);color:var(--muted-foreground,#52627a);overflow-wrap:anywhere}.ds-reading-value{display:block;margin-top:5px;font:600 3rem/1.2 var(--font-heading,\"Manrope\",sans-serif);letter-spacing:-.035em;font-variant-numeric:tabular-nums}@media(max-width:767px){.ds-reading+.ds-reading{padding-left:16px}}"
-    },
-    {
-      "name": "Event-flow step",
-      "kind": "custom",
-      "description": "A static sample of the active event stage. The application updates labels and renews a 480ms pulse per real dispatch; reduced motion skips the pulse.",
-      "html": "<div class=\"ds-flow\"><div class=\"ds-flow-step\" data-active=\"true\"><span class=\"ds-flow-label\">Event</span><code class=\"ds-flow-code\">counter/increment</code></div></div>",
-      "css": ".ds-flow{border-block:1px solid var(--hero-border,#3d5476);color:var(--hero-foreground,#f3f4e8);background:var(--hero-background,#102442)}.ds-flow-step{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;padding:16px 12px;text-align:center;font:.8125rem/1.6 \"Inter Variable\",sans-serif}.ds-flow-step[data-active=true]{color:#d5e5ff;background:color-mix(in srgb,var(--hero-foreground,#f3f4e8) 7%,transparent)}.ds-flow-label,.ds-flow-code{color:var(--hero-muted,#bacce9);font-size:.6875rem;overflow-wrap:anywhere}.ds-flow-code{font-family:var(--font-mono,\"Geist Mono Variable\",monospace)}@media(max-width:767px){.ds-flow{padding-block:6px}.ds-flow-step{display:grid;grid-template-columns:86px minmax(0,1fr);gap:10px;align-items:baseline;padding:9px 12px;text-align:left}.ds-flow-label,.ds-flow-code{font-size:.75rem;overflow-wrap:normal}.ds-flow-code{white-space:normal}}"
+      "description": "Selectable source on the stable plum code surface, with a Zaidan-style copy action.",
+      "html": "<figure class=\"ds-code\"><figcaption><span>counter.ts</span><button>Copy code</button></figcaption><pre tabindex=\"0\"><code>state.value += payload;</code></pre></figure>",
+      "css": ".ds-code{margin:0;overflow:hidden;border-radius:14px;background:var(--code,#2e273b);color:var(--code-foreground,#f4effb)}.ds-code figcaption{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px;border-bottom:1px solid #ffffff1f;font:400 12px/1.5 \"Inter Variable\",sans-serif}.ds-code figcaption>span{color:var(--code-number,#cfbedf)}.ds-code button{height:32px;padding:0 10px;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);background:transparent;color:inherit;font:500 14px/20px \"Inter Variable\",sans-serif;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1)}.ds-code button:hover{background:var(--code-highlight,#493b5b)}.ds-code button:focus-visible{border-color:#c8afea;box-shadow:0 0 0 3px #c8afea80}.ds-code button:active{transform:translateY(1px)}.ds-code pre{margin:0;padding:21px;overflow-x:auto;font:400 13px/1.85 \"Geist Mono Variable\",monospace;tab-size:2}.ds-code pre:focus-visible{outline:2px solid #c8afea;outline-offset:-4px}.ds-code code{font:inherit}@media(prefers-reduced-motion:reduce){.ds-code button{transition-duration:.01ms}}"
     }
   ],
   "narrative": {
-    "northStar": "Signal Atlas",
-    "overview": "Signal Atlas is the selected Solux website identity. It pairs deep navy fields and ivory Manrope headings with a light, precise reading environment. Blue actions, fine rules, and rounded instruments make the relationships between source and state visible.\n\nThe system serves developer reading and inspection. Inter carries prose and interface text; Geist Mono distinguishes source, commands, and state paths. Color fields and aligned regions provide structure, while real dispatch activity supplies the authored motion.",
+    "northStar": "Open Space",
+    "overview": "Open Space gives developers room to understand state. A continuous near-white ground, dark rounded headings, and restrained violet actions frame real code and reactive values. Lavender, sage, and pale-yellow surfaces give related information a recognizable place without turning every region into a card.\n\nThe system combines generous editorial spacing with precise documentation. Manrope carries headings and the brand; Inter carries reading and controls; Geist Mono carries source. The informal, slightly rotated notes belong to the live-example composition, while article pages retain an orderly reading shell.",
     "keyCharacteristics": [
-      "Navy and ivory identify the instrument field in both light and dark modes.",
-      "Manrope headings, Inter reading text, and Geist Mono source have distinct roles.",
-      "Functional panels use rounded boundaries, tonal separation, and fine rules.",
-      "State feedback reflects real events and respects reduced motion."
+      "Near-white space and charcoal type establish the light identity; semantic plum tones carry dark mode.",
+      "Manrope headings, Inter prose, and Geist Mono source keep their distinct roles.",
+      "Lavender, sage, and pale-yellow fields organize functional content with restrained depth.",
+      "Zaidan owns control states; authored motion follows real dispatch activity."
     ],
     "rules": [
       {
-        "name": "The Independent Settings Rule",
-        "body": "Every route uses the static Atlas identity. Light/dark mode and English/French language remain independent settings; colors resolve through the semantic custom properties.",
+        "name": "The Semantic Color Rule",
+        "body": "Resolve light and dark surfaces through the implemented semantic properties. Theme and language are independent settings; neither selects another visual identity.",
         "section": "colors"
       },
       {
         "name": "The Reading Face Rule",
-        "body": "Use Manrope for headings and the brand, Inter for reading and controls, and Geist Mono for source. Keep code selectable and horizontally scrollable when its content needs it.",
+        "body": "Use Manrope for headings and the brand, Inter for prose and controls, and Geist Mono for source. Preserve selectable, keyboard-scrollable code.",
         "section": "typography"
       },
       {
-        "name": "The Structural Depth Rule",
-        "body": "Distinguish source, state, reading, and floating regions with their implemented surface, border, and field roles. Use floating elevation for popovers and overlays.",
+        "name": "The Functional Depth Rule",
+        "body": "Use tonal separation for ordinary content and soft elevation for floating results or the working counter. Keep depth subordinate to reading and interaction.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** carry Signal Atlas across the homepage and documentation.",
-      "**Do** resolve reading-surface colors and corners through the semantic tokens.",
-      "**Do** preserve visible focus, reduced-motion behavior, and English/French parity.",
-      "**Do** connect visual activity to real events and keep source inspectable."
+      "**Do** carry Open Space across the homepage and documentation using the semantic palette.",
+      "**Do** use Zaidan components and exported recipes for all controls and links, preserving native anchors and typed router links.",
+      "**Do** preserve visible focus, keyboard access, English/French parity, and reduced-motion behavior.",
+      "**Do** keep source inspectable and connect authored activity to real state updates."
     ],
     "donts": [
-      "**Don't** change the identity when changing language or light/dark mode.",
-      "**Don't** replace the existing Solux logo or SVG favicon.",
-      "**Don't** use the display face for reading prose or code.",
-      "**Don't** promote a first-surface composition into a requirement for every documentation page."
+      "**Don't** reuse the superseded navy-and-ivory Signal Atlas identity.",
+      "**Don't** use Manrope for reading prose or code.",
+      "**Don't** turn the homepage's rotated-note composition into a requirement for every article.",
+      "**Don't** replace readable source or working controls with a decorative image."
     ]
   }
 }

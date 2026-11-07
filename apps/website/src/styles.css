@@ -89,9 +89,6 @@ main:focus {
   top: 8px;
   left: 8px;
   z-index: 100;
-  padding: 12px 18px;
-  background: var(--background);
-  border: 1px solid var(--border);
   transform: translateY(-160%);
 }
 .skip-link:focus {
@@ -402,6 +399,10 @@ pre {
   padding: 10px 0;
   border-bottom: 1px solid var(--border);
   text-decoration: none;
+}
+.related-links svg {
+  width: 16px;
+  height: 16px;
 }
 .table-scroll {
   overflow-x: auto;

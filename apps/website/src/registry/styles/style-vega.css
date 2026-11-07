@@ -44,6 +44,11 @@
   @apply h-10 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2;
 }
 
+/* Solux extension: a spacious landing-page action using the same Button states. */
+.z-button-size-xl {
+  @apply h-12 gap-3 px-5;
+}
+
 .z-button-size-icon-xs {
   @apply size-6 rounded-[min(var(--radius-md),8px)] in-data-[slot=button-group]:rounded-md [&_svg:not([class*='size-'])]:size-3;
 }

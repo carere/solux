@@ -22,6 +22,7 @@ const buttonVariants = cva(
         xs: "z-button-size-xs",
         sm: "z-button-size-sm",
         lg: "z-button-size-lg",
+        xl: "z-button-size-xl",
         icon: "z-button-size-icon",
         "icon-xs": "z-button-size-icon-xs",
         "icon-sm": "z-button-size-icon-sm",
