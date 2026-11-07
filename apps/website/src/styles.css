@@ -69,12 +69,20 @@
 html:not(.dark) {
   color-scheme: light;
 }
-:focus-visible {
+:focus-visible:not([data-slot]) {
   outline: 2px solid var(--primary);
   outline-offset: 4px;
 }
 main:focus {
   outline: none;
+}
+.doc-link {
+  display: inline;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  white-space: normal;
+  user-select: text;
 }
 .skip-link {
   position: fixed;
@@ -127,20 +135,6 @@ main:focus {
   gap: 6px;
   margin-left: auto;
 }
-.header-controls select {
-  background: var(--background);
-  color: var(--foreground);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 6px 4px;
-  font-size: 0.75rem;
-}
-.github-link {
-  font-size: 0.8125rem;
-  color: var(--foreground);
-  margin-right: 12px;
-  text-decoration: none;
-}
 .search-area {
   position: relative;
   width: min(360px, 34vw);
@@ -148,7 +142,6 @@ main:focus {
 }
 .search-area input {
   padding-right: 32px;
-  background: var(--muted);
 }
 .search-area kbd {
   position: absolute;
@@ -187,10 +180,6 @@ main:focus {
   text-decoration: none;
   font-size: 0.8125rem;
   color: var(--foreground);
-}
-.search-result:hover,
-.search-result:focus {
-  background: var(--accent);
 }
 .search-result span {
   color: var(--muted-foreground);
@@ -286,38 +275,6 @@ h1.intro-title {
   margin: 0 0 26px;
   max-width: 66ch;
 }
-.intro-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
-  font-size: 0.8125rem;
-  margin: 28px 0 44px;
-}
-.intro-links a {
-  text-decoration: none;
-  font-weight: 600;
-}
-.primary,
-.primary.button-link {
-  background: var(--primary);
-  color: var(--background);
-  border-color: var(--primary);
-}
-.primary:hover:not(:disabled),
-.primary.button-link:hover {
-  background: var(--foreground);
-  color: var(--background);
-  border-color: var(--foreground);
-}
-.button-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 18px;
-  padding: 9px 17px;
-  border-radius: 6px;
-  line-height: 1.7;
-}
 .doc-section {
   margin: 44px 0 0;
 }
@@ -400,18 +357,6 @@ pre {
 }
 .code-panel :where(figcaption) > span {
   color: #a1a1aa;
-}
-.code-panel button {
-  border: 1px solid #ffffff38;
-  color: #f4f4f5;
-  background: transparent;
-  padding: 4px 8px;
-  font-size: 0.6875rem;
-  white-space: nowrap;
-}
-.code-panel button:hover {
-  background: #ffffff12;
-  border-color: #a1a1aa;
 }
 .code-scroll {
   overflow-x: auto;
@@ -698,10 +643,6 @@ td {
   padding: 0;
   gap: 6px;
 }
-.chart-scope button {
-  font-size: 0.6875rem;
-  padding: 5px 9px;
-}
 .scope-state {
   display: block;
   font-size: 0.625rem;
@@ -812,9 +753,6 @@ td {
     grid-row: 1;
     gap: 1px;
   }
-  .header-controls select {
-    max-width: 92px;
-  }
   .search-area {
     grid-row: 2;
     grid-column: 1 / -1;
@@ -860,9 +798,6 @@ td {
   .code-panel pre {
     font-size: 0.6875rem;
     padding: 16px;
-  }
-  .button-row button {
-    min-height: 40px;
   }
   .not-found {
     padding: 40px 22px;

@@ -14,11 +14,13 @@ import logo from "../../../images/solux.svg";
 import { DocsSidebar } from "./components/docs-sidebar";
 import { ModeSwitcher } from "./components/mode-switcher";
 import { pageName, searchPages } from "./content";
+import { cn } from "./lib/utils";
 import * as m from "./paraglide/messages";
 import { getLocale, setLocale } from "./paraglide/runtime";
 import { useColorMode } from "./registry/components/color-mode";
-import { Button } from "./registry/ui/button";
+import { Button, buttonVariants } from "./registry/ui/button";
 import { Input } from "./registry/ui/input";
+import { NativeSelect, NativeSelectOption } from "./registry/ui/native-select";
 import { SidebarProvider, SidebarTrigger } from "./registry/ui/sidebar";
 
 export function App(props: ParentProps) {
@@ -94,7 +96,12 @@ export function App(props: ParentProps) {
         {m.skip_content()}
       </a>
       <header class="site-header">
-        <Link to="/" class="brand" aria-label="Solux">
+        <Link
+          to="/"
+          class={cn(buttonVariants({ variant: "ghost", size: null }), "brand")}
+          data-slot="button"
+          aria-label="Solux"
+        >
           <img src={logo} alt="" width="34" height="30" />
           <span>solux</span>
         </Link>
@@ -124,7 +131,11 @@ export function App(props: ParentProps) {
               <For each={results()}>
                 {(page, index) => (
                   <Link
-                    class="search-result"
+                    class={cn(
+                      buttonVariants({ variant: "ghost", size: null }),
+                      "search-result whitespace-normal",
+                    )}
+                    data-slot="button"
                     to="/docs/$slug"
                     params={{ slug: page.slug }}
                     onClick={() => {
@@ -151,13 +162,19 @@ export function App(props: ParentProps) {
           </Show>
         </search>
         <div class="header-controls">
-          <a class="github-link" href="https://github.com/carere/solux">
+          <Button
+            as="a"
+            class="github-link"
+            href="https://github.com/carere/solux"
+            variant="ghost"
+            size="sm"
+          >
             GitHub
-          </a>
+          </Button>
           <label class="sr-only" for="locale">
             {m.language()}
           </label>
-          <select
+          <NativeSelect
             id="locale"
             aria-label={m.language()}
             value={getLocale()}
@@ -165,13 +182,13 @@ export function App(props: ParentProps) {
               void setLocale(event.currentTarget.value === "fr" ? "fr" : "en");
             }}
           >
-            <option value="en" selected={getLocale() === "en"}>
+            <NativeSelectOption value="en" selected={getLocale() === "en"}>
               English
-            </option>
-            <option value="fr" selected={getLocale() === "fr"}>
+            </NativeSelectOption>
+            <NativeSelectOption value="fr" selected={getLocale() === "fr"}>
               Français
-            </option>
-          </select>
+            </NativeSelectOption>
+          </NativeSelect>
           <ModeSwitcher />
           <Button
             variant="ghost"

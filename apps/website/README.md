@@ -70,11 +70,15 @@ There is no SPA fallback or static prerender of cookie-personalized HTML.
 
 ## Components and verification
 
-Actual Zaidan registry Button, Input, Sidebar and Kobalte Sheet components are
+Actual Zaidan registry Button, Input, NativeSelect, Sidebar and Kobalte Sheet components are
 copied/adapted and imported by the UI. The responsive sidebar traps focus on
 mobile, dismisses with Escape, and restores focus to its trigger. Zaidan's
 mode switcher supports its D shortcut, system preference tracking and explicit
 cookie/localStorage persistence; the monitor button restores system mode.
+Action links use Zaidan's exported button variants while keeping typed router
+links and anchor semantics. NativeSelect owns its chevron, reserved end padding,
+and native selection behavior; control sizing and interaction states come from
+the registry. Signal Atlas themes them through semantic color tokens.
 Only the needed Vega CSS and default zinc tokens are retained. Inter and Geist
 Mono are self-hosted. See [ZAIDAN-NOTICE.md](ZAIDAN-NOTICE.md) for the exact
 upstream commit, source inventory, adaptations and preserved MIT license.

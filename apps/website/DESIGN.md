@@ -74,6 +74,7 @@ typography:
 rounded:
   panel: "0.875rem"
   instrument: "14px"
+  control: "12px"
 spacing:
   compact: "8px"
   control: "12px"
@@ -85,22 +86,22 @@ components:
   action-primary:
     backgroundColor: "{colors.signal-blue}"
     textColor: "{colors.surface}"
-    rounded: "{rounded.panel}"
+    rounded: "{rounded.control}"
   action-inverse:
     backgroundColor: "{colors.pale-action}"
     textColor: "{colors.navy-field}"
     typography: "{typography.action}"
-    rounded: "{rounded.panel}"
-    padding: "10px 18px"
+    rounded: "{rounded.control}"
+    height: "40px"
   action-text:
-    textColor: "{colors.ivory}"
+    textColor: "{colors.pale-action}"
     typography: "{typography.action}"
   search-field:
-    backgroundColor: "{colors.muted-surface}"
+    backgroundColor: "transparent"
     textColor: "{colors.reading-ink}"
-    rounded: "{rounded.panel}"
+    rounded: "{rounded.control}"
     padding: "4px 32px 4px 10px"
-    height: "38px"
+    height: "36px"
   note:
     backgroundColor: "{colors.muted-surface}"
     textColor: "{colors.reading-ink}"
@@ -192,13 +193,13 @@ Each real dispatch starts a (480ms) event-flow background pulse from an (18%) mi
 
 ## Shapes
 
-General panels and controls use the shared rounded token. The paired instrument has an explicit outer radius of (14px) and clips its source/state regions at that boundary. Notes, code panels, demonstrations, and active navigation reuse the system corner language. Fine rules separate real content regions; small circular markers indicate a live example.
+General panels use the shared rounded token. Zaidan derives control corners from the semantic radius scale; the paired instrument keeps an explicit outer radius of (14px) and clips its source/state regions at that boundary. Fine rules separate real content regions; small circular markers indicate a live example.
 
 ## Components
 
 ### Buttons
 
-Introductory primary and text actions have a minimum height of (44px). The filled primary uses the inverse-action tokens against navy and becomes white on hover. The text action inherits ivory and underlines on hover. Reading-surface primary controls use semantic primary colors and shift to foreground ink on hover. Registry buttons provide disabled opacity, focus rings, and a small pressed translation. Counter controls grow from a minimum height of (36px) to (44px) on mobile.
+Use the pinned Zaidan Button and its exported `buttonVariants` recipe for actions and action links. The introduction uses the large size (40px); standard counter controls use the default size (36px), and icon actions use registry icon sizes. The navy field supplies inverse semantic colors. Zaidan owns padding, icon sizing, borders, hover, disabled states, and focus rings. Keep typed router links and native anchor semantics when applying its link recipe; document text retains its surrounding typography and wrapping.
 
 ### Cards / Containers
 
@@ -206,7 +207,7 @@ Notes use a muted fill, no border, and the documented note padding. Demonstratio
 
 ### Inputs / Fields
 
-Search uses a muted fill, semantic border, shared corners, and a minimum height of (38px), increasing to (40px) on mobile. A keyboard hint sits at the right. Focus uses the ring token; controls on the navy introduction use the pale field-focus color. Search results float below the field and scroll within a maximum height of (65dvh).
+Search uses Zaidan Input with its default height (36px); a keyboard hint reserves space on the right. Language selection uses the pinned Zaidan NativeSelect and NativeSelectOption, including the upstream chevron and end padding. Preserve native keyboard and server-rendered selection behavior. Focus and control states come from the registry and semantic tokens. Search results float below the field and scroll within a maximum height of (65dvh).
 
 ### Navigation
 
@@ -221,6 +222,7 @@ The signature instrument connects a real event, synchronous handler, and reactiv
 ### Do:
 
 - **Do** carry Signal Atlas across the homepage and documentation.
+- **Do** use Zaidan primitives and their documented composition patterns for controls and links; theme semantic tokens instead of recreating control chrome.
 - **Do** resolve reading-surface colors and corners through the semantic tokens.
 - **Do** preserve visible focus, reduced-motion behavior, and English/French parity.
 - **Do** connect visual activity to real events and keep source inspectable.

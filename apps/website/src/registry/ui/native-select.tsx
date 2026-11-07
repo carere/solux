@@ -1,0 +1,42 @@
+// Adapted from Zaidan (MIT, Copyright (c) 2025 Kevin Abatan). See ../../../ZAIDAN-NOTICE.md.
+import { ChevronDown } from "lucide-solid";
+import { type ComponentProps, mergeProps, splitProps } from "solid-js";
+import { cn } from "../../lib/utils";
+
+type NativeSelectProps = ComponentProps<"select"> & {
+  defaultValue?: ComponentProps<"select">["value"];
+  size?: "sm" | "default";
+};
+
+function NativeSelect(props: NativeSelectProps) {
+  const mergedProps = mergeProps({ size: "default" }, props);
+  const [local, others] = splitProps(mergedProps, ["class", "defaultValue", "size", "value"]);
+  return (
+    <div
+      class={cn(
+        "group/native-select relative z-native-select-wrapper w-fit has-[select:disabled]:opacity-50",
+        local.class,
+      )}
+      data-slot="native-select-wrapper"
+      data-size={local.size}
+    >
+      <select
+        data-slot="native-select"
+        data-size={local.size}
+        class="z-native-select outline-none disabled:pointer-events-none disabled:cursor-not-allowed"
+        value={local.value ?? local.defaultValue}
+        {...others}
+      />
+      <ChevronDown
+        class="pointer-events-none absolute z-native-select-icon select-none"
+        data-slot="native-select-icon"
+      />
+    </div>
+  );
+}
+
+function NativeSelectOption(props: ComponentProps<"option">) {
+  return <option data-slot="native-select-option" {...props} />;
+}
+
+export { NativeSelect, NativeSelectOption };

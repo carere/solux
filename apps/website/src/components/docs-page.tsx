@@ -3,7 +3,9 @@ import { Link } from "@tanstack/solid-router";
 import { For, type ParentProps, Show } from "solid-js";
 import { groupName, localizedPages, pageName } from "../content";
 import type { DocPage } from "../docs";
+import { cn } from "../lib/utils";
 import * as m from "../paraglide/messages";
+import { buttonVariants } from "../registry/ui/button";
 import { CodeBlock } from "./CodeBlock";
 import { CounterDemo, ScopesDemo } from "./Demos";
 import { LandingIntro } from "./LandingIntro";
@@ -14,7 +16,11 @@ function DocLink(props: ParentProps<{ href: string; class?: string }>) {
     <Show
       when={props.href.startsWith("/docs/")}
       fallback={
-        <a href={props.href} class={props.class}>
+        <a
+          href={props.href}
+          class={cn(buttonVariants({ variant: "link", size: null }), "doc-link", props.class)}
+          data-slot="button"
+        >
           {props.children}
         </a>
       }
@@ -23,7 +29,8 @@ function DocLink(props: ParentProps<{ href: string; class?: string }>) {
         to="/docs/$slug"
         params={{ slug: slug() }}
         hash={props.href.split("#")[1]}
-        class={props.class}
+        class={cn(buttonVariants({ variant: "link", size: null }), "doc-link", props.class)}
+        data-slot="button"
       >
         {props.children}
       </Link>
@@ -178,13 +185,18 @@ export function DocsPage(props: { page: DocPage }) {
             <nav aria-label={m.on_this_page()}>
               <p>{m.on_this_page()}</p>
               <For each={props.page.sections}>
-                {(section) => <a href={`#${section.id}`}>{section.title}</a>}
+                {(section) => <DocLink href={`#${section.id}`}>{section.title}</DocLink>}
               </For>
             </nav>
             <p class="source-note">
               {m.source_docs()}
               <br />
-              <Link to="/docs/$slug" params={{ slug: "migration" }}>
+              <Link
+                to="/docs/$slug"
+                params={{ slug: "migration" }}
+                class={cn(buttonVariants({ variant: "link", size: null }), "doc-link")}
+                data-slot="button"
+              >
                 {m.release_status()}
               </Link>
             </p>
@@ -200,7 +212,12 @@ export function NotFound() {
     <article class="not-found">
       <h1>{m.not_found()}</h1>
       <p>{m.not_found_description()}</p>
-      <Link to="/docs/$slug" params={{ slug: "introduction" }}>
+      <Link
+        to="/docs/$slug"
+        params={{ slug: "introduction" }}
+        class={buttonVariants()}
+        data-slot="button"
+      >
         {m.back_intro()}
       </Link>
     </article>

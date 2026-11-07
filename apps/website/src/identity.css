@@ -113,17 +113,6 @@ html[data-design="atlas"] .header-release {
   border-left: 1px solid var(--border);
 }
 
-html[data-design="atlas"] .header-controls select {
-  min-height: 36px;
-  border-radius: var(--radius);
-}
-
-html[data-design="atlas"] .search-area input {
-  min-height: 38px;
-  border-color: var(--border);
-  border-radius: var(--radius);
-}
-
 html[data-design="atlas"] .search-results {
   box-shadow: 0 14px 32px #06152c26;
   border: 0;
@@ -225,20 +214,6 @@ html[data-design="atlas"] .code-panel figcaption {
   font-size: 0.75rem;
 }
 
-html[data-design="atlas"] .code-panel button {
-  min-height: 32px;
-  font-size: 0.75rem;
-  border-radius: max(2px, var(--radius));
-}
-
-html[data-design="atlas"] .primary {
-  color: var(--primary-foreground);
-}
-
-html[data-design="atlas"] .primary:hover:not(:disabled) {
-  color: var(--background);
-}
-
 .docs-page.is-introduction {
   display: block;
 }
@@ -268,15 +243,31 @@ html[data-design="atlas"] .is-introduction .docs-reading-column article {
   padding-bottom: 56px;
 }
 
-html[data-design="atlas"] .landing-intro :focus-visible {
-  outline-color: #a9cdff;
-}
-
 .landing-copy,
 .landing-workbench,
 .workbench-source,
 .workbench-panels {
   min-width: 0;
+}
+
+.landing-copy {
+  --primary: #d6e7ff;
+  --primary-foreground: #102442;
+  --foreground: var(--hero-foreground);
+  --muted: #1b365c;
+  --ring: #a9cdff;
+}
+
+.workbench-source,
+.landing-paths {
+  --primary: var(--hero-muted);
+  --ring: #a9cdff;
+}
+
+.code-panel {
+  --foreground: var(--code-foreground);
+  --muted: var(--code-highlight);
+  --ring: #a9cdff;
 }
 
 .landing-title,
@@ -309,35 +300,6 @@ h1.landing-title.intro-title {
   justify-content: center;
 }
 
-.landing-actions a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  min-height: 44px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.landing-actions .button-link {
-  padding: 10px 18px;
-  border-radius: var(--radius);
-}
-
-.landing-actions a:not(.primary) {
-  color: inherit;
-}
-
-.landing-actions a:not(.primary):hover {
-  text-decoration: underline;
-}
-
-.landing-actions svg {
-  width: 17px;
-  height: 17px;
-}
-
 .landing-install {
   display: flex;
   align-items: center;
@@ -358,29 +320,6 @@ h1.landing-title.intro-title {
 .landing-install code {
   overflow-wrap: anywhere;
   font-family: var(--font-mono);
-}
-
-.landing-install button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 34px;
-  min-height: 34px;
-  margin-left: auto;
-  color: inherit;
-  border: 0;
-  border-radius: var(--radius);
-  background: transparent;
-}
-
-.landing-install button:hover {
-  background: color-mix(in srgb, currentColor 10%, transparent);
-}
-
-.landing-install svg {
-  width: 15px;
-  height: 15px;
 }
 
 .landing-copy-status {
@@ -522,23 +461,7 @@ h1.landing-title.intro-title {
 }
 
 .workbench-source-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  align-self: start;
   margin-top: 18px;
-  color: #c7dcf9;
-  font-size: 0.75rem;
-  text-decoration: none;
-}
-
-.workbench-source-link:hover {
-  text-decoration: underline;
-}
-
-.workbench-source-link svg {
-  width: 14px;
-  height: 14px;
 }
 
 html[data-design="atlas"] .workbench-panels .demo {
@@ -581,13 +504,6 @@ html[data-design="atlas"] .workbench-panels .demo {
   padding: 0 18px 18px;
 }
 
-.workbench-panels .button-row button {
-  min-height: 36px;
-  padding-inline: 10px;
-  border-radius: var(--radius);
-  font-size: 0.75rem;
-}
-
 .workbench-panels .event-log {
   min-height: 82px;
   padding: 12px 18px;
@@ -623,12 +539,6 @@ html[data-design="atlas"] .workbench-panels .demo {
   text-decoration: none;
 }
 
-.landing-paths a:hover strong {
-  color: #d6e7ff;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
 .landing-paths strong {
   flex: 1;
   font-family: var(--font-heading);
@@ -652,13 +562,6 @@ html[data-design="atlas"] .workbench-panels .demo {
 
 .landing-path-copy strong {
   color: var(--hero-foreground);
-}
-
-.landing-paths svg {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  color: #a9cdff;
 }
 
 .is-introduction .doc-section {
@@ -695,16 +598,6 @@ html[data-design="atlas"] .is-introduction .doc-section h2 {
 
 html[data-design="atlas"] .landing-copy {
   text-align: center;
-}
-
-html[data-design="atlas"] .landing-actions .primary {
-  color: #102442;
-  background: #d6e7ff;
-  border-color: #d6e7ff;
-}
-
-html[data-design="atlas"] .landing-actions .primary:hover {
-  background: #ffffff;
 }
 
 @media (max-width: 1439px) {
@@ -760,20 +653,6 @@ html[data-design="atlas"] .landing-actions .primary:hover {
     font-size: 1.5rem;
   }
 
-  html[data-design="atlas"] .header-controls select {
-    min-height: 40px;
-  }
-
-  html[data-design="atlas"] .header-controls button {
-    width: 36px;
-    min-height: 40px;
-  }
-
-  html[data-design="atlas"] .search-area input {
-    min-height: 40px;
-    font-size: 1rem;
-  }
-
   html[data-design="atlas"] .docs-reading-column {
     padding: 32px 22px;
   }
@@ -812,11 +691,6 @@ html[data-design="atlas"] .landing-actions .primary:hover {
     margin-top: 20px;
     padding: 10px 12px;
     font-size: 0.75rem;
-  }
-
-  .landing-install button {
-    width: 40px;
-    min-height: 40px;
   }
 
   .workbench-heading {
@@ -858,11 +732,6 @@ html[data-design="atlas"] .landing-actions .primary:hover {
     gap: 7px;
   }
 
-  .workbench-panels .button-row button {
-    min-height: 44px;
-    padding-inline: 12px;
-  }
-
   .workbench-panels .event-log {
     min-height: 90px;
   }
@@ -898,10 +767,6 @@ html[data-design="atlas"] .landing-actions .primary:hover {
 
   .is-introduction :is(.page-pagination, .page-footer) {
     padding-inline: 22px;
-  }
-
-  html[data-design="atlas"] .code-panel button {
-    min-height: 40px;
   }
 
   html[data-design="atlas"] .docs-mobile-sheet [data-slot="sidebar-menu-button"] {

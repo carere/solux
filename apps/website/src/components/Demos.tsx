@@ -36,13 +36,13 @@ export function CounterDemo(props: { onEvent?: (type: string) => void } = {}) {
         </div>
       </div>
       <div class="button-row">
-        <Button type="button" class="primary" onClick={() => store.dispatch(increment(1))}>
+        <Button type="button" onClick={() => store.dispatch(increment(1))}>
           {m.increment()}
         </Button>
-        <Button type="button" onClick={() => store.dispatch(increment(-1))}>
+        <Button type="button" variant="outline" onClick={() => store.dispatch(increment(-1))}>
           {m.decrement()}
         </Button>
-        <Button type="button" onClick={() => store.dispatch(reset())}>
+        <Button type="button" variant="secondary" onClick={() => store.dispatch(reset())}>
           {m.reset_counter()}
         </Button>
       </div>
@@ -143,10 +143,10 @@ function ChartScope(props: { name: string }) {
         <Button type="button" onClick={add}>
           {disposed() ? m.try_dispatch() : m.add_point()}
         </Button>
-        <Button type="button" onClick={dispose} disabled={disposed()}>
+        <Button type="button" variant="outline" onClick={dispose} disabled={disposed()}>
           {m.dispose()}
         </Button>
-        <Button type="button" onClick={recreate}>
+        <Button type="button" variant="secondary" onClick={recreate}>
           {m.recreate()}
         </Button>
       </div>

@@ -2,7 +2,9 @@ import { Link } from "@tanstack/solid-router";
 import { ArrowRight, ArrowUpRight, Check, Copy } from "lucide-solid";
 import { createSignal, onCleanup, Show } from "solid-js";
 import type { DocPage } from "../docs";
+import { cn } from "../lib/utils";
 import * as m from "../paraglide/messages";
+import { Button, buttonVariants } from "../registry/ui/button";
 import { CounterDemo } from "./Demos";
 
 const installCommand = "bun add @carere/solux";
@@ -51,24 +53,36 @@ export function LandingIntro(props: { page: DocPage }) {
         </h1>
         <p class="landing-description">{props.page.description}</p>
         <div class="landing-actions">
-          <Link to="/docs/$slug" params={{ slug: "getting-started" }} class="primary button-link">
-            {m.get_started()} <ArrowRight aria-hidden="true" />
+          <Link
+            to="/docs/$slug"
+            params={{ slug: "getting-started" }}
+            class={buttonVariants({ size: "lg" })}
+            data-slot="button"
+          >
+            {m.get_started()} <ArrowRight data-icon="inline-end" aria-hidden="true" />
           </Link>
-          <Link to="/docs/$slug" params={{ slug: "api-reference" }} class="landing-api-link">
-            {m.explore_api()} <ArrowUpRight aria-hidden="true" />
+          <Link
+            to="/docs/$slug"
+            params={{ slug: "api-reference" }}
+            class={buttonVariants({ variant: "link", size: "lg" })}
+            data-slot="button"
+          >
+            {m.explore_api()} <ArrowUpRight data-icon="inline-end" aria-hidden="true" />
           </Link>
         </div>
         <div class="landing-install">
           <code>{installCommand}</code>
-          <button
+          <Button
             type="button"
+            variant="ghost"
+            size="icon-sm"
             onClick={copyInstall}
             aria-label={m.copy_label({ label: m.landing_install_label() })}
           >
             <Show when={copyStatus() === "success"} fallback={<Copy aria-hidden="true" />}>
               <Check aria-hidden="true" />
             </Show>
-          </button>
+          </Button>
           <span class="landing-copy-status" role="status">
             {copyStatus() === "success"
               ? m.copied()
@@ -110,8 +124,12 @@ export function LandingIntro(props: { page: DocPage }) {
             <pre tabIndex={0}>
               <code>{incrementExcerpt}</code>
             </pre>
-            <a class="workbench-source-link" href="#the-shape-of-a-store">
-              {m.landing_full_example()} <ArrowRight aria-hidden="true" />
+            <a
+              class={cn(buttonVariants({ variant: "link", size: "sm" }), "workbench-source-link")}
+              data-slot="button"
+              href="#the-shape-of-a-store"
+            >
+              {m.landing_full_example()} <ArrowRight data-icon="inline-end" aria-hidden="true" />
             </a>
           </section>
           <CounterDemo onEvent={showEvent} />
@@ -119,21 +137,45 @@ export function LandingIntro(props: { page: DocPage }) {
       </section>
 
       <nav class="landing-paths" aria-label={m.landing_paths_label()}>
-        <Link to="/docs/$slug" params={{ slug: "events-and-slices" }} class="landing-path">
+        <Link
+          to="/docs/$slug"
+          params={{ slug: "events-and-slices" }}
+          class={cn(
+            buttonVariants({ variant: "link", size: null }),
+            "landing-path whitespace-normal justify-between text-left",
+          )}
+          data-slot="button"
+        >
           <span class="landing-path-copy">
             <strong>{m.landing_events_title()}</strong>
             <span>{m.landing_events_description()}</span>
           </span>
           <ArrowUpRight aria-hidden="true" />
         </Link>
-        <Link to="/docs/$slug" params={{ slug: "reactive-state" }} class="landing-path">
+        <Link
+          to="/docs/$slug"
+          params={{ slug: "reactive-state" }}
+          class={cn(
+            buttonVariants({ variant: "link", size: null }),
+            "landing-path whitespace-normal justify-between text-left",
+          )}
+          data-slot="button"
+        >
           <span class="landing-path-copy">
             <strong>{m.landing_reactivity_title()}</strong>
             <span>{m.landing_reactivity_description()}</span>
           </span>
           <ArrowUpRight aria-hidden="true" />
         </Link>
-        <Link to="/docs/$slug" params={{ slug: "store-lifecycle" }} class="landing-path">
+        <Link
+          to="/docs/$slug"
+          params={{ slug: "store-lifecycle" }}
+          class={cn(
+            buttonVariants({ variant: "link", size: null }),
+            "landing-path whitespace-normal justify-between text-left",
+          )}
+          data-slot="button"
+        >
           <span class="landing-path-copy">
             <strong>{m.landing_ownership_title()}</strong>
             <span>{m.landing_ownership_description()}</span>
