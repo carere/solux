@@ -11,6 +11,7 @@ import {
   Show,
 } from "solid-js";
 import logo from "../../../images/solux.svg";
+import { DesignComparison } from "./components/design-comparison";
 import { DocsSidebar } from "./components/docs-sidebar";
 import { ModeSwitcher } from "./components/mode-switcher";
 import { pageName, searchPages } from "./content";
@@ -93,6 +94,7 @@ export function App(props: ParentProps) {
       <a class="skip-link" href="#main-content">
         {m.skip_content()}
       </a>
+      <DesignComparison />
       <header class="site-header">
         <Link to="/" class="brand" aria-label="Solux">
           <img src={logo} alt="" width="34" height="30" />

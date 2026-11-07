@@ -24,6 +24,27 @@ and preview run under Node via `bun vite`: forcing Bun as Vite's runtime caused
 recursive preview requests with the Cloudflare plugin on this machine. The
 production build can use Bun's runtime.
 
+## Identity comparison
+
+This branch contains three working design proposals, pending a user choice:
+
+- `/?design=workshop`: Blue Workshop, an open blue workspace.
+- `/?design=ledger`: Event Ledger, a ruled editorial reference.
+- `/?design=atlas`: Signal Atlas, a dark connected instrument.
+
+Use the comparison bar to switch without resetting the live counter. The design
+query persists through documentation navigation, reloads, and language changes;
+light/dark mode remains independent. Each proposal uses the same articles,
+public-package examples, search, and mobile navigation. The default proposal is
+Workshop; that default does not represent approval of a final identity.
+
+Display fonts are self-hosted with their licenses in `src/fonts/`. The existing
+`images/solux.svg` remains the logo and SVG favicon.
+
+Tailwind discovers classes only in `src`, matching the build's source inputs.
+Design-document and sidecar snippets therefore cannot change generated CSS or
+produce different stylesheet filenames between the client and server builds.
+
 ## Localization and routes
 
 Paraglide **2.25.2** generates messages, runtime, server middleware, and TypeScript

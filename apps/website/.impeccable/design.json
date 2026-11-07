@@ -1,0 +1,661 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-07T11:41:07.988Z",
+  "title": "Design System: Solux website — provisional identities",
+  "extensions": {
+    "colorMeta": {
+      "workshop-primary": {
+        "role": "primary",
+        "displayName": "Workshop cobalt",
+        "tonalRamp": [
+          "oklch(15% 0.1765 261.12)",
+          "oklch(25% 0.1765 261.12)",
+          "oklch(35% 0.1765 261.12)",
+          "oklch(45% 0.1765 261.12)",
+          "oklch(60% 0.1765 261.12)",
+          "oklch(75% 0.1765 261.12)",
+          "oklch(85% 0.1765 261.12)",
+          "oklch(95% 0.1765 261.12)"
+        ]
+      },
+      "workshop-background": {
+        "role": "neutral",
+        "displayName": "Workshop paper",
+        "tonalRamp": [
+          "oklch(15% 0.0079 253.85)",
+          "oklch(25% 0.0079 253.85)",
+          "oklch(35% 0.0079 253.85)",
+          "oklch(45% 0.0079 253.85)",
+          "oklch(60% 0.0079 253.85)",
+          "oklch(75% 0.0079 253.85)",
+          "oklch(85% 0.0079 253.85)",
+          "oklch(95% 0.0079 253.85)"
+        ]
+      },
+      "workshop-ink": {
+        "role": "neutral",
+        "displayName": "Workshop ink",
+        "tonalRamp": [
+          "oklch(15% 0.0589 252.22)",
+          "oklch(25% 0.0589 252.22)",
+          "oklch(35% 0.0589 252.22)",
+          "oklch(45% 0.0589 252.22)",
+          "oklch(60% 0.0589 252.22)",
+          "oklch(75% 0.0589 252.22)",
+          "oklch(85% 0.0589 252.22)",
+          "oklch(95% 0.0589 252.22)"
+        ]
+      },
+      "white-surface": {
+        "role": "neutral",
+        "displayName": "White surface",
+        "tonalRamp": [
+          "oklch(15% 0.0000 0.00)",
+          "oklch(25% 0.0000 0.00)",
+          "oklch(35% 0.0000 0.00)",
+          "oklch(45% 0.0000 0.00)",
+          "oklch(60% 0.0000 0.00)",
+          "oklch(75% 0.0000 0.00)",
+          "oklch(85% 0.0000 0.00)",
+          "oklch(95% 0.0000 0.00)"
+        ]
+      },
+      "workshop-muted": {
+        "role": "neutral",
+        "displayName": "Workshop muted surface",
+        "tonalRamp": [
+          "oklch(15% 0.0142 254.61)",
+          "oklch(25% 0.0142 254.61)",
+          "oklch(35% 0.0142 254.61)",
+          "oklch(45% 0.0142 254.61)",
+          "oklch(60% 0.0142 254.61)",
+          "oklch(75% 0.0142 254.61)",
+          "oklch(85% 0.0142 254.61)",
+          "oklch(95% 0.0142 254.61)"
+        ]
+      },
+      "workshop-muted-ink": {
+        "role": "neutral",
+        "displayName": "Workshop muted ink",
+        "tonalRamp": [
+          "oklch(15% 0.0544 251.76)",
+          "oklch(25% 0.0544 251.76)",
+          "oklch(35% 0.0544 251.76)",
+          "oklch(45% 0.0544 251.76)",
+          "oklch(60% 0.0544 251.76)",
+          "oklch(75% 0.0544 251.76)",
+          "oklch(85% 0.0544 251.76)",
+          "oklch(95% 0.0544 251.76)"
+        ]
+      },
+      "workshop-border": {
+        "role": "neutral",
+        "displayName": "Workshop border",
+        "tonalRamp": [
+          "oklch(15% 0.0303 251.30)",
+          "oklch(25% 0.0303 251.30)",
+          "oklch(35% 0.0303 251.30)",
+          "oklch(45% 0.0303 251.30)",
+          "oklch(60% 0.0303 251.30)",
+          "oklch(75% 0.0303 251.30)",
+          "oklch(85% 0.0303 251.30)",
+          "oklch(95% 0.0303 251.30)"
+        ]
+      },
+      "workshop-field": {
+        "role": "neutral",
+        "displayName": "Workshop sky field",
+        "tonalRamp": [
+          "oklch(15% 0.0289 244.91)",
+          "oklch(25% 0.0289 244.91)",
+          "oklch(35% 0.0289 244.91)",
+          "oklch(45% 0.0289 244.91)",
+          "oklch(60% 0.0289 244.91)",
+          "oklch(75% 0.0289 244.91)",
+          "oklch(85% 0.0289 244.91)",
+          "oklch(95% 0.0289 244.91)"
+        ]
+      },
+      "workshop-field-ink": {
+        "role": "neutral",
+        "displayName": "Workshop field ink",
+        "tonalRamp": [
+          "oklch(15% 0.1055 256.95)",
+          "oklch(25% 0.1055 256.95)",
+          "oklch(35% 0.1055 256.95)",
+          "oklch(45% 0.1055 256.95)",
+          "oklch(60% 0.1055 256.95)",
+          "oklch(75% 0.1055 256.95)",
+          "oklch(85% 0.1055 256.95)",
+          "oklch(95% 0.1055 256.95)"
+        ]
+      },
+      "source-background": {
+        "role": "neutral",
+        "displayName": "Source navy",
+        "tonalRamp": [
+          "oklch(15% 0.0636 256.11)",
+          "oklch(25% 0.0636 256.11)",
+          "oklch(35% 0.0636 256.11)",
+          "oklch(45% 0.0636 256.11)",
+          "oklch(60% 0.0636 256.11)",
+          "oklch(75% 0.0636 256.11)",
+          "oklch(85% 0.0636 256.11)",
+          "oklch(95% 0.0636 256.11)"
+        ]
+      },
+      "source-ink": {
+        "role": "neutral",
+        "displayName": "Source ink",
+        "tonalRamp": [
+          "oklch(15% 0.0153 257.20)",
+          "oklch(25% 0.0153 257.20)",
+          "oklch(35% 0.0153 257.20)",
+          "oklch(45% 0.0153 257.20)",
+          "oklch(60% 0.0153 257.20)",
+          "oklch(75% 0.0153 257.20)",
+          "oklch(85% 0.0153 257.20)",
+          "oklch(95% 0.0153 257.20)"
+        ]
+      },
+      "ledger-primary": {
+        "role": "primary",
+        "displayName": "Ledger annotation blue",
+        "tonalRamp": [
+          "oklch(15% 0.1415 261.99)",
+          "oklch(25% 0.1415 261.99)",
+          "oklch(35% 0.1415 261.99)",
+          "oklch(45% 0.1415 261.99)",
+          "oklch(60% 0.1415 261.99)",
+          "oklch(75% 0.1415 261.99)",
+          "oklch(85% 0.1415 261.99)",
+          "oklch(95% 0.1415 261.99)"
+        ]
+      },
+      "ledger-paper": {
+        "role": "neutral",
+        "displayName": "Ledger paper",
+        "tonalRamp": [
+          "oklch(15% 0.0095 93.57)",
+          "oklch(25% 0.0095 93.57)",
+          "oklch(35% 0.0095 93.57)",
+          "oklch(45% 0.0095 93.57)",
+          "oklch(60% 0.0095 93.57)",
+          "oklch(75% 0.0095 93.57)",
+          "oklch(85% 0.0095 93.57)",
+          "oklch(95% 0.0095 93.57)"
+        ]
+      },
+      "ledger-ink": {
+        "role": "neutral",
+        "displayName": "Ledger ink",
+        "tonalRamp": [
+          "oklch(15% 0.0368 258.31)",
+          "oklch(25% 0.0368 258.31)",
+          "oklch(35% 0.0368 258.31)",
+          "oklch(45% 0.0368 258.31)",
+          "oklch(60% 0.0368 258.31)",
+          "oklch(75% 0.0368 258.31)",
+          "oklch(85% 0.0368 258.31)",
+          "oklch(95% 0.0368 258.31)"
+        ]
+      },
+      "ledger-surface": {
+        "role": "neutral",
+        "displayName": "Ledger warm surface",
+        "tonalRamp": [
+          "oklch(15% 0.0082 91.48)",
+          "oklch(25% 0.0082 91.48)",
+          "oklch(35% 0.0082 91.48)",
+          "oklch(45% 0.0082 91.48)",
+          "oklch(60% 0.0082 91.48)",
+          "oklch(75% 0.0082 91.48)",
+          "oklch(85% 0.0082 91.48)",
+          "oklch(95% 0.0082 91.48)"
+        ]
+      },
+      "atlas-primary": {
+        "role": "primary",
+        "displayName": "Atlas signal blue",
+        "tonalRamp": [
+          "oklch(15% 0.1959 263.70)",
+          "oklch(25% 0.1959 263.70)",
+          "oklch(35% 0.1959 263.70)",
+          "oklch(45% 0.1959 263.70)",
+          "oklch(60% 0.1959 263.70)",
+          "oklch(75% 0.1959 263.70)",
+          "oklch(85% 0.1959 263.70)",
+          "oklch(95% 0.1959 263.70)"
+        ]
+      },
+      "atlas-background": {
+        "role": "neutral",
+        "displayName": "Atlas paper",
+        "tonalRamp": [
+          "oklch(15% 0.0029 264.54)",
+          "oklch(25% 0.0029 264.54)",
+          "oklch(35% 0.0029 264.54)",
+          "oklch(45% 0.0029 264.54)",
+          "oklch(60% 0.0029 264.54)",
+          "oklch(75% 0.0029 264.54)",
+          "oklch(85% 0.0029 264.54)",
+          "oklch(95% 0.0029 264.54)"
+        ]
+      },
+      "atlas-ink": {
+        "role": "neutral",
+        "displayName": "Atlas ink",
+        "tonalRamp": [
+          "oklch(15% 0.0498 257.11)",
+          "oklch(25% 0.0498 257.11)",
+          "oklch(35% 0.0498 257.11)",
+          "oklch(45% 0.0498 257.11)",
+          "oklch(60% 0.0498 257.11)",
+          "oklch(75% 0.0498 257.11)",
+          "oklch(85% 0.0498 257.11)",
+          "oklch(95% 0.0498 257.11)"
+        ]
+      },
+      "atlas-navy": {
+        "role": "neutral",
+        "displayName": "Atlas navy field",
+        "tonalRamp": [
+          "oklch(15% 0.0622 258.36)",
+          "oklch(25% 0.0622 258.36)",
+          "oklch(35% 0.0622 258.36)",
+          "oklch(45% 0.0622 258.36)",
+          "oklch(60% 0.0622 258.36)",
+          "oklch(75% 0.0622 258.36)",
+          "oklch(85% 0.0622 258.36)",
+          "oklch(95% 0.0622 258.36)"
+        ]
+      },
+      "atlas-ivory": {
+        "role": "neutral",
+        "displayName": "Atlas ivory",
+        "tonalRamp": [
+          "oklch(15% 0.0159 110.55)",
+          "oklch(25% 0.0159 110.55)",
+          "oklch(35% 0.0159 110.55)",
+          "oklch(45% 0.0159 110.55)",
+          "oklch(60% 0.0159 110.55)",
+          "oklch(75% 0.0159 110.55)",
+          "oklch(85% 0.0159 110.55)",
+          "oklch(95% 0.0159 110.55)"
+        ]
+      },
+      "atlas-field-muted": {
+        "role": "neutral",
+        "displayName": "Atlas muted field ink",
+        "tonalRamp": [
+          "oklch(15% 0.0452 259.94)",
+          "oklch(25% 0.0452 259.94)",
+          "oklch(35% 0.0452 259.94)",
+          "oklch(45% 0.0452 259.94)",
+          "oklch(60% 0.0452 259.94)",
+          "oklch(75% 0.0452 259.94)",
+          "oklch(85% 0.0452 259.94)",
+          "oklch(95% 0.0452 259.94)"
+        ]
+      },
+      "atlas-action": {
+        "role": "primary",
+        "displayName": "Atlas pale action",
+        "tonalRamp": [
+          "oklch(15% 0.0375 256.97)",
+          "oklch(25% 0.0375 256.97)",
+          "oklch(35% 0.0375 256.97)",
+          "oklch(45% 0.0375 256.97)",
+          "oklch(60% 0.0375 256.97)",
+          "oklch(75% 0.0375 256.97)",
+          "oklch(85% 0.0375 256.97)",
+          "oklch(95% 0.0375 256.97)"
+        ]
+      },
+      "dark-primary": {
+        "role": "primary",
+        "displayName": "Dark signal blue",
+        "tonalRamp": [
+          "oklch(15% 0.1057 258.30)",
+          "oklch(25% 0.1057 258.30)",
+          "oklch(35% 0.1057 258.30)",
+          "oklch(45% 0.1057 258.30)",
+          "oklch(60% 0.1057 258.30)",
+          "oklch(75% 0.1057 258.30)",
+          "oklch(85% 0.1057 258.30)",
+          "oklch(95% 0.1057 258.30)"
+        ]
+      },
+      "dark-background": {
+        "role": "neutral",
+        "displayName": "Workshop dark paper",
+        "tonalRamp": [
+          "oklch(15% 0.0385 255.62)",
+          "oklch(25% 0.0385 255.62)",
+          "oklch(35% 0.0385 255.62)",
+          "oklch(45% 0.0385 255.62)",
+          "oklch(60% 0.0385 255.62)",
+          "oklch(75% 0.0385 255.62)",
+          "oklch(85% 0.0385 255.62)",
+          "oklch(95% 0.0385 255.62)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Workshop dark ink",
+        "tonalRamp": [
+          "oklch(15% 0.0177 253.34)",
+          "oklch(25% 0.0177 253.34)",
+          "oklch(35% 0.0177 253.34)",
+          "oklch(45% 0.0177 253.34)",
+          "oklch(60% 0.0177 253.34)",
+          "oklch(75% 0.0177 253.34)",
+          "oklch(85% 0.0177 253.34)",
+          "oklch(95% 0.0177 253.34)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Workshop dark surface",
+        "tonalRamp": [
+          "oklch(15% 0.0498 254.10)",
+          "oklch(25% 0.0498 254.10)",
+          "oklch(35% 0.0498 254.10)",
+          "oklch(45% 0.0498 254.10)",
+          "oklch(60% 0.0498 254.10)",
+          "oklch(75% 0.0498 254.10)",
+          "oklch(85% 0.0498 254.10)",
+          "oklch(95% 0.0498 254.10)"
+        ]
+      },
+      "ledger-dark-primary": {
+        "role": "primary",
+        "displayName": "Ledger dark annotation blue",
+        "tonalRamp": [
+          "oklch(15% 0.0895 264.19)",
+          "oklch(25% 0.0895 264.19)",
+          "oklch(35% 0.0895 264.19)",
+          "oklch(45% 0.0895 264.19)",
+          "oklch(60% 0.0895 264.19)",
+          "oklch(75% 0.0895 264.19)",
+          "oklch(85% 0.0895 264.19)",
+          "oklch(95% 0.0895 264.19)"
+        ]
+      },
+      "ledger-dark-background": {
+        "role": "neutral",
+        "displayName": "Ledger dark paper",
+        "tonalRamp": [
+          "oklch(15% 0.0177 255.69)",
+          "oklch(25% 0.0177 255.69)",
+          "oklch(35% 0.0177 255.69)",
+          "oklch(45% 0.0177 255.69)",
+          "oklch(60% 0.0177 255.69)",
+          "oklch(75% 0.0177 255.69)",
+          "oklch(85% 0.0177 255.69)",
+          "oklch(95% 0.0177 255.69)"
+        ]
+      },
+      "ledger-dark-ink": {
+        "role": "neutral",
+        "displayName": "Ledger dark ink",
+        "tonalRamp": [
+          "oklch(15% 0.0140 88.69)",
+          "oklch(25% 0.0140 88.69)",
+          "oklch(35% 0.0140 88.69)",
+          "oklch(45% 0.0140 88.69)",
+          "oklch(60% 0.0140 88.69)",
+          "oklch(75% 0.0140 88.69)",
+          "oklch(85% 0.0140 88.69)",
+          "oklch(95% 0.0140 88.69)"
+        ]
+      },
+      "atlas-dark-background": {
+        "role": "neutral",
+        "displayName": "Atlas dark paper",
+        "tonalRamp": [
+          "oklch(15% 0.0378 258.83)",
+          "oklch(25% 0.0378 258.83)",
+          "oklch(35% 0.0378 258.83)",
+          "oklch(45% 0.0378 258.83)",
+          "oklch(60% 0.0378 258.83)",
+          "oklch(75% 0.0378 258.83)",
+          "oklch(85% 0.0378 258.83)",
+          "oklch(95% 0.0378 258.83)"
+        ]
+      },
+      "atlas-dark-ink": {
+        "role": "neutral",
+        "displayName": "Atlas dark ink",
+        "tonalRamp": [
+          "oklch(15% 0.0132 262.38)",
+          "oklch(25% 0.0132 262.38)",
+          "oklch(35% 0.0132 262.38)",
+          "oklch(45% 0.0132 262.38)",
+          "oklch(60% 0.0132 262.38)",
+          "oklch(75% 0.0132 262.38)",
+          "oklch(85% 0.0132 262.38)",
+          "oklch(95% 0.0132 262.38)"
+        ]
+      },
+      "atlas-dark-surface": {
+        "role": "neutral",
+        "displayName": "Atlas dark surface",
+        "tonalRamp": [
+          "oklch(15% 0.0539 258.63)",
+          "oklch(25% 0.0539 258.63)",
+          "oklch(35% 0.0539 258.63)",
+          "oklch(45% 0.0539 258.63)",
+          "oklch(60% 0.0539 258.63)",
+          "oklch(75% 0.0539 258.63)",
+          "oklch(85% 0.0539 258.63)",
+          "oklch(95% 0.0539 258.63)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display-workshop": {
+        "displayName": "Workshop display",
+        "purpose": "Provisional Onest introduction headline; wide-screen base ramp."
+      },
+      "display-ledger": {
+        "displayName": "Ledger display",
+        "purpose": "Provisional Manrope introduction headline; wide-screen base ramp."
+      },
+      "display-atlas": {
+        "displayName": "Atlas display",
+        "purpose": "Provisional Manrope introduction headline; wide-screen base ramp."
+      },
+      "headline": {
+        "displayName": "Article headline",
+        "purpose": "Article titles; Atlas uses weight 550."
+      },
+      "title": {
+        "displayName": "Section title",
+        "purpose": "Documentation section headings; Ledger uses 1.375rem at weight 700."
+      },
+      "body": {
+        "displayName": "Reading body",
+        "purpose": "Article prose, capped at 74ch."
+      },
+      "action": {
+        "displayName": "Action label",
+        "purpose": "Primary and text actions."
+      },
+      "code": {
+        "displayName": "Documentation source",
+        "purpose": "Code panels; intro source and instrument labels have smaller contextual sizes."
+      }
+    },
+    "shadows": [
+      {
+        "name": "search-results",
+        "value": "0 14px 32px #06152c26",
+        "purpose": "Floating search result surface, shared by all three provisional identities."
+      }
+    ],
+    "motion": [
+      {
+        "name": "identity-arrive-duration",
+        "value": "600ms",
+        "purpose": "One-time title arrival, only with no reduced-motion preference."
+      },
+      {
+        "name": "identity-arrive-easing",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Title arrival: translate from 0 9px and blur from 1.5px to rest."
+      },
+      {
+        "name": "event-flow-pulse",
+        "value": "480ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "A real dispatch animates the event-flow background from color-mix(in srgb, var(--hero-foreground) 18%, transparent) to transparent. Each dispatch cancels the previous pulse; reduced motion skips it and cleanup cancels it."
+      },
+      {
+        "name": "comparison-hover",
+        "value": "background-color 150ms ease-out",
+        "purpose": "Temporary proposal-switch link hover."
+      },
+      {
+        "name": "reduced-motion-duration",
+        "value": "0.01ms",
+        "purpose": "Existing global reduced-motion override for animation and transition duration."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-max",
+        "value": "767px"
+      },
+      {
+        "name": "tablet-min",
+        "value": "768px"
+      },
+      {
+        "name": "scopes-stack-max",
+        "value": "1000px"
+      },
+      {
+        "name": "tablet-max",
+        "value": "1130px"
+      },
+      {
+        "name": "contents-hide-max",
+        "value": "1279px"
+      },
+      {
+        "name": "compact-desktop-max",
+        "value": "1439px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "action-workshop",
+      "description": "Shared primary action, live-bound to the active semantic palette and radius; Workshop is the fallback sample. Ledger uses the same pattern.",
+      "html": "<a class=\"ds-primary\" href=\"/docs/getting-started\">Get started <svg aria-hidden=\"true\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:10px 18px;border-radius:var(--radius,.375rem);font:600 .875rem/1.7 \"Inter Variable\",sans-serif;text-decoration:none;background:var(--primary,#1550b9);color:var(--primary-foreground,#fff)}.ds-primary:hover{background:var(--foreground,#112a45);color:var(--background,#f6faff)}.ds-primary:focus-visible{outline:2px solid var(--ring,#1550b9);outline-offset:4px;}"
+    },
+    {
+      "name": "Atlas introduction action",
+      "kind": "button",
+      "refersTo": "action-atlas",
+      "description": "The implemented pale primary action in Signal Atlas’s navy introduction, shown on its matching field.",
+      "html": "<div class=\"ds-atlas-field\"><a class=\"ds-atlas-primary\" href=\"/docs/getting-started\">Get started <svg aria-hidden=\"true\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a></div>",
+      "css": ".ds-atlas-field{padding:22px;background:#102442}.ds-atlas-primary{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:10px 18px;border-radius:var(--radius,.375rem);font:600 .875rem/1.7 \"Inter Variable\",sans-serif;text-decoration:none;border-radius:.875rem;background:#d6e7ff;color:#102442}.ds-atlas-primary:hover{background:#fff}.ds-atlas-primary:focus-visible{outline:2px solid var(--ring,#285bd5);outline-offset:4px}"
+    },
+    {
+      "name": "Text action",
+      "kind": "button",
+      "refersTo": "action-text",
+      "description": "The secondary API path inherits its surrounding field ink and underlines on hover.",
+      "html": "<a class=\"ds-text-action\" href=\"/docs/api-reference\">Explore the API <svg aria-hidden=\"true\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-text-action{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:10px 18px;border-radius:var(--radius,.375rem);font:600 .875rem/1.7 \"Inter Variable\",sans-serif;text-decoration:none;padding:0;color:var(--hero-foreground,#103a71)}.ds-text-action:hover{text-decoration:underline}.ds-text-action:focus-visible{outline:2px solid var(--ring,#1550b9);outline-offset:4px;}"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "The header’s muted search surface; full-width input with a reserved keyboard-hint area.",
+      "html": "<div class=\"ds-search\"><input class=\"ds-search-input\" type=\"search\" aria-label=\"Search documentation\" placeholder=\"Search documentation\"><kbd class=\"ds-search-key\">⌘ K</kbd></div>",
+      "css": ".ds-search{position:relative;width:min(360px,100%);color:var(--foreground,#112a45)}.ds-search-input{width:100%;height:38px;padding:4px 32px 4px 10px;border:1px solid var(--border,#c9d9eb);border-radius:var(--radius,.375rem);background:var(--muted,#eaf1fa);color:inherit;font:400 .875rem \"Inter Variable\",sans-serif;transition:color .15s,box-shadow .15s}.ds-search-input::placeholder{color:var(--muted-foreground,#48617d)}.ds-search-input:focus-visible{outline:2px solid var(--ring,#1550b9);outline-offset:4px;border-color:var(--ring,#1550b9);box-shadow:0 0 0 3px color-mix(in srgb,var(--ring,#1550b9) 50%,transparent)}.ds-search-key{position:absolute;right:12px;top:9px;font-size:.7rem;color:var(--muted-foreground,#48617d);pointer-events:none}@media(max-width:767px){.ds-search-input{height:40px;font-size:1rem}}@media(prefers-reduced-motion:reduce){.ds-search-input{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Sidebar navigation",
+      "kind": "nav",
+      "description": "Active items use primary ink, accent fill, and a stronger weight; corners follow the selected identity.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Documentation\"><a class=\"ds-nav-item\" href=\"/docs/getting-started\" aria-current=\"page\">Getting started</a><a class=\"ds-nav-item\" href=\"/docs/events-and-slices\">Events and slices</a></nav>",
+      "css": ".ds-nav{display:grid;gap:4px;font:400 .8125rem \"Inter Variable\",sans-serif}.ds-nav-item{display:flex;align-items:center;min-height:34px;padding:8px;border-radius:var(--radius,.375rem);color:var(--sidebar-foreground,#112a45);text-decoration:none}.ds-nav-item:hover{background:var(--sidebar-accent,#daeafa);color:var(--sidebar-accent-foreground,#163b68)}.ds-nav-item[aria-current=page]{background:var(--accent,#daeafa);color:var(--primary,#1550b9);font-weight:650}.ds-nav-item:focus-visible{outline:2px solid var(--ring,#1550b9);outline-offset:4px;}@media(max-width:767px){.ds-nav-item{min-height:40px}}"
+    },
+    {
+      "name": "Documentation note",
+      "kind": "card",
+      "refersTo": "note",
+      "description": "A flat, muted callout with an accent label and compact explanatory prose.",
+      "html": "<aside class=\"ds-note\"><strong class=\"ds-note-label\">Store ownership</strong><p class=\"ds-note-copy\">The store creator owns disposal.</p></aside>",
+      "css": ".ds-note{padding:20px 22px;border-radius:var(--radius,.375rem);background:var(--muted,#eaf1fa);color:var(--foreground,#112a45);font-family:\"Inter Variable\",sans-serif}.ds-note-label{font-size:.75rem;color:var(--primary,#1550b9)}.ds-note-copy{margin:5px 0 0;font-size:.8125rem;line-height:1.8}"
+    },
+    {
+      "name": "Source region",
+      "kind": "custom",
+      "refersTo": "source-panel",
+      "description": "A shared dark source sample; Ledger’s introduction changes this region to its muted paper surface. Selectable code keeps horizontal keyboard scrolling.",
+      "html": "<section class=\"ds-source\"><div class=\"ds-source-heading\"><h3 class=\"ds-source-title\">Source</h3><span>counter.ts</span></div><pre class=\"ds-source-code\" tabindex=\"0\"><code>builder.addHandler(increment, (state, { payload }) =&gt; {\n  state.value += payload;\n});</code></pre></section>",
+      "css": ".ds-source{padding:16px 20px;background:var(--code,#0d2442);color:var(--code-foreground,#eef5ff)}.ds-source-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:15px;font:400 .6875rem \"Inter Variable\",sans-serif;color:#b8cdeb}.ds-source-title{margin:0;font-size:.75rem;font-weight:550}.ds-source-code{margin:0;max-width:100%;overflow-x:auto;font:.75rem/1.9 var(--font-mono,\"Geist Mono Variable\",monospace);tab-size:2;scrollbar-color:#54739a var(--code,#0d2442)}.ds-source-code:focus-visible{outline:2px solid var(--ring,#1550b9);outline-offset:4px;}"
+    },
+    {
+      "name": "Live state readout",
+      "kind": "custom",
+      "description": "A static styling sample of the real counter’s paired state and derived value; the application supplies the store and event behavior.",
+      "html": "<div class=\"ds-readout\"><div class=\"ds-reading\"><span class=\"ds-reading-label\">state.counter.value</span><output class=\"ds-reading-value\" aria-label=\"Counter value\">1</output></div><div class=\"ds-reading\"><span class=\"ds-reading-label\">createMemo(() =&gt; value * 2)</span><output class=\"ds-reading-value\" aria-label=\"Doubled value\">2</output></div></div>",
+      "css": ".ds-readout{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:18px;background:var(--surface,#fff);color:var(--foreground,#112a45)}.ds-reading+.ds-reading{padding-left:25px;border-left:1px solid var(--border,#c9d9eb)}.ds-reading-label{display:block;font:.6875rem/1.6 var(--font-mono,\"Geist Mono Variable\",monospace);color:var(--muted-foreground,#48617d);overflow-wrap:anywhere}.ds-reading-value{display:block;margin-top:5px;font:600 3rem/1.2 var(--font-heading,\"Onest\",sans-serif);letter-spacing:-.035em;font-variant-numeric:tabular-nums}@media(max-width:767px){.ds-reading+.ds-reading{padding-left:16px}}"
+    },
+    {
+      "name": "Event-flow step",
+      "kind": "custom",
+      "description": "An emphasized event step illustrates the implemented data-active state. The application derives emphasis from the latest real event.",
+      "html": "<div class=\"ds-flow\"><div class=\"ds-flow-step\" data-active=\"true\"><span class=\"ds-flow-label\">Event</span><code class=\"ds-flow-code\">counter/increment</code></div></div>",
+      "css": ".ds-flow{border-block:1px solid var(--hero-border,#a6c9ee);color:var(--hero-foreground,#103a71);background:var(--hero-background,#dceefe)}.ds-flow-step{display:flex;flex-direction:column;gap:5px;min-width:0;padding:14px 12px;font:.8125rem/1.6 \"Inter Variable\",sans-serif}.ds-flow-step[data-active=true]{color:var(--primary,#1550b9);background:color-mix(in srgb,var(--hero-foreground,#103a71) 7%,transparent)}.ds-flow-label,.ds-flow-code{color:var(--hero-muted,#31577f);font-size:.6875rem;overflow-wrap:anywhere}.ds-flow-code{font-family:var(--font-mono,\"Geist Mono Variable\",monospace)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Three provisional Solux identities",
+    "overview": "This records three built proposals for comparison: **Blue Workshop**, **Event Ledger**, and **Signal Atlas**, selected by `?design=workshop`, `?design=ledger`, and `?design=atlas`. Their names describe the current implementation; none is a user-approved final identity. Blue Workshop is the fallback when the URL has no valid design value. The user will choose a proposal and iterate after comparing the builds.\n\nThe shared visual foundation supports precise developer documentation: readable prose, inspectable source, visible state, and direct controls. Blue Workshop combines an open sky-blue field with cobalt and Onest. Event Ledger combines warm paper, blue annotation, Manrope, compact corners, and ruled boundaries. Signal Atlas combines a navy field, ivory type, Manrope, connected event steps, and more rounded instruments.",
+    "keyCharacteristics": [
+      "Three provisional identities share one working application and semantic token layer.",
+      "Display type supplies identity; Inter carries reading and interface text; Geist Mono carries source.",
+      "Color fields, rules, and paired source/state regions provide structure with little elevation.",
+      "The existing Solux SVG remains the logo and favicon; this comparison introduces no generated rasters."
+    ],
+    "rules": [
+      {
+        "name": "The Independent Controls Rule",
+        "body": "`html[data-design=\"workshop\"|\"ledger\"|\"atlas\"]` selects identity; `.dark` independently selects color mode. Preserve both controls and resolve colors through the semantic custom properties.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reading Face Rule",
+        "body": "Keep display identity in headings and the brand; use Inter for prose and Geist Mono for source. Real state outputs use tabular numerals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Structural Depth Rule",
+        "body": "Use the existing surface, border, and field roles to distinguish regions; reserve floating elevation for the implemented popover and overlay roles.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** retain the three proposal names and provisional status until the user chooses an identity.",
+      "**Do** use the active identity's semantic colors and radius across reading pages and controls.",
+      "**Do** preserve visible keyboard focus, reduced-motion behavior, and English/French control parity.",
+      "**Do** keep source inspectable and state feedback tied to the working example."
+    ],
+    "donts": [
+      "**Don't** treat Blue Workshop's fallback URL behavior as user approval.",
+      "**Don't** combine identity selection with the independent light/dark control.",
+      "**Don't** replace the existing Solux logo or SVG favicon.",
+      "**Don't** promote a first-surface composition or this provisional comparison bar into an approved global identity."
+    ]
+  }
+}

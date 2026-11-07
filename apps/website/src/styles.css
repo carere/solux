@@ -1,7 +1,23 @@
-@import "tailwindcss";
+/* Keep class discovery aligned with Moon's source inputs, excluding design docs. */
+@import "tailwindcss" source("./");
 @import "tw-animate-css";
 @import "./registry/styles/tokens.css";
 @import "./registry/styles/style-vega.css";
+@import "./identity.css";
+@font-face {
+  font-family: "Onest";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("./fonts/onest.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("./fonts/manrope.ttf") format("truetype");
+}
 @font-face {
   font-family: "Inter Variable";
   font-style: normal;

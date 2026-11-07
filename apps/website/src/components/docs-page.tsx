@@ -6,6 +6,7 @@ import type { DocPage } from "../docs";
 import * as m from "../paraglide/messages";
 import { CodeBlock } from "./CodeBlock";
 import { CounterDemo, ScopesDemo } from "./Demos";
+import { LandingIntro } from "./LandingIntro";
 
 function DocLink(props: ParentProps<{ href: string; class?: string }>) {
   const slug = () => props.href.slice("/docs/".length).split("#")[0] ?? "";
@@ -34,7 +35,11 @@ export function DocsPage(props: { page: DocPage }) {
   return (
     <Show when={props.page} keyed>
       {(_page) => (
-        <div data-slot="docs" class="docs-page">
+        <div
+          data-slot="docs"
+          class="docs-page"
+          classList={{ "is-introduction": props.page.slug === "introduction" }}
+        >
           <div class="docs-reading-column">
             <article>
               <div class="breadcrumbs">
@@ -42,19 +47,16 @@ export function DocsPage(props: { page: DocPage }) {
                 <span aria-hidden="true">/</span>
                 <span>{groupName(props.page.group)}</span>
               </div>
-              <h1 classList={{ "intro-title": props.page.slug === "introduction" }}>
-                {props.page.title}
-              </h1>
-              <p class="page-description">{props.page.description}</p>
-              <Show when={props.page.slug === "introduction"}>
-                <div class="intro-links">
-                  <DocLink class="primary button-link" href="/docs/getting-started">
-                    {m.get_started()} <span aria-hidden="true">→</span>
-                  </DocLink>
-                  <DocLink href="/docs/api-reference">
-                    {m.explore_api()} <span aria-hidden="true">↗</span>
-                  </DocLink>
-                </div>
+              <Show
+                when={props.page.slug === "introduction"}
+                fallback={
+                  <>
+                    <h1>{props.page.title}</h1>
+                    <p class="page-description">{props.page.description}</p>
+                  </>
+                }
+              >
+                <LandingIntro page={props.page} />
               </Show>
               <For each={props.page.sections}>
                 {(section) => (
@@ -119,7 +121,7 @@ export function DocsPage(props: { page: DocPage }) {
                       )}
                     </Show>
                     <Show when={section.code}>{(code) => <CodeBlock {...code()} />}</Show>
-                    <Show when={section.demo === "counter"}>
+                    <Show when={section.demo === "counter" && props.page.slug !== "introduction"}>
                       <CounterDemo />
                     </Show>
                     <Show when={section.demo === "scopes"}>

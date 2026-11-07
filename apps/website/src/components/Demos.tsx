@@ -4,12 +4,13 @@ import { createCounterStore, increment, reset } from "../examples/counter";
 import * as m from "../paraglide/messages";
 import { Button } from "../registry/ui/button";
 
-export function CounterDemo() {
+export function CounterDemo(props: { onEvent?: (type: string) => void } = {}) {
   const store = createCounterStore();
   const doubled = createMemo(() => store.state.counter.value * 2);
   const [events, setEvents] = createSignal<string[]>([]);
   const subscription = store.subscribe(({ event }) => {
     setEvents((previous) => [JSON.stringify(event), ...previous].slice(0, 3));
+    props.onEvent?.(event.type);
   });
   onCleanup(() => {
     subscription.unsubscribe();
