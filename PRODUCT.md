@@ -64,8 +64,10 @@ The name is Solux; the public package is `@carere/solux`.
 [images/solux.svg](images/solux.svg) is the existing logo and must also serve as
 the documentation website's favicon.
 
-Use clear, technically precise explanations grounded in actual behavior. No
-additional voice or identity commitments were established during initialization.
+Signal Atlas is the selected website identity. Its visual system is documented
+in [the website design guide](apps/website/DESIGN.md).
+
+Use clear, technically precise explanations grounded in actual behavior.
 
 ## Evidence on Hand
 

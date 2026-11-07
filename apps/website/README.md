@@ -24,19 +24,16 @@ and preview run under Node via `bun vite`: forcing Bun as Vite's runtime caused
 recursive preview requests with the Cloudflare plugin on this machine. The
 production build can use Bun's runtime.
 
-## Identity comparison
+## Website identity
 
-This branch contains three working design proposals, pending a user choice:
+Signal Atlas is the selected identity: a navy introduction, Manrope headings,
+and a connected source/state instrument. It applies to the homepage and all
+documentation routes without a query parameter or comparison controls.
+Light/dark mode and English/French localization remain independent.
 
-- `/?design=workshop`: Blue Workshop, an open blue workspace.
-- `/?design=ledger`: Event Ledger, a ruled editorial reference.
-- `/?design=atlas`: Signal Atlas, a dark connected instrument.
-
-Use the comparison bar to switch without resetting the live counter. The design
-query persists through documentation navigation, reloads, and language changes;
-light/dark mode remains independent. Each proposal uses the same articles,
-public-package examples, search, and mobile navigation. The default proposal is
-Workshop; that default does not represent approval of a final identity.
+The live counter dispatches public events and derives values through Solid.
+Each dispatch renews the activity cue; reduced motion preserves the update
+without animation. The source panel links to the full running example.
 
 Display fonts are self-hosted with their licenses in `src/fonts/`. The existing
 `images/solux.svg` remains the logo and SVG favicon.

@@ -5,13 +5,6 @@
 @import "./registry/styles/style-vega.css";
 @import "./identity.css";
 @font-face {
-  font-family: "Onest";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url("./fonts/onest.ttf") format("truetype");
-}
-@font-face {
   font-family: "Manrope";
   font-style: normal;
   font-display: swap;

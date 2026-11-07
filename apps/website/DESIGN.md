@@ -1,70 +1,57 @@
 ---
-name: Solux website — provisional identity comparison
-description: Three implemented proposals awaiting the user's choice; no final visual identity is approved.
+name: Solux website — Signal Atlas
+description: Navy instruments, ivory display type, and precise developer documentation.
 colors:
-  workshop-primary: "#1550b9"
-  workshop-background: "#f6faff"
-  workshop-ink: "#112a45"
-  white-surface: "#ffffff"
-  workshop-muted: "#eaf1fa"
-  workshop-muted-ink: "#48617d"
-  workshop-border: "#c9d9eb"
-  workshop-field: "#dceefe"
-  workshop-field-ink: "#103a71"
-  source-background: "#0d2442"
-  source-ink: "#eef5ff"
-  ledger-primary: "#244ea0"
-  ledger-paper: "#f8f6ef"
-  ledger-ink: "#222e40"
-  ledger-surface: "#fffdf7"
-  atlas-primary: "#285bd5"
-  atlas-background: "#f5f6f8"
-  atlas-ink: "#1a2b43"
-  atlas-navy: "#102442"
-  atlas-ivory: "#f3f4e8"
-  atlas-field-muted: "#bacce9"
-  atlas-action: "#d6e7ff"
+  signal-blue: "#285bd5"
+  reading-background: "#f5f6f8"
+  reading-ink: "#1a2b43"
+  surface: "#ffffff"
+  muted-surface: "#e9edf4"
+  muted-ink: "#52627a"
+  active-surface: "#e0e9fc"
+  border: "#d2dae8"
+  navy-field: "#102442"
+  ivory: "#f3f4e8"
+  field-muted: "#bacce9"
+  field-border: "#3d5476"
+  pale-action: "#d6e7ff"
+  field-focus: "#a9cdff"
+  code-background: "#0d2442"
+  code-ink: "#eef5ff"
+  instrument-source: "#1b365c"
   dark-primary: "#91bdff"
-  dark-background: "#0d1a2b"
-  dark-ink: "#e6effa"
-  dark-surface: "#15283f"
-  ledger-dark-primary: "#a7c4ff"
-  ledger-dark-background: "#1a2028"
-  ledger-dark-ink: "#eeeae0"
-  atlas-dark-background: "#0c1728"
-  atlas-dark-ink: "#edf2fb"
-  atlas-dark-surface: "#152640"
+  dark-primary-ink: "#0a2347"
+  dark-background: "#0c1728"
+  dark-ink: "#edf2fb"
+  dark-surface: "#152640"
+  dark-muted-surface: "#192e46"
+  dark-muted-ink: "#adbed3"
+  dark-border: "#344a64"
 typography:
-  display-workshop:
-    fontFamily: '"Onest", "Inter Variable", sans-serif'
-    fontSize: "clamp(3.5rem, 5.7vw, 6rem)"
-    fontWeight: 650
-    lineHeight: 0.99
-    letterSpacing: "-0.04em"
-  display-ledger:
-    fontFamily: '"Manrope", "Inter Variable", sans-serif'
-    fontSize: "clamp(3rem, 4.65vw, 5.25rem)"
-    fontWeight: 600
-    lineHeight: 1.03
-    letterSpacing: "-0.04em"
-  display-atlas:
+  display:
     fontFamily: '"Manrope", "Inter Variable", sans-serif'
     fontSize: "clamp(3.5rem, 5.8vw, 6rem)"
     fontWeight: 550
     lineHeight: 1.06
     letterSpacing: "-0.04em"
   headline:
-    fontFamily: 'var(--font-heading)'
+    fontFamily: '"Manrope", "Inter Variable", sans-serif'
     fontSize: "clamp(2.125rem, 3.4vw, 3.375rem)"
-    fontWeight: 650
+    fontWeight: 550
     lineHeight: 1.2
     letterSpacing: "-0.035em"
   title:
-    fontFamily: 'var(--font-heading)'
+    fontFamily: '"Manrope", "Inter Variable", sans-serif'
     fontSize: "1.5rem"
     fontWeight: 650
     lineHeight: 1.2
     letterSpacing: "-0.035em"
+  instrument-title:
+    fontFamily: '"Manrope", "Inter Variable", sans-serif'
+    fontSize: "1.125rem"
+    fontWeight: 600
+    lineHeight: 1.4
+    letterSpacing: "-0.02em"
   body:
     fontFamily: '"Inter Variable", sans-serif'
     fontSize: "0.96875rem"
@@ -78,176 +65,169 @@ typography:
     fontFamily: '"Geist Mono Variable", monospace'
     fontSize: "0.8125rem"
     lineHeight: 1.85
+  instrument-value:
+    fontFamily: '"Manrope", "Inter Variable", sans-serif'
+    fontSize: "3rem"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "-0.035em"
 rounded:
-  workshop: "0.375rem"
-  ledger: "0.125rem"
-  atlas: "0.875rem"
-  comparison-option: "5px"
+  panel: "0.875rem"
+  instrument: "14px"
 spacing:
   compact: "8px"
   control: "12px"
   panel: "18px"
   mobile-gutter: "22px"
-  section-gap: "28px"
+  section-inset: "28px"
   outer-gutter: "32px"
 components:
-  action-workshop:
-    backgroundColor: "{colors.workshop-primary}"
-    textColor: "{colors.white-surface}"
+  action-primary:
+    backgroundColor: "{colors.signal-blue}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.panel}"
+  action-inverse:
+    backgroundColor: "{colors.pale-action}"
+    textColor: "{colors.navy-field}"
     typography: "{typography.action}"
-    rounded: "{rounded.workshop}"
+    rounded: "{rounded.panel}"
     padding: "10px 18px"
-    height: "44px"
-  action-ledger:
-    backgroundColor: "{colors.ledger-primary}"
-    textColor: "{colors.white-surface}"
-    typography: "{typography.action}"
-    rounded: "{rounded.ledger}"
-    padding: "10px 18px"
-    height: "44px"
-  action-atlas:
-    backgroundColor: "{colors.atlas-action}"
-    textColor: "{colors.atlas-navy}"
-    typography: "{typography.action}"
-    rounded: "{rounded.atlas}"
-    padding: "10px 18px"
-    height: "44px"
   action-text:
-    textColor: "{colors.workshop-field-ink}"
+    textColor: "{colors.ivory}"
     typography: "{typography.action}"
-    height: "44px"
   search-field:
-    backgroundColor: "{colors.workshop-muted}"
-    textColor: "{colors.workshop-ink}"
-    rounded: "{rounded.workshop}"
+    backgroundColor: "{colors.muted-surface}"
+    textColor: "{colors.reading-ink}"
+    rounded: "{rounded.panel}"
     padding: "4px 32px 4px 10px"
     height: "38px"
   note:
-    backgroundColor: "{colors.workshop-muted}"
-    textColor: "{colors.workshop-ink}"
-    rounded: "{rounded.workshop}"
+    backgroundColor: "{colors.muted-surface}"
+    textColor: "{colors.reading-ink}"
+    rounded: "{rounded.panel}"
     padding: "20px 22px"
   source-panel:
-    backgroundColor: "{colors.source-background}"
-    textColor: "{colors.source-ink}"
-    padding: "16px 20px"
+    backgroundColor: "{colors.instrument-source}"
+    textColor: "{colors.code-ink}"
+    padding: "26px"
 ---
 
-# Design System: Solux website — provisional identities
+# Design System: Solux website — Signal Atlas
 
 ## Overview
 
-**Creative North Star: "Three provisional Solux identities"**
+**Creative North Star: "Signal Atlas"**
 
-This records three built proposals for comparison: **Blue Workshop**, **Event Ledger**, and **Signal Atlas**, selected by `?design=workshop`, `?design=ledger`, and `?design=atlas`. Their names describe the current implementation; none is a user-approved final identity. Blue Workshop is the fallback when the URL has no valid design value. The user will choose a proposal and iterate after comparing the builds.
+Signal Atlas is the selected Solux website identity. It pairs deep navy fields and ivory Manrope headings with a light, precise reading environment. Blue actions, fine rules, and rounded instruments make the relationships between source and state visible.
 
-The shared visual foundation supports precise developer documentation: readable prose, inspectable source, visible state, and direct controls. Blue Workshop combines an open sky-blue field with cobalt and Onest. Event Ledger combines warm paper, blue annotation, Manrope, compact corners, and ruled boundaries. Signal Atlas combines a navy field, ivory type, Manrope, connected event steps, and more rounded instruments.
+The system serves developer reading and inspection. Inter carries prose and interface text; Geist Mono distinguishes source, commands, and state paths. Color fields and aligned regions provide structure, while real dispatch activity supplies the authored motion.
 
 **Key Characteristics:**
 
-- Three provisional identities share one working application and semantic token layer.
-- Display type supplies identity; Inter carries reading and interface text; Geist Mono carries source.
-- Color fields, rules, and paired source/state regions provide structure with little elevation.
-- The existing Solux SVG remains the logo and favicon; this comparison introduces no generated rasters.
+- Navy and ivory identify the instrument field in both light and dark modes.
+- Manrope headings, Inter reading text, and Geist Mono source have distinct roles.
+- Functional panels use rounded boundaries, tonal separation, and fine rules.
+- State feedback reflects real events and respects reduced motion.
 
-Scope is `apps/website`. Durable product constraints live in [PRODUCT.md](../../PRODUCT.md); homepage strategy and direction contracts live in [the surface brief](.impeccable/surfaces/src-routes-index-tsx.md). This document records reusable implemented rules rather than repeating that composition.
+Scope is `apps/website`. Durable product constraints live in [PRODUCT.md](../../PRODUCT.md); first-surface composition lives in [the surface brief](.impeccable/surfaces/src-routes-index-tsx.md). The existing [Solux SVG](../../images/solux.svg) remains the logo and favicon. No generated rasters are part of this system.
 
 ## Colors
 
-All three proposals use blue for action and active state. Their material character comes from different neutral fields and type contrast. The frontmatter is a curated set of exact source values; [identity.css](src/identity.css) owns the complete semantic palette, including borders, input, selection, sidebar, and all mode overrides. The sidecar's eight-step tonal ramps are synthesized preview aids, not additional shipped tokens.
+Signal blue marks action and active state. Cool reading neutrals keep the documentation quiet; navy and ivory give functional instruments a distinct field. Frontmatter records the reused source values. [identity.css](src/identity.css) owns the full semantic palette and mode overrides. The sidecar's eight-step tonal ramps are synthesized preview aids, not additional shipped tokens.
 
 ### Primary
 
-- **Workshop cobalt** supplies actions, focus, active navigation, and live-state accents.
-- **Ledger annotation blue** supplies the same roles against warm paper.
-- **Atlas signal blue** supplies documentation actions; the navy introduction uses a pale blue primary action for contrast.
-- **Dark signal blue** supplies Workshop and Atlas actions in dark mode; Ledger uses its own softer dark primary.
+- **Signal blue** supplies actions, focus, active navigation, selection, and charts on reading surfaces.
+- **Pale action blue** supplies the primary action on navy, becoming white on hover. Pale field focus remains visible on the dark field.
+- **Dark signal blue** supplies actions and focus in dark mode, paired with dark primary ink.
 
 ### Neutral
 
-- **Workshop paper, ink, and sky field** distinguish the reading shell from the introduction. White is the resting surface for instruments and popovers.
-- **Ledger paper, ink, and warm surface** keep the shell and introduction in the same paper family.
-- **Atlas paper and ink** support reading; navy, ivory, and muted blue define its introduction in both light and dark modes.
-- **Source background and source ink** provide shared dark code panels. Ledger's introduction instead uses its muted semantic surface with foreground text; Atlas's source half uses its own navy tint.
-- Dark modes use their own background, ink, and surface values. They are implemented alternatives, not automatic inversions of the light palette.
+- **Reading background, reading ink, and white surface** separate the page, text, and functional containers.
+- **Muted surface and muted ink** support notes, search, captions, and the event journal. Active navigation uses its own pale blue fill.
+- **Navy field, ivory, muted field ink, and field border** stay constant across color modes.
+- **Code background and code ink** support documentation source. The live instrument uses a lighter navy source region to distinguish it from the surrounding field.
+- **Dark background, ink, surface, muted roles, and border** replace the reading palette in dark mode.
 
-**The Independent Controls Rule.** `html[data-design="workshop"|"ledger"|"atlas"]` selects identity; `.dark` independently selects color mode. Preserve both controls and resolve colors through the semantic custom properties.
+**The Independent Settings Rule.** Every route uses the static Atlas identity. Light/dark mode and English/French language remain independent settings; colors resolve through the semantic custom properties.
 
 ## Typography
 
-**Display Font:** Onest for Blue Workshop; Manrope for Event Ledger and Signal Atlas; Inter Variable is the fallback.
+**Display Font:** Manrope, with Inter Variable and sans-serif fallbacks.
 
 **Body Font:** Inter Variable, with a sans-serif fallback.
 
-**Label/Mono Font:** Geist Mono Variable, with a monospace fallback, for source, commands, and instrument labels. Interface labels otherwise use Inter.
+**Label/Mono Font:** Geist Mono Variable, with a monospace fallback, for code, commands, and instrument labels. Other interface labels use Inter.
 
-Onest and Manrope are self-hosted in [src/fonts](src/fonts), with their OFL notices. Inter and Geist Mono use the existing local font packages. The display pairing changes the identity without changing the reading face.
+Manrope is self-hosted in [src/fonts](src/fonts) with its OFL notice. Inter and Geist Mono use the existing local font packages. Display type is spacious and moderately weighted; reading text is smaller, generously led, and bounded in measure.
 
 ### Hierarchy
 
-- **Display:** the three frontmatter display roles record the wide-screen headline ramps. At widths up to (1439px), the shared ramp becomes `clamp(3.5rem, 5.1vw, 5rem)`; the tablet band uses (4.5rem); mobile uses `clamp(2.875rem, 11vw, 4.5rem)` with line height (1.04). Variant weights remain distinct.
-- **Headline:** article titles use the headline role; Atlas reduces their weight to (550).
-- **Title:** section headings use the title role; Ledger uses (1.375rem) and weight (700).
-- **Body:** article prose uses the body role within a maximum reading measure of (74ch). Introductory descriptions have their own larger, narrower measure.
-- **Action:** primary and text actions share the action role. Sidebar items use (0.8125rem), with active weight (650).
-- **Code:** documentation code uses the code role. The introductory source excerpt is (0.75rem) by default; Ledger and Atlas use (0.8125rem) on larger screens. Code remains horizontally scrollable when needed.
+- **Display:** the frontmatter ramp applies above mobile width. Mobile uses `clamp(2.875rem, 11vw, 4.5rem)` and line height (1.04), retaining weight (550).
+- **Headline:** article titles use the headline role.
+- **Title:** article sections use the title role; introduction sections use line height (1.4).
+- **Instrument title:** functional workbench headings use the smaller instrument-title role. Supporting paragraphs use (0.875rem), weight (400), and line height (1.65).
+- **Body:** article prose uses the body role within a maximum measure of (74ch).
+- **Action:** introductory primary and text links use the action role. Sidebar items use (0.8125rem), with active weight (650).
+- **Code:** documentation code uses the code role. Instrument source uses line height (1.9) and becomes (0.75rem) on mobile.
+- **Instrument value:** paired state and derived outputs use the instrument-value role with tabular numerals.
 
-**The Reading Face Rule.** Keep display identity in headings and the brand; use Inter for prose and Geist Mono for source. Real state outputs use tabular numerals.
+**The Reading Face Rule.** Use Manrope for headings and the brand, Inter for reading and controls, and Geist Mono for source. Keep code selectable and horizontally scrollable when its content needs it.
 
 ## Layout
 
-The shared documentation shell has a maximum width of (1720px), a sticky navigation column, a flexible reading column capped at (920px), and a table of contents that disappears below (1280px). Reading content remains capped at (74ch). Reading-column gutters use `clamp(28px, 3.6vw, 64px)` and become (22px) on mobile.
+The documentation shell has a maximum width of (1720px), a sticky navigation column, a flexible reading column capped at (920px), and a table of contents that disappears below (1280px). Article content is capped at (74ch). Reading-column gutters use `clamp(28px, 3.6vw, 64px)` and become (22px) on mobile.
 
-The comparison bar and site header stack. Their desktop heights are (72px) each; the comparison bar becomes (80px) in the (768–1130px) band. At mobile widths up to (767px), they become (86px) and (116px). Their summed custom property controls sticky positions and scroll offsets.
+The site header sticks at the top with a height token of (72px), changing to (116px) at widths up to (767px). Sticky sidebars, the table of contents, heading scroll margins, and root scroll padding resolve from this height.
 
-Reusable variant signatures are Workshop's asymmetric open grouping, Ledger's ruled rows and paired regions, and Atlas's centered grouping with a wide connected instrument. The first-surface arrangement belongs to the surface brief. At mobile widths, source/state panels become a single column, controls retain usable targets, and prose keeps its reading order. Dense demonstrations collapse their paired chart scopes below (1001px).
+Connected instruments use aligned event stages and paired source/state regions. On mobile, the stages become readable label/code rows with an (86px) label column; the live state precedes source visually. Source/state panels and reading sections become a single column. Independent chart demonstrations stack below (1001px). Preserve the working content and reading order when adapting these patterns; the surface brief owns the homepage arrangement.
 
 ## Elevation & Depth
 
-Color fields and thin rules provide most depth. Code and state regions sit beside or above each other without decorative lifts. Search results are the notable floating surface, with shadow `0 14px 32px #06152c26`; the existing input and overlay components retain their small framework shadows. A global prohibition on shadows would misdescribe this build.
+Tonal fields and thin rules provide most depth. Functional panels sit flat at rest. Search results are the notable floating surface, with shadow `0 14px 32px #06152c26`; existing input and overlay primitives retain their small framework shadows.
 
-**The Structural Depth Rule.** Use the existing surface, border, and field roles to distinguish regions; reserve floating elevation for the implemented popover and overlay roles.
+**The Structural Depth Rule.** Distinguish source, state, reading, and floating regions with their implemented surface, border, and field roles. Use floating elevation for popovers and overlays.
 
-The title arrives once over (600ms), using `cubic-bezier(0.16, 1, 0.3, 1)` and a small translation/blur. Comparison hover transitions take (150ms). Each real dispatch starts a (480ms) event-flow background pulse from an (18%) mix of field ink to transparent, using the same easing; a new dispatch cancels the previous pulse. The pulse is skipped for reduced motion and canceled on cleanup. Other animation and transition durations use the existing reduced-motion override. Active step emphasis remains tied to the latest event.
+Each real dispatch starts a (480ms) event-flow background pulse from an (18%) mix of field ink to transparent, eased with `cubic-bezier(0.16, 1, 0.3, 1)`. A new dispatch cancels the prior pulse. Reduced motion skips it; cleanup cancels it. Active step emphasis remains tied to the latest event. Existing registry transitions also follow the global reduced-motion duration override.
 
 ## Shapes
 
-Each identity's radius is reused across controls, notes, demonstrations, and code panels: gently compact Workshop, nearly square Ledger, and rounded Atlas. The comparison options deliberately keep their shared (5px) corners so switching remains consistent. Source/state groups clip at their outer boundary. Thin horizontal and vertical rules separate real content regions; the Ledger proposal uses them most prominently.
+General panels and controls use the shared rounded token. The paired instrument has an explicit outer radius of (14px) and clips its source/state regions at that boundary. Notes, code panels, demonstrations, and active navigation reuse the system corner language. Fine rules separate real content regions; small circular markers indicate a live example.
 
 ## Components
 
 ### Buttons
 
-Primary actions are filled, compact, and readable. Introductory primary and text actions have a minimum height of (44px); the primary uses the documented padding and identity radius. The primary hover uses foreground ink with background-colored text. Atlas's introductory primary is pale blue on navy and becomes white on hover. Text actions inherit their surrounding foreground and underline on hover. The default registry button supplies disabled opacity, focus rings, and a small pressed translation. Counter controls grow to a minimum height of (44px) on mobile.
+Introductory primary and text actions have a minimum height of (44px). The filled primary uses the inverse-action tokens against navy and becomes white on hover. The text action inherits ivory and underlines on hover. Reading-surface primary controls use semantic primary colors and shift to foreground ink on hover. Registry buttons provide disabled opacity, focus rings, and a small pressed translation. Counter controls grow from a minimum height of (36px) to (44px) on mobile.
 
 ### Cards / Containers
 
-Notes use a muted tonal fill, no border, and the documented note padding. Demonstrations use a surface fill, a thin border, and identity corners. Source panels use the source palette; their controls and captions remain visually subordinate to code. Do not infer an all-purpose marketing-card grid from these functional containers.
+Notes use a muted fill, no border, and the documented note padding. Demonstrations use a surface fill, thin border, and shared corners. The connected source/state instrument clips a navy source region beside a reading-surface state region. Source captions remain subordinate to code. On mobile its source padding becomes (20px 18px).
 
 ### Inputs / Fields
 
-Search uses a muted fill, a thin semantic border, identity corners, and a minimum height of (38px), increasing to (40px) on mobile. The keyboard hint sits at the right inside the field area. Focus uses the ring token. Search results float below the field, with the popover colors, documented shadow, and a scrollable maximum height of (65dvh).
+Search uses a muted fill, semantic border, shared corners, and a minimum height of (38px), increasing to (40px) on mobile. A keyboard hint sits at the right. Focus uses the ring token; controls on the navy introduction use the pale field-focus color. Search results float below the field and scroll within a maximum height of (65dvh).
 
 ### Navigation
 
-The existing SVG and wordmark anchor the sticky header. Active sidebar items use primary text, accent fill, and heavier weight; hover uses the accent roles. Mobile navigation uses the existing focus-managed sheet. The comparison options are temporary links with named identity swatches and an explicit current-page state; they retain the selected route and hash.
+The original SVG and Manrope wordmark anchor the sticky header. Active sidebar items use primary ink, accent fill, and heavier weight; hover uses the accent roles. Mobile navigation retains the existing focus-managed sheet. Introductory navigation rows use ivory headings, muted descriptions, pale blue arrows, and pale blue underlined hover text.
 
 ### Live source and state
 
-The signature instrument connects a real event, synchronous handler, and reactive state. Source uses selectable code; output uses large tabular values; the event journal displays recent dispatched events. Reset changes the diagram to `counter/reset` and `value = 0`; increment and decrement retain the payload-addition handler. Use actual state and events for visual feedback. A static sidecar example illustrates styling only and does not implement a store.
+The signature instrument connects a real event, synchronous handler, and reactive state. Source is selectable, outputs use tabular values, and the journal displays recent dispatched events. Reset changes the diagram to `counter/reset` and `value = 0`; increment and decrement retain the payload-addition handler. Sidecar samples illustrate styling without implementing a store.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** retain the three proposal names and provisional status until the user chooses an identity.
-- **Do** use the active identity's semantic colors and radius across reading pages and controls.
-- **Do** preserve visible keyboard focus, reduced-motion behavior, and English/French control parity.
-- **Do** keep source inspectable and state feedback tied to the working example.
+- **Do** carry Signal Atlas across the homepage and documentation.
+- **Do** resolve reading-surface colors and corners through the semantic tokens.
+- **Do** preserve visible focus, reduced-motion behavior, and English/French parity.
+- **Do** connect visual activity to real events and keep source inspectable.
 
 ### Don't:
 
-- **Don't** treat Blue Workshop's fallback URL behavior as user approval.
-- **Don't** combine identity selection with the independent light/dark control.
+- **Don't** change the identity when changing language or light/dark mode.
 - **Don't** replace the existing Solux logo or SVG favicon.
-- **Don't** promote a first-surface composition or this provisional comparison bar into an approved global identity.
+- **Don't** use the display face for reading prose or code.
+- **Don't** promote a first-surface composition into a requirement for every documentation page.

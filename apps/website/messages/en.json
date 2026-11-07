@@ -80,11 +80,5 @@
   "landing_reactivity_title": "Stay in Solid’s flow.",
   "landing_reactivity_description": "Read reactive properties and derive values with createMemo.",
   "landing_ownership_title": "Own the store’s lifetime.",
-  "landing_ownership_description": "Create independent stores and understand disposal responsibilities.",
-  "design_comparison_title": "Three ways to see Solux",
-  "design_comparison_hint": "Explore each direction. Pick your favorite.",
-  "design_workshop_description": "Open, blue, hands-on",
-  "design_ledger_description": "Precise, warm, editorial",
-  "design_atlas_description": "Immersive, bold, connected",
-  "design_options": "Website design directions"
+  "landing_ownership_description": "Create independent stores and understand disposal responsibilities."
 }

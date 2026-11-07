@@ -1,27 +1,15 @@
-import {
-  createRootRoute,
-  HeadContent,
-  Outlet,
-  retainSearchParams,
-  ScriptOnce,
-  Scripts,
-  useLocation,
-} from "@tanstack/solid-router";
+import { createRootRoute, HeadContent, Outlet, ScriptOnce, Scripts } from "@tanstack/solid-router";
 import { Suspense } from "solid-js";
 import { HydrationScript } from "solid-js/web";
 import logo from "../../../../images/solux.svg";
 import { App } from "../App";
 import { NotFound } from "../components/docs-page";
-import { type DesignVariant, isDesignVariant, readDesign } from "../design";
 import * as m from "../paraglide/messages";
 import { getLocale } from "../paraglide/runtime";
 import { ColorModeProvider, colorModeScript } from "../registry/components/color-mode";
 import styles from "../styles.css?url";
 
 export const Route = createRootRoute({
-  validateSearch: (search: Record<string, unknown>): { design?: DesignVariant } =>
-    isDesignVariant(search.design) ? { design: search.design } : {},
-  search: { middlewares: [retainSearchParams(["design"])] },
   head: () => ({
     meta: [
       { title: `${m.not_found()} · Solux` },
@@ -44,14 +32,8 @@ export const Route = createRootRoute({
 });
 
 function RootDocument(props: { children: import("solid-js").JSX.Element }) {
-  const location = useLocation();
   return (
-    <html
-      lang={getLocale()}
-      class="light"
-      data-theme="light"
-      data-design={readDesign(location().search.design)}
-    >
+    <html lang={getLocale()} class="light" data-theme="light" data-design="atlas">
       <head>
         <HydrationScript />
         <ScriptOnce>{colorModeScript}</ScriptOnce>

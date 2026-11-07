@@ -80,11 +80,5 @@
   "landing_reactivity_title": "Suivez le mouvement de Solid.",
   "landing_reactivity_description": "Lisez les propriétés réactives et dérivez des valeurs avec createMemo.",
   "landing_ownership_title": "Maîtrisez la durée de vie du store.",
-  "landing_ownership_description": "Créez des stores indépendants et comprenez leur libération.",
-  "design_comparison_title": "Trois façons de voir Solux",
-  "design_comparison_hint": "Explorez chaque direction. Choisissez votre préférée.",
-  "design_workshop_description": "Ouvert, bleu, interactif",
-  "design_ledger_description": "Précis, chaleureux, éditorial",
-  "design_atlas_description": "Immersif, affirmé, connecté",
-  "design_options": "Directions visuelles du site"
+  "landing_ownership_description": "Créez des stores indépendants et comprenez leur libération."
 }

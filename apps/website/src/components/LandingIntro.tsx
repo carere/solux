@@ -6,11 +6,15 @@ import * as m from "../paraglide/messages";
 import { CounterDemo } from "./Demos";
 
 const installCommand = "bun add @carere/solux";
-const incrementExcerpt = `const increment = createEvent<number>("counter/increment");
+const incrementExcerpt = `const increment = createEvent<number>(
+  "counter/increment",
+);
 
-builder.addHandler(increment, (state, { payload }) => {
-  state.value += payload;
-});`;
+builder.addHandler(
+  increment, (state, { payload }) => {
+    state.value += payload;
+  },
+);`;
 
 export function LandingIntro(props: { page: DocPage }) {
   const [copyStatus, setCopyStatus] = createSignal<"idle" | "success" | "failure">("idle");
@@ -45,7 +49,7 @@ export function LandingIntro(props: { page: DocPage }) {
         <h1 id="landing-title" class="landing-title intro-title">
           {props.page.title}
         </h1>
-        <p class="landing-description page-description">{props.page.description}</p>
+        <p class="landing-description">{props.page.description}</p>
         <div class="landing-actions">
           <Link to="/docs/$slug" params={{ slug: "getting-started" }} class="primary button-link">
             {m.get_started()} <ArrowRight aria-hidden="true" />
