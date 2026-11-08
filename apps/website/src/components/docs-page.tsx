@@ -1,11 +1,15 @@
 // Adapted from Zaidan src/components/docs-page.tsx; see ../../ZAIDAN-NOTICE.md.
 import { Link } from "@tanstack/solid-router";
+import { ArrowRight } from "lucide-solid";
 import { For, type ParentProps, Show } from "solid-js";
 import { groupName, localizedPages, pageName } from "../content";
 import type { DocPage } from "../docs";
+import { cn } from "../lib/utils";
 import * as m from "../paraglide/messages";
+import { buttonVariants } from "../registry/ui/button";
 import { CodeBlock } from "./CodeBlock";
 import { CounterDemo, ScopesDemo } from "./Demos";
+import { LandingIntro } from "./LandingIntro";
 
 function DocLink(props: ParentProps<{ href: string; class?: string }>) {
   const slug = () => props.href.slice("/docs/".length).split("#")[0] ?? "";
@@ -13,7 +17,11 @@ function DocLink(props: ParentProps<{ href: string; class?: string }>) {
     <Show
       when={props.href.startsWith("/docs/")}
       fallback={
-        <a href={props.href} class={props.class}>
+        <a
+          href={props.href}
+          class={cn(buttonVariants({ variant: "link", size: null }), "doc-link", props.class)}
+          data-slot="button"
+        >
           {props.children}
         </a>
       }
@@ -22,7 +30,8 @@ function DocLink(props: ParentProps<{ href: string; class?: string }>) {
         to="/docs/$slug"
         params={{ slug: slug() }}
         hash={props.href.split("#")[1]}
-        class={props.class}
+        class={cn(buttonVariants({ variant: "link", size: null }), "doc-link", props.class)}
+        data-slot="button"
       >
         {props.children}
       </Link>
@@ -34,7 +43,11 @@ export function DocsPage(props: { page: DocPage }) {
   return (
     <Show when={props.page} keyed>
       {(_page) => (
-        <div data-slot="docs" class="docs-page">
+        <div
+          data-slot="docs"
+          class="docs-page"
+          classList={{ "is-introduction": props.page.slug === "introduction" }}
+        >
           <div class="docs-reading-column">
             <article>
               <div class="breadcrumbs">
@@ -42,19 +55,16 @@ export function DocsPage(props: { page: DocPage }) {
                 <span aria-hidden="true">/</span>
                 <span>{groupName(props.page.group)}</span>
               </div>
-              <h1 classList={{ "intro-title": props.page.slug === "introduction" }}>
-                {props.page.title}
-              </h1>
-              <p class="page-description">{props.page.description}</p>
-              <Show when={props.page.slug === "introduction"}>
-                <div class="intro-links">
-                  <DocLink class="primary button-link" href="/docs/getting-started">
-                    {m.get_started()} <span aria-hidden="true">→</span>
-                  </DocLink>
-                  <DocLink href="/docs/api-reference">
-                    {m.explore_api()} <span aria-hidden="true">↗</span>
-                  </DocLink>
-                </div>
+              <Show
+                when={props.page.slug === "introduction"}
+                fallback={
+                  <>
+                    <h1>{props.page.title}</h1>
+                    <p class="page-description">{props.page.description}</p>
+                  </>
+                }
+              >
+                <LandingIntro page={props.page} />
               </Show>
               <For each={props.page.sections}>
                 {(section) => (
@@ -119,7 +129,7 @@ export function DocsPage(props: { page: DocPage }) {
                       )}
                     </Show>
                     <Show when={section.code}>{(code) => <CodeBlock {...code()} />}</Show>
-                    <Show when={section.demo === "counter"}>
+                    <Show when={section.demo === "counter" && props.page.slug !== "introduction"}>
                       <CounterDemo />
                     </Show>
                     <Show when={section.demo === "scopes"}>
@@ -132,7 +142,7 @@ export function DocsPage(props: { page: DocPage }) {
                             <li>
                               <DocLink href={link.href}>
                                 {link.label}
-                                <span aria-hidden="true">→</span>
+                                <ArrowRight data-icon="inline-end" aria-hidden="true" />
                               </DocLink>
                             </li>
                           )}
@@ -143,6 +153,22 @@ export function DocsPage(props: { page: DocPage }) {
                 )}
               </For>
             </article>
+            <Show when={props.page.slug === "introduction"}>
+              <section class="landing-close" aria-labelledby="landing-close-title">
+                <div>
+                  <h2 id="landing-close-title">{m.landing_close_title()}</h2>
+                  <p>{m.landing_close_description()}</p>
+                </div>
+                <Link
+                  to="/docs/$slug"
+                  params={{ slug: "getting-started" }}
+                  class={buttonVariants({ size: "xl" })}
+                  data-slot="button"
+                >
+                  {m.get_started()} <ArrowRight data-icon="inline-end" aria-hidden="true" />
+                </Link>
+              </section>
+            </Show>
             <nav class="page-pagination" aria-label={m.adjacent()}>
               <Show
                 when={localizedPages()[localizedPages().indexOf(props.page) - 1]}
@@ -160,9 +186,7 @@ export function DocsPage(props: { page: DocPage }) {
                   <DocLink href={`/docs/${next().slug}`}>
                     <span>{m.next()}</span>
                     {pageName(next())}
-                    <span aria-hidden="true" class="pagination-arrow">
-                      →
-                    </span>
+                    <ArrowRight class="pagination-arrow" aria-hidden="true" />
                   </DocLink>
                 )}
               </Show>
@@ -176,13 +200,18 @@ export function DocsPage(props: { page: DocPage }) {
             <nav aria-label={m.on_this_page()}>
               <p>{m.on_this_page()}</p>
               <For each={props.page.sections}>
-                {(section) => <a href={`#${section.id}`}>{section.title}</a>}
+                {(section) => <DocLink href={`#${section.id}`}>{section.title}</DocLink>}
               </For>
             </nav>
             <p class="source-note">
               {m.source_docs()}
               <br />
-              <Link to="/docs/$slug" params={{ slug: "migration" }}>
+              <Link
+                to="/docs/$slug"
+                params={{ slug: "migration" }}
+                class={cn(buttonVariants({ variant: "link", size: null }), "doc-link")}
+                data-slot="button"
+              >
                 {m.release_status()}
               </Link>
             </p>
@@ -198,7 +227,12 @@ export function NotFound() {
     <article class="not-found">
       <h1>{m.not_found()}</h1>
       <p>{m.not_found_description()}</p>
-      <Link to="/docs/$slug" params={{ slug: "introduction" }}>
+      <Link
+        to="/docs/$slug"
+        params={{ slug: "introduction" }}
+        class={buttonVariants()}
+        data-slot="button"
+      >
         {m.back_intro()}
       </Link>
     </article>

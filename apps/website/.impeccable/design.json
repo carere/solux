@@ -1,0 +1,884 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-07T19:24:42.600891+00:00",
+  "title": "Design System: Solux website — Open Space",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Primary",
+        "canonical": "#7655a8",
+        "tonalRamp": [
+          "oklch(0.15 0.12973 300.31)",
+          "oklch(0.26 0.12973 300.31)",
+          "oklch(0.38 0.12973 300.31)",
+          "oklch(0.49 0.12973 300.31)",
+          "oklch(0.61 0.12973 300.31)",
+          "oklch(0.72 0.12973 300.31)",
+          "oklch(0.84 0.12973 300.31)",
+          "oklch(0.95 0.12973 300.31)"
+        ]
+      },
+      "page": {
+        "role": "neutral",
+        "displayName": "Page",
+        "canonical": "#fcfcfa",
+        "tonalRamp": [
+          "oklch(0.15 0.00263 106.45)",
+          "oklch(0.26 0.00263 106.45)",
+          "oklch(0.38 0.00263 106.45)",
+          "oklch(0.49 0.00263 106.45)",
+          "oklch(0.61 0.00263 106.45)",
+          "oklch(0.72 0.00263 106.45)",
+          "oklch(0.84 0.00263 106.45)",
+          "oklch(0.95 0.00263 106.45)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#2d2c32",
+        "tonalRamp": [
+          "oklch(0.15 0.01082 293.38)",
+          "oklch(0.26 0.01082 293.38)",
+          "oklch(0.38 0.01082 293.38)",
+          "oklch(0.49 0.01082 293.38)",
+          "oklch(0.61 0.01082 293.38)",
+          "oklch(0.72 0.01082 293.38)",
+          "oklch(0.84 0.01082 293.38)",
+          "oklch(0.95 0.01082 293.38)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(0.15 0.00000 0.00)",
+          "oklch(0.26 0.00000 0.00)",
+          "oklch(0.38 0.00000 0.00)",
+          "oklch(0.49 0.00000 0.00)",
+          "oklch(0.61 0.00000 0.00)",
+          "oklch(0.72 0.00000 0.00)",
+          "oklch(0.84 0.00000 0.00)",
+          "oklch(0.95 0.00000 0.00)"
+        ]
+      },
+      "lavender": {
+        "role": "secondary",
+        "displayName": "Lavender",
+        "canonical": "#eeebf6",
+        "tonalRamp": [
+          "oklch(0.15 0.01500 298.56)",
+          "oklch(0.26 0.01500 298.56)",
+          "oklch(0.38 0.01500 298.56)",
+          "oklch(0.49 0.01500 298.56)",
+          "oklch(0.61 0.01500 298.56)",
+          "oklch(0.72 0.01500 298.56)",
+          "oklch(0.84 0.01500 298.56)",
+          "oklch(0.95 0.01500 298.56)"
+        ]
+      },
+      "lavender-ink": {
+        "role": "secondary",
+        "displayName": "Lavender ink",
+        "canonical": "#62478a",
+        "tonalRamp": [
+          "oklch(0.15 0.10871 300.80)",
+          "oklch(0.26 0.10871 300.80)",
+          "oklch(0.38 0.10871 300.80)",
+          "oklch(0.49 0.10871 300.80)",
+          "oklch(0.61 0.10871 300.80)",
+          "oklch(0.72 0.10871 300.80)",
+          "oklch(0.84 0.10871 300.80)",
+          "oklch(0.95 0.10871 300.80)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#f1eff4",
+        "tonalRamp": [
+          "oklch(0.15 0.00696 304.24)",
+          "oklch(0.26 0.00696 304.24)",
+          "oklch(0.38 0.00696 304.24)",
+          "oklch(0.49 0.00696 304.24)",
+          "oklch(0.61 0.00696 304.24)",
+          "oklch(0.72 0.00696 304.24)",
+          "oklch(0.84 0.00696 304.24)",
+          "oklch(0.95 0.00696 304.24)"
+        ]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Muted ink",
+        "canonical": "#706b7a",
+        "tonalRamp": [
+          "oklch(0.15 0.02384 300.78)",
+          "oklch(0.26 0.02384 300.78)",
+          "oklch(0.38 0.02384 300.78)",
+          "oklch(0.49 0.02384 300.78)",
+          "oklch(0.61 0.02384 300.78)",
+          "oklch(0.72 0.02384 300.78)",
+          "oklch(0.84 0.02384 300.78)",
+          "oklch(0.95 0.02384 300.78)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Border",
+        "canonical": "#e7e3eb",
+        "tonalRamp": [
+          "oklch(0.15 0.01153 308.32)",
+          "oklch(0.26 0.01153 308.32)",
+          "oklch(0.38 0.01153 308.32)",
+          "oklch(0.49 0.01153 308.32)",
+          "oklch(0.61 0.01153 308.32)",
+          "oklch(0.72 0.01153 308.32)",
+          "oklch(0.84 0.01153 308.32)",
+          "oklch(0.95 0.01153 308.32)"
+        ]
+      },
+      "input-border": {
+        "role": "neutral",
+        "displayName": "Input border",
+        "canonical": "#d4cbdc",
+        "tonalRamp": [
+          "oklch(0.15 0.02517 309.33)",
+          "oklch(0.26 0.02517 309.33)",
+          "oklch(0.38 0.02517 309.33)",
+          "oklch(0.49 0.02517 309.33)",
+          "oklch(0.61 0.02517 309.33)",
+          "oklch(0.72 0.02517 309.33)",
+          "oklch(0.84 0.02517 309.33)",
+          "oklch(0.95 0.02517 309.33)"
+        ]
+      },
+      "sage": {
+        "role": "secondary",
+        "displayName": "Sage",
+        "canonical": "#e5edda",
+        "tonalRamp": [
+          "oklch(0.15 0.02662 125.62)",
+          "oklch(0.26 0.02662 125.62)",
+          "oklch(0.38 0.02662 125.62)",
+          "oklch(0.49 0.02662 125.62)",
+          "oklch(0.61 0.02662 125.62)",
+          "oklch(0.72 0.02662 125.62)",
+          "oklch(0.84 0.02662 125.62)",
+          "oklch(0.95 0.02662 125.62)"
+        ]
+      },
+      "sage-ink": {
+        "role": "secondary",
+        "displayName": "Sage ink",
+        "canonical": "#46543b",
+        "tonalRamp": [
+          "oklch(0.15 0.04361 131.82)",
+          "oklch(0.26 0.04361 131.82)",
+          "oklch(0.38 0.04361 131.82)",
+          "oklch(0.49 0.04361 131.82)",
+          "oklch(0.61 0.04361 131.82)",
+          "oklch(0.72 0.04361 131.82)",
+          "oklch(0.84 0.04361 131.82)",
+          "oklch(0.95 0.04361 131.82)"
+        ]
+      },
+      "sage-muted": {
+        "role": "secondary",
+        "displayName": "Sage muted",
+        "canonical": "#59694c",
+        "tonalRamp": [
+          "oklch(0.15 0.04858 131.48)",
+          "oklch(0.26 0.04858 131.48)",
+          "oklch(0.38 0.04858 131.48)",
+          "oklch(0.49 0.04858 131.48)",
+          "oklch(0.61 0.04858 131.48)",
+          "oklch(0.72 0.04858 131.48)",
+          "oklch(0.84 0.04858 131.48)",
+          "oklch(0.95 0.04858 131.48)"
+        ]
+      },
+      "butter": {
+        "role": "secondary",
+        "displayName": "Butter",
+        "canonical": "#faf2d9",
+        "tonalRamp": [
+          "oklch(0.15 0.03389 92.27)",
+          "oklch(0.26 0.03389 92.27)",
+          "oklch(0.38 0.03389 92.27)",
+          "oklch(0.49 0.03389 92.27)",
+          "oklch(0.61 0.03389 92.27)",
+          "oklch(0.72 0.03389 92.27)",
+          "oklch(0.84 0.03389 92.27)",
+          "oklch(0.95 0.03389 92.27)"
+        ]
+      },
+      "butter-ink": {
+        "role": "secondary",
+        "displayName": "Butter ink",
+        "canonical": "#665733",
+        "tonalRamp": [
+          "oklch(0.15 0.05592 87.60)",
+          "oklch(0.26 0.05592 87.60)",
+          "oklch(0.38 0.05592 87.60)",
+          "oklch(0.49 0.05592 87.60)",
+          "oklch(0.61 0.05592 87.60)",
+          "oklch(0.72 0.05592 87.60)",
+          "oklch(0.84 0.05592 87.60)",
+          "oklch(0.95 0.05592 87.60)"
+        ]
+      },
+      "code": {
+        "role": "neutral",
+        "displayName": "Code",
+        "canonical": "#2e273b",
+        "tonalRamp": [
+          "oklch(0.15 0.03701 300.16)",
+          "oklch(0.26 0.03701 300.16)",
+          "oklch(0.38 0.03701 300.16)",
+          "oklch(0.49 0.03701 300.16)",
+          "oklch(0.61 0.03701 300.16)",
+          "oklch(0.72 0.03701 300.16)",
+          "oklch(0.84 0.03701 300.16)",
+          "oklch(0.95 0.03701 300.16)"
+        ]
+      },
+      "code-ink": {
+        "role": "neutral",
+        "displayName": "Code ink",
+        "canonical": "#f4effb",
+        "tonalRamp": [
+          "oklch(0.15 0.01677 304.80)",
+          "oklch(0.26 0.01677 304.80)",
+          "oklch(0.38 0.01677 304.80)",
+          "oklch(0.49 0.01677 304.80)",
+          "oklch(0.61 0.01677 304.80)",
+          "oklch(0.72 0.01677 304.80)",
+          "oklch(0.84 0.01677 304.80)",
+          "oklch(0.95 0.01677 304.80)"
+        ]
+      },
+      "code-highlight": {
+        "role": "neutral",
+        "displayName": "Code highlight",
+        "canonical": "#493b5b",
+        "tonalRamp": [
+          "oklch(0.15 0.05602 303.93)",
+          "oklch(0.26 0.05602 303.93)",
+          "oklch(0.38 0.05602 303.93)",
+          "oklch(0.49 0.05602 303.93)",
+          "oklch(0.61 0.05602 303.93)",
+          "oklch(0.72 0.05602 303.93)",
+          "oklch(0.84 0.05602 303.93)",
+          "oklch(0.95 0.05602 303.93)"
+        ]
+      },
+      "code-muted": {
+        "role": "neutral",
+        "displayName": "Code muted",
+        "canonical": "#cfbedf",
+        "tonalRamp": [
+          "oklch(0.15 0.04903 308.44)",
+          "oklch(0.26 0.04903 308.44)",
+          "oklch(0.38 0.04903 308.44)",
+          "oklch(0.49 0.04903 308.44)",
+          "oklch(0.61 0.04903 308.44)",
+          "oklch(0.72 0.04903 308.44)",
+          "oklch(0.84 0.04903 308.44)",
+          "oklch(0.95 0.04903 308.44)"
+        ]
+      },
+      "syntax-keyword": {
+        "role": "neutral",
+        "displayName": "Syntax keyword",
+        "canonical": "#c4b5fd",
+        "tonalRamp": [
+          "oklch(0.15 0.10129 293.57)",
+          "oklch(0.26 0.10129 293.57)",
+          "oklch(0.38 0.10129 293.57)",
+          "oklch(0.49 0.10129 293.57)",
+          "oklch(0.61 0.10129 293.57)",
+          "oklch(0.72 0.10129 293.57)",
+          "oklch(0.84 0.10129 293.57)",
+          "oklch(0.95 0.10129 293.57)"
+        ]
+      },
+      "syntax-string": {
+        "role": "neutral",
+        "displayName": "Syntax string",
+        "canonical": "#a7f3d0",
+        "tonalRamp": [
+          "oklch(0.15 0.08949 164.15)",
+          "oklch(0.26 0.08949 164.15)",
+          "oklch(0.38 0.08949 164.15)",
+          "oklch(0.49 0.08949 164.15)",
+          "oklch(0.61 0.08949 164.15)",
+          "oklch(0.72 0.08949 164.15)",
+          "oklch(0.84 0.08949 164.15)",
+          "oklch(0.95 0.08949 164.15)"
+        ]
+      },
+      "syntax-number": {
+        "role": "neutral",
+        "displayName": "Syntax number",
+        "canonical": "#fcd34d",
+        "tonalRamp": [
+          "oklch(0.15 0.15342 91.61)",
+          "oklch(0.26 0.15342 91.61)",
+          "oklch(0.38 0.15342 91.61)",
+          "oklch(0.49 0.15342 91.61)",
+          "oklch(0.61 0.15342 91.61)",
+          "oklch(0.72 0.15342 91.61)",
+          "oklch(0.84 0.15342 91.61)",
+          "oklch(0.95 0.15342 91.61)"
+        ]
+      },
+      "selection": {
+        "role": "neutral",
+        "displayName": "Selection",
+        "canonical": "#ddd0ef",
+        "tonalRamp": [
+          "oklch(0.15 0.04434 304.46)",
+          "oklch(0.26 0.04434 304.46)",
+          "oklch(0.38 0.04434 304.46)",
+          "oklch(0.49 0.04434 304.46)",
+          "oklch(0.61 0.04434 304.46)",
+          "oklch(0.72 0.04434 304.46)",
+          "oklch(0.84 0.04434 304.46)",
+          "oklch(0.95 0.04434 304.46)"
+        ]
+      },
+      "selection-ink": {
+        "role": "neutral",
+        "displayName": "Selection ink",
+        "canonical": "#342345",
+        "tonalRamp": [
+          "oklch(0.15 0.06331 305.92)",
+          "oklch(0.26 0.06331 305.92)",
+          "oklch(0.38 0.06331 305.92)",
+          "oklch(0.49 0.06331 305.92)",
+          "oklch(0.61 0.06331 305.92)",
+          "oklch(0.72 0.06331 305.92)",
+          "oklch(0.84 0.06331 305.92)",
+          "oklch(0.95 0.06331 305.92)"
+        ]
+      },
+      "dark-page": {
+        "role": "neutral",
+        "displayName": "Dark page",
+        "canonical": "#211e27",
+        "tonalRamp": [
+          "oklch(0.15 0.01745 300.33)",
+          "oklch(0.26 0.01745 300.33)",
+          "oklch(0.38 0.01745 300.33)",
+          "oklch(0.49 0.01745 300.33)",
+          "oklch(0.61 0.01745 300.33)",
+          "oklch(0.72 0.01745 300.33)",
+          "oklch(0.84 0.01745 300.33)",
+          "oklch(0.95 0.01745 300.33)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark ink",
+        "canonical": "#f0ecf4",
+        "tonalRamp": [
+          "oklch(0.15 0.01144 308.33)",
+          "oklch(0.26 0.01144 308.33)",
+          "oklch(0.38 0.01144 308.33)",
+          "oklch(0.49 0.01144 308.33)",
+          "oklch(0.61 0.01144 308.33)",
+          "oklch(0.72 0.01144 308.33)",
+          "oklch(0.84 0.01144 308.33)",
+          "oklch(0.95 0.01144 308.33)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark surface",
+        "canonical": "#2d2835",
+        "tonalRamp": [
+          "oklch(0.15 0.02435 302.44)",
+          "oklch(0.26 0.02435 302.44)",
+          "oklch(0.38 0.02435 302.44)",
+          "oklch(0.49 0.02435 302.44)",
+          "oklch(0.61 0.02435 302.44)",
+          "oklch(0.72 0.02435 302.44)",
+          "oklch(0.84 0.02435 302.44)",
+          "oklch(0.95 0.02435 302.44)"
+        ]
+      },
+      "dark-primary": {
+        "role": "primary",
+        "displayName": "Dark primary",
+        "canonical": "#c8afea",
+        "tonalRamp": [
+          "oklch(0.15 0.08619 303.85)",
+          "oklch(0.26 0.08619 303.85)",
+          "oklch(0.38 0.08619 303.85)",
+          "oklch(0.49 0.08619 303.85)",
+          "oklch(0.61 0.08619 303.85)",
+          "oklch(0.72 0.08619 303.85)",
+          "oklch(0.84 0.08619 303.85)",
+          "oklch(0.95 0.08619 303.85)"
+        ]
+      },
+      "dark-primary-ink": {
+        "role": "primary",
+        "displayName": "Dark primary ink",
+        "canonical": "#2c1f3c",
+        "tonalRamp": [
+          "oklch(0.15 0.05474 303.61)",
+          "oklch(0.26 0.05474 303.61)",
+          "oklch(0.38 0.05474 303.61)",
+          "oklch(0.49 0.05474 303.61)",
+          "oklch(0.61 0.05474 303.61)",
+          "oklch(0.72 0.05474 303.61)",
+          "oklch(0.84 0.05474 303.61)",
+          "oklch(0.95 0.05474 303.61)"
+        ]
+      },
+      "dark-secondary": {
+        "role": "secondary",
+        "displayName": "Dark secondary",
+        "canonical": "#42354f",
+        "tonalRamp": [
+          "oklch(0.15 0.04714 306.96)",
+          "oklch(0.26 0.04714 306.96)",
+          "oklch(0.38 0.04714 306.96)",
+          "oklch(0.49 0.04714 306.96)",
+          "oklch(0.61 0.04714 306.96)",
+          "oklch(0.72 0.04714 306.96)",
+          "oklch(0.84 0.04714 306.96)",
+          "oklch(0.95 0.04714 306.96)"
+        ]
+      },
+      "dark-secondary-ink": {
+        "role": "secondary",
+        "displayName": "Dark secondary ink",
+        "canonical": "#eadcf8",
+        "tonalRamp": [
+          "oklch(0.15 0.04043 307.97)",
+          "oklch(0.26 0.04043 307.97)",
+          "oklch(0.38 0.04043 307.97)",
+          "oklch(0.49 0.04043 307.97)",
+          "oklch(0.61 0.04043 307.97)",
+          "oklch(0.72 0.04043 307.97)",
+          "oklch(0.84 0.04043 307.97)",
+          "oklch(0.95 0.04043 307.97)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark muted",
+        "canonical": "#342d3c",
+        "tonalRamp": [
+          "oklch(0.15 0.02804 306.01)",
+          "oklch(0.26 0.02804 306.01)",
+          "oklch(0.38 0.02804 306.01)",
+          "oklch(0.49 0.02804 306.01)",
+          "oklch(0.61 0.02804 306.01)",
+          "oklch(0.72 0.02804 306.01)",
+          "oklch(0.84 0.02804 306.01)",
+          "oklch(0.95 0.02804 306.01)"
+        ]
+      },
+      "dark-muted-ink": {
+        "role": "neutral",
+        "displayName": "Dark muted ink",
+        "canonical": "#beb4c7",
+        "tonalRamp": [
+          "oklch(0.15 0.02871 309.14)",
+          "oklch(0.26 0.02871 309.14)",
+          "oklch(0.38 0.02871 309.14)",
+          "oklch(0.49 0.02871 309.14)",
+          "oklch(0.61 0.02871 309.14)",
+          "oklch(0.72 0.02871 309.14)",
+          "oklch(0.84 0.02871 309.14)",
+          "oklch(0.95 0.02871 309.14)"
+        ]
+      },
+      "dark-accent": {
+        "role": "secondary",
+        "displayName": "Dark accent",
+        "canonical": "#41344e",
+        "tonalRamp": [
+          "oklch(0.15 0.04726 306.94)",
+          "oklch(0.26 0.04726 306.94)",
+          "oklch(0.38 0.04726 306.94)",
+          "oklch(0.49 0.04726 306.94)",
+          "oklch(0.61 0.04726 306.94)",
+          "oklch(0.72 0.04726 306.94)",
+          "oklch(0.84 0.04726 306.94)",
+          "oklch(0.95 0.04726 306.94)"
+        ]
+      },
+      "dark-accent-ink": {
+        "role": "secondary",
+        "displayName": "Dark accent ink",
+        "canonical": "#e8d9f7",
+        "tonalRamp": [
+          "oklch(0.15 0.04340 307.93)",
+          "oklch(0.26 0.04340 307.93)",
+          "oklch(0.38 0.04340 307.93)",
+          "oklch(0.49 0.04340 307.93)",
+          "oklch(0.61 0.04340 307.93)",
+          "oklch(0.72 0.04340 307.93)",
+          "oklch(0.84 0.04340 307.93)",
+          "oklch(0.95 0.04340 307.93)"
+        ]
+      },
+      "dark-border": {
+        "role": "neutral",
+        "displayName": "Dark border",
+        "canonical": "#49404f",
+        "tonalRamp": [
+          "oklch(0.15 0.02758 311.83)",
+          "oklch(0.26 0.02758 311.83)",
+          "oklch(0.38 0.02758 311.83)",
+          "oklch(0.49 0.02758 311.83)",
+          "oklch(0.61 0.02758 311.83)",
+          "oklch(0.72 0.02758 311.83)",
+          "oklch(0.84 0.02758 311.83)",
+          "oklch(0.95 0.02758 311.83)"
+        ]
+      },
+      "dark-input-border": {
+        "role": "neutral",
+        "displayName": "Dark input border",
+        "canonical": "#685876",
+        "tonalRamp": [
+          "oklch(0.15 0.05088 308.75)",
+          "oklch(0.26 0.05088 308.75)",
+          "oklch(0.38 0.05088 308.75)",
+          "oklch(0.49 0.05088 308.75)",
+          "oklch(0.61 0.05088 308.75)",
+          "oklch(0.72 0.05088 308.75)",
+          "oklch(0.84 0.05088 308.75)",
+          "oklch(0.95 0.05088 308.75)"
+        ]
+      },
+      "dark-lavender": {
+        "role": "secondary",
+        "displayName": "Dark lavender",
+        "canonical": "#342b42",
+        "tonalRamp": [
+          "oklch(0.15 0.04211 301.95)",
+          "oklch(0.26 0.04211 301.95)",
+          "oklch(0.38 0.04211 301.95)",
+          "oklch(0.49 0.04211 301.95)",
+          "oklch(0.61 0.04211 301.95)",
+          "oklch(0.72 0.04211 301.95)",
+          "oklch(0.84 0.04211 301.95)",
+          "oklch(0.95 0.04211 301.95)"
+        ]
+      },
+      "dark-sage": {
+        "role": "secondary",
+        "displayName": "Dark sage",
+        "canonical": "#2d392c",
+        "tonalRamp": [
+          "oklch(0.15 0.02765 142.91)",
+          "oklch(0.26 0.02765 142.91)",
+          "oklch(0.38 0.02765 142.91)",
+          "oklch(0.49 0.02765 142.91)",
+          "oklch(0.61 0.02765 142.91)",
+          "oklch(0.72 0.02765 142.91)",
+          "oklch(0.84 0.02765 142.91)",
+          "oklch(0.95 0.02765 142.91)"
+        ]
+      },
+      "dark-sage-ink": {
+        "role": "secondary",
+        "displayName": "Dark sage ink",
+        "canonical": "#e1ebd5",
+        "tonalRamp": [
+          "oklch(0.15 0.03113 127.05)",
+          "oklch(0.26 0.03113 127.05)",
+          "oklch(0.38 0.03113 127.05)",
+          "oklch(0.49 0.03113 127.05)",
+          "oklch(0.61 0.03113 127.05)",
+          "oklch(0.72 0.03113 127.05)",
+          "oklch(0.84 0.03113 127.05)",
+          "oklch(0.95 0.03113 127.05)"
+        ]
+      },
+      "dark-sage-muted": {
+        "role": "secondary",
+        "displayName": "Dark sage muted",
+        "canonical": "#beceb1",
+        "tonalRamp": [
+          "oklch(0.15 0.04323 131.00)",
+          "oklch(0.26 0.04323 131.00)",
+          "oklch(0.38 0.04323 131.00)",
+          "oklch(0.49 0.04323 131.00)",
+          "oklch(0.61 0.04323 131.00)",
+          "oklch(0.72 0.04323 131.00)",
+          "oklch(0.84 0.04323 131.00)",
+          "oklch(0.95 0.04323 131.00)"
+        ]
+      },
+      "dark-butter": {
+        "role": "secondary",
+        "displayName": "Dark butter",
+        "canonical": "#3c3527",
+        "tonalRamp": [
+          "oklch(0.15 0.02532 84.42)",
+          "oklch(0.26 0.02532 84.42)",
+          "oklch(0.38 0.02532 84.42)",
+          "oklch(0.49 0.02532 84.42)",
+          "oklch(0.61 0.02532 84.42)",
+          "oklch(0.72 0.02532 84.42)",
+          "oklch(0.84 0.02532 84.42)",
+          "oklch(0.95 0.02532 84.42)"
+        ]
+      },
+      "dark-butter-ink": {
+        "role": "secondary",
+        "displayName": "Dark butter ink",
+        "canonical": "#eadfbe",
+        "tonalRamp": [
+          "oklch(0.15 0.04519 91.75)",
+          "oklch(0.26 0.04519 91.75)",
+          "oklch(0.38 0.04519 91.75)",
+          "oklch(0.49 0.04519 91.75)",
+          "oklch(0.61 0.04519 91.75)",
+          "oklch(0.72 0.04519 91.75)",
+          "oklch(0.84 0.04519 91.75)",
+          "oklch(0.95 0.04519 91.75)"
+        ]
+      },
+      "dark-selection": {
+        "role": "neutral",
+        "displayName": "Dark selection",
+        "canonical": "#73558e",
+        "tonalRamp": [
+          "oklch(0.15 0.09410 307.53)",
+          "oklch(0.26 0.09410 307.53)",
+          "oklch(0.38 0.09410 307.53)",
+          "oklch(0.49 0.09410 307.53)",
+          "oklch(0.61 0.09410 307.53)",
+          "oklch(0.72 0.09410 307.53)",
+          "oklch(0.84 0.09410 307.53)",
+          "oklch(0.95 0.09410 307.53)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Manrope 500: the desktop homepage opening; mobile uses its documented responsive ramp."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Manrope 500: ordinary documentation article titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Manrope 600: ordinary documentation section headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Inter Variable: article prose within 74ch."
+      },
+      "body-large": {
+        "displayName": "Body large",
+        "purpose": "Inter Variable: the desktop introductory description."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Inter Variable 500: Zaidan controls and action links."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Geist Mono Variable: documentation source and commands."
+      },
+      "counter-value": {
+        "displayName": "Counter value",
+        "purpose": "Manrope 500: the homepage counter and derived value, with tabular numerals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "counter-lift",
+        "value": "0 14px 36px #382d4d12",
+        "purpose": "Soft lift for the homepage working counter."
+      },
+      {
+        "name": "search-float",
+        "value": "0 14px 38px #30233e1a",
+        "purpose": "Floating search results."
+      },
+      {
+        "name": "primitive-xs",
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "Zaidan outline buttons, inputs, and native selects."
+      }
+    ],
+    "motion": [
+      {
+        "name": "event-pulse",
+        "value": "480ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Real dispatch pulses the event-note background from an 18% hero-foreground/transparent mix to transparent; prior animation and cleanup are cancelled; reduced motion skips it."
+      },
+      {
+        "name": "control-transition",
+        "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Compiled default Zaidan control transitions."
+      },
+      {
+        "name": "sheet-transition",
+        "value": "200ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Zaidan Sheet content transition."
+      },
+      {
+        "name": "reduced-motion-duration",
+        "value": "0.01ms",
+        "purpose": "Global animation and transition duration override; dispatch data still updates."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "767px"
+      },
+      {
+        "name": "stacked-desktop",
+        "value": "1000px"
+      },
+      {
+        "name": "auxiliary-header-nav",
+        "value": "1130px"
+      },
+      {
+        "name": "table-of-contents",
+        "value": "1279px"
+      },
+      {
+        "name": "wide-home-close",
+        "value": "1440px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary landing action",
+      "kind": "button",
+      "refersTo": "button-primary-xl",
+      "description": "Primary landing action using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-primary\">Get started <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:var(--primary,#7655a8);color:var(--primary-foreground,#fff);height:48px;padding:0 20px;gap:12px;}.ds-primary:hover{background:color-mix(in oklab,var(--primary,#7655a8) 80%,transparent);}.ds-primary:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-primary:active:not([aria-haspopup]){transform:translateY(1px)}.ds-primary:disabled{pointer-events:none;opacity:.5}.ds-primary svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-primary{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Outline action",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Outline action using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-outline\">Decrement −1</button>",
+      "css": ".ds-outline{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:var(--background,#fcfcfa);color:var(--foreground,#2d2c32);border-color:var(--border,#e7e3eb);box-shadow:0 1px 2px 0 rgb(0 0 0 / .05);}.ds-outline:hover{background:var(--muted,#f1eff4);color:var(--foreground,#2d2c32);}.ds-outline:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-outline:active:not([aria-haspopup]){transform:translateY(1px)}.ds-outline:disabled{pointer-events:none;opacity:.5}.ds-outline svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-outline{transition-duration:.01ms}}:host-context(.dark) .ds-outline{background:color-mix(in oklab,var(--input,#685876) 30%,transparent);border-color:var(--input,#685876)}:host-context(.dark) .ds-outline:hover{background:color-mix(in oklab,var(--input,#685876) 50%,transparent)}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary action using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-secondary\">Reset counter</button>",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:var(--secondary,#eeebf6);color:var(--secondary-foreground,#62478a);}.ds-secondary:hover{background:color-mix(in oklch,var(--secondary,#eeebf6),var(--foreground,#2d2c32) 5%);}.ds-secondary:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-secondary:active:not([aria-haspopup]){transform:translateY(1px)}.ds-secondary:disabled{pointer-events:none;opacity:.5}.ds-secondary svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-secondary{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Ghost action",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Ghost action using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-ghost\">Documentation</button>",
+      "css": ".ds-ghost{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:transparent;color:var(--foreground,#2d2c32);}.ds-ghost:hover{background:var(--muted,#f1eff4);color:var(--foreground,#2d2c32);}.ds-ghost:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-ghost:active:not([aria-haspopup]){transform:translateY(1px)}.ds-ghost:disabled{pointer-events:none;opacity:.5}.ds-ghost svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-ghost{transition-duration:.01ms}}:host-context(.dark) .ds-ghost:hover{background:color-mix(in oklab,var(--muted,#342d3c) 50%,transparent)}"
+    },
+    {
+      "name": "Action link",
+      "kind": "button",
+      "refersTo": "button-link",
+      "description": "Action link using the current Zaidan recipe and semantic state colors.",
+      "html": "<button class=\"ds-link\">Explore the API <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;white-space:nowrap;font:500 14px/20px \"Inter Variable\",sans-serif;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);padding:0 10px;height:36px;text-decoration:none;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1);background:transparent;color:var(--primary,#7655a8);text-underline-offset:4px;height:40px;}.ds-link:hover{text-decoration:underline;}.ds-link:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-link:active:not([aria-haspopup]){transform:translateY(1px)}.ds-link:disabled{pointer-events:none;opacity:.5}.ds-link svg{width:16px;height:16px;flex-shrink:0}@media(prefers-reduced-motion:reduce){.ds-link{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Zaidan search Input with the keyboard-hint space reserved.",
+      "html": "<label class=\"ds-search\"><input type=\"search\" aria-label=\"Search documentation\" placeholder=\"Search documentation…\"><kbd>/</kbd></label>",
+      "css": ".ds-search{position:relative;display:block;width:300px;max-width:100%}.ds-search input{height:36px;min-width:0;width:100%;padding:4px 10px;border:1px solid var(--input,#d4cbdc);border-radius:calc(var(--radius,.875rem) - 2px);background:transparent;color:var(--foreground,#2d2c32);font:400 14px/20px \"Inter Variable\",sans-serif;outline:none;box-shadow:0 1px 2px 0 rgb(0 0 0 / .05);transition:color .15s cubic-bezier(.4,0,.2,1),box-shadow .15s cubic-bezier(.4,0,.2,1);padding-right:32px}.ds-search input::placeholder{color:var(--muted-foreground,#706b7a)}.ds-search input:hover{border-color:var(--input,#d4cbdc)}.ds-search input:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-search input:disabled{pointer-events:none;opacity:.5}.ds-search kbd{position:absolute;right:12px;top:9px;color:var(--muted-foreground,#706b7a);font:11.2px/16px \"Geist Mono Variable\",monospace;pointer-events:none}@media(max-width:767px){.ds-search input{font-size:16px}}@media(prefers-reduced-motion:reduce){.ds-search input{transition-duration:.01ms}}:host-context(.dark) .ds-search input{background:color-mix(in oklab,var(--input,#685876) 30%,transparent)}"
+    },
+    {
+      "name": "Language select",
+      "kind": "input",
+      "refersTo": "language-select",
+      "description": "Native language selection with the Zaidan chevron and focus treatment.",
+      "html": "<div class=\"ds-select\"><select aria-label=\"Language\"><option selected>English</option><option>Français</option></select><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></div>",
+      "css": ".ds-select{position:relative;display:inline-block}.ds-select select{height:36px;min-width:0;width:100%;padding:4px 10px;border:1px solid var(--input,#d4cbdc);border-radius:calc(var(--radius,.875rem) - 2px);background:transparent;color:var(--foreground,#2d2c32);font:400 14px/20px \"Inter Variable\",sans-serif;outline:none;box-shadow:0 1px 2px 0 rgb(0 0 0 / .05);transition:color .15s cubic-bezier(.4,0,.2,1),box-shadow .15s cubic-bezier(.4,0,.2,1);appearance:none;padding-right:32px;cursor:pointer}.ds-select select:hover{border-color:var(--input,#d4cbdc)}.ds-select select:focus-visible{border-color:var(--ring,#7655a8);box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#7655a8) 50%,transparent);}.ds-select select:disabled{pointer-events:none;opacity:.5}.ds-select svg{position:absolute;right:10px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:var(--muted-foreground,#706b7a);pointer-events:none}@media(prefers-reduced-motion:reduce){.ds-select select{transition-duration:.01ms}}:host-context(.dark) .ds-select select{background:color-mix(in oklab,var(--input,#685876) 30%,transparent)}:host-context(.dark) .ds-select select:hover{background:color-mix(in oklab,var(--input,#685876) 50%,transparent)}"
+    },
+    {
+      "name": "Documentation navigation",
+      "kind": "nav",
+      "description": "Zaidan sidebar rows with a semantic active state; article routes keep this navigation.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Documentation\"><a href=\"#\" aria-current=\"page\">Get started</a><a href=\"#\">Events and slices</a><a href=\"#\">Reactive state</a></nav>",
+      "css": ".ds-nav{display:grid;gap:4px;width:240px;font:400 13px/20px \"Inter Variable\",sans-serif}.ds-nav a{display:flex;align-items:center;min-height:36px;padding:8px;border-radius:calc(var(--radius,.875rem) - 2px);color:var(--sidebar-foreground,#2d2c32);text-decoration:none;outline:none}.ds-nav a:hover,.ds-nav a:active,.ds-nav a[aria-current=page]{background:var(--sidebar-accent,#eeebf6);color:var(--sidebar-accent-foreground,#62478a)}.ds-nav a[aria-current=page]{font-weight:650}.ds-nav a:focus-visible{box-shadow:0 0 0 2px var(--sidebar-ring,#7655a8)}"
+    },
+    {
+      "name": "Documentation note",
+      "kind": "card",
+      "refersTo": "note",
+      "description": "A flat lavender note for contextual reading guidance.",
+      "html": "<aside class=\"ds-note\"><strong>Keep in mind</strong><p>The creator owns the store’s lifetime.</p></aside>",
+      "css": ".ds-note{padding:22px 24px;border:0;border-radius:14px;background:var(--lavender,#eeebf6);color:var(--foreground,#2d2c32);font-family:\"Inter Variable\",sans-serif}.ds-note strong{color:var(--primary,#7655a8);font-size:12px}.ds-note p{margin:5px 0 0;font-size:13px;line-height:1.8}"
+    },
+    {
+      "name": "Documentation source panel",
+      "kind": "card",
+      "refersTo": "source-panel",
+      "description": "Selectable source on the stable plum code surface, with a Zaidan-style copy action.",
+      "html": "<figure class=\"ds-code\"><figcaption><span>counter.ts</span><button>Copy code</button></figcaption><pre tabindex=\"0\"><code>state.value += payload;</code></pre></figure>",
+      "css": ".ds-code{margin:0;overflow:hidden;border-radius:14px;background:var(--code,#2e273b);color:var(--code-foreground,#f4effb)}.ds-code figcaption{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px;border-bottom:1px solid #ffffff1f;font:400 12px/1.5 \"Inter Variable\",sans-serif}.ds-code figcaption>span{color:var(--code-number,#cfbedf)}.ds-code button{height:32px;padding:0 10px;border:1px solid transparent;border-radius:calc(var(--radius,.875rem) - 2px);background:transparent;color:inherit;font:500 14px/20px \"Inter Variable\",sans-serif;cursor:pointer;outline:none;transition:all .15s cubic-bezier(.4,0,.2,1)}.ds-code button:hover{background:var(--code-highlight,#493b5b)}.ds-code button:focus-visible{border-color:#c8afea;box-shadow:0 0 0 3px #c8afea80}.ds-code button:active{transform:translateY(1px)}.ds-code pre{margin:0;padding:21px;overflow-x:auto;font:400 13px/1.85 \"Geist Mono Variable\",monospace;tab-size:2}.ds-code pre:focus-visible{outline:2px solid #c8afea;outline-offset:-4px}.ds-code code{font:inherit}@media(prefers-reduced-motion:reduce){.ds-code button{transition-duration:.01ms}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Open Space",
+    "overview": "Open Space gives developers room to understand state. A continuous near-white ground, dark rounded headings, and restrained violet actions frame real code and reactive values. Lavender, sage, and pale-yellow surfaces give related information a recognizable place without turning every region into a card.\n\nThe system combines generous editorial spacing with precise documentation. Manrope carries headings and the brand; Inter carries reading and controls; Geist Mono carries source. The informal, slightly rotated notes belong to the live-example composition, while article pages retain an orderly reading shell.",
+    "keyCharacteristics": [
+      "Near-white space and charcoal type establish the light identity; semantic plum tones carry dark mode.",
+      "Manrope headings, Inter prose, and Geist Mono source keep their distinct roles.",
+      "Lavender, sage, and pale-yellow fields organize functional content with restrained depth.",
+      "Zaidan owns control states; authored motion follows real dispatch activity."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Color Rule",
+        "body": "Resolve light and dark surfaces through the implemented semantic properties. Theme and language are independent settings; neither selects another visual identity.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reading Face Rule",
+        "body": "Use Manrope for headings and the brand, Inter for prose and controls, and Geist Mono for source. Preserve selectable, keyboard-scrollable code.",
+        "section": "typography"
+      },
+      {
+        "name": "The Functional Depth Rule",
+        "body": "Use tonal separation for ordinary content and soft elevation for floating results or the working counter. Keep depth subordinate to reading and interaction.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** carry Open Space across the homepage and documentation using the semantic palette.",
+      "**Do** use Zaidan components and exported recipes for all controls and links, preserving native anchors and typed router links.",
+      "**Do** preserve visible focus, keyboard access, English/French parity, and reduced-motion behavior.",
+      "**Do** keep source inspectable and connect authored activity to real state updates."
+    ],
+    "donts": [
+      "**Don't** reuse the superseded navy-and-ivory Signal Atlas identity.",
+      "**Don't** use Manrope for reading prose or code.",
+      "**Don't** turn the homepage's rotated-note composition into a requirement for every article.",
+      "**Don't** replace readable source or working controls with a decorative image."
+    ]
+  }
+}

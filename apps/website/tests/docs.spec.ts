@@ -64,9 +64,10 @@ test("docs have distinct history routes, titles, deep links, and a recovery page
   page,
 }) => {
   await page.goto("/");
-  await openMenuIfMobile(page);
-  const navigation = page.getByRole("navigation", { name: "Documentation", exact: true });
-  await navigation.getByRole("link", { name: "Get started", exact: true }).click();
+  await page
+    .locator(".landing-actions")
+    .getByRole("link", { name: "Get started", exact: true })
+    .click();
   await expect(page).toHaveURL(/\/docs\/getting-started$/);
   await expect(page).toHaveTitle("Get started · Solux");
   await expect(page.getByRole("main")).toBeFocused();
@@ -170,6 +171,7 @@ test("skip link, mobile disclosure, and layout remain usable", async ({ page }, 
     await expect(page.getByRole("main")).toBeFocused();
   }
   if (testInfo.project.name === "desktop") {
+    await page.goto("/docs/getting-started");
     const navigation = await page
       .getByRole("navigation", { name: "Documentation", exact: true })
       .boundingBox();

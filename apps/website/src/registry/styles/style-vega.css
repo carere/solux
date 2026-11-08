@@ -44,6 +44,11 @@
   @apply h-10 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2;
 }
 
+/* Solux extension: a spacious landing-page action using the same Button states. */
+.z-button-size-xl {
+  @apply h-12 gap-3 px-5;
+}
+
 .z-button-size-icon-xs {
   @apply size-6 rounded-[min(var(--radius-md),8px)] in-data-[slot=button-group]:rounded-md [&_svg:not([class*='size-'])]:size-3;
 }
@@ -201,4 +206,13 @@
 
 .z-sidebar-menu-sub-button {
   @apply text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground [&>svg]:text-sidebar-accent-foreground h-7 gap-2 rounded-md px-2 focus-visible:ring-2 data-[size=md]:text-sm data-[size=sm]:text-xs [&>svg]:size-4;
+}
+
+/* MARK: Native Select */
+.z-native-select {
+  @apply border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 h-9 w-full min-w-0 appearance-none rounded-md border bg-transparent py-1 pr-8 pl-2.5 text-sm shadow-xs transition-[color,box-shadow] select-none focus-visible:ring-3 aria-invalid:ring-3 data-[size=sm]:h-8;
+}
+
+.z-native-select-icon {
+  @apply text-muted-foreground top-1/2 right-2.5 size-4 -translate-y-1/2;
 }

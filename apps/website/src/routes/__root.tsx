@@ -33,7 +33,7 @@ export const Route = createRootRoute({
 
 function RootDocument(props: { children: import("solid-js").JSX.Element }) {
   return (
-    <html lang={getLocale()} class="light" data-theme="light">
+    <html lang={getLocale()} class="light" data-theme="light" data-design="open-space">
       <head>
         <HydrationScript />
         <ScriptOnce>{colorModeScript}</ScriptOnce>

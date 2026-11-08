@@ -1,0 +1,214 @@
+import { Link } from "@tanstack/solid-router";
+import { ArrowRight, ArrowUpRight, Check, Copy, MoveRight } from "lucide-solid";
+import { createSignal, onCleanup, Show } from "solid-js";
+import type { DocPage } from "../docs";
+import { cn } from "../lib/utils";
+import * as m from "../paraglide/messages";
+import { Button, buttonVariants } from "../registry/ui/button";
+import { CounterDemo } from "./Demos";
+
+const installCommand = "bun add @carere/solux";
+const incrementExcerpt = `builder.addHandler(
+  increment,
+  (state, { payload }) => {
+    state.value += payload;
+  },
+);`;
+
+export function LandingIntro(props: { page: DocPage }) {
+  const [copyStatus, setCopyStatus] = createSignal<"idle" | "success" | "failure">("idle");
+  const [lastEvent, setLastEvent] = createSignal("");
+  let eventFlow: HTMLElement | undefined;
+  let activity: Animation | undefined;
+  const showEvent = (type: string) => {
+    setLastEvent(type);
+    activity?.cancel();
+    if (!eventFlow || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    activity = eventFlow.animate(
+      [
+        { backgroundColor: "color-mix(in srgb, var(--hero-foreground) 18%, transparent)" },
+        { backgroundColor: "transparent" },
+      ],
+      { duration: 480, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
+    );
+  };
+  onCleanup(() => activity?.cancel());
+  const copyInstall = async () => {
+    try {
+      await navigator.clipboard.writeText(installCommand);
+      setCopyStatus("success");
+    } catch {
+      setCopyStatus("failure");
+    }
+  };
+
+  return (
+    <section class="landing-intro" aria-labelledby="landing-title">
+      <div class="landing-hero">
+        <div class="landing-copy">
+          <h1 id="landing-title" class="landing-title intro-title">
+            {props.page.title}
+          </h1>
+          <p class="landing-description">{props.page.description}</p>
+          <div class="landing-actions">
+            <Link
+              to="/docs/$slug"
+              params={{ slug: "getting-started" }}
+              class={buttonVariants({ size: "xl" })}
+              data-slot="button"
+            >
+              {m.get_started()} <ArrowRight data-icon="inline-end" aria-hidden="true" />
+            </Link>
+            <Link
+              to="/docs/$slug"
+              params={{ slug: "api-reference" }}
+              class={buttonVariants({ variant: "link", size: "lg" })}
+              data-slot="button"
+            >
+              {m.explore_api()} <ArrowUpRight data-icon="inline-end" aria-hidden="true" />
+            </Link>
+          </div>
+          <div class="landing-install">
+            <code>{installCommand}</code>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              onClick={copyInstall}
+              aria-label={m.copy_label({ label: m.landing_install_label() })}
+            >
+              <Show when={copyStatus() === "success"} fallback={<Copy aria-hidden="true" />}>
+                <Check aria-hidden="true" />
+              </Show>
+            </Button>
+            <span class="landing-copy-status" role="status">
+              {copyStatus() === "success"
+                ? m.copied()
+                : copyStatus() === "failure"
+                  ? m.select_code()
+                  : ""}
+            </span>
+          </div>
+          <p class="landing-footnote">{m.landing_footnote()}</p>
+        </div>
+
+        <section class="landing-workbench" aria-labelledby="workbench-title">
+          <div class="workbench-stage">
+            <section class="event-flow" aria-label={m.landing_flow_label()} ref={eventFlow}>
+              <div class="flow-step" data-active={lastEvent().length > 0}>
+                <span>{m.landing_event_label()}</span>
+                <code>{lastEvent() || "counter/increment"}</code>
+              </div>
+              <ArrowRight class="flow-arrow" aria-hidden="true" />
+              <div class="flow-step" data-active={lastEvent().length > 0}>
+                <span>{m.landing_handler_label()}</span>
+                <code>{lastEvent() === "counter/reset" ? "value = 0" : "value += payload"}</code>
+              </div>
+              <ArrowRight class="flow-arrow" aria-hidden="true" />
+              <div class="flow-step" data-active={lastEvent().length > 0}>
+                <span>{m.landing_state_label()}</span>
+                <code>state.counter.value</code>
+              </div>
+            </section>
+            <section class="workbench-source" aria-labelledby="workbench-source-title">
+              <div class="workbench-source-heading">
+                <h3 id="workbench-source-title">{m.landing_source_label()}</h3>
+                <span>counter.ts</span>
+              </div>
+              {/* biome-ignore lint/a11y/noNoninteractiveTabindex: Keyboard users need to scroll the code excerpt. */}
+              <pre tabIndex={0}>
+                <code>{incrementExcerpt}</code>
+              </pre>
+              <a
+                class={cn(
+                  buttonVariants({ variant: "link", size: null }),
+                  "workbench-source-link whitespace-normal justify-start text-left",
+                )}
+                data-slot="button"
+                href="#the-shape-of-a-store"
+              >
+                {m.landing_full_example()} <ArrowRight data-icon="inline-end" aria-hidden="true" />
+              </a>
+            </section>
+            <div class="workbench-counter">
+              <CounterDemo onEvent={showEvent} />
+            </div>
+          </div>
+          <div class="workbench-heading">
+            <h2 id="workbench-title">{m.landing_workbench_title()}</h2>
+            <p>{m.landing_workbench_description()}</p>
+          </div>
+        </section>
+      </div>
+
+      <div class="landing-concepts">
+        <div class="landing-concepts-intro">
+          <h2>{m.landing_concepts_title()}</h2>
+          <p>{m.landing_concepts_description()}</p>
+        </div>
+        <nav class="landing-paths" aria-label={m.landing_paths_label()}>
+          <Link
+            to="/docs/$slug"
+            params={{ slug: "events-and-slices" }}
+            class={cn(
+              buttonVariants({ variant: "link", size: null }),
+              "landing-path whitespace-normal justify-between text-left",
+            )}
+            data-slot="button"
+          >
+            <span class="path-example" aria-hidden="true">
+              <code>increment(1)</code>
+              <MoveRight />
+              <code>dispatch</code>
+            </span>
+            <span class="landing-path-copy">
+              <strong>{m.landing_events_title()}</strong>
+              <span>{m.landing_events_description()}</span>
+            </span>
+            <ArrowUpRight aria-hidden="true" />
+          </Link>
+          <Link
+            to="/docs/$slug"
+            params={{ slug: "reactive-state" }}
+            class={cn(
+              buttonVariants({ variant: "link", size: null }),
+              "landing-path whitespace-normal justify-between text-left",
+            )}
+            data-slot="button"
+          >
+            <span class="path-example" aria-hidden="true">
+              <code>state.value</code>
+              <MoveRight />
+              <code>createMemo</code>
+            </span>
+            <span class="landing-path-copy">
+              <strong>{m.landing_reactivity_title()}</strong>
+              <span>{m.landing_reactivity_description()}</span>
+            </span>
+            <ArrowUpRight aria-hidden="true" />
+          </Link>
+          <Link
+            to="/docs/$slug"
+            params={{ slug: "store-lifecycle" }}
+            class={cn(
+              buttonVariants({ variant: "link", size: null }),
+              "landing-path whitespace-normal justify-between text-left",
+            )}
+            data-slot="button"
+          >
+            <span class="path-example" aria-hidden="true">
+              <code>configureStore()</code>
+              <MoveRight />
+              <code>dispose()</code>
+            </span>
+            <span class="landing-path-copy">
+              <strong>{m.landing_ownership_title()}</strong>
+              <span>{m.landing_ownership_description()}</span>
+            </span>
+            <ArrowUpRight aria-hidden="true" />
+          </Link>
+        </nav>
+      </div>
+    </section>
+  );
+}
