@@ -15,12 +15,14 @@ run and their results; distinguish anticipated commands from verified ones.
 
 ## Agent skills
 
-Skills are vendored in `.agents/skills/`; provenance, the exact copied inventory,
-and known upstream gaps are in [the skills README](.agents/skills/README.md).
-Keep vendor resources unchanged and put Solux configuration in repository docs.
+Shared skills are centralized in [carere/home](https://github.com/carere/home),
+normally at `~/Projects/home/.agents/skills/`. Start the agent from Home to load
+them, then run Solux commands from this repository. Home's skill catalog records
+provenance and known upstream gaps. Keep Solux configuration in repository docs.
+The adapted project guides retain [Matt Pocock's license](docs/agents/MATT-POCOCK-LICENSE).
 Use relevant skills when requested or applicable; installing them does not run
 their workflows or require the setup questionnaire. User scope and active
-environment/tool instructions take precedence over vendor workflow defaults.
+environment/tool instructions take precedence over shared workflow defaults.
 
 ### Issue tracker
 

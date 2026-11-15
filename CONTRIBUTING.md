@@ -76,8 +76,7 @@ checks remain enabled.
 ## Commits and releases
 
 Use Conventional Commits; Lefthook runs `cog verify` on commit messages and sorts
-nested manifests before applying Biome to staged source. Keep the vendored skills
-unchanged and exclude them from source tooling.
+nested manifests before applying Biome to staged source.
 
 Never publish packages, push release tags, or deploy the site as a side effect of
 ordinary checks. See [release instructions](docs/releases.md) and

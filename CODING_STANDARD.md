@@ -51,5 +51,4 @@ Keep packed-consumer declaration and runtime checks for packaging changes.
 
 Run the checks relevant to the change and report failures or unavailable tasks
 plainly. A successful source typecheck alone does not establish that published
-declarations resolve. Do not rewrite vendored skills to satisfy format or unused
-code tooling; configure repository tooling outside the vendor tree instead.
+declarations resolve.
