@@ -1,3 +1,0 @@
-# Preserve the exact whitespace of the recorded upstream skill snapshot.
-/.agents/skills/** -whitespace
-/.agents/skills/README.md whitespace

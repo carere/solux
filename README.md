@@ -69,8 +69,8 @@ closes store observers and per-store DevTools resources; it does not cancel epic
 or middleware side effects. Read the package's lifecycle and time-travel guide
 for the full ownership contract.
 
-Repository skills are in [.agents/skills](.agents/skills/README.md), copied from
-Gurafu with their resources and notices. [AGENTS.md](AGENTS.md) routes agents to
+Shared agent skills are maintained in [carere/home](https://github.com/carere/home).
+[AGENTS.md](AGENTS.md) routes agents to
 Solux-specific guidance; installing skills does not authorize external writes.
 
 MIT © Kevin Abatan. See [LICENSE](LICENSE).

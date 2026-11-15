@@ -39,11 +39,3 @@ Build and dry-run tasks do not publish. One manual Release dispatch calculates
 the version with Cog, validates and automatically merges release metadata, then
 publishes to npm and GitHub without a deployment approval. Website deployment is
 independent. Follow the user's current authorization for external actions.
-
-## Vendored resources
-
-Keep `.agents/skills/` aligned with its recorded source except its Solux-owned
-README. Repository tooling excludes the vendor tree. Preserve resources,
-notices and executable modes. Verify file hashes/modes when updating the snapshot;
-launching skills is not an installation test because launchers may download tools
-or open sessions.
